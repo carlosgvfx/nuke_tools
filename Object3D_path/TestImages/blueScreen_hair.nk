@@ -1,0 +1,14 @@
+set cut_paste_input [stack 0]
+version 10.5 v2
+Read {
+ inputs 0
+ file "\[python \{Object3D_path\} ]/TestImages/blue_screen_hair.exr"
+ format "1024 578 0 0 1024 578 1 "
+ origset true
+ auto_alpha true
+ name Read_blueScreen_HAIR
+ note_font_color 0xffff
+ selected true
+ xpos -2344
+ ypos -1444
+}

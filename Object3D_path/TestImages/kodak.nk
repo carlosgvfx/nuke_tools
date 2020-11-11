@@ -1,0 +1,13 @@
+set cut_paste_input [stack 0]
+version 10.5 v2
+Read {
+ inputs 0
+ file "\[python \{Object3D_path\} ]/TestImages/Kodak_Digital_LAD.png"
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ origset true
+ auto_alpha true
+ name Read_Kodak
+ selected true
+ xpos -2165
+ ypos -1457
+}
