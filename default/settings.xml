@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<defaultSettings>
+  <set name="cur_preset">custom.xml</set>
+  <set name="presets_path">/mnt/users/cguillen/.nuke/cg_python/presets</set>
+</defaultSettings>
