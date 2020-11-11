@@ -1,0 +1,11 @@
+set cut_paste_input [stack 0]
+version 10.5 v2
+push $cut_paste_input
+ReadGeo2 {
+ file "\[python \{Object3D_path\} ]/Basic/low/cube_low.obj"
+ name CUBE_LOW
+ label "from Maya\n"
+ selected true
+ xpos -21
+ ypos -149
+}

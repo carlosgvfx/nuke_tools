@@ -1,0 +1,11 @@
+set cut_paste_input [stack 0]
+version 10.5 v2
+push $cut_paste_input
+ReadGeo2 {
+ file "\[python \{Object3D_path\} ]/Basic/high/cylinder.obj"
+ name CYLINDER
+ label "from Maya\n"
+ selected true
+ xpos 169
+ ypos -93
+}
