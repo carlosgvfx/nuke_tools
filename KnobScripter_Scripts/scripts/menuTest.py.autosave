@@ -1,0 +1,6 @@
+myShuffle = nuke.createNode('Shuffle')
+myShuffle['red'].setValue('red')
+myShuffle['green'].setValue('red')
+myShuffle['blue'].setValue('red')
+myShuffle['alpha'].setValue('red')
+myShuffle['lable'].setValue("[value red] > [value out]")
