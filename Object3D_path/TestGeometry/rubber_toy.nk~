@@ -1,0 +1,11 @@
+set cut_paste_input [stack 0]
+version 10.5 v2
+push $cut_paste_input
+ReadGeo {
+ file /corky/projects/Library/Departments/Compositing/nuke/templates/3D_TestModels/rubber_toy.obj
+ name RUBBER_TOY
+ label "from Houdini\n"
+ selected true
+ xpos 503
+ ypos 141
+}

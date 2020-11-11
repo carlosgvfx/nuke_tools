@@ -1,0 +1,96 @@
+set cut_paste_input [stack 0]
+version 10.5 v2
+BackdropNode {
+ inputs 0
+ name BackdropNode1
+ tile_color 0x34919901
+ label "Thanks to Mayika VFX from YouTube"
+ note_font_size 12
+ selected true
+ xpos -1247
+ ypos -161
+ bdwidth 678
+ bdheight 335
+}
+push $cut_paste_input
+Camera2 {
+ name Camera2
+ selected true
+ xpos -772
+ ypos 99
+}
+DeepRead {
+ inputs 0
+ file "\[python \{Object3D_path\} ]/TestDeep/deep/Deepcomp_rs_Bldg1.exr"
+ format "1024 540 0 0 1024 540 1 "
+ origset true
+ name DeepRead1
+ selected true
+ xpos -1111
+ ypos -62
+}
+DeepRead {
+ inputs 0
+ file "\[python \{Object3D_path\} ]/TestDeep/deep/Deepcomp_rs_Bldg2.exr"
+ format "1024 540 0 0 1024 540 1 "
+ origset true
+ name DeepRead2
+ selected true
+ xpos -1000
+ ypos -62
+}
+DeepRead {
+ inputs 0
+ file "\[python \{Object3D_path\} ]/TestDeep/deep/Deepcomp_rs_ground.exr"
+ format "1024 540 0 0 1024 540 1 "
+ origset true
+ name DeepRead4
+ selected true
+ xpos -781
+ ypos -62
+}
+DeepRead {
+ inputs 0
+ file "\[python \{Object3D_path\} ]/TestDeep/deep/Deepcomp_rs_LampPost.exr"
+ format "1024 540 0 0 1024 540 1 "
+ origset true
+ name DeepRead5
+ selected true
+ xpos -671
+ ypos -62
+}
+DeepRead {
+ inputs 0
+ file "\[python \{Object3D_path\} ]/TestDeep/deep/Deepcomp_rs_Car.exr"
+ format "1024 540 0 0 1024 540 1 "
+ origset true
+ name DeepRead3
+ selected true
+ xpos -891
+ ypos -62
+}
+DeepMerge {
+ inputs 5
+ name DeepMerge1
+ selected true
+ xpos -891
+ ypos 49
+}
+DeepToPoints {
+ inputs 2
+ name DeepToPoints1
+ selected true
+ xpos -891
+ ypos 120
+}
+Read {
+ inputs 0
+ file "\[python \{Object3D_path\} ]/TestDeep/render/Deepcomp_masterLayer.exr"
+ format "1024 540 0 0 1024 540 1 "
+ origset true
+ auto_alpha true
+ name Read1
+ selected true
+ xpos -1237
+ ypos -81
+}

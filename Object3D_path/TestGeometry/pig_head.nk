@@ -1,0 +1,11 @@
+set cut_paste_input [stack 0]
+version 10.5 v2
+push $cut_paste_input
+ReadGeo {
+ file "\[python \{Object3D_path\} ]/TestGeometry/pig_head.obj"
+ name PIG_HEAD
+ label "from Houdini\n"
+ selected true
+ xpos 180
+ ypos -18
+}

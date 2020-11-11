@@ -1,0 +1,81 @@
+#! /mnt/repository/software/install/nuke/11.3v1/centos-6_x86-64/libnuke-11.3.1.so -nx
+version 11.3 v1
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="25" w="1920" h="1124" maximized="1" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1257" stretch="1"/>
+            <splitter orientation="2">
+                <split size="1077"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <splitter orientation="2">
+                <split size="630"/>
+                <dock id="" activePageId="Properties.1">
+                    <page id="Properties.1"/>
+                    <page id="uk.co.thefoundry.scripteditor.1"/>
+                </dock>
+                <split size="443"/>
+                <dock id="" activePageId="uk.co.thefoundry.MassivePanelPySide">
+                    <page id="uk.co.thefoundry.MassivePanelPySide"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+    <window x="1920" y="22" w="1916" h="1148" screen="1">
+        <splitter orientation="2">
+            <split size="1012"/>
+            <dock id="" activePageId="Viewer.1">
+                <page id="Viewer.2"/>
+                <page id="Viewer.1"/>
+            </dock>
+            <split size="132"/>
+            <dock id="" activePageId="DopeSheet.1">
+                <page id="Curve Editor.1"/>
+                <page id="DopeSheet.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name /home/geremian/.nuke/3D_Object/TestGeometry/pig_head.nk
+ colorManagement Nuke
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+ addUserKnob {20 trixter_tab l Trixter}
+ addUserKnob {6 tx_clearmemory l "clear memory before each rendered frame" -STARTLINE}
+ addUserKnob {6 tx_threadsone l "set threads to 1 before rendering" +STARTLINE}
+ addUserKnob {20 OCIOViewerContext}
+ addUserKnob {26 ocioVCinfo l "" +STARTLINE T "set the context for OCIO in the viewers here (expressions don't work)"}
+ addUserKnob {26 ocioVCdiv l "" +STARTLINE T " "}
+ addUserKnob {1 ocioVCkey1 l key1}
+ addUserKnob {1 ocioVCvalue1 l value1 -STARTLINE}
+ addUserKnob {1 ocioVCkey2 l key2}
+ addUserKnob {1 ocioVCvalue2 l value2 -STARTLINE}
+ addUserKnob {1 ocioVCkey3 l key3}
+ addUserKnob {1 ocioVCvalue3 l value3 -STARTLINE}
+ addUserKnob {1 ocioVCkey4 l key4}
+ addUserKnob {1 ocioVCvalue4 l value4 -STARTLINE}
+}
+ReadGeo2 {
+ inputs 0
+ file ~/.nuke/3D_Object/TestGeometry/pig_head.obj
+ name PIG_HEAD
+ label "from Houdini\n"
+ xpos -15
+ ypos -242
+}

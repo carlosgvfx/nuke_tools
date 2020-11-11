@@ -1,0 +1,12 @@
+set cut_paste_input [stack 0]
+version 10.5 v2
+push $cut_paste_input
+ReadGeo2 {
+ file "\[python \{Object3D_path\} ]/TestGeometry/shaderBall.obj"
+ version 4
+ name SHADER_BALL
+ label "from Maya\n"
+ selected true
+ xpos -345
+ ypos -44
+}
