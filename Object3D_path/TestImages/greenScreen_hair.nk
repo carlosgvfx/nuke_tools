@@ -1,0 +1,14 @@
+set cut_paste_input [stack 0]
+version 10.5 v2
+Read {
+ inputs 0
+ file "\[python \{Object3D_path\} ]/TestImages/green_screen_hair.tif"
+ format "4096 2160 0 0 4096 2160 1 4K_DCP"
+ origset true
+ auto_alpha true
+ name Read_greenScreen2
+ note_font_color 0xaa00ff
+ selected true
+ xpos -1986
+ ypos -1556
+}
