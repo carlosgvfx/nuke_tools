@@ -1,0 +1,358 @@
+#! /softwareLocal/nuke/linux/Nuke8.0v6_x64/libnuke-8.0.v6.so -nx
+version 8.0 v6
+add_layer {highlights highlight.red highlight.green highlight.blue}
+Group {
+name Haze
+ inputs 3
+ tile_color 0xed883fff
+ addUserKnob {20 haze l Haze}
+ addUserKnob {41 in2 l "Depth channel" T ShuffleCopy2.in2}
+ addUserKnob {4 type l Type M {Depth "Position 2D" "Position 3D" ""}}
+ addUserKnob {4 falloff l Falloff M {Linear Smoothstep Cubic "Inverse\nCubic"}}
+ addUserKnob {18 min l Near}
+ min {0 0 0}
+ addUserKnob {6 min_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {18 max l Far}
+ max {0 0 0}
+ addUserKnob {6 max_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {26 fill l "@b;Fill"}
+ addUserKnob {18 solid l Constant}
+ solid {0.5 0.5 0.5}
+ addUserKnob {6 solid_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {3 blur l "BG Blur"}
+ blur 1000
+ addUserKnob {7 disolve l Disolve}
+ addUserKnob {8 Merge2_mix l "Overall mix"}
+ Merge2_mix 1
+ addUserKnob {26 hl l "@b;Highlights"}
+ addUserKnob {41 mix l Amount T Max.mix}
+ addUserKnob {41 out2 l Channel T ShuffleCopy1.out2}
+ addUserKnob {6 high_out l "Output Highligts" +STARTLINE}
+}
+ Input {
+  inputs 0
+  name Image
+  xpos 406
+  ypos -1059
+ }
+ Dot {
+  name Dot13
+  xpos 440
+  ypos -848
+ }
+set N69d600 [stack 0]
+ Unpremult {
+  name Unpremult1
+  xpos 406
+  ypos -789
+ }
+ Dot {
+  name Dot1
+  xpos 440
+  ypos -409
+ }
+set N9be31740 [stack 0]
+ Dot {
+  name Dot2
+  xpos 182
+  ypos -409
+ }
+set Na42b5850 [stack 0]
+ Dot {
+  name Dot4
+  xpos -273
+  ypos -409
+ }
+ Dot {
+  name Dot5
+  xpos -273
+  ypos 55
+ }
+set N9be39cf0 [stack 0]
+ Dot {
+  name Dot14
+  xpos -273
+  ypos 400
+ }
+set N9be3de00 [stack 0]
+ Dot {
+  name Dot16
+  xpos -273
+  ypos 467
+ }
+push $N9be3de00
+push $N9be39cf0
+push $N69d600
+ Input {
+  inputs 0
+  name Depth
+  xpos 1306
+  ypos -1064
+  number 1
+ }
+ ShuffleCopy {
+  inputs 2
+  name ShuffleCopy2
+  xpos 1306
+  ypos -852
+ }
+ Unpremult {
+  name Unpremult2
+  xpos 1306
+  ypos -783
+ }
+ Dot {
+  name Dot9
+  xpos 1340
+  ypos -720
+ }
+set N9be5e6c0 [stack 0]
+ Expression {
+  temp_name0 DistF
+  temp_expr0 "sqrt(pow2(parent.max.r - r) + pow2(parent.max.g - g) +\npow2(parent.max.b - b))"
+  temp_name1 DistT
+  temp_expr1 "sqrt(pow2(parent.min.r - r) + pow2(parent.min.g - g) +\npow2(parent.min.b - b))"
+  temp_name2 DistFT
+  temp_expr2 "sqrt(pow2(parent.max.r - parent.min.r) + pow2(parent.max.g -\nparent.min.g) + pow2(parent.max.b - parent.min.b))"
+  temp_name3 F
+  temp_expr3 "acos(clamp((pow2(DistF) + pow2(DistFT) - pow2(DistT))/(2 *\nDistF * DistFT), -1, 1))"
+  channel0 none
+  channel1 none
+  channel2 none
+  expr3 "clamp((DistF * cos(F)) / DistFT)"
+  name Gradient3D
+  xpos 1158
+  ypos -631
+ }
+ Dot {
+  name Dot11
+  xpos 1192
+  ypos -469
+ }
+push $N9be5e6c0
+ Expression {
+  expr3 clamp((b-parent.max.b)/(parent.min.b-parent.max.b))
+  name Gradient2D
+  xpos 1306
+  ypos -631
+ }
+push $N9be5e6c0
+ Shuffle {
+  out alpha
+  name Shuffle1
+  xpos 1459
+  ypos -628
+ }
+ Grade {
+  channels alpha
+  blackpoint {{parent.max.r}}
+  whitepoint {{parent.min.r}}
+  white_clamp true
+  name Grade1
+  xpos 1459
+  ypos -482
+ }
+ Switch {
+  inputs 3
+  which {{parent.type}}
+  name Switch1
+  xpos 1306
+  ypos -392
+ }
+ Dot {
+  name Dot12
+  xpos 1340
+  ypos -294
+ }
+set N9b513840 [stack 0]
+ Expression {
+  expr3 "a+(a-pow(a, 2))"
+  name Inv_Cubic1
+  xpos 1488
+  ypos -239
+ }
+push $N9b513840
+ Expression {
+  expr3 "pow(a, 2)"
+  name Cubic
+  xpos 1365
+  ypos -239
+ }
+push $N9b513840
+ Expression {
+  expr3 "smoothstep(0, 1, a)"
+  name Smoothstep
+  xpos 1237
+  ypos -239
+ }
+push $N9b513840
+ NoOp {
+  name Linear
+  xpos 1108
+  ypos -236
+ }
+ Switch {
+  inputs 4
+  which {{parent.falloff}}
+  name Switch2
+  xpos 1306
+  ypos -174
+ }
+ Dot {
+  name Dot10
+  xpos 1340
+  ypos -69
+ }
+ Input {
+  inputs 0
+  name Background
+  xpos 596
+  ypos -1059
+  number 2
+ }
+ Remove {
+  operation keep
+  channels rgba
+  name Remove2
+  xpos 596
+  ypos -355
+ }
+ Dot {
+  name Dot6
+  xpos 630
+  ypos -305
+ }
+set N8956c2d0 [stack 0]
+ Dot {
+  name Dot8
+  xpos 745
+  ypos -305
+ }
+ Dot {
+  name Dot7
+  xpos 745
+  ypos -179
+ }
+push $N8956c2d0
+ Blur {
+  channels rgb
+  size {{parent.blur}}
+  name Blur1
+  xpos 596
+  ypos -254
+  disable {{"parent.disolve == 0? 1:0"}}
+ }
+ CopyBBox {
+  inputs 2
+  name CopyBBox1
+  xpos 596
+  ypos -183
+  disable {{"parent.disolve == 0? 1:0"}}
+ }
+push $N9be31740
+ Remove {
+  operation keep
+  channels rgba
+  name Remove1
+  xpos 406
+  ypos -357
+ }
+ Expression {
+  expr0 parent.solid.r
+  expr1 parent.solid.g
+  expr2 parent.solid.b
+  channel3 alpha
+  expr3 1
+  name Constant
+  xpos 406
+  ypos -256
+  disable {{"parent.disolve == 1? 1:0"}}
+ }
+ Dissolve {
+  inputs 2
+  which {{parent.disolve}}
+  name Dissolve1
+  xpos 406
+  ypos -189
+ }
+push $Na42b5850
+ Merge2 {
+  inputs 2+1
+  invert_mask true
+  mix {{parent.Merge2_mix}}
+  name Merge2
+  xpos 148
+  ypos -73
+ }
+set N895a88b0 [stack 0]
+ Merge2 {
+  inputs 2
+  operation max
+  mix 0.1
+  name Max
+  xpos -37
+  ypos 51
+ }
+set N895b5cf0 [stack 0]
+push $N895a88b0
+ Merge2 {
+  inputs 2
+  operation minus
+  name Merge1
+  xpos 335
+  ypos 51
+ }
+ Dot {
+  name Dot3
+  xpos 369
+  ypos 271
+ }
+push $N895a88b0
+push $N895b5cf0
+ Dot {
+  name Dot15
+  xpos -3
+  ypos 201
+ }
+ Switch {
+  inputs 2
+  which {{parent.high_out}}
+  name Switch3
+  xpos 148
+  ypos 197
+ }
+ ShuffleCopy {
+  inputs 2
+  alpha alpha2
+  black red
+  white green
+  red2 blue
+  out2 highlights
+  name ShuffleCopy1
+  xpos 148
+  ypos 267
+  disable {{!parent.high_out}}
+ }
+ ShuffleCopy {
+  inputs 2
+  name ShuffleCopy3
+  xpos 148
+  ypos 396
+ }
+ CopyBBox {
+  inputs 2
+  name CopyBBox2
+  xpos 148
+  ypos 463
+ }
+ Premult {
+  name Premult1
+  xpos 148
+  ypos 534
+ }
+ Output {
+  name Output1
+  xpos 148
+  ypos 609
+ }
+end_group

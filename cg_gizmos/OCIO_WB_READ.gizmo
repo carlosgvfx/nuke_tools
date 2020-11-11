@@ -1,0 +1,127 @@
+#! C:/Program Files/Nuke8.0v3/nuke-8.0.v3.dll -nx
+version 8.0 v3
+Gizmo {
+ label "\[value OCIOCDLTransform_direction]\n \[basename \[value file]]"
+ note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+ note_font_color 0xfefefeff
+ addUserKnob {20 User}
+ addUserKnob {41 source T BOS_Gamut_Convert_IN.source}
+ addUserKnob {4 OCIOCDLTransform_direction l direction M {"add whitebalance" "return to original" ""}}
+ addUserKnob {41 destination T BOS_Gamut_Convert_OUT.destination}
+ addUserKnob {20 config}
+ addUserKnob {41 file T OCIOCDLTransform.file}
+ addUserKnob {26 info l "" +STARTLINE T "\n\n\n\n\n\nv06\n\nAdded ACEScg and matrixes are now linked to a project neutral path\n\nv05\nRemoved rec709 references in favor of sRGB"}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 0
+  ypos -1
+ }
+ Group {
+  name BOS_Gamut_Convert_IN
+  label "\[value source] to \[value destination]"
+  xpos 0
+  ypos 59
+  addUserKnob {20 Gamut}
+  addUserKnob {4 source M {ACES ACEScg sRGB ""}}
+  source ACEScg
+  addUserKnob {4 destination M {ACES ACEScg sRGB ""}}
+  destination ACEScg
+  addUserKnob {20 Paths}
+  addUserKnob {1 sourcepath}
+  sourcepath /rodeo/setup/color/basic_color_transforms/gamut/
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 290
+   ypos -10
+  }
+  OCIOFileTransform {
+   file "\[value sourcepath]/XYZ/\[value source]_to_XYZ.spimtx"
+   name SOURCE
+   tile_color 0x3b546eff
+   label "\[value file]"
+   note_font_color 0xedededff
+   xpos 290
+   ypos 22
+  }
+  OCIOFileTransform {
+   file "\[value sourcepath]/XYZ/XYZ_to_\[value destination].spimtx"
+   name DESTINATION
+   tile_color 0x60396eff
+   label "\[value file]"
+   note_font_color 0xedededff
+   selected true
+   xpos 290
+   ypos 67
+  }
+  Output {
+   name Output1
+   xpos 290
+   ypos 105
+  }
+ end_group
+ OCIOCDLTransform {
+  slope {0.87563622 1 1.636224031}
+  offset {0 0 0}
+  power {1 1 1}
+  direction {{parent.OCIOCDLTransform_direction x1006 0}}
+  read_from_file true
+  name OCIOCDLTransform
+  label "\[file tail \[value file]]\n\[value direction]\n"
+  xpos 0
+  ypos 124
+ }
+ Group {
+  name BOS_Gamut_Convert_OUT
+  label "\[value source] to \[value destination]"
+  selected true
+  xpos -1
+  ypos 217
+  addUserKnob {20 Gamut}
+  addUserKnob {4 source M {ACES ACEScg sRGB ""}}
+  source ACEScg
+  addUserKnob {4 destination M {ACES ACEScg sRGB ""}}
+  destination ACEScg
+  addUserKnob {20 Paths}
+  addUserKnob {1 sourcepath}
+  sourcepath /rodeo/setup/color/basic_color_transforms/gamut/
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 290
+   ypos -10
+  }
+  OCIOFileTransform {
+   file "\[value sourcepath]/XYZ/\[value source]_to_XYZ.spimtx"
+   name SOURCE
+   tile_color 0x3b546eff
+   label "\[value file]"
+   note_font_color 0xedededff
+   xpos 290
+   ypos 22
+  }
+  OCIOFileTransform {
+   file "\[value sourcepath]/XYZ/XYZ_to_\[value destination].spimtx"
+   name DESTINATION
+   tile_color 0x60396eff
+   label "\[value file]"
+   note_font_color 0xedededff
+   xpos 290
+   ypos 67
+  }
+  Output {
+   name Output1
+   xpos 290
+   ypos 105
+  }
+ end_group
+ Output {
+  name Output1
+  xpos 0
+  ypos 300
+ }
+end_group

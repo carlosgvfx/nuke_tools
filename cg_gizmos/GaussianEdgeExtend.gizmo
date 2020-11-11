@@ -1,0 +1,391 @@
+#! C:/Program Files/Nuke8.0v3/nuke-8.0.v3.dll -nx
+version 8.0 v3
+Group {
+name GaussianEdgeExtend
+ inputs 3
+ help "Extend you edges using gaussian fill technique.\nCreated by: Emile Harvey @ RodeoFX"
+ addUserKnob {20 User}
+ addUserKnob {26 ""}
+ addUserKnob {41 Expand1_size t "Smaller Value" T Expand_edge4.size}
+ addUserKnob {41 Expand2_size T Expand_edge5.size}
+ addUserKnob {41 Expand3_size T Expand_edge6.size}
+ addUserKnob {26 ""}
+ addUserKnob {41 input_matte_gamma T grade_input_matte1.gamma}
+ addUserKnob {41 input_matte_erode T erode_input_matte1.size}
+ addUserKnob {41 input_matte_blur T Blur1.size}
+ addUserKnob {26 ""}
+ addUserKnob {41 blur_result T Blur18.size}
+ addUserKnob {26 ""}
+ addUserKnob {41 mix T Dissolve5.which}
+}
+ Input {
+  inputs 0
+  name source
+  xpos 1082
+  ypos -773
+ }
+ Dot {
+  name Dot23
+  note_font_size 40
+  xpos 1113
+  ypos -587
+ }
+set N3afb7530 [stack 0]
+ Dot {
+  name Dot4
+  note_font_size 40
+  xpos 1223
+  ypos -587
+ }
+ Dot {
+  name Dot3
+  note_font_size 40
+  xpos 1356
+  ypos -587
+ }
+push $N3afb7530
+ Dot {
+  name Dot25
+  note_font_size 40
+  xpos 1113
+  ypos -359
+ }
+ Dot {
+  name Dot26
+  note_font_size 40
+  xpos 1113
+  ypos 987
+ }
+set N3afb6400 [stack 0]
+ Shuffle {
+  red alpha
+  green alpha
+  blue alpha
+  name Shuffle1
+  xpos 1082
+  ypos 1154
+ }
+set N3afb6770 [stack 0]
+ Input {
+  inputs 0
+  name mask
+  xpos 1339
+  ypos 1084
+  number 2
+ }
+ Invert {
+  name Invert1
+  xpos 1132
+  ypos 1078
+ }
+ Input {
+  inputs 0
+  name matte
+  selected true
+  xpos 515
+  ypos -765
+  number 1
+ }
+set N3b4671b0 [stack 0]
+ Clamp {
+  name Clamp1
+  xpos 515
+  ypos -650
+ }
+ Grade {
+  channels alpha
+  name grade_input_matte1
+  xpos 515
+  ypos -579
+ }
+ FilterErode {
+  size 0
+  name erode_input_matte1
+  xpos 515
+  ypos -534
+ }
+ Clamp {
+  name Clamp2
+  xpos 515
+  ypos -496
+ }
+ Blur {
+  name Blur1
+  xpos 515
+  ypos -458
+ }
+ Dot {
+  name Dot1
+  note_font_size 40
+  xpos 546
+  ypos -357
+ }
+set N3b466080 [stack 0]
+ Shuffle {
+  red alpha
+  green alpha
+  blue alpha
+  name Shuffle10
+  xpos 515
+  ypos 175
+ }
+set N3b468d30 [stack 0]
+ Invert {
+  name Invert7
+  xpos 745
+  ypos 240
+ }
+set N3b466e40 [stack 0]
+ Dot {
+  name Dot22
+  note_font_size 40
+  xpos 779
+  ypos 530
+ }
+push $N3b468d30
+push $N3b468d30
+push $N3b466080
+ Shuffle {
+  red alpha
+  green alpha
+  blue alpha
+  name Shuffle18
+  xpos 660
+  ypos -113
+ }
+set N3b4689c0 [stack 0]
+push $N3b4689c0
+push $N3b466080
+ Shuffle {
+  red alpha
+  green alpha
+  blue alpha
+  name Shuffle19
+  xpos 737
+  ypos -358
+ }
+set N3b4682e0 [stack 0]
+push $N3b4682e0
+push $N3afb7530
+ Dot {
+  name Dot2
+  note_font_size 40
+  xpos 992
+  ypos -587
+ }
+ Dot {
+  name Dot24
+  note_font_size 40
+  xpos 992
+  ypos -357
+ }
+set N3b469410 [stack 0]
+ Merge2 {
+  inputs 2
+  operation multiply
+  name Multiply18
+  xpos 856
+  ypos -358
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy8
+  xpos 737
+  ypos -295
+ }
+ Blur {
+  name Expand_edge4
+  xpos 734
+  ypos -241
+ }
+set N3b468650 [stack 0]
+push $N3b468650
+ Merge2 {
+  inputs 2
+  operation divide
+  name Merge1
+  xpos 818
+  ypos -214
+ }
+push $N3b4682e0
+ Invert {
+  name Invert24
+  xpos 830
+  ypos -286
+ }
+ Merge2 {
+  inputs 2
+  operation multiply
+  name Multiply
+  xpos 903
+  ypos -243
+ }
+push $N3b468650
+ Unpremult {
+  name Unpremult4
+  xpos 734
+  ypos -183
+ }
+push $N3b469410
+ Keymix {
+  inputs 3
+  name Keymix27
+  xpos 961
+  ypos -189
+ }
+set N3bbe1e40 [stack 0]
+ Merge2 {
+  inputs 2
+  operation multiply
+  name Multiply19
+  xpos 809
+  ypos -113
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy9
+  xpos 660
+  ypos 5
+ }
+ Blur {
+  name Expand_edge5
+  xpos 652
+  ypos 46
+ }
+set N3bbe13f0 [stack 0]
+push $N3bbe13f0
+ Merge2 {
+  inputs 2
+  operation divide
+  name Merge2
+  xpos 774
+  ypos 73
+ }
+push $N3b4689c0
+ Invert {
+  name Invert8
+  xpos 841
+  ypos -10
+ }
+ Merge2 {
+  inputs 2
+  operation multiply
+  name Multiply1
+  xpos 899
+  ypos 54
+ }
+push $N3bbe13f0
+ Unpremult {
+  name Unpremult5
+  xpos 652
+  ypos 103
+ }
+push $N3bbe1e40
+ Keymix {
+  inputs 3
+  name Keymix28
+  xpos 961
+  ypos 97
+ }
+set N3bbe1ad0 [stack 0]
+ Merge2 {
+  inputs 2
+  operation multiply
+  name Multiply20
+  xpos 753
+  ypos 175
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy10
+  xpos 515
+  ypos 246
+ }
+ Blur {
+  name Expand_edge6
+  xpos 523
+  ypos 294
+ }
+set N3bbe32e0 [stack 0]
+push $N3bbe32e0
+ Merge2 {
+  inputs 2
+  operation divide
+  name Merge3
+  xpos 694
+  ypos 321
+ }
+push $N3b466e40
+ Merge2 {
+  inputs 2
+  operation multiply
+  name Multiply2
+  xpos 833
+  ypos 311
+ }
+push $N3bbe32e0
+ Unpremult {
+  name Unpremult6
+  xpos 515
+  ypos 364
+ }
+push $N3bbe1ad0
+ Keymix {
+  inputs 3
+  name Keymix29
+  xpos 956
+  ypos 372
+ }
+ Blur {
+  inputs 1+1
+  name Blur18
+  xpos 956
+  ypos 523
+ }
+push $N3afb6400
+ Dissolve {
+  inputs 2
+  which 1
+  name Dissolve5
+  xpos 956
+  ypos 980
+ }
+push $N3afb6400
+ Keymix {
+  inputs 3
+  invertMask true
+  bbox B
+  name Keymix2
+  xpos 956
+  ypos 1078
+  disable {{"\[exists parent.input1] ? 0 : 1" x1057 0}}
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy1
+  xpos 956
+  ypos 1148
+ }
+ Output {
+  name Output1
+  xpos 956
+  ypos 1247
+ }
+push $N3afb6770
+push $N3b4671b0
+ Viewer {
+  inputs 2
+  input_process false
+  name Viewer1
+  xpos 1292
+  ypos 940
+ }
+end_group

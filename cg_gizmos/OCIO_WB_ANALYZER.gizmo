@@ -1,0 +1,53 @@
+#! C:/Program Files/Nuke8.0v3/nuke-8.0.v3.dll -nx
+version 8.0 v3
+Group {
+name OCIO_WB_ANALYZER
+ help "To use this, sample an average known neutral "
+ tile_color 0xfefefeff
+ label "\[if \{\[value direction]==\"forward\"\} \{return \"balanced\"\} \{return \"reverted to original\"\}]"
+ note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold"
+ addUserKnob {20 User}
+ addUserKnob {18 source_neutral}
+ source_neutral {1 1 1}
+ addUserKnob {6 source_neutral_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {26 ""}
+ addUserKnob {7 temperature l "temperature offset" R -1 1}
+ addUserKnob {7 tint l "tint offset" R -1 1}
+ addUserKnob {7 exposure l "exposure offset" R -6 6}
+ addUserKnob {7 offset}
+ addUserKnob {26 ""}
+ addUserKnob {6 negatives l "Display negative value overlay" +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {41 direction T OCIOCDLTransform.direction}
+ addUserKnob {41 export_cc l "export grade as .cc" T OCIOCDLTransform.export_cc}
+ addUserKnob {26 version l "" +STARTLINE T v04}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 0
+  ypos 1
+ }
+ OCIOCDLTransform {
+  slope {{"source_neutral.r <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.r)+temperature+tint)"} {"source_neutral.g <= 0 ? 1 : (exposure+1)*(source_neutral.g/source_neutral.g-tint)"} {"source_neutral.b <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.b)-temperature+tint)"}}
+  offset {{parent.offset}}
+  name OCIOCDLTransform
+  xpos 0
+  ypos 92
+ }
+ Expression {
+  expr0 "min(r,g,b) < 0 ? 1 : r"
+  expr1 "min(r,g,b) < 0 ? 0 : g"
+  expr2 "min(r,g,b) < 0 ? 1 : b"
+  name Negative_Value_overlay
+  selected true
+  xpos 0
+  ypos 158
+  disable {{1-negatives}}
+ }
+ Output {
+  name Output1
+  xpos 0
+  ypos 300
+ }
+end_group

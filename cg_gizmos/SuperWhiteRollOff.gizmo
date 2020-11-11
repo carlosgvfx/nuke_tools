@@ -1,0 +1,29 @@
+#! /softwareLocal/nuke/linux/Nuke8.0v6_x64/libnuke-8.0.v6.so -nx
+version 8.0 v6
+Group {
+name SuperWhiteRollOff
+ tile_color 0x82b7ffff
+ addUserKnob {20 superWhiteRollOff l SuperWhiteRollOff}
+ addUserKnob {7 RollOffAbove l Limit R -3 3}
+}
+ Input {
+  inputs 0
+  name LIN_Image
+  xpos 0
+ }
+ Expression {
+  expr0 r>RollOffAbove?(log((r-RollOffAbove)+1)+RollOffAbove):r
+  expr1 g>RollOffAbove?(log((g-RollOffAbove)+1)+RollOffAbove):g
+  expr2 b>RollOffAbove?(log((b-RollOffAbove)+1)+RollOffAbove):b
+  channel3 none
+  name Expression3
+  xpos 0
+  ypos 139
+  addUserKnob {20 User}
+ }
+ Output {
+  name Output1
+  xpos 0
+  ypos 300
+ }
+end_group

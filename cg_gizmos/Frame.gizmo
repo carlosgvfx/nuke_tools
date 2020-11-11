@@ -1,0 +1,44 @@
+#! /builds/nuke/9.0v7/fe3d649516/priv/libnuke-9.0.7.so -nx
+version 9.0 v7
+Group {
+name Frame
+ tile_color 0xd6c362ff
+ note_font "Bitstream Vera Sans Bold Bold"
+ addUserKnob {20 User l frame}
+ addUserKnob {41 disable_1 l disable T frame.disable}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos -565
+  ypos 318
+ }
+ Text {
+  cliptype none
+  font /rdo/rodeo/setup/nuke/fonts/Arial.ttf
+  size 60
+  yjustify bottom
+  Transform 1
+  box {{(width-(width*ext_ratio))/2 x1055 53.75} {(height-(width*ext_ratio/asp_ratio))/2 x1055 177.6987448} {width*ext_ratio+(width-(width*ext_ratio))/2 x1055 2096.25} {(width*ext_ratio)/asp_ratio+(height-(width*ext_ratio/asp_ratio))/2 x1055 1032.301255}}
+  center {1075 605}
+  name frame
+  xpos -565
+  ypos 382
+  addUserKnob {20 dneg l DNeg}
+  addUserKnob {7 asp_ratio l "apect ratio"}
+  asp_ratio 2.39
+  addUserKnob {7 ext_ratio l "extraction ratio"}
+  ext_ratio 0.95
+  addUserKnob {26 ""}
+  addUserKnob {26 _version l "" +STARTLINE +INVISIBLE T 1.0}
+  addUserKnob {7 padding l "padding %" R 0 20}
+  padding 4
+  addUserKnob {15 orig_box +HIDDEN}
+  orig_box {-32.25 129.2987448 2182.25 1080.701255}
+ }
+ Output {
+  name Output1
+  xpos -565
+  ypos 458
+ }
+end_group

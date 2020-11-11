@@ -1,0 +1,76 @@
+add_layer {worldN worldN.red worldN.green worldN.blue}
+Group {
+name NRelight
+ tile_color 0x336fadff
+ addUserKnob {20 Relight}
+ addUserKnob {41 ChannelsRelight l Channels T Shuffle1.in}
+ addUserKnob {41 positionX T EXP.posX}
+ addUserKnob {41 positionY T EXP.posY}
+ addUserKnob {41 positionZ T EXP.posZ}
+ addUserKnob {6 Inverse_Light +STARTLINE}
+}
+ Input {
+  inputs 0
+  xpos 297
+  ypos -247
+ }
+ Shuffle {
+  in worldN
+  name Shuffle1
+  xpos 297
+  ypos -203
+ }
+ Expression {
+  temp_name0 light
+  temp_expr0 "sqrt(  (posX-r)*(posX-r) + (posY-g)*(posY-g) + (posZ-b)*(posZ-b) )"
+  expr0 light
+  expr1 light
+  expr2 light
+  expr3 light
+  name EXP
+  xpos 297
+  ypos -177
+  addUserKnob {20 User}
+  addUserKnob {7 posX R -2 2}
+  addUserKnob {7 posY R -2 2}
+  addUserKnob {7 posZ R -2 2}
+ }
+ Invert {
+  channels N
+  name INV
+  xpos 297
+  ypos -138
+ }
+set N31beaf10 [stack 0]
+ Invert {
+  name b
+  xpos 187
+  ypos -144
+ }
+ Grade {
+  gamma 0.1
+  name Grade9
+  xpos 187
+  ypos -105
+ }
+push $N31beaf10
+ Switch {
+  inputs 2
+  which {{parent.Inverse_Light i}}
+  name Switch9
+  xpos 297
+  ypos -105
+ }
+set N31a8d710 [stack 0]
+ Output {
+  name Output1
+  xpos 297
+  ypos -5
+ }
+push $N31a8d710
+ Viewer {
+  name Viewer1
+  xpos 93
+  ypos -54
+ }
+end_group

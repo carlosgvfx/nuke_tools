@@ -1,0 +1,267 @@
+#! C:/Program Files/Nuke8.0v3/nuke-8.0.v3.dll -nx
+version 8.0 v3
+Group {
+name PushPixel
+ inputs 2
+ help "Push or Pull RGB pixels using the Alpha channel as mask.\n\nFor\na best result you can combine several PushPixels.\n\n(beta version)"
+ note_font "Verdana Bold"
+ mapsize {0.15 0.15}
+ addUserKnob {20 menu l Push-Pull}
+ addUserKnob {4 push_pull l mode M {Push Pull}}
+ addUserKnob {41 uv_scale l size T IDistort1.uv_scale}
+ addUserKnob {16 edge_size l Edge_size R 0 3}
+ edge_size 3
+ addUserKnob {41 size l "Soft select" T Blur1.size}
+}
+ Input {
+  inputs 0
+  name InputAlpha
+  selected true
+  xpos -461
+  ypos 251
+  number 1
+ }
+ Dot {
+  name Dot7
+  xpos -427
+  ypos 325
+ }
+set Nc2341880 [stack 0]
+ Dot {
+  name Dot4
+  xpos -200
+  ypos 325
+ }
+ Dot {
+  name Dot6
+  xpos -200
+  ypos 1294
+ }
+push $Nc2341880
+ Shuffle {
+  red alpha
+  green alpha
+  blue alpha
+  name a_to_rgb
+  xpos -461
+  ypos 381
+ }
+ Dot {
+  name Dot3
+  xpos -427
+  ypos 435
+ }
+set Nf327670 [stack 0]
+ Dot {
+  name Dot1
+  xpos -427
+  ypos 624
+ }
+set Nf3268b0 [stack 0]
+ ColorCorrect {
+  gain 0.5
+  name ColorCorrect1
+  xpos -323
+  ypos 921
+ }
+push $Nf3268b0
+ Transform {
+  translate {{(parent.Trans_value1.translate.x)*(-1) i} 0}
+  center {960 540}
+  name Transform1
+  xpos -329
+  ypos 816
+ }
+ ColorCorrect {
+  gain 0
+  name ColorCorrect6
+  xpos -329
+  ypos 843
+ }
+push $Nf3268b0
+ Transform {
+  translate {{parent.Trans_value1.translate.x i} 0}
+  center {960 540}
+  name Transform6
+  xpos -331
+  ypos 761
+ }
+ Constant {
+  inputs 0
+  channels rgb
+  color 0.5
+  name Constant1
+  label "Root Format:\n\[value format]"
+  xpos -737
+  ypos 471
+ }
+set Nf3287a0 [stack 0]
+ Dot {
+  name Dot2
+  xpos -703
+  ypos 643
+ }
+set Nf326c20 [stack 0]
+ Merge2 {
+  inputs 2
+  name Merge1
+  xpos -433
+  ypos 761
+ }
+ Merge2 {
+  inputs 2
+  name Merge8
+  xpos -433
+  ypos 843
+ }
+ Merge2 {
+  inputs 2
+  name Merge9
+  xpos -433
+  ypos 921
+ }
+push $Nf3268b0
+ ColorCorrect {
+  gain 0.5
+  name ColorCorrect7
+  xpos -607
+  ypos 919
+ }
+push $Nf3268b0
+ Transform {
+  translate {0 {parent.Trans_value1.translate.y*-1 i}}
+  center {960 540}
+  name Transform7
+  xpos -609
+  ypos 813
+ }
+ ColorCorrect {
+  gain 0
+  name ColorCorrect8
+  xpos -609
+  ypos 840
+ }
+push $Nf3268b0
+ Transform {
+  translate {0 {parent.Trans_value1.translate.y}}
+  center {960 540}
+  name Transform8
+  xpos -609
+  ypos 758
+ }
+push $Nf326c20
+ Merge2 {
+  inputs 2
+  name Merge10
+  xpos -737
+  ypos 758
+ }
+ Merge2 {
+  inputs 2
+  name Merge11
+  xpos -737
+  ypos 840
+ }
+ Merge2 {
+  inputs 2
+  name Merge12
+  xpos -737
+  ypos 919
+ }
+ ShuffleCopy {
+  inputs 2
+  red red
+  blue black
+  alpha white
+  name ShuffleCopy1
+  xpos -551
+  ypos 1006
+ }
+ Blur {
+  size 3
+  name Blur1
+  xpos -551
+  ypos 1051
+ }
+set Nc3285580 [stack 0]
+push $Nc3285580
+ Invert {
+  name Invert2
+  xpos -441
+  ypos 1079
+ }
+ Switch {
+  inputs 2
+  which {{push_pull}}
+  name Switch2
+  label "0=Push\n1=Pull"
+  xpos -551
+  ypos 1113
+ }
+push $Nf327670
+ Input {
+  inputs 0
+  name InputRGB
+  xpos -866
+  ypos 261
+ }
+ Dot {
+  name Dot5
+  xpos -832
+  ypos 383
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy2
+  xpos -867
+  ypos 425
+ }
+add_layer {push push.x push.y}
+ Copy {
+  inputs 2
+  from0 rgba.red
+  to0 push.x
+  from1 rgba.green
+  to1 push.y
+  name Copy1
+  xpos -867
+  ypos 1113
+ }
+ IDistort {
+  uv push
+  uv_offset 0.5
+  uv_scale 5
+  blur_scale 0
+  name IDistort1
+  xpos -867
+  ypos 1185
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy3
+  xpos -866
+  ypos 1285
+ }
+ Output {
+  name Output1
+  xpos -866
+  ypos 1350
+ }
+push $Nf3287a0
+ Dot {
+  name Dot9
+  xpos -529
+  ypos 512
+ }
+ Transform {
+  translate {{parent.edge_size} {parent.edge_size}}
+  center {960 540}
+  name Trans_value1
+  xpos -563
+  ypos 546
+ }
+end_group

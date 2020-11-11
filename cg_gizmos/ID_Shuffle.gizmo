@@ -1,0 +1,169 @@
+
+Group {
+name ID_Shuffle
+ tile_color 0xef2d6cff
+ addUserKnob {20 ID_Shuffle}
+ addUserKnob {6 red +STARTLINE}
+ red true
+ addUserKnob {7 dissolveRed l mixRed}
+ addUserKnob {6 green +STARTLINE}
+ green true
+ addUserKnob {7 dissolveGreen l mixGreen}
+ addUserKnob {6 blue +STARTLINE}
+ blue true
+ addUserKnob {7 dissolveBlue l mixBlue}
+ addUserKnob {6 alpha +STARTLINE}
+ alpha true
+ addUserKnob {7 dissolveAlpha l mixAlpha}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 145
+  ypos 69
+ }
+ Dot {
+  name Dot1
+  xpos 179
+  ypos 110
+ }
+set N47e8a100 [stack 0]
+ Shuffle {
+  red black
+  green black
+  blue black
+  alpha black
+  name Shuffle5
+  label BLACK
+  xpos -274
+  ypos 240
+ }
+set N47e8a470 [stack 0]
+push $N47e8a470
+push $N47e8a100
+ Shuffle {
+  red alpha
+  green alpha
+  blue alpha
+  name Shuffle4
+  label ALPHA
+  xpos 282
+  ypos 239
+ }
+ Switch {
+  inputs 2
+  which {{!parent.alpha i}}
+  name Switch4
+  xpos 290
+  ypos 362
+ }
+ Dissolve {
+  inputs 2
+  which {{parent.dissolveAlpha}}
+  name alpha
+  xpos 275
+  ypos 572
+ }
+push $N47e8a470
+push $N47e8a470
+push $N47e8a100
+ Shuffle {
+  red blue
+  green blue
+  alpha blue
+  name Shuffle3
+  label BLUE
+  xpos 182
+  ypos 238
+ }
+ Switch {
+  inputs 2
+  which {{!parent.blue i}}
+  name Switch3
+  xpos 182
+  ypos 364
+ }
+ Dissolve {
+  inputs 2
+  which {{parent.dissolveBlue}}
+  name blue
+  xpos 173
+  ypos 574
+ }
+push $N47e8a470
+push $N47e8a470
+push $N47e8a100
+ Shuffle {
+  red green
+  blue green
+  alpha green
+  name Shuffle2
+  label GREEN
+  xpos 78
+  ypos 238
+ }
+ Switch {
+  inputs 2
+  which {{!parent.green i}}
+  name Switch2
+  xpos 78
+  ypos 366
+ }
+ Dissolve {
+  inputs 2
+  which {{parent.dissolveGreen}}
+  name green
+  xpos 65
+  ypos 574
+ }
+push 0
+push $N47e8a470
+push $N47e8a470
+push $N47e8a100
+ Shuffle {
+  green red
+  blue red
+  alpha red
+  name Shuffle1
+  label RED
+  xpos -31
+  ypos 240
+ }
+ Switch {
+  inputs 2
+  which {{!parent.red}}
+  name Switch1
+  xpos -39
+  ypos 365
+ }
+ Dissolve {
+  inputs 2
+  which {{parent.dissolveRed}}
+  name red
+  xpos -39
+  ypos 574
+ }
+push $N47e8a470
+ Dot {
+  name Dot2
+  xpos -240
+  ypos 744
+ }
+ Merge2 {
+  inputs 5+1
+  operation disjoint-over
+  name Merge2
+  xpos 173
+  ypos 740
+ }
+ Clamp {
+  name Clamp1
+  xpos 173
+  ypos 766
+ }
+ Output {
+  name Output1
+  xpos 173
+  ypos 840
+ }
+end_group

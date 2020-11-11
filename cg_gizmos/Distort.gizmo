@@ -1,0 +1,123 @@
+
+Group {
+name Distort
+ inputs 3
+ tile_color 0xa87eb7ff
+ addUserKnob {20 distorcion l Distortion}
+ addUserKnob {7 scale l Scale}
+ scale 0.1
+ addUserKnob {7 offsetU l "Offset U"}
+ offsetU 0.1
+ addUserKnob {7 offsetV l "Offset V"}
+ offsetV 0.1
+ addUserKnob {4 textureChannel l texture_Channel M {Red Green Blue Alpha}}
+ textureChannel Alpha
+ addUserKnob {41 filter T STMap.filter}
+}
+ Input {
+  inputs 0
+  name mask
+  xpos 912
+  ypos 214
+  number 2
+ }
+ Input {
+  inputs 0
+  name texture
+  xpos 310
+  ypos -17
+  number 1
+ }
+ Dot {
+  name Dot1
+  xpos 344
+  ypos 31
+ }
+set N2da61670 [stack 0]
+ Shuffle {
+  red alpha
+  green alpha
+  blue alpha
+  name Shuffle4
+  label ALPHA
+  xpos 459
+  ypos 89
+ }
+push $N2da61670
+ Shuffle {
+  red blue
+  green blue
+  alpha blue
+  name Shuffle3
+  label BLUE
+  xpos 358
+  ypos 89
+ }
+push $N2da61670
+ Shuffle {
+  red green
+  blue green
+  alpha green
+  name Shuffle2
+  label GREEN
+  xpos 254
+  ypos 89
+ }
+push $N2da61670
+ Shuffle {
+  green red
+  blue red
+  alpha red
+  name Shuffle1
+  label RED
+  xpos 145
+  ypos 91
+ }
+ Switch {
+  inputs 4
+  which {{parent.textureChannel}}
+  name Switch1
+  xpos 295
+  ypos 153
+ }
+ Expression {
+  temp_name0 disX
+  temp_expr0 (x+0.5)/width+(g-0.5+do.x)*ds*a
+  temp_name1 disY
+  temp_expr1 (y+0.5)/height+(g-0.5+do.y)*ds*a
+  expr0 disX
+  expr1 disY
+  channel2 none
+  channel3 none
+  name ScaleDistorsion
+  label "scale \[value ds]\noffset \[value do] "
+  xpos 295
+  ypos 202
+  addUserKnob {20 User l Controls}
+  addUserKnob {7 ds}
+  ds {{parent.scale}}
+  addUserKnob {12 do}
+  do {{parent.offsetU} {parent.offsetV}}
+ }
+ Input {
+  inputs 0
+  name input
+  xpos 690
+  ypos 47
+ }
+ STMap {
+  inputs 2+1
+  channels rgba
+  uv rgb
+  blur -forward.v
+  filter Mitchell
+  name STMap
+  xpos 690
+  ypos 214
+ }
+ Output {
+  name Output1
+  xpos 690
+  ypos 315
+ }
+end_group

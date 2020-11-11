@@ -1,0 +1,38 @@
+#! C:/Program Files/Nuke8.0v3/nuke-8.0.v3.dll -nx
+version 8.0 v3
+add_layer {p p.red p.green p.blue p.alpha}
+Group {
+name P_percentage
+ addUserKnob {20 User}
+ addUserKnob {41 in l "input channel" T input_channel.in}
+ addUserKnob {41 percentage T Expression1.percentage}
+ addUserKnob {41 seed T Expression1.seed}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 457
+  ypos 66
+ }
+ Shuffle {
+  in p
+  name input_channel
+  label "\[value in]"
+  xpos 457
+  ypos 118
+ }
+ Expression {
+  expr3 random(rint(r),seed)<(percentage/100)?1:0)
+  name Expression1
+  xpos 457
+  ypos 193
+  addUserKnob {20 User}
+  addUserKnob {7 percentage R 0 100}
+  addUserKnob {3 seed}
+ }
+ Output {
+  name Output1
+  xpos 457
+  ypos 278
+ }
+end_group

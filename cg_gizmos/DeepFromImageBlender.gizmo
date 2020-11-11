@@ -1,0 +1,69 @@
+Group {
+name DeepFromImageBlender
+ tile_color 0x466ff
+ addUserKnob {20 User l DeepFromImageBlender}
+ addUserKnob {41 set_z l "specify z" T DeepFromImage.set_z}
+ addUserKnob {7 z R 0 100}
+ z {17}
+ addUserKnob {7 blender l blend R 1 100}
+ blender 2
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 316
+  ypos 47
+ }
+ Multiply {
+  channels rgba
+  value 0.999999
+  name Multiply
+  xpos 316
+  ypos 87
+ }
+ DeepFromImage {
+  premult true
+  set_z true
+  z {{parent.z}}
+  name DeepFromImage
+  xpos 316
+  ypos 121
+ }
+set N29af76a0 [stack 0]
+ DeepExpression {
+  chans1 deep
+  deep.back "\[value edge] + \[value blend]"
+  name DeepExpression_control
+  xpos 382
+  ypos 179
+  addUserKnob {20 User}
+  addUserKnob {7 edge R -100 100}
+  edge {{parent.DeepFromImage.z}}
+  addUserKnob {7 blend R 1 100}
+  blend {{parent.blender}}
+ }
+push $N29af76a0
+ DeepExpression {
+  chans1 deep
+  deep.back "deep.front + \[value blend]"
+  name DeepExpression
+  selected true
+  xpos 249
+  ypos 180
+  addUserKnob {20 User}
+  addUserKnob {7 blend R -100 100}
+  blend {{parent.DeepExpression_control.blend}}
+ }
+ Switch {
+  inputs 2
+  which {{parent.DeepFromImage.set_z}}
+  name Switch1
+  xpos 308
+  ypos 258
+ }
+ Output {
+  name Output1
+  xpos 308
+  ypos 360
+ }
+end_group

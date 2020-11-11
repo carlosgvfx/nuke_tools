@@ -1,0 +1,78 @@
+
+Group {
+name Offset
+ tile_color 0xa87eb7ff
+ addUserKnob {20 User l user}
+ addUserKnob {41 translate T Transform1.translate}
+ addUserKnob {7 offsetx l "Offset X" R -100 100}
+ addUserKnob {7 offsety l "Offset Y" t "\t\t\t\t\t\t" R -100 100}
+ addUserKnob {41 filter T STMap1.filter}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 457
+  ypos -162
+ }
+ Dot {
+  name Dot1
+  xpos 491
+  ypos -122
+ }
+set N2d4979c0 [stack 0]
+ Transform {
+  center {{input.width/2} {input.height/2}}
+  name Transform1
+  xpos 530
+  ypos -84
+  disable true
+ }
+ Expression {
+  channel0 {rgba.red -rgba.green -rgba.blue none}
+  expr0 x/width
+  channel1 {-rgba.red rgba.green -rgba.blue none}
+  expr1 y/height
+  channel2 {-rgba.red -rgba.green rgba.blue none}
+  expr2 0
+  name SetUVs
+  xpos 530
+  ypos -56
+ }
+ Expression {
+  temp_name0 oX
+  temp_expr0 (parent.translate.x%width)+(width*parent.offsetx/100)
+  temp_name1 oY
+  temp_expr1 (parent.translate.y%height)+(height*parent.offsety/100)
+  channel0 {rgba.red -rgba.green -rgba.blue none}
+  expr0 oX<0?r-(oX/width)-1:r-1+(1-oX/width)
+  channel1 {-rgba.red rgba.green -rgba.blue none}
+  expr1 oY<0?g-(oY/height)-1:g-1+(1-oY/height)
+  channel2 {-rgba.red -rgba.green rgba.blue none}
+  name Offset
+  selected true
+  xpos 530
+  ypos -27
+ }
+ Expression {
+  temp_expr2 r<0?(1+r):r
+  expr0 r<0?(1+r):r
+  expr1 g<0?(1+g):g
+  name Repeat
+  xpos 530
+  ypos 1
+ }
+push $N2d4979c0
+ STMap {
+  inputs 2
+  uv rgb
+  filter Impulse
+  name STMap1
+  xpos 457
+  ypos 56
+ }
+ Output {
+  name Output1
+  xpos 457
+  ypos 152
+ }
+end_group

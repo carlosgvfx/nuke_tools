@@ -1,0 +1,106 @@
+#! /softwareLocal/nuke/linux/Nuke11.3v4/libnuke-11.3.4.so -nx
+version 11.3 v4
+Group {
+name ml_color_transfer
+inputs 2
+addUserKnob {20 User}
+addUserKnob {41 blur_clean l Blur T Blur_main.size}
+addUserKnob {41 scale T size.scale}
+addUserKnob {41 mix T Merge27.mix}
+}
+Input {
+inputs 0
+name to_grade
+xpos -691
+ypos -548
+number 1
+}
+Unpremult {
+name Unpremult1
+xpos -691
+ypos -478
+}
+Dot {
+name Dot41
+xpos -657
+ypos -377
+}
+set N2af35010 [stack 0]
+Input {
+inputs 0
+name clean_plate
+xpos -961
+ypos -547
+}
+Blur {
+size 500
+name Blur_main
+xpos -961
+ypos -342
+}
+set C19e06dc0 [stack 0]
+Transform {
+center {960 540}
+name size
+xpos -961
+ypos -262
+}
+set C2258cc70 [stack 0]
+push $N2af35010
+Dot {
+name Dot58
+xpos -788
+ypos -377
+}
+clone $C19e06dc0 {
+xpos -822
+ypos -341
+selected false
+}
+clone $C2258cc70 {
+xpos -822
+ypos -263
+selected false
+}
+Merge2 {
+inputs 2
+operation minus
+name Merge22
+xpos -864
+ypos -170
+}
+Dot {
+name Dot59
+xpos -830
+ypos -14
+}
+push $N2af35010
+Merge2 {
+inputs 2
+operation plus
+name Merge27
+xpos -789
+ypos -18
+}
+ShuffleCopy {
+inputs 2
+name ShuffleCopy1
+xpos -691
+ypos -18
+}
+Premult {
+name Premult1
+xpos -691
+ypos 46
+}
+Output {
+name Output1
+xpos -691
+ypos 118
+}
+Output {
+name Output2
+xpos -691
+ypos 218
+}
+end_group

@@ -1,0 +1,2002 @@
+#! /softwareLocal/nuke/linux/Nuke11.3v6/libnuke-11.3.6.so -nx
+version 11.3 v6
+Group {
+name ContactSheet_Comp
+ inputs 0
+ label "\nDisplay: \[value ShotGroup]\n\nColorspace: \[value outColorspace]\n\nCreated on: \[value message]"
+ addUserKnob {20 User l "Read Updator"}
+ addUserKnob {4 ShotGroup l "Shot Group" M {"All Shots" "Group A" "Group B" "Group C" "Group D" "Group E" "Group F" "Group G" "" ""}}
+ addUserKnob {26 tool_version l "" +STARTLINE T "version of the tool: 20/08/2020"}
+ addUserKnob {26 ""}
+ addUserKnob {22 Last l "Get Lastest Versions" t "Update all the read node to the lastest version inside this node. " T "import os\nimport re \npatternVersion = r\".*_v(?P<versionP1>\\d\\d\\d).*_v(?P<versionP2>\\d\\d\\d).*\"\npatternFrame = r\".*\[.](?P<frame>.*)\[.].*\"\n\ndef versionUp():\n    updated = False\n    for node in nuke.allNodes('Read'):\n        if node\['disable'].value()==0: #wont update disabled node. \n            if not 'no update' in node\['label'].value():\n                text = node\['file'].getValue()\n                match = re.search(patternVersion,text)            \n                if match:\n                    versionP1num , versionP2num = match.groups() #P1 and P2 are same, need to remplace the 2 tought. \n                    for num in range(int(versionP1num)+30, int(versionP1num), -1):\n                        increment = str(num).zfill(3)\n                        firstSection = re.sub(match.group('versionP1'), increment, match.string)\n                        secondSection = re.sub(match.group('versionP2'), increment, firstSection)\n                        if os.path.exists(os.path.dirname(secondSection)):\n                            sortedExrSeq = sorted(os.listdir(os.path.dirname(secondSection)))\n                            frameFirstMatch = re.search(patternFrame, sortedExrSeq\[0]).group('frame')\n                            frameLastMatch = re.search(patternFrame, sortedExrSeq\[-1]).group('frame')\n                            node\['file'].fromUserText('\{0\} \{1\}-\{2\}'.format(secondSection, frameFirstMatch, frameLastMatch))\n                            nuke.message('Updated to ' + secondSection)\n                            print (os.path.basename(text), 'to   -->', os.path.basename(secondSection))\n                            updated = True\n                            break\n    if not updated:\n        nuke.message('All Updated')\n\nnuke.thisNode().begin()\nversionUp()\nnuke.thisNode().end()\n" +STARTLINE}
+ addUserKnob {26 no_update l " " T "<font size=-1>To make a read not updatable, type:  <b> no update </b>   in the label knob </font>"}
+ addUserKnob {41 outColorspace T OCIOLookControl.outColorspace}
+ addUserKnob {41 message l Created: +INVISIBLE T timestamp3.message}
+}
+ Group {
+  inputs 0
+  name RDO_OCIO_WB_ANALYZER16
+  help "To use this, sample an average known neutral "
+  tile_color 0xfefefeff
+  label "\[if \{\[value direction]==\"forward\"\} \{return \"balanced\"\} \{return \"reverted to original\"\}]"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold"
+  xpos 3470
+  ypos 3176
+  addUserKnob {20 RDO_OCIO_WB_ANALYZER}
+  addUserKnob {18 source_neutral}
+  source_neutral {1 1 1}
+  addUserKnob {6 source_neutral_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {7 temperature l "temperature offset" R -1 1}
+  addUserKnob {7 tint l "tint offset" R -1 1}
+  addUserKnob {7 exposure l "exposure offset" R -6 6}
+  addUserKnob {7 offset}
+  addUserKnob {26 ""}
+  addUserKnob {6 negatives l "Display negative value overlay" +STARTLINE}
+  addUserKnob {26 ""}
+  addUserKnob {41 direction T OCIOCDLTransform.direction}
+  addUserKnob {41 export_cc l "export grade as .cc" T OCIOCDLTransform.export_cc}
+  addUserKnob {26 version l "" +STARTLINE T v04}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+   ypos 1
+  }
+  OCIOCDLTransform {
+   slope {{"source_neutral.r <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.r)+temperature+tint)"} {"source_neutral.g <= 0 ? 1 : (exposure+1)*(source_neutral.g/source_neutral.g-tint)"} {"source_neutral.b <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.b)-temperature+tint)"}}
+   offset {{parent.offset}}
+   working_space rdo
+   name OCIOCDLTransform
+   xpos 0
+   ypos 92
+  }
+  Expression {
+   expr0 "min(r,g,b) < 0 ? 1 : r"
+   expr1 "min(r,g,b) < 0 ? 0 : g"
+   expr2 "min(r,g,b) < 0 ? 1 : b"
+   name Negative_Value_overlay
+   xpos 0
+   ypos 158
+   disable {{1-negatives}}
+  }
+  Output {
+   name Output1
+   xpos 0
+   ypos 300
+  }
+ end_group
+ OCIOColorSpace {
+  in_colorspace rdo
+  out_colorspace {{OCIOLookControl.outColorspace}}
+  key1 SEQ
+  value1 102016
+  key2 SHOT
+  value2 102016_0210
+  name OCIOColorSpace25
+  label "\[value value1] // \[value value2]"
+  xpos 3470
+  ypos 3266
+  addUserKnob {20 rodeo_tab l Rodeo}
+  addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+  freeze_context true
+ }
+ Text {
+  output rgb
+  cliptype none
+  message "\[file tail \[knob \[topnode].file]]"
+  font /rdo/rodeo/setup/nuke/fonts/Arial.ttf
+  yjustify center
+  box {30 0 {input.width} {input.height/10}}
+  center {2048 1152}
+  name Text25
+  xpos 3470
+  ypos 3366
+ }
+set N14d57ff0 [stack 0]
+ Group {
+  inputs 0
+  name RDO_OCIO_WB_ANALYZER15
+  help "To use this, sample an average known neutral "
+  tile_color 0xfefefeff
+  label "\[if \{\[value direction]==\"forward\"\} \{return \"balanced\"\} \{return \"reverted to original\"\}]"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold"
+  xpos 3070
+  ypos 3176
+  addUserKnob {20 RDO_OCIO_WB_ANALYZER}
+  addUserKnob {18 source_neutral}
+  source_neutral {1 1 1}
+  addUserKnob {6 source_neutral_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {7 temperature l "temperature offset" R -1 1}
+  addUserKnob {7 tint l "tint offset" R -1 1}
+  addUserKnob {7 exposure l "exposure offset" R -6 6}
+  addUserKnob {7 offset}
+  addUserKnob {26 ""}
+  addUserKnob {6 negatives l "Display negative value overlay" +STARTLINE}
+  addUserKnob {26 ""}
+  addUserKnob {41 direction T OCIOCDLTransform.direction}
+  addUserKnob {41 export_cc l "export grade as .cc" T OCIOCDLTransform.export_cc}
+  addUserKnob {26 version l "" +STARTLINE T v04}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+   ypos 1
+  }
+  OCIOCDLTransform {
+   slope {{"source_neutral.r <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.r)+temperature+tint)"} {"source_neutral.g <= 0 ? 1 : (exposure+1)*(source_neutral.g/source_neutral.g-tint)"} {"source_neutral.b <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.b)-temperature+tint)"}}
+   offset {{parent.offset}}
+   working_space rdo
+   name OCIOCDLTransform
+   xpos 0
+   ypos 92
+  }
+  Expression {
+   expr0 "min(r,g,b) < 0 ? 1 : r"
+   expr1 "min(r,g,b) < 0 ? 0 : g"
+   expr2 "min(r,g,b) < 0 ? 1 : b"
+   name Negative_Value_overlay
+   xpos 0
+   ypos 158
+   disable {{1-negatives}}
+  }
+  Output {
+   name Output1
+   xpos 0
+   ypos 300
+  }
+ end_group
+ OCIOColorSpace {
+  in_colorspace rdo
+  out_colorspace {{OCIOLookControl.outColorspace}}
+  key1 SEQ
+  value1 102016
+  key2 SHOT
+  value2 102016_0190
+  name OCIOColorSpace26
+  label "\[value value1] // \[value value2]"
+  xpos 3070
+  ypos 3266
+  addUserKnob {20 rodeo_tab l Rodeo}
+  addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+  freeze_context true
+ }
+ Text {
+  output rgb
+  cliptype none
+  message "\[file tail \[knob \[topnode].file]]"
+  font /rdo/rodeo/setup/nuke/fonts/Arial.ttf
+  yjustify center
+  box {30 0 {input.width} {input.height/10}}
+  center {2048 1152}
+  name Text26
+  xpos 3070
+  ypos 3366
+ }
+set N14cb38e0 [stack 0]
+ Group {
+  inputs 0
+  name RDO_OCIO_WB_ANALYZER14
+  help "To use this, sample an average known neutral "
+  tile_color 0xfefefeff
+  label "\[if \{\[value direction]==\"forward\"\} \{return \"balanced\"\} \{return \"reverted to original\"\}]"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold"
+  xpos 2670
+  ypos 3176
+  addUserKnob {20 RDO_OCIO_WB_ANALYZER}
+  addUserKnob {18 source_neutral}
+  source_neutral {1 1 1}
+  addUserKnob {6 source_neutral_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {7 temperature l "temperature offset" R -1 1}
+  addUserKnob {7 tint l "tint offset" R -1 1}
+  addUserKnob {7 exposure l "exposure offset" R -6 6}
+  addUserKnob {7 offset}
+  addUserKnob {26 ""}
+  addUserKnob {6 negatives l "Display negative value overlay" +STARTLINE}
+  addUserKnob {26 ""}
+  addUserKnob {41 direction T OCIOCDLTransform.direction}
+  addUserKnob {41 export_cc l "export grade as .cc" T OCIOCDLTransform.export_cc}
+  addUserKnob {26 version l "" +STARTLINE T v04}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+   ypos 1
+  }
+  OCIOCDLTransform {
+   slope {{"source_neutral.r <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.r)+temperature+tint)"} {"source_neutral.g <= 0 ? 1 : (exposure+1)*(source_neutral.g/source_neutral.g-tint)"} {"source_neutral.b <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.b)-temperature+tint)"}}
+   offset {{parent.offset}}
+   working_space rdo
+   name OCIOCDLTransform
+   xpos 0
+   ypos 92
+  }
+  Expression {
+   expr0 "min(r,g,b) < 0 ? 1 : r"
+   expr1 "min(r,g,b) < 0 ? 0 : g"
+   expr2 "min(r,g,b) < 0 ? 1 : b"
+   name Negative_Value_overlay
+   xpos 0
+   ypos 158
+   disable {{1-negatives}}
+  }
+  Output {
+   name Output1
+   xpos 0
+   ypos 300
+  }
+ end_group
+ OCIOColorSpace {
+  in_colorspace rdo
+  out_colorspace {{OCIOLookControl.outColorspace}}
+  key1 SEQ
+  value1 102016
+  key2 SHOT
+  value2 102016_0180
+  name OCIOColorSpace27
+  label "\[value value1] // \[value value2]"
+  xpos 2670
+  ypos 3266
+  addUserKnob {20 rodeo_tab l Rodeo}
+  addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+  freeze_context true
+ }
+ Text {
+  output rgb
+  cliptype none
+  message "\[file tail \[knob \[topnode].file]]"
+  font /rdo/rodeo/setup/nuke/fonts/Arial.ttf
+  yjustify center
+  box {30 0 {input.width} {input.height/10}}
+  center {2048 1152}
+  name Text27
+  xpos 2670
+  ypos 3366
+ }
+set N109a59a0 [stack 0]
+ ContactSheet {
+  inputs 3
+  width {{input.width*columns}}
+  height {{input.height*rows}}
+  rows {{"\[python -execlocal import\\ math\\nn\\ =\\ nuke.thisNode()\\nif\\ n\\\['splitinputs'\\].value()==True:\\n\\ \\ \\ \\ num\\ =\\ float(n\\\['endframe'\\].value()-n\\\['startframe'\\].value()+1)\\nelse:\\n\\ \\ \\ \\ num\\ =\\ float(n.inputs())\\nrows\\ =\\ math.sqrt(num)\\ncolumns\\ =\\ int(math.ceil(num\\ /\\ rows))\\nrows\\ =\\ int(rows)\\nif\\ rows*columns\\ <\\ num:\\n\\ \\ \\ \\ rows\\ +=\\ 1\\n\\nret\\ =\\ rows]"}}
+  columns {{"\[python -execlocal import\\ math\\nn\\ =\\ nuke.thisNode()\\nif\\ n\\\['splitinputs'\\].value()==True:\\n\\ \\ \\ \\ num\\ =\\ float(n\\\['endframe'\\].value()-n\\\['startframe'\\].value()+1)\\nelse:\\n\\ \\ \\ \\ num\\ =\\ float(n.inputs())\\nrows\\ =\\ math.sqrt(num)\\ncolumns\\ =\\ int(math.ceil(num\\ /\\ rows))\\nret\\ =\\ columns]"}}
+  center true
+  roworder TopBottom
+  startframe 1
+  endframe 10
+  name ContactSheet16
+  tile_color 0xe955ffff
+  note_font Helvetica
+  xpos 2813
+  ypos 4135
+  hide_input true
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  cliptype none
+  message 2020/08/20--11:43:03
+  old_message {{50 48 50 48 47 48 56 47 50 48 45 45 49 49 58 52 51 58 48 51}
+    }
+  box {30 0 {input.width} {input.height/10}}
+  xjustify right
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font {{ Arial : Regular : Arial.ttf : 0 }}
+  scale {1 1}
+  autofit_bbox false
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 10240 4608 0 0 1 1 0 0 0 0}
+    }
+  name timestamp9
+  xpos 2819
+  ypos 4294
+ }
+ Dot {
+  name Dot10
+  tile_color 0xff
+  label Group_G
+  note_font_size 40
+  xpos 2853
+  ypos 4666
+ }
+ Group {
+  inputs 0
+  name RDO_OCIO_WB_ANALYZER17
+  help "To use this, sample an average known neutral "
+  tile_color 0xfefefeff
+  label "\[if \{\[value direction]==\"forward\"\} \{return \"balanced\"\} \{return \"reverted to original\"\}]"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold"
+  xpos 3970
+  ypos 3176
+  addUserKnob {20 RDO_OCIO_WB_ANALYZER}
+  addUserKnob {18 source_neutral}
+  source_neutral {1 1 1}
+  addUserKnob {6 source_neutral_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {7 temperature l "temperature offset" R -1 1}
+  addUserKnob {7 tint l "tint offset" R -1 1}
+  addUserKnob {7 exposure l "exposure offset" R -6 6}
+  addUserKnob {7 offset}
+  addUserKnob {26 ""}
+  addUserKnob {6 negatives l "Display negative value overlay" +STARTLINE}
+  addUserKnob {26 ""}
+  addUserKnob {41 direction T OCIOCDLTransform.direction}
+  addUserKnob {41 export_cc l "export grade as .cc" T OCIOCDLTransform.export_cc}
+  addUserKnob {26 version l "" +STARTLINE T v04}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+   ypos 1
+  }
+  OCIOCDLTransform {
+   slope {{"source_neutral.r <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.r)+temperature+tint)"} {"source_neutral.g <= 0 ? 1 : (exposure+1)*(source_neutral.g/source_neutral.g-tint)"} {"source_neutral.b <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.b)-temperature+tint)"}}
+   offset {{parent.offset}}
+   working_space rdo
+   name OCIOCDLTransform
+   xpos 0
+   ypos 92
+  }
+  Expression {
+   expr0 "min(r,g,b) < 0 ? 1 : r"
+   expr1 "min(r,g,b) < 0 ? 0 : g"
+   expr2 "min(r,g,b) < 0 ? 1 : b"
+   name Negative_Value_overlay
+   xpos 0
+   ypos 158
+   disable {{1-negatives}}
+  }
+  Output {
+   name Output1
+   xpos 0
+   ypos 300
+  }
+ end_group
+ OCIOColorSpace {
+  in_colorspace rdo
+  out_colorspace {{OCIOLookControl.outColorspace}}
+  key1 SEQ
+  value1 102016
+  key2 SHOT
+  value2 102016_0220
+  name OCIOColorSpace24
+  label "\[value value1] // \[value value2]"
+  xpos 3970
+  ypos 3266
+  addUserKnob {20 rodeo_tab l Rodeo}
+  addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+  freeze_context true
+ }
+ Text {
+  output rgb
+  cliptype none
+  message "\[file tail \[knob \[topnode].file]]"
+  font /rdo/rodeo/setup/nuke/fonts/Arial.ttf
+  yjustify center
+  box {30 0 {input.width} {input.height/10}}
+  center {2048 1152}
+  name Text24
+  xpos 3970
+  ypos 3366
+ }
+set Nf8993370 [stack 0]
+ Group {
+  inputs 0
+  name RDO_OCIO_WB_ANALYZER13
+  help "To use this, sample an average known neutral "
+  tile_color 0xfefefeff
+  label "\[if \{\[value direction]==\"forward\"\} \{return \"balanced\"\} \{return \"reverted to original\"\}]"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold"
+  xpos 2270
+  ypos 3176
+  addUserKnob {20 RDO_OCIO_WB_ANALYZER}
+  addUserKnob {18 source_neutral}
+  source_neutral {1 1 1}
+  addUserKnob {6 source_neutral_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {7 temperature l "temperature offset" R -1 1}
+  addUserKnob {7 tint l "tint offset" R -1 1}
+  addUserKnob {7 exposure l "exposure offset" R -6 6}
+  addUserKnob {7 offset}
+  addUserKnob {26 ""}
+  addUserKnob {6 negatives l "Display negative value overlay" +STARTLINE}
+  addUserKnob {26 ""}
+  addUserKnob {41 direction T OCIOCDLTransform.direction}
+  addUserKnob {41 export_cc l "export grade as .cc" T OCIOCDLTransform.export_cc}
+  addUserKnob {26 version l "" +STARTLINE T v04}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+   ypos 1
+  }
+  OCIOCDLTransform {
+   slope {{"source_neutral.r <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.r)+temperature+tint)"} {"source_neutral.g <= 0 ? 1 : (exposure+1)*(source_neutral.g/source_neutral.g-tint)"} {"source_neutral.b <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.b)-temperature+tint)"}}
+   offset {{parent.offset}}
+   working_space rdo
+   name OCIOCDLTransform
+   xpos 0
+   ypos 92
+  }
+  Expression {
+   expr0 "min(r,g,b) < 0 ? 1 : r"
+   expr1 "min(r,g,b) < 0 ? 0 : g"
+   expr2 "min(r,g,b) < 0 ? 1 : b"
+   name Negative_Value_overlay
+   xpos 0
+   ypos 158
+   disable {{1-negatives}}
+  }
+  Output {
+   name Output1
+   xpos 0
+   ypos 300
+  }
+ end_group
+ OCIOColorSpace {
+  in_colorspace rdo
+  out_colorspace {{OCIOLookControl.outColorspace}}
+  key1 SEQ
+  value1 102016
+  key2 SHOT
+  value2 102016_0170
+  name OCIOColorSpace28
+  label "\[value value1] // \[value value2]"
+  xpos 2270
+  ypos 3266
+  addUserKnob {20 rodeo_tab l Rodeo}
+  addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+  freeze_context true
+ }
+ Text {
+  output rgb
+  cliptype none
+  message "\[file tail \[knob \[topnode].file]]"
+  font /rdo/rodeo/setup/nuke/fonts/Arial.ttf
+  yjustify center
+  box {30 0 {input.width} {input.height/10}}
+  center {2048 1152}
+  name Text28
+  xpos 2270
+  ypos 3366
+ }
+set Ncd6f4c70 [stack 0]
+ ContactSheet {
+  inputs 2
+  width {{input.width*columns}}
+  height {{input.height*rows}}
+  rows {{"\[python -execlocal import\\ math\\nn\\ =\\ nuke.thisNode()\\nif\\ n\\\['splitinputs'\\].value()==True:\\n\\ \\ \\ \\ num\\ =\\ float(n\\\['endframe'\\].value()-n\\\['startframe'\\].value()+1)\\nelse:\\n\\ \\ \\ \\ num\\ =\\ float(n.inputs())\\nrows\\ =\\ math.sqrt(num)\\ncolumns\\ =\\ int(math.ceil(num\\ /\\ rows))\\nrows\\ =\\ int(rows)\\nif\\ rows*columns\\ <\\ num:\\n\\ \\ \\ \\ rows\\ +=\\ 1\\n\\nret\\ =\\ rows]"}}
+  columns {{"\[python -execlocal import\\ math\\nn\\ =\\ nuke.thisNode()\\nif\\ n\\\['splitinputs'\\].value()==True:\\n\\ \\ \\ \\ num\\ =\\ float(n\\\['endframe'\\].value()-n\\\['startframe'\\].value()+1)\\nelse:\\n\\ \\ \\ \\ num\\ =\\ float(n.inputs())\\nrows\\ =\\ math.sqrt(num)\\ncolumns\\ =\\ int(math.ceil(num\\ /\\ rows))\\nret\\ =\\ columns]"}}
+  center true
+  roworder TopBottom
+  startframe 1
+  endframe 10
+  name ContactSheet15
+  tile_color 0xe955ffff
+  note_font Helvetica
+  xpos 2092
+  ypos 4135
+  hide_input true
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  cliptype none
+  message 2020/08/20--11:43:03
+  old_message {{50 48 50 48 47 48 56 47 50 48 45 45 49 49 58 52 51 58 48 51}
+    }
+  box {30 0 {input.width} {input.height/10}}
+  xjustify right
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font {{ Arial : Regular : Arial.ttf : 0 }}
+  scale {1 1}
+  autofit_bbox false
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 10240 4608 0 0 1 1 0 0 0 0}
+    }
+  name timestamp8
+  xpos 2098
+  ypos 4294
+ }
+ Dot {
+  name Dot9
+  tile_color 0xff
+  label Group_F
+  note_font_size 40
+  xpos 2108
+  ypos 4666
+ }
+ Group {
+  inputs 0
+  name RDO_OCIO_WB_ANALYZER11
+  help "To use this, sample an average known neutral "
+  tile_color 0xfefefeff
+  label "\[if \{\[value direction]==\"forward\"\} \{return \"balanced\"\} \{return \"reverted to original\"\}]"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold"
+  xpos 1470
+  ypos 3176
+  addUserKnob {20 RDO_OCIO_WB_ANALYZER}
+  addUserKnob {18 source_neutral}
+  source_neutral {1 1 1}
+  addUserKnob {6 source_neutral_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {7 temperature l "temperature offset" R -1 1}
+  addUserKnob {7 tint l "tint offset" R -1 1}
+  addUserKnob {7 exposure l "exposure offset" R -6 6}
+  addUserKnob {7 offset}
+  addUserKnob {26 ""}
+  addUserKnob {6 negatives l "Display negative value overlay" +STARTLINE}
+  addUserKnob {26 ""}
+  addUserKnob {41 direction T OCIOCDLTransform.direction}
+  addUserKnob {41 export_cc l "export grade as .cc" T OCIOCDLTransform.export_cc}
+  addUserKnob {26 version l "" +STARTLINE T v04}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+   ypos 1
+  }
+  OCIOCDLTransform {
+   slope {{"source_neutral.r <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.r)+temperature+tint)"} {"source_neutral.g <= 0 ? 1 : (exposure+1)*(source_neutral.g/source_neutral.g-tint)"} {"source_neutral.b <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.b)-temperature+tint)"}}
+   offset {{parent.offset}}
+   working_space rdo
+   name OCIOCDLTransform
+   xpos 0
+   ypos 92
+  }
+  Expression {
+   expr0 "min(r,g,b) < 0 ? 1 : r"
+   expr1 "min(r,g,b) < 0 ? 0 : g"
+   expr2 "min(r,g,b) < 0 ? 1 : b"
+   name Negative_Value_overlay
+   xpos 0
+   ypos 158
+   disable {{1-negatives}}
+  }
+  Output {
+   name Output1
+   xpos 0
+   ypos 300
+  }
+ end_group
+ OCIOColorSpace {
+  in_colorspace rdo
+  out_colorspace {{OCIOLookControl.outColorspace}}
+  key1 SEQ
+  value1 102016
+  key2 SHOT
+  value2 102016_0140
+  name OCIOColorSpace30
+  label "\[value value1] // \[value value2]"
+  xpos 1470
+  ypos 3266
+  addUserKnob {20 rodeo_tab l Rodeo}
+  addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+  freeze_context true
+ }
+ Text {
+  output rgb
+  cliptype none
+  message "\[file tail \[knob \[topnode].file]]"
+  font /rdo/rodeo/setup/nuke/fonts/Arial.ttf
+  yjustify center
+  box {30 0 {input.width} {input.height/10}}
+  center {2048 1152}
+  name Text30
+  xpos 1470
+  ypos 3366
+ }
+set Nd3dee570 [stack 0]
+ ContactSheet {
+  width {{input.width*columns}}
+  height {{input.height*rows}}
+  rows {{"\[python -execlocal import\\ math\\nn\\ =\\ nuke.thisNode()\\nif\\ n\\\['splitinputs'\\].value()==True:\\n\\ \\ \\ \\ num\\ =\\ float(n\\\['endframe'\\].value()-n\\\['startframe'\\].value()+1)\\nelse:\\n\\ \\ \\ \\ num\\ =\\ float(n.inputs())\\nrows\\ =\\ math.sqrt(num)\\ncolumns\\ =\\ int(math.ceil(num\\ /\\ rows))\\nrows\\ =\\ int(rows)\\nif\\ rows*columns\\ <\\ num:\\n\\ \\ \\ \\ rows\\ +=\\ 1\\n\\nret\\ =\\ rows]"}}
+  columns {{"\[python -execlocal import\\ math\\nn\\ =\\ nuke.thisNode()\\nif\\ n\\\['splitinputs'\\].value()==True:\\n\\ \\ \\ \\ num\\ =\\ float(n\\\['endframe'\\].value()-n\\\['startframe'\\].value()+1)\\nelse:\\n\\ \\ \\ \\ num\\ =\\ float(n.inputs())\\nrows\\ =\\ math.sqrt(num)\\ncolumns\\ =\\ int(math.ceil(num\\ /\\ rows))\\nret\\ =\\ columns]"}}
+  center true
+  roworder TopBottom
+  startframe 1
+  endframe 10
+  name ContactSheet14
+  tile_color 0xe955ffff
+  note_font Helvetica
+  xpos 1285
+  ypos 4135
+  hide_input true
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  cliptype none
+  message 2020/08/20--11:43:03
+  old_message {{50 48 50 48 47 48 56 47 50 48 45 45 49 49 58 52 51 58 48 51}
+    }
+  box {30 0 {input.width} {input.height/10}}
+  xjustify right
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font {{ Arial : Regular : Arial.ttf : 0 }}
+  scale {1 1}
+  autofit_bbox false
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 10240 4608 0 0 1 1 0 0 0 0}
+    }
+  name timestamp7
+  xpos 1297
+  ypos 4294
+ }
+ Dot {
+  name Dot8
+  tile_color 0xff
+  label Group_E
+  note_font_size 40
+  xpos 1331
+  ypos 4666
+ }
+ Group {
+  inputs 0
+  name RDO_OCIO_WB_ANALYZER12
+  help "To use this, sample an average known neutral "
+  tile_color 0xfefefeff
+  label "\[if \{\[value direction]==\"forward\"\} \{return \"balanced\"\} \{return \"reverted to original\"\}]"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold"
+  xpos 1870
+  ypos 3166
+  addUserKnob {20 RDO_OCIO_WB_ANALYZER}
+  addUserKnob {18 source_neutral}
+  source_neutral {1 1 1}
+  addUserKnob {6 source_neutral_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {7 temperature l "temperature offset" R -1 1}
+  addUserKnob {7 tint l "tint offset" R -1 1}
+  addUserKnob {7 exposure l "exposure offset" R -6 6}
+  addUserKnob {7 offset}
+  addUserKnob {26 ""}
+  addUserKnob {6 negatives l "Display negative value overlay" +STARTLINE}
+  addUserKnob {26 ""}
+  addUserKnob {41 direction T OCIOCDLTransform.direction}
+  addUserKnob {41 export_cc l "export grade as .cc" T OCIOCDLTransform.export_cc}
+  addUserKnob {26 version l "" +STARTLINE T v04}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+   ypos 1
+  }
+  OCIOCDLTransform {
+   slope {{"source_neutral.r <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.r)+temperature+tint)"} {"source_neutral.g <= 0 ? 1 : (exposure+1)*(source_neutral.g/source_neutral.g-tint)"} {"source_neutral.b <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.b)-temperature+tint)"}}
+   offset {{parent.offset}}
+   working_space rdo
+   name OCIOCDLTransform
+   xpos 0
+   ypos 92
+  }
+  Expression {
+   expr0 "min(r,g,b) < 0 ? 1 : r"
+   expr1 "min(r,g,b) < 0 ? 0 : g"
+   expr2 "min(r,g,b) < 0 ? 1 : b"
+   name Negative_Value_overlay
+   xpos 0
+   ypos 158
+   disable {{1-negatives}}
+  }
+  Output {
+   name Output1
+   xpos 0
+   ypos 300
+  }
+ end_group
+ OCIOColorSpace {
+  in_colorspace rdo
+  out_colorspace {{OCIOLookControl.outColorspace}}
+  key1 SEQ
+  value1 102016
+  key2 SHOT
+  value2 102016_0150
+  name OCIOColorSpace29
+  label "\[value value1] // \[value value2]"
+  xpos 1870
+  ypos 3266
+  addUserKnob {20 rodeo_tab l Rodeo}
+  addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+  freeze_context true
+ }
+ Text {
+  output rgb
+  cliptype none
+  message "\[file tail \[knob \[topnode].file]]"
+  font /rdo/rodeo/setup/nuke/fonts/Arial.ttf
+  yjustify center
+  box {30 0 {input.width} {input.height/10}}
+  center {2048 1152}
+  name Text29
+  xpos 1870
+  ypos 3366
+ }
+set Ncfdf9700 [stack 0]
+ Group {
+  inputs 0
+  name RDO_OCIO_WB_ANALYZER10
+  help "To use this, sample an average known neutral "
+  tile_color 0xfefefeff
+  label "\[if \{\[value direction]==\"forward\"\} \{return \"balanced\"\} \{return \"reverted to original\"\}]"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold"
+  xpos 1070
+  ypos 3176
+  addUserKnob {20 RDO_OCIO_WB_ANALYZER}
+  addUserKnob {18 source_neutral}
+  source_neutral {1 1 1}
+  addUserKnob {6 source_neutral_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {7 temperature l "temperature offset" R -1 1}
+  addUserKnob {7 tint l "tint offset" R -1 1}
+  addUserKnob {7 exposure l "exposure offset" R -6 6}
+  addUserKnob {7 offset}
+  addUserKnob {26 ""}
+  addUserKnob {6 negatives l "Display negative value overlay" +STARTLINE}
+  addUserKnob {26 ""}
+  addUserKnob {41 direction T OCIOCDLTransform.direction}
+  addUserKnob {41 export_cc l "export grade as .cc" T OCIOCDLTransform.export_cc}
+  addUserKnob {26 version l "" +STARTLINE T v04}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+   ypos 1
+  }
+  OCIOCDLTransform {
+   slope {{"source_neutral.r <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.r)+temperature+tint)"} {"source_neutral.g <= 0 ? 1 : (exposure+1)*(source_neutral.g/source_neutral.g-tint)"} {"source_neutral.b <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.b)-temperature+tint)"}}
+   offset {{parent.offset}}
+   working_space rdo
+   name OCIOCDLTransform
+   xpos 0
+   ypos 92
+  }
+  Expression {
+   expr0 "min(r,g,b) < 0 ? 1 : r"
+   expr1 "min(r,g,b) < 0 ? 0 : g"
+   expr2 "min(r,g,b) < 0 ? 1 : b"
+   name Negative_Value_overlay
+   xpos 0
+   ypos 158
+   disable {{1-negatives}}
+  }
+  Output {
+   name Output1
+   xpos 0
+   ypos 300
+  }
+ end_group
+ OCIOColorSpace {
+  in_colorspace rdo
+  out_colorspace {{OCIOLookControl.outColorspace}}
+  key1 SEQ
+  value1 102016
+  key2 SHOT
+  value2 102016_0130
+  name OCIOColorSpace31
+  label "\[value value1] // \[value value2]"
+  xpos 1070
+  ypos 3266
+  addUserKnob {20 rodeo_tab l Rodeo}
+  addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+  freeze_context true
+ }
+ Text {
+  output rgb
+  cliptype none
+  message "\[file tail \[knob \[topnode].file]]"
+  font /rdo/rodeo/setup/nuke/fonts/Arial.ttf
+  yjustify center
+  box {30 0 {input.width} {input.height/10}}
+  center {2048 1152}
+  name Text31
+  xpos 1070
+  ypos 3366
+ }
+set Nceed9a60 [stack 0]
+ ContactSheet {
+  inputs 2
+  width {{input.width*columns}}
+  height {{input.height*rows}}
+  rows {{"\[python -execlocal import\\ math\\nn\\ =\\ nuke.thisNode()\\nif\\ n\\\['splitinputs'\\].value()==True:\\n\\ \\ \\ \\ num\\ =\\ float(n\\\['endframe'\\].value()-n\\\['startframe'\\].value()+1)\\nelse:\\n\\ \\ \\ \\ num\\ =\\ float(n.inputs())\\nrows\\ =\\ math.sqrt(num)\\ncolumns\\ =\\ int(math.ceil(num\\ /\\ rows))\\nrows\\ =\\ int(rows)\\nif\\ rows*columns\\ <\\ num:\\n\\ \\ \\ \\ rows\\ +=\\ 1\\n\\nret\\ =\\ rows]"}}
+  columns {{"\[python -execlocal import\\ math\\nn\\ =\\ nuke.thisNode()\\nif\\ n\\\['splitinputs'\\].value()==True:\\n\\ \\ \\ \\ num\\ =\\ float(n\\\['endframe'\\].value()-n\\\['startframe'\\].value()+1)\\nelse:\\n\\ \\ \\ \\ num\\ =\\ float(n.inputs())\\nrows\\ =\\ math.sqrt(num)\\ncolumns\\ =\\ int(math.ceil(num\\ /\\ rows))\\nret\\ =\\ columns]"}}
+  center true
+  roworder TopBottom
+  startframe 1
+  endframe 10
+  name ContactSheet13
+  tile_color 0xe955ffff
+  note_font Helvetica
+  xpos 176
+  ypos 4135
+  hide_input true
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  cliptype none
+  message 2020/08/20--11:43:03
+  old_message {{50 48 50 48 47 48 56 47 50 48 45 45 49 49 58 52 51 58 48 51}
+    }
+  box {30 0 {input.width} {input.height/10}}
+  xjustify right
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font {{ Arial : Regular : Arial.ttf : 0 }}
+  scale {1 1}
+  autofit_bbox false
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 10240 4608 0 0 1 1 0 0 0 0}
+    }
+  name timestamp6
+  xpos 182
+  ypos 4294
+ }
+ Dot {
+  name Dot11
+  tile_color 0xff
+  label Group_D
+  note_font_size 40
+  xpos 222
+  ypos 4666
+ }
+ Group {
+  inputs 0
+  name RDO_OCIO_WB_ANALYZER9
+  help "To use this, sample an average known neutral "
+  tile_color 0xfefefeff
+  label "\[if \{\[value direction]==\"forward\"\} \{return \"balanced\"\} \{return \"reverted to original\"\}]"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold"
+  xpos 670
+  ypos 3176
+  addUserKnob {20 RDO_OCIO_WB_ANALYZER}
+  addUserKnob {18 source_neutral}
+  source_neutral {1 1 1}
+  addUserKnob {6 source_neutral_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {7 temperature l "temperature offset" R -1 1}
+  addUserKnob {7 tint l "tint offset" R -1 1}
+  addUserKnob {7 exposure l "exposure offset" R -6 6}
+  addUserKnob {7 offset}
+  addUserKnob {26 ""}
+  addUserKnob {6 negatives l "Display negative value overlay" +STARTLINE}
+  addUserKnob {26 ""}
+  addUserKnob {41 direction T OCIOCDLTransform.direction}
+  addUserKnob {41 export_cc l "export grade as .cc" T OCIOCDLTransform.export_cc}
+  addUserKnob {26 version l "" +STARTLINE T v04}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+   ypos 1
+  }
+  OCIOCDLTransform {
+   slope {{"source_neutral.r <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.r)+temperature+tint)"} {"source_neutral.g <= 0 ? 1 : (exposure+1)*(source_neutral.g/source_neutral.g-tint)"} {"source_neutral.b <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.b)-temperature+tint)"}}
+   offset {{parent.offset}}
+   working_space rdo
+   name OCIOCDLTransform
+   xpos 0
+   ypos 92
+  }
+  Expression {
+   expr0 "min(r,g,b) < 0 ? 1 : r"
+   expr1 "min(r,g,b) < 0 ? 0 : g"
+   expr2 "min(r,g,b) < 0 ? 1 : b"
+   name Negative_Value_overlay
+   xpos 0
+   ypos 158
+   disable {{1-negatives}}
+  }
+  Output {
+   name Output1
+   xpos 0
+   ypos 300
+  }
+ end_group
+ OCIOColorSpace {
+  in_colorspace rdo
+  out_colorspace {{OCIOLookControl.outColorspace}}
+  key1 SEQ
+  value1 102016
+  key2 SHOT
+  value2 102016_0110
+  name OCIOColorSpace32
+  label "\[value value1] // \[value value2]"
+  xpos 670
+  ypos 3266
+  addUserKnob {20 rodeo_tab l Rodeo}
+  addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+  freeze_context true
+ }
+ Text {
+  output rgb
+  cliptype none
+  message "\[file tail \[knob \[topnode].file]]"
+  font /rdo/rodeo/setup/nuke/fonts/Arial.ttf
+  yjustify center
+  box {30 0 {input.width} {input.height/10}}
+  center {2048 1152}
+  name Text32
+  xpos 670
+  ypos 3366
+ }
+set N4c6cc420 [stack 0]
+ Group {
+  inputs 0
+  name RDO_OCIO_WB_ANALYZER8
+  help "To use this, sample an average known neutral "
+  tile_color 0xfefefeff
+  label "\[if \{\[value direction]==\"forward\"\} \{return \"balanced\"\} \{return \"reverted to original\"\}]"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold"
+  xpos 270
+  ypos 3176
+  addUserKnob {20 RDO_OCIO_WB_ANALYZER}
+  addUserKnob {18 source_neutral}
+  source_neutral {1 1 1}
+  addUserKnob {6 source_neutral_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {7 temperature l "temperature offset" R -1 1}
+  addUserKnob {7 tint l "tint offset" R -1 1}
+  addUserKnob {7 exposure l "exposure offset" R -6 6}
+  addUserKnob {7 offset}
+  addUserKnob {26 ""}
+  addUserKnob {6 negatives l "Display negative value overlay" +STARTLINE}
+  addUserKnob {26 ""}
+  addUserKnob {41 direction T OCIOCDLTransform.direction}
+  addUserKnob {41 export_cc l "export grade as .cc" T OCIOCDLTransform.export_cc}
+  addUserKnob {26 version l "" +STARTLINE T v04}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+   ypos 1
+  }
+  OCIOCDLTransform {
+   slope {{"source_neutral.r <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.r)+temperature+tint)"} {"source_neutral.g <= 0 ? 1 : (exposure+1)*(source_neutral.g/source_neutral.g-tint)"} {"source_neutral.b <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.b)-temperature+tint)"}}
+   offset {{parent.offset}}
+   working_space rdo
+   name OCIOCDLTransform
+   xpos 0
+   ypos 92
+  }
+  Expression {
+   expr0 "min(r,g,b) < 0 ? 1 : r"
+   expr1 "min(r,g,b) < 0 ? 0 : g"
+   expr2 "min(r,g,b) < 0 ? 1 : b"
+   name Negative_Value_overlay
+   xpos 0
+   ypos 158
+   disable {{1-negatives}}
+  }
+  Output {
+   name Output1
+   xpos 0
+   ypos 300
+  }
+ end_group
+ OCIOColorSpace {
+  in_colorspace rdo
+  out_colorspace {{OCIOLookControl.outColorspace}}
+  key1 SEQ
+  value1 102016
+  key2 SHOT
+  value2 102016_0100
+  name OCIOColorSpace33
+  label "\[value value1] // \[value value2]"
+  xpos 270
+  ypos 3266
+  addUserKnob {20 rodeo_tab l Rodeo}
+  addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+  freeze_context true
+ }
+ Text {
+  output rgb
+  cliptype none
+  message "\[file tail \[knob \[topnode].file]]"
+  font /rdo/rodeo/setup/nuke/fonts/Arial.ttf
+  yjustify center
+  box {30 0 {input.width} {input.height/10}}
+  center {2048 1152}
+  name Text33
+  xpos 270
+  ypos 3366
+ }
+set Nf840ba40 [stack 0]
+ Group {
+  inputs 0
+  name RDO_OCIO_WB_ANALYZER7
+  help "To use this, sample an average known neutral "
+  tile_color 0xfefefeff
+  label "\[if \{\[value direction]==\"forward\"\} \{return \"balanced\"\} \{return \"reverted to original\"\}]"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold"
+  xpos -130
+  ypos 3176
+  addUserKnob {20 RDO_OCIO_WB_ANALYZER}
+  addUserKnob {18 source_neutral}
+  source_neutral {1 1 1}
+  addUserKnob {6 source_neutral_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {7 temperature l "temperature offset" R -1 1}
+  addUserKnob {7 tint l "tint offset" R -1 1}
+  addUserKnob {7 exposure l "exposure offset" R -6 6}
+  addUserKnob {7 offset}
+  addUserKnob {26 ""}
+  addUserKnob {6 negatives l "Display negative value overlay" +STARTLINE}
+  addUserKnob {26 ""}
+  addUserKnob {41 direction T OCIOCDLTransform.direction}
+  addUserKnob {41 export_cc l "export grade as .cc" T OCIOCDLTransform.export_cc}
+  addUserKnob {26 version l "" +STARTLINE T v04}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+   ypos 1
+  }
+  OCIOCDLTransform {
+   slope {{"source_neutral.r <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.r)+temperature+tint)"} {"source_neutral.g <= 0 ? 1 : (exposure+1)*(source_neutral.g/source_neutral.g-tint)"} {"source_neutral.b <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.b)-temperature+tint)"}}
+   offset {{parent.offset}}
+   working_space rdo
+   name OCIOCDLTransform
+   xpos 0
+   ypos 92
+  }
+  Expression {
+   expr0 "min(r,g,b) < 0 ? 1 : r"
+   expr1 "min(r,g,b) < 0 ? 0 : g"
+   expr2 "min(r,g,b) < 0 ? 1 : b"
+   name Negative_Value_overlay
+   xpos 0
+   ypos 158
+   disable {{1-negatives}}
+  }
+  Output {
+   name Output1
+   xpos 0
+   ypos 300
+  }
+ end_group
+ OCIOColorSpace {
+  in_colorspace rdo
+  out_colorspace {{OCIOLookControl.outColorspace}}
+  key1 SEQ
+  value1 102016
+  key2 SHOT
+  value2 102016_0090
+  name OCIOColorSpace34
+  label "\[value value1] // \[value value2]"
+  xpos -130
+  ypos 3266
+  addUserKnob {20 rodeo_tab l Rodeo}
+  addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+  freeze_context true
+ }
+ Text {
+  output rgb
+  cliptype none
+  message "\[file tail \[knob \[topnode].file]]"
+  font /rdo/rodeo/setup/nuke/fonts/Arial.ttf
+  yjustify center
+  box {30 0 {input.width} {input.height/10}}
+  center {2048 1152}
+  name Text34
+  xpos -130
+  ypos 3366
+ }
+set Nd3d8b830 [stack 0]
+ Group {
+  inputs 0
+  name RDO_OCIO_WB_ANALYZER6
+  help "To use this, sample an average known neutral "
+  tile_color 0xfefefeff
+  label "\[if \{\[value direction]==\"forward\"\} \{return \"balanced\"\} \{return \"reverted to original\"\}]"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold"
+  xpos -530
+  ypos 3176
+  addUserKnob {20 RDO_OCIO_WB_ANALYZER}
+  addUserKnob {18 source_neutral}
+  source_neutral {1 1 1}
+  addUserKnob {6 source_neutral_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {7 temperature l "temperature offset" R -1 1}
+  addUserKnob {7 tint l "tint offset" R -1 1}
+  addUserKnob {7 exposure l "exposure offset" R -6 6}
+  addUserKnob {7 offset}
+  addUserKnob {26 ""}
+  addUserKnob {6 negatives l "Display negative value overlay" +STARTLINE}
+  addUserKnob {26 ""}
+  addUserKnob {41 direction T OCIOCDLTransform.direction}
+  addUserKnob {41 export_cc l "export grade as .cc" T OCIOCDLTransform.export_cc}
+  addUserKnob {26 version l "" +STARTLINE T v04}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+   ypos 1
+  }
+  OCIOCDLTransform {
+   slope {{"source_neutral.r <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.r)+temperature+tint)"} {"source_neutral.g <= 0 ? 1 : (exposure+1)*(source_neutral.g/source_neutral.g-tint)"} {"source_neutral.b <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.b)-temperature+tint)"}}
+   offset {{parent.offset}}
+   working_space rdo
+   name OCIOCDLTransform
+   xpos 0
+   ypos 92
+  }
+  Expression {
+   expr0 "min(r,g,b) < 0 ? 1 : r"
+   expr1 "min(r,g,b) < 0 ? 0 : g"
+   expr2 "min(r,g,b) < 0 ? 1 : b"
+   name Negative_Value_overlay
+   xpos 0
+   ypos 158
+   disable {{1-negatives}}
+  }
+  Output {
+   name Output1
+   xpos 0
+   ypos 300
+  }
+ end_group
+ OCIOColorSpace {
+  in_colorspace rdo
+  out_colorspace {{OCIOLookControl.outColorspace}}
+  key1 SEQ
+  value1 102016
+  key2 SHOT
+  value2 102016_0080
+  name OCIOColorSpace35
+  label "\[value value1] // \[value value2]"
+  xpos -530
+  ypos 3266
+  addUserKnob {20 rodeo_tab l Rodeo}
+  addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+  freeze_context true
+ }
+ Text {
+  output rgb
+  cliptype none
+  message "\[file tail \[knob \[topnode].file]]"
+  font /rdo/rodeo/setup/nuke/fonts/Arial.ttf
+  yjustify center
+  box {30 0 {input.width} {input.height/10}}
+  center {2048 1152}
+  name Text35
+  xpos -530
+  ypos 3366
+ }
+set Ncfc57550 [stack 0]
+ ContactSheet {
+  inputs 4
+  width {{input.width*columns}}
+  height {{input.height*rows}}
+  rows {{"\[python -execlocal import\\ math\\nn\\ =\\ nuke.thisNode()\\nif\\ n\\\['splitinputs'\\].value()==True:\\n\\ \\ \\ \\ num\\ =\\ float(n\\\['endframe'\\].value()-n\\\['startframe'\\].value()+1)\\nelse:\\n\\ \\ \\ \\ num\\ =\\ float(n.inputs())\\nrows\\ =\\ math.sqrt(num)\\ncolumns\\ =\\ int(math.ceil(num\\ /\\ rows))\\nrows\\ =\\ int(rows)\\nif\\ rows*columns\\ <\\ num:\\n\\ \\ \\ \\ rows\\ +=\\ 1\\n\\nret\\ =\\ rows]"}}
+  columns {{"\[python -execlocal import\\ math\\nn\\ =\\ nuke.thisNode()\\nif\\ n\\\['splitinputs'\\].value()==True:\\n\\ \\ \\ \\ num\\ =\\ float(n\\\['endframe'\\].value()-n\\\['startframe'\\].value()+1)\\nelse:\\n\\ \\ \\ \\ num\\ =\\ float(n.inputs())\\nrows\\ =\\ math.sqrt(num)\\ncolumns\\ =\\ int(math.ceil(num\\ /\\ rows))\\nret\\ =\\ columns]"}}
+  center true
+  roworder TopBottom
+  startframe 1
+  endframe 10
+  name ContactSheet12
+  tile_color 0xe955ffff
+  note_font Helvetica
+  xpos -399
+  ypos 4135
+  hide_input true
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  cliptype none
+  message 2020/08/20--11:43:03
+  old_message {{50 48 50 48 47 48 56 47 50 48 45 45 49 49 58 52 51 58 48 51}
+    }
+  box {30 0 {input.width} {input.height/10}}
+  xjustify right
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font {{ Arial : Regular : Arial.ttf : 0 }}
+  scale {1 1}
+  autofit_bbox false
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 10240 4608 0 0 1 1 0 0 0 0}
+    }
+  name timestamp5
+  xpos -393
+  ypos 4294
+ }
+ Dot {
+  name Dot5
+  tile_color 0xff
+  label Group_C
+  note_font_size 40
+  xpos -338
+  ypos 4666
+ }
+ Group {
+  inputs 0
+  name RDO_OCIO_WB_ANALYZER5
+  help "To use this, sample an average known neutral "
+  tile_color 0xfefefeff
+  label "\[if \{\[value direction]==\"forward\"\} \{return \"balanced\"\} \{return \"reverted to original\"\}]"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold"
+  xpos -930
+  ypos 3176
+  addUserKnob {20 RDO_OCIO_WB_ANALYZER}
+  addUserKnob {18 source_neutral}
+  source_neutral {1 1 1}
+  addUserKnob {6 source_neutral_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {7 temperature l "temperature offset" R -1 1}
+  addUserKnob {7 tint l "tint offset" R -1 1}
+  addUserKnob {7 exposure l "exposure offset" R -6 6}
+  addUserKnob {7 offset}
+  addUserKnob {26 ""}
+  addUserKnob {6 negatives l "Display negative value overlay" +STARTLINE}
+  addUserKnob {26 ""}
+  addUserKnob {41 direction T OCIOCDLTransform.direction}
+  addUserKnob {41 export_cc l "export grade as .cc" T OCIOCDLTransform.export_cc}
+  addUserKnob {26 version l "" +STARTLINE T v04}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+   ypos 1
+  }
+  OCIOCDLTransform {
+   slope {{"source_neutral.r <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.r)+temperature+tint)"} {"source_neutral.g <= 0 ? 1 : (exposure+1)*(source_neutral.g/source_neutral.g-tint)"} {"source_neutral.b <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.b)-temperature+tint)"}}
+   offset {{parent.offset}}
+   working_space rdo
+   name OCIOCDLTransform
+   xpos 0
+   ypos 92
+  }
+  Expression {
+   expr0 "min(r,g,b) < 0 ? 1 : r"
+   expr1 "min(r,g,b) < 0 ? 0 : g"
+   expr2 "min(r,g,b) < 0 ? 1 : b"
+   name Negative_Value_overlay
+   xpos 0
+   ypos 158
+   disable {{1-negatives}}
+  }
+  Output {
+   name Output1
+   xpos 0
+   ypos 300
+  }
+ end_group
+ OCIOColorSpace {
+  in_colorspace rdo
+  out_colorspace {{OCIOLookControl.outColorspace}}
+  key1 SEQ
+  value1 102016
+  key2 SHOT
+  value2 102016_0070
+  name OCIOColorSpace36
+  label "\[value value1] // \[value value2]"
+  xpos -930
+  ypos 3266
+  addUserKnob {20 rodeo_tab l Rodeo}
+  addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+  freeze_context true
+ }
+ Text {
+  output rgb
+  cliptype none
+  message "\[file tail \[knob \[topnode].file]]"
+  font /rdo/rodeo/setup/nuke/fonts/Arial.ttf
+  yjustify center
+  box {30 0 {input.width} {input.height/10}}
+  center {2048 1152}
+  name Text36
+  xpos -930
+  ypos 3366
+ }
+set Ncfd08a50 [stack 0]
+ Group {
+  inputs 0
+  name RDO_OCIO_WB_ANALYZER4
+  help "To use this, sample an average known neutral "
+  tile_color 0xfefefeff
+  label "\[if \{\[value direction]==\"forward\"\} \{return \"balanced\"\} \{return \"reverted to original\"\}]"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold"
+  xpos -1330
+  ypos 3166
+  addUserKnob {20 RDO_OCIO_WB_ANALYZER}
+  addUserKnob {18 source_neutral}
+  source_neutral {1 1 1}
+  addUserKnob {6 source_neutral_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {7 temperature l "temperature offset" R -1 1}
+  addUserKnob {7 tint l "tint offset" R -1 1}
+  addUserKnob {7 exposure l "exposure offset" R -6 6}
+  addUserKnob {7 offset}
+  addUserKnob {26 ""}
+  addUserKnob {6 negatives l "Display negative value overlay" +STARTLINE}
+  addUserKnob {26 ""}
+  addUserKnob {41 direction T OCIOCDLTransform.direction}
+  addUserKnob {41 export_cc l "export grade as .cc" T OCIOCDLTransform.export_cc}
+  addUserKnob {26 version l "" +STARTLINE T v04}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+   ypos 1
+  }
+  OCIOCDLTransform {
+   slope {{"source_neutral.r <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.r)+temperature+tint)"} {"source_neutral.g <= 0 ? 1 : (exposure+1)*(source_neutral.g/source_neutral.g-tint)"} {"source_neutral.b <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.b)-temperature+tint)"}}
+   offset {{parent.offset}}
+   working_space rdo
+   name OCIOCDLTransform
+   xpos 0
+   ypos 92
+  }
+  Expression {
+   expr0 "min(r,g,b) < 0 ? 1 : r"
+   expr1 "min(r,g,b) < 0 ? 0 : g"
+   expr2 "min(r,g,b) < 0 ? 1 : b"
+   name Negative_Value_overlay
+   xpos 0
+   ypos 158
+   disable {{1-negatives}}
+  }
+  Output {
+   name Output1
+   xpos 0
+   ypos 300
+  }
+ end_group
+ OCIOColorSpace {
+  in_colorspace rdo
+  out_colorspace {{OCIOLookControl.outColorspace}}
+  key1 SEQ
+  value1 102016
+  key2 SHOT
+  value2 102016_0050
+  name OCIOColorSpace37
+  label "\[value value1] // \[value value2]"
+  xpos -1330
+  ypos 3266
+  addUserKnob {20 rodeo_tab l Rodeo}
+  addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+  freeze_context true
+ }
+ Text {
+  output rgb
+  cliptype none
+  message "\[file tail \[knob \[topnode].file]]"
+  font /rdo/rodeo/setup/nuke/fonts/Arial.ttf
+  yjustify center
+  box {30 0 {input.width} {input.height/10}}
+  center {2048 1152}
+  name Text37
+  xpos -1330
+  ypos 3366
+ }
+set Ncd7783c0 [stack 0]
+ Group {
+  inputs 0
+  name RDO_OCIO_WB_ANALYZER
+  help "To use this, sample an average known neutral "
+  tile_color 0xfefefeff
+  label "\[if \{\[value direction]==\"forward\"\} \{return \"balanced\"\} \{return \"reverted to original\"\}]"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold"
+  xpos -2930
+  ypos 3166
+  addUserKnob {20 RDO_OCIO_WB_ANALYZER}
+  addUserKnob {18 source_neutral}
+  source_neutral {1 1 1}
+  addUserKnob {6 source_neutral_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {7 temperature l "temperature offset" R -1 1}
+  addUserKnob {7 tint l "tint offset" R -1 1}
+  addUserKnob {7 exposure l "exposure offset" R -6 6}
+  addUserKnob {7 offset}
+  addUserKnob {26 ""}
+  addUserKnob {6 negatives l "Display negative value overlay" +STARTLINE}
+  addUserKnob {26 ""}
+  addUserKnob {41 direction T OCIOCDLTransform.direction}
+  addUserKnob {41 export_cc l "export grade as .cc" T OCIOCDLTransform.export_cc}
+  addUserKnob {26 version l "" +STARTLINE T v04}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+   ypos 1
+  }
+  OCIOCDLTransform {
+   slope {{"source_neutral.r <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.r)+temperature+tint)"} {"source_neutral.g <= 0 ? 1 : (exposure+1)*(source_neutral.g/source_neutral.g-tint)"} {"source_neutral.b <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.b)-temperature+tint)"}}
+   offset {{parent.offset}}
+   working_space rdo
+   name OCIOCDLTransform
+   xpos 0
+   ypos 92
+  }
+  Expression {
+   expr0 "min(r,g,b) < 0 ? 1 : r"
+   expr1 "min(r,g,b) < 0 ? 0 : g"
+   expr2 "min(r,g,b) < 0 ? 1 : b"
+   name Negative_Value_overlay
+   xpos 0
+   ypos 158
+   disable {{1-negatives}}
+  }
+  Output {
+   name Output1
+   xpos 0
+   ypos 300
+  }
+ end_group
+ OCIOColorSpace {
+  in_colorspace rdo
+  out_colorspace {{OCIOLookControl.outColorspace}}
+  key1 SEQ
+  value1 102016
+  key2 SHOT
+  value2 102016_0010
+  name OCIOColorSpace41
+  label "\[value value1] // \[value value2]"
+  xpos -2930
+  ypos 3266
+  addUserKnob {20 rodeo_tab l Rodeo}
+  addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+  freeze_context true
+ }
+ Text {
+  output rgb
+  cliptype none
+  message "\[file tail \[knob \[topnode].file]]"
+  font /rdo/rodeo/setup/nuke/fonts/Arial.ttf
+  yjustify center
+  box {30 0 {input.width} {input.height/10}}
+  center {2048 1152}
+  name Text41
+  xpos -2930
+  ypos 3366
+ }
+set Ncd841520 [stack 0]
+ ContactSheet {
+  inputs 3
+  width {{input.width*columns}}
+  height {{input.height*rows}}
+  rows {{"\[python -execlocal import\\ math\\nn\\ =\\ nuke.thisNode()\\nif\\ n\\\['splitinputs'\\].value()==True:\\n\\ \\ \\ \\ num\\ =\\ float(n\\\['endframe'\\].value()-n\\\['startframe'\\].value()+1)\\nelse:\\n\\ \\ \\ \\ num\\ =\\ float(n.inputs())\\nrows\\ =\\ math.sqrt(num)\\ncolumns\\ =\\ int(math.ceil(num\\ /\\ rows))\\nrows\\ =\\ int(rows)\\nif\\ rows*columns\\ <\\ num:\\n\\ \\ \\ \\ rows\\ +=\\ 1\\n\\nret\\ =\\ rows]"}}
+  columns {{"\[python -execlocal import\\ math\\nn\\ =\\ nuke.thisNode()\\nif\\ n\\\['splitinputs'\\].value()==True:\\n\\ \\ \\ \\ num\\ =\\ float(n\\\['endframe'\\].value()-n\\\['startframe'\\].value()+1)\\nelse:\\n\\ \\ \\ \\ num\\ =\\ float(n.inputs())\\nrows\\ =\\ math.sqrt(num)\\ncolumns\\ =\\ int(math.ceil(num\\ /\\ rows))\\nret\\ =\\ columns]"}}
+  center true
+  roworder TopBottom
+  startframe 1
+  endframe 10
+  name ContactSheet11
+  tile_color 0xe955ffff
+  note_font Helvetica
+  xpos -1104
+  ypos 4135
+  hide_input true
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  cliptype none
+  message 2020/08/20--11:43:03
+  old_message {{50 48 50 48 47 48 56 47 50 48 45 45 49 49 58 52 51 58 48 51}
+    }
+  box {30 0 {input.width} {input.height/10}}
+  xjustify right
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font {{ Arial : Regular : Arial.ttf : 0 }}
+  scale {1 1}
+  autofit_bbox false
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 10240 4608 0 0 1 1 0 0 0 0}
+    }
+  name timestamp4
+  xpos -1092
+  ypos 4294
+ }
+ Dot {
+  name Dot6
+  tile_color 0xff
+  label Group_B
+  note_font_size 40
+  xpos -1058
+  ypos 4666
+ }
+push $Ncfd08a50
+push $Ncd7783c0
+ Group {
+  inputs 0
+  name RDO_OCIO_WB_ANALYZER3
+  help "To use this, sample an average known neutral "
+  tile_color 0xfefefeff
+  label "\[if \{\[value direction]==\"forward\"\} \{return \"balanced\"\} \{return \"reverted to original\"\}]"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold"
+  xpos -1730
+  ypos 3176
+  addUserKnob {20 RDO_OCIO_WB_ANALYZER}
+  addUserKnob {18 source_neutral}
+  source_neutral {1 1 1}
+  addUserKnob {6 source_neutral_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {7 temperature l "temperature offset" R -1 1}
+  addUserKnob {7 tint l "tint offset" R -1 1}
+  addUserKnob {7 exposure l "exposure offset" R -6 6}
+  addUserKnob {7 offset}
+  addUserKnob {26 ""}
+  addUserKnob {6 negatives l "Display negative value overlay" +STARTLINE}
+  addUserKnob {26 ""}
+  addUserKnob {41 direction T OCIOCDLTransform.direction}
+  addUserKnob {41 export_cc l "export grade as .cc" T OCIOCDLTransform.export_cc}
+  addUserKnob {26 version l "" +STARTLINE T v04}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+   ypos 1
+  }
+  OCIOCDLTransform {
+   slope {{"source_neutral.r <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.r)+temperature+tint)"} {"source_neutral.g <= 0 ? 1 : (exposure+1)*(source_neutral.g/source_neutral.g-tint)"} {"source_neutral.b <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.b)-temperature+tint)"}}
+   offset {{parent.offset}}
+   working_space rdo
+   name OCIOCDLTransform
+   xpos 0
+   ypos 92
+  }
+  Expression {
+   expr0 "min(r,g,b) < 0 ? 1 : r"
+   expr1 "min(r,g,b) < 0 ? 0 : g"
+   expr2 "min(r,g,b) < 0 ? 1 : b"
+   name Negative_Value_overlay
+   xpos 0
+   ypos 158
+   disable {{1-negatives}}
+  }
+  Output {
+   name Output1
+   xpos 0
+   ypos 300
+  }
+ end_group
+ OCIOColorSpace {
+  in_colorspace rdo
+  out_colorspace {{OCIOLookControl.outColorspace}}
+  key1 SEQ
+  value1 102016
+  key2 SHOT
+  value2 102016_0040
+  name OCIOColorSpace38
+  label "\[value value1] // \[value value2]"
+  xpos -1730
+  ypos 3266
+  addUserKnob {20 rodeo_tab l Rodeo}
+  addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+  freeze_context true
+ }
+ Text {
+  output rgb
+  cliptype none
+  message "\[file tail \[knob \[topnode].file]]"
+  font /rdo/rodeo/setup/nuke/fonts/Arial.ttf
+  yjustify center
+  box {30 0 {input.width} {input.height/10}}
+  center {2048 1152}
+  name Text38
+  xpos -1730
+  ypos 3366
+ }
+set Ncd8f2d40 [stack 0]
+ Group {
+  inputs 0
+  name RDO_OCIO_WB_ANALYZER2
+  help "To use this, sample an average known neutral "
+  tile_color 0xfefefeff
+  label "\[if \{\[value direction]==\"forward\"\} \{return \"balanced\"\} \{return \"reverted to original\"\}]"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold"
+  xpos -2130
+  ypos 3176
+  addUserKnob {20 RDO_OCIO_WB_ANALYZER}
+  addUserKnob {18 source_neutral}
+  source_neutral {1 1 1}
+  addUserKnob {6 source_neutral_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {7 temperature l "temperature offset" R -1 1}
+  addUserKnob {7 tint l "tint offset" R -1 1}
+  addUserKnob {7 exposure l "exposure offset" R -6 6}
+  addUserKnob {7 offset}
+  addUserKnob {26 ""}
+  addUserKnob {6 negatives l "Display negative value overlay" +STARTLINE}
+  addUserKnob {26 ""}
+  addUserKnob {41 direction T OCIOCDLTransform.direction}
+  addUserKnob {41 export_cc l "export grade as .cc" T OCIOCDLTransform.export_cc}
+  addUserKnob {26 version l "" +STARTLINE T v04}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+   ypos 1
+  }
+  OCIOCDLTransform {
+   slope {{"source_neutral.r <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.r)+temperature+tint)"} {"source_neutral.g <= 0 ? 1 : (exposure+1)*(source_neutral.g/source_neutral.g-tint)"} {"source_neutral.b <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.b)-temperature+tint)"}}
+   offset {{parent.offset}}
+   working_space rdo
+   name OCIOCDLTransform
+   xpos 0
+   ypos 92
+  }
+  Expression {
+   expr0 "min(r,g,b) < 0 ? 1 : r"
+   expr1 "min(r,g,b) < 0 ? 0 : g"
+   expr2 "min(r,g,b) < 0 ? 1 : b"
+   name Negative_Value_overlay
+   xpos 0
+   ypos 158
+   disable {{1-negatives}}
+  }
+  Output {
+   name Output1
+   xpos 0
+   ypos 300
+  }
+ end_group
+ OCIOColorSpace {
+  in_colorspace rdo
+  out_colorspace {{OCIOLookControl.outColorspace}}
+  key1 SEQ
+  value1 102016
+  key2 SHOT
+  value2 102016_0030
+  name OCIOColorSpace39
+  label "\[value value1] // \[value value2]"
+  xpos -2130
+  ypos 3266
+  addUserKnob {20 rodeo_tab l Rodeo}
+  addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+  freeze_context true
+ }
+ Text {
+  output rgb
+  cliptype none
+  message "\[file tail \[knob \[topnode].file]]"
+  font /rdo/rodeo/setup/nuke/fonts/Arial.ttf
+  yjustify center
+  box {30 0 {input.width} {input.height/10}}
+  center {2048 1152}
+  name Text39
+  xpos -2130
+  ypos 3366
+ }
+set Ncd972680 [stack 0]
+ Group {
+  inputs 0
+  name RDO_OCIO_WB_ANALYZER1
+  help "To use this, sample an average known neutral "
+  tile_color 0xfefefeff
+  label "\[if \{\[value direction]==\"forward\"\} \{return \"balanced\"\} \{return \"reverted to original\"\}]"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold"
+  xpos -2530
+  ypos 3176
+  addUserKnob {20 RDO_OCIO_WB_ANALYZER}
+  addUserKnob {18 source_neutral}
+  source_neutral {1 1 1}
+  addUserKnob {6 source_neutral_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {7 temperature l "temperature offset" R -1 1}
+  addUserKnob {7 tint l "tint offset" R -1 1}
+  addUserKnob {7 exposure l "exposure offset" R -6 6}
+  addUserKnob {7 offset}
+  addUserKnob {26 ""}
+  addUserKnob {6 negatives l "Display negative value overlay" +STARTLINE}
+  addUserKnob {26 ""}
+  addUserKnob {41 direction T OCIOCDLTransform.direction}
+  addUserKnob {41 export_cc l "export grade as .cc" T OCIOCDLTransform.export_cc}
+  addUserKnob {26 version l "" +STARTLINE T v04}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+   ypos 1
+  }
+  OCIOCDLTransform {
+   slope {{"source_neutral.r <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.r)+temperature+tint)"} {"source_neutral.g <= 0 ? 1 : (exposure+1)*(source_neutral.g/source_neutral.g-tint)"} {"source_neutral.b <= 0 ? 1 : (exposure+1)*((source_neutral.g/source_neutral.b)-temperature+tint)"}}
+   offset {{parent.offset}}
+   working_space rdo
+   name OCIOCDLTransform
+   xpos 0
+   ypos 92
+  }
+  Expression {
+   expr0 "min(r,g,b) < 0 ? 1 : r"
+   expr1 "min(r,g,b) < 0 ? 0 : g"
+   expr2 "min(r,g,b) < 0 ? 1 : b"
+   name Negative_Value_overlay
+   xpos 0
+   ypos 158
+   disable {{1-negatives}}
+  }
+  Output {
+   name Output1
+   xpos 0
+   ypos 300
+  }
+ end_group
+ OCIOColorSpace {
+  in_colorspace rdo
+  out_colorspace {{OCIOLookControl.outColorspace}}
+  key1 SEQ
+  value1 102016
+  key2 SHOT
+  value2 102016_0020
+  name OCIOColorSpace40
+  label "\[value value1] // \[value value2]"
+  xpos -2530
+  ypos 3266
+  addUserKnob {20 rodeo_tab l Rodeo}
+  addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+  freeze_context true
+ }
+ Text {
+  output rgb
+  cliptype none
+  message "\[file tail \[knob \[topnode].file]]"
+  font /rdo/rodeo/setup/nuke/fonts/Arial.ttf
+  yjustify center
+  box {30 0 {input.width} {input.height/10}}
+  center {2048 1152}
+  name Text40
+  xpos -2530
+  ypos 3366
+ }
+set Ncd9f1fc0 [stack 0]
+push $Ncd841520
+ ContactSheet {
+  inputs 6
+  width {{input.width*columns}}
+  height {{input.height*rows}}
+  rows {{"\[python -execlocal import\\ math\\nn\\ =\\ nuke.thisNode()\\nif\\ n\\\['splitinputs'\\].value()==True:\\n\\ \\ \\ \\ num\\ =\\ float(n\\\['endframe'\\].value()-n\\\['startframe'\\].value()+1)\\nelse:\\n\\ \\ \\ \\ num\\ =\\ float(n.inputs())\\nrows\\ =\\ math.sqrt(num)\\ncolumns\\ =\\ int(math.ceil(num\\ /\\ rows))\\nrows\\ =\\ int(rows)\\nif\\ rows*columns\\ <\\ num:\\n\\ \\ \\ \\ rows\\ +=\\ 1\\n\\nret\\ =\\ rows]"}}
+  columns {{"\[python -execlocal import\\ math\\nn\\ =\\ nuke.thisNode()\\nif\\ n\\\['splitinputs'\\].value()==True:\\n\\ \\ \\ \\ num\\ =\\ float(n\\\['endframe'\\].value()-n\\\['startframe'\\].value()+1)\\nelse:\\n\\ \\ \\ \\ num\\ =\\ float(n.inputs())\\nrows\\ =\\ math.sqrt(num)\\ncolumns\\ =\\ int(math.ceil(num\\ /\\ rows))\\nret\\ =\\ columns]"}}
+  center true
+  roworder TopBottom
+  startframe 1
+  endframe 10
+  name ContactSheet10
+  tile_color 0xe955ffff
+  note_font Helvetica
+  xpos -1815
+  ypos 4135
+  hide_input true
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  cliptype none
+  message 2020/08/20--11:43:03
+  old_message {{50 48 50 48 47 48 56 47 50 48 45 45 49 49 58 52 51 58 48 51}
+    }
+  box {30 0 {input.width} {input.height/10}}
+  xjustify right
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 20
+  font {{ Arial : Regular : Arial.ttf : 0 }}
+  scale {1 1}
+  autofit_bbox false
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 10240 4608 0 0 1 1 0 0 0 0}
+    }
+  name timestamp3
+  xpos -1803
+  ypos 4294
+ }
+ Dot {
+  name Dot3
+  label Group_A
+  note_font_size 40
+  xpos -1769
+  ypos 4666
+ }
+push $Nf8993370
+push $N14d57ff0
+push $N14cb38e0
+push $N109a59a0
+push $Ncd6f4c70
+push $Ncfdf9700
+push $Nd3dee570
+push $Nceed9a60
+push $N4c6cc420
+push $Nf840ba40
+push $Nd3d8b830
+push $Ncfc57550
+push $Ncfd08a50
+push $Ncd7783c0
+push $Ncd8f2d40
+push $Ncd972680
+push $Ncd9f1fc0
+push $Ncd841520
+ Constant {
+  inputs 0
+  name Constant1
+  xpos -3610
+  ypos 3570
+ }
+ Text2 {
+  font_size_toolbar 200
+  font_width_toolbar 100
+  font_height_toolbar 100
+  cliptype none
+  message "seq 102016_comp"
+  old_message {{115 101 113 32 49 48 50 48 49 54 95 99 111 109 112}
+    }
+  box {0 0 {width} {height}}
+  xjustify center
+  yjustify center
+  transforms {{0 2}
+    }
+  font_size_values {{7 200 8 200 9 200 10 200 0 200 1 200 2 200 3 200 4 200 5 200 6 200 11 200 12 200 13 200 14 200}
+    }
+  cursor_position 10
+  font {{ Arial : Regular : Arial.ttf : 0 }}
+  font_size 200
+  center {2048 1152}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 2304}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 2048 1152 0 0 1 1 0 0 0 0}
+    }
+  name Text42
+  xpos -3610
+  ypos 3642
+ }
+ Dot {
+  name Dot4
+  tile_color 0xff
+  note_font_size 40
+  xpos -3575
+  ypos 3690
+ }
+ ContactSheet {
+  inputs 19
+  width {{input.width*columns}}
+  height {{input.height*rows}}
+  rows {{"\[python -execlocal import\\ math\\nn\\ =\\ nuke.thisNode()\\nif\\ n\\\['splitinputs'\\].value()==True:\\n\\ \\ \\ \\ num\\ =\\ float(n\\\['endframe'\\].value()-n\\\['startframe'\\].value()+1)\\nelse:\\n\\ \\ \\ \\ num\\ =\\ float(n.inputs())\\nrows\\ =\\ math.sqrt(num)\\ncolumns\\ =\\ int(math.ceil(num\\ /\\ rows))\\nrows\\ =\\ int(rows)\\nif\\ rows*columns\\ <\\ num:\\n\\ \\ \\ \\ rows\\ +=\\ 1\\n\\nret\\ =\\ rows]"}}
+  columns {{"\[python -execlocal import\\ math\\nn\\ =\\ nuke.thisNode()\\nif\\ n\\\['splitinputs'\\].value()==True:\\n\\ \\ \\ \\ num\\ =\\ float(n\\\['endframe'\\].value()-n\\\['startframe'\\].value()+1)\\nelse:\\n\\ \\ \\ \\ num\\ =\\ float(n.inputs())\\nrows\\ =\\ math.sqrt(num)\\ncolumns\\ =\\ int(math.ceil(num\\ /\\ rows))\\nret\\ =\\ columns]"}}
+  center true
+  roworder TopBottom
+  startframe 1
+  endframe 10
+  name ContactSheet9
+  tile_color 0xe955ffff
+  note_font Helvetica
+  xpos 670
+  ypos 3763
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  cliptype none
+  message 2020/08/20--11:43:03
+  old_message {{50 48 50 48 47 48 56 47 50 48 45 45 49 49 58 52 51 58 48 51}
+    }
+  box {30 0 {input.width} {input.height/10}}
+  xjustify right
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font {{ Arial : Regular : Arial.ttf : 0 }}
+  scale {1 1}
+  autofit_bbox false
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 10240 4608 0 0 1 1 0 0 0 0}
+    }
+  name timestamp
+  xpos 670
+  ypos 3816
+ }
+ Dot {
+  name Dot7
+  tile_color 0xff
+  label All
+  note_font_size 40
+  xpos 717
+  ypos 4666
+ }
+ Switch {
+  inputs 8
+  which {{ShotGroup}}
+  name Switch1
+  label "\[value which]"
+  xpos 716
+  ypos 5063
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message 2019/12/17--10:44:44
+  old_message {{50 48 49 57 47 49 50 47 49 55 45 45 49 48 58 52 52 58 52 52}
+    }
+  box {30 0 {input.width} {input.height/10}}
+  xjustify right
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font {{ Arial : Regular : Arial.ttf : 0 }}
+  scale {1 1}
+  autofit_bbox false
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 6450 5400 0 0 1 1 0 0 0 0}
+    }
+  name timestamp2
+  xpos 716
+  ypos 5236
+ }
+ Dot {
+  name Dot1
+  label "contact sheet"
+  note_font_size 40
+  xpos 750
+  ypos 5437
+ }
+ Output {
+  name Output1
+  xpos 716
+  ypos 5545
+ }
+ Group {
+  inputs 0
+  name OCIOLookControl
+  label "rdo > \[value outColorspace] "
+  xpos 543
+  ypos 3811
+  addUserKnob {20 User}
+  addUserKnob {41 outColorspace T mainOCIO.out_colorspace}
+ }
+  OCIOColorSpace {
+   inputs 0
+   in_colorspace rdo
+   out_colorspace "Rodeo look"
+   key1 SEQ
+   value1 102016
+   key2 SHOT
+   value2 102016_0080
+   name mainOCIO
+   addUserKnob {20 rodeo_tab l Rodeo}
+   addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+  }
+ end_group
+end_group

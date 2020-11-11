@@ -1,0 +1,372 @@
+#! /builds/nuke/9.0v7/fe3d649516/priv/libnuke-9.0.7.so -nx
+version 9.0 v7
+Group {
+name TechChecker
+ inputs 2
+ addUserKnob {20 User}
+ addUserKnob {68 choices l "Choose output" M {Difference "Grain checker" Red Blue Green "Gamma 2" "3 Stops down" "Still or no grain checker" "Contact sheet" "" "" "" "" ""}}
+}
+ Input {
+  inputs 0
+  name shot
+  xpos 646
+  ypos 17
+ }
+set N394d0f50 [stack 0]
+ FrameRange {
+  first_frame {{"\[value this.input.first_frame]"}}
+  last_frame {{"\[value this.input.last_frame]"}}
+  time ""
+  name FrameRange1
+  xpos 646
+  ypos 68
+ }
+ Dot {
+  name Dot3
+  note_font_size 40
+  xpos 680
+  ypos 94
+ }
+set N395e4050 [stack 0]
+ Group {
+  name Keyer
+  tile_color 0xff0000
+  xpos 1218
+  ypos 247
+  addUserKnob {20 User}
+  addUserKnob {41 input T Keyer.input}
+  addUserKnob {41 output T Keyer.output}
+  addUserKnob {41 combine l "" -STARTLINE T Keyer.combine}
+  addUserKnob {41 invert -STARTLINE T Keyer.invert}
+  addUserKnob {41 operation T Keyer.operation}
+  addUserKnob {41 range T Keyer.range}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos -876
+   ypos 238
+  }
+  Keyer {
+   operation "saturation key"
+   range {0.5 1 1 1}
+   name Keyer
+   xpos -876
+   ypos 278
+  }
+  Shuffle {
+   red alpha
+   green alpha
+   blue alpha
+   name Alpha2
+   tile_color 0xffffffff
+   xpos -876
+   ypos 316
+  }
+  Output {
+   name Output1
+   xpos -876
+   ypos 416
+  }
+ end_group
+set N4cb4ee40 [stack 0]
+push $N395e4050
+ EXPTool {
+  mode Stops
+  red -3
+  green -3
+  blue -3
+  name Exposure1
+  xpos 1489
+  ypos 252
+ }
+set N8312b410 [stack 0]
+push $N395e4050
+ Group {
+  name Grade
+  tile_color 0x9fffff
+  xpos 1349
+  ypos 256
+  addUserKnob {20 Grade}
+  addUserKnob {41 channels T ColorCorrect.channels}
+  addUserKnob {41 blackpoint T Grade_in.blackpoint}
+  addUserKnob {19 whitepoint R 0 4}
+  whitepoint 1
+  addUserKnob {6 whitepoint_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {41 contrast T ColorCorrect.contrast}
+  addUserKnob {41 saturation T ColorCorrect.saturation}
+  addUserKnob {19 multiply R 0 4}
+  multiply 1
+  addUserKnob {6 multiply_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {7 temperature l "temperature â—„â–º" R -1 1}
+  addUserKnob {7 tint l "tint â—„â–º" -STARTLINE R -1 1}
+  addUserKnob {19 gain R 0 4}
+  gain 1
+  addUserKnob {6 gain_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {41 add l offset T Grade_in.add}
+  addUserKnob {41 black l lift T Grade_in.black}
+  addUserKnob {19 gamma R 0.2 5}
+  gamma 2
+  addUserKnob {6 gamma_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {41 reverse T Grade_in.reverse}
+  addUserKnob {41 black_clamp l "black clamp" -STARTLINE T Grade_in.black_clamp}
+  addUserKnob {41 white_clamp l "white clamp" -STARTLINE T Grade_in.white_clamp}
+  addUserKnob {26 mask l INVISIBLE +INVISIBLE}
+  addUserKnob {41 maskChannelMask l mask T Grade_in.maskChannelMask}
+  addUserKnob {41 maskChannelInput l INVISIBLE -STARTLINE +INVISIBLE T Grade_in.maskChannelInput}
+  addUserKnob {41 inject -STARTLINE T ColorCorrect.inject}
+  addUserKnob {41 invert_mask l invert -STARTLINE T ColorCorrect.invert_mask}
+  addUserKnob {41 fringe -STARTLINE T ColorCorrect.fringe}
+  addUserKnob {41 unpremult l "(un)premult by" T ColorCorrect.unpremult}
+  addUserKnob {41 invert_unpremult l invert -STARTLINE T ColorCorrect.invert_unpremult}
+  addUserKnob {41 enable_mix_luminance l "mix luminance" T ColorCorrect.enable_mix_luminance}
+  addUserKnob {41 mix_luminance l "" -STARTLINE T ColorCorrect.mix_luminance}
+  addUserKnob {41 mix T ColorCorrect.mix}
+  addUserKnob {20 SMH}
+  addUserKnob {26 shadows l SHADOWS}
+  addUserKnob {41 shadows.saturation l saturation T ColorCorrect.shadows.saturation}
+  addUserKnob {7 shadowstemperature l "temperature â—„â–º" R -1 1}
+  addUserKnob {7 shadowstint l "tint â—„â–º" -STARTLINE R -1 1}
+  addUserKnob {19 shadowsgain l gain R 0 4}
+  shadowsgain 1
+  addUserKnob {6 shadowsgain_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 midtones l MIDTONES}
+  addUserKnob {41 midtones.saturation l saturation T ColorCorrect.midtones.saturation}
+  addUserKnob {7 midtemperature l "temperature â—„â–º" R -1 1}
+  addUserKnob {7 midtint l "tint â—„â–º" -STARTLINE R -1 1}
+  addUserKnob {19 midgain l gain R 0 4}
+  midgain 1
+  addUserKnob {6 midgain_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 highlights l HIGHLIGHTS}
+  addUserKnob {41 highlights.saturation l saturation T ColorCorrect.highlights.saturation}
+  addUserKnob {7 hltemperature l "temperature â—„â–º" R -1 1}
+  addUserKnob {7 hltint l "tint â—„â–º" -STARTLINE R -1 1}
+  addUserKnob {19 highlightsgain l "highlights gain" R 0 4}
+  highlightsgain 1
+  addUserKnob {6 highlightsgain_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {20 range l Ranges}
+  addUserKnob {41 lookup l "" -STARTLINE T ColorCorrect.lookup}
+ }
+  Input {
+   inputs 0
+   name mask
+   xpos 926
+   ypos 264
+   number 1
+  }
+set N54423f00 [stack 0]
+push $N54423f00
+  Input {
+   inputs 0
+   name Input1
+   xpos 796
+   ypos 228
+  }
+  ColorCorrect {
+   inputs 1+1
+   shadows.gain {{parent.shadowsgain-shadowstemperature/2+shadowstint/4} {parent.shadowsgain-shadowstint/2} {parent.shadowsgain+shadowstemperature/2+shadowstint/4} {parent.shadowsgain}}
+   midtones.gain {{parent.midgain-midtemperature/2+midtint/4} {parent.midgain-midtint/2} {parent.midgain+midtemperature/2+midtint/4} {parent.midgain}}
+   highlights.gain {{parent.highlightsgain-hltemperature/2+hltint/4} {parent.highlightsgain-hltint/2} {parent.highlightsgain+hltemperature/2+hltint/4} {parent.highlightsgain}}
+   lookup {shadow {curve 1 s0 x0.5 0 s0}
+     midtone {1-shadow-highlight}
+     highlight {}}
+   maskChannelMask {{{parent.Grade_in.maskChannelMask}}}
+   maskChannelInput -rgba.alpha
+   unpremult -rgba.alpha
+   name ColorCorrect
+   xpos 796
+   ypos 268
+  }
+  Grade {
+   inputs 1+1
+   channels {{{parent.ColorCorrect.channels}}}
+   whitepoint {{parent.whitepoint}}
+   white {{parent.gain}}
+   multiply {{parent.multiply-temperature/2+tint/4} {parent.multiply-tint/2} {parent.multiply+temperature/2+tint/4} {parent.multiply}}
+   gamma {{parent.gamma}}
+   maskChannelMask -rgba.alpha
+   inject {{parent.ColorCorrect.inject}}
+   invert_mask {{parent.ColorCorrect.invert_mask}}
+   fringe {{parent.ColorCorrect.fringe}}
+   unpremult {{{parent.ColorCorrect.unpremult}}}
+   invert_unpremult {{parent.ColorCorrect.invert_unpremult}}
+   enable_mix_luminance {{parent.ColorCorrect.enable_mix_luminance}}
+   mix_luminance {{parent.ColorCorrect.mix_luminance}}
+   mix {{parent.ColorCorrect.mix}}
+   name Grade_in
+   xpos 796
+   ypos 306
+   disable {{parent.ColorCorrect.disable}}
+  }
+  Output {
+   name Output1
+   xpos 796
+   ypos 403
+  }
+ end_group
+set N65b8c110 [stack 0]
+push $N4cb4ee40
+push $N395e4050
+ Shuffle {
+  red green
+  blue green
+  alpha green
+  name Green
+  tile_color 0xff00ff
+  xpos 1093
+  ypos 252
+ }
+set N3b1c82a0 [stack 0]
+push $N395e4050
+ Shuffle {
+  red blue
+  green blue
+  alpha blue
+  name Blue
+  tile_color 0xffff
+  xpos 978
+  ypos 250
+ }
+set N3b962640 [stack 0]
+push $N395e4050
+ Shuffle {
+  green red
+  blue red
+  alpha red
+  name Red
+  tile_color 0xff0000ff
+  xpos 856
+  ypos 247
+ }
+set N5416e1b0 [stack 0]
+push $N395e4050
+ Dot {
+  name Dot7
+  note_font_size 40
+  xpos 208
+  ypos 94
+ }
+ Laplacian {
+  size 1
+  name Laplacian3
+  xpos 174
+  ypos 154
+ }
+ Multiply {
+  value 100
+  name Multiply6
+  xpos 174
+  ypos 233
+ }
+set N82abc850 [stack 0]
+push $N82abc850
+ TimeOffset {
+  time_offset 1
+  time ""
+  name TimeOffset2
+  xpos 291
+  ypos 239
+ }
+ Merge2 {
+  inputs 2
+  operation difference
+  name Difference4
+  xpos 174
+  ypos 326
+ }
+set N4cb4bd50 [stack 0]
+push $N395e4050
+ Laplacian {
+  size 1
+  name Laplacian2
+  xpos 665
+  ypos 240
+ }
+ Multiply {
+  value 500
+  name Multiply4
+  xpos 665
+  ypos 286
+ }
+set N3c4241e0 [stack 0]
+push $N395e4050
+ Input {
+  inputs 0
+  name Plate
+  xpos 426
+  ypos -99
+  number 1
+ }
+ Dot {
+  name Dot6
+  note_font_size 40
+  xpos 460
+  ypos -17
+ }
+ Merge2 {
+  inputs 2
+  operation difference
+  name Difference3
+  xpos 416
+  ypos 240
+ }
+set N8311cba0 [stack 0]
+ Multiply {
+  value 40
+  name Multiply3
+  xpos 536
+  ypos 234
+ }
+push $N8311cba0
+ ContactSheet {
+  inputs 10
+  width {{input.width*columns}}
+  height {{input.height*rows}}
+  rows {{"\[python -execlocal import\\ math\\nn\\ =\\ nuke.thisNode()\\nif\\ n\\\['splitinputs'\\].value()==True:\\n\\ \\ \\ \\ num\\ =\\ float(n\\\['endframe'\\].value()-n\\\['startframe'\\].value()+1)\\nelse:\\n\\ \\ \\ \\ num\\ =\\ float(n.inputs())\\nrows\\ =\\ math.sqrt(num)\\ncolumns\\ =\\ int(math.ceil(num\\ /\\ rows))\\nrows\\ =\\ int(rows)\\nif\\ rows*columns\\ <\\ num:\\n\\ \\ \\ \\ rows\\ +=\\ 1\\n\\nret\\ =\\ rows]"}}
+  columns {{"\[python -execlocal import\\ math\\nn\\ =\\ nuke.thisNode()\\nif\\ n\\\['splitinputs'\\].value()==True:\\n\\ \\ \\ \\ num\\ =\\ float(n\\\['endframe'\\].value()-n\\\['startframe'\\].value()+1)\\nelse:\\n\\ \\ \\ \\ num\\ =\\ float(n.inputs())\\nrows\\ =\\ math.sqrt(num)\\ncolumns\\ =\\ int(math.ceil(num\\ /\\ rows))\\nret\\ =\\ columns]"}}
+  center true
+  roworder TopBottom
+  startframe 1
+  endframe 10
+  name ContactSheet1
+  tile_color 0xe9553fff
+  note_font Helvetica
+  xpos 764
+  ypos 472
+ }
+push $N4cb4bd50
+push $N8312b410
+push $N65b8c110
+push $N3b1c82a0
+push $N3b962640
+push $N5416e1b0
+push $N3c4241e0
+push $N8311cba0
+ Switch {
+  inputs 10
+  which {{TechChecker.choices}}
+  name Switch1
+  selected true
+  xpos 174
+  ypos 502
+ }
+ FrameRange {
+  first_frame {{parent.FrameRange1.knob.first_frame}}
+  last_frame {{parent.FrameRange1.knob.last_frame}}
+  time ""
+  name FrameRange2
+  xpos 174
+  ypos 622
+ }
+ Output {
+  name Output1
+  xpos 174
+  ypos 732
+ }
+push $N394d0f50
+ ViewMetaData {
+  name ViewMetaData1
+  xpos 495
+  ypos 17
+ }
+end_group

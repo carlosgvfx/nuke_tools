@@ -1,0 +1,150 @@
+#! C:/Program Files/Nuke8.0v3/nuke-8.0.v3.dll -nx
+version 8.0 v3
+Group {
+name RealBlackSoftClip
+ inputs 2
+ tile_color 0x7fa7ffff
+ note_font "Bitstream Vera Sans"
+ mapsize {0.15 0.15}
+ addUserKnob {20 RealBlackSoftClip}
+ addUserKnob {6 rr l "red    " +STARTLINE}
+ rr true
+ addUserKnob {6 gg l "green    " -STARTLINE}
+ gg true
+ addUserKnob {6 bb l "blue            " -STARTLINE}
+ bb true
+ addUserKnob {6 aa l alpha -STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {41 pivot t "- up to what value to lift" T RealBlackSoftClip1.pivot}
+ addUserKnob {41 lift t "- how much to lift blacks ( keep \"lift\" less than \"\"pivot\") \n" T RealBlackSoftClip1.lift}
+ addUserKnob {26 ""}
+ addUserKnob {41 soft t "- creates soft transition between original and lifted\n0 = 0% (straight line)\n1 = 100% (the smoothest)\n" T RealBlackSoftClip1.soft}
+ addUserKnob {26 ""}
+ addUserKnob {41 mix t "- dissolve between original and lifted" T Dissolve1.which}
+ addUserKnob {26 ""}
+ addUserKnob {26 info l "" t :-) +STARTLINE T "Helps you lift the Blacks!\n- roll over to see explanations\n- suggestions, comments are welcome\n- keep it real\nLev\n(☭) v 4.0"}
+ addUserKnob {26 ""}
+}
+ StickyNote {
+  inputs 0
+  name StickyNote1
+  label "HAVE A GOOD DAY !"
+  note_font_size 333
+  xpos -450
+  ypos 1357
+ }
+ Input {
+  inputs 0
+  name image
+  xpos 588
+  ypos 539
+ }
+ Dot {
+  name Dot11
+  xpos 619
+  ypos 675
+ }
+set N14ac4630 [stack 0]
+ Dot {
+  name Dot12
+  xpos 319
+  ypos 675
+ }
+ Dot {
+  name Dot14
+  xpos 319
+  ypos 1225
+ }
+set N2e6cedb0 [stack 0]
+ Dot {
+  name Dot15
+  xpos 319
+  ypos 1375
+ }
+set N2e6cf120 [stack 0]
+ Input {
+  inputs 0
+  name mask
+  xpos 838
+  ypos 539
+  number 1
+ }
+ Dot {
+  name Dot10
+  xpos 869
+  ypos 675
+ }
+ Invert {
+  name Invert3
+  xpos 838
+  ypos 1215
+ }
+push $N2e6cedb0
+push $N14ac4630
+ Expression {
+  expr0 (r<pivot.r)?r+(lift.r*(pow((1-(r/pivot.r)),((((pivot.r/lift.r)-1)*soft.r)+1)))):r
+  expr1 (g<pivot.g)?g+(lift.g*(pow((1-(g/pivot.g)),((((pivot.g/lift.g)-1)*soft.g)+1)))):g
+  expr2 (b<pivot.b)?b+(lift.b*(pow((1-(b/pivot.b)),((((pivot.b/lift.b)-1)*soft.b)+1)))):b
+  expr3 (a<pivot.a)?a+(lift.a*(pow((1-(a/pivot.a)),((((pivot.a/lift.a)-1)*soft.a)+1)))):a
+  name RealBlackSoftClip1
+  xpos 587
+  ypos 939
+  addUserKnob {20 User}
+  addUserKnob {19 pivot}
+  pivot 0.33
+  addUserKnob {6 pivot_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {19 lift}
+  lift 0.001
+  addUserKnob {6 lift_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {19 soft}
+  soft 0.001
+  addUserKnob {6 soft_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ }
+ Keymix {
+  inputs 3
+  name Keymix2
+  xpos 588
+  ypos 1215
+ }
+push $N2e6cf120
+ Dissolve {
+  inputs 2
+  which 1
+  name Dissolve1
+  xpos 588
+  ypos 1365
+ }
+add_layer {originalcccp originalcccp.red originalcccp.green originalcccp.blue originalcccp.alpha}
+ ShuffleCopy {
+  inputs 2
+  alpha alpha2
+  black red
+  white green
+  red2 blue
+  green2 alpha
+  out2 originalcccp
+  name ShuffleCopy1
+  xpos 588
+  ypos 1464
+ }
+ Expression {
+  expr0 rr?r:originalcccp.red
+  expr1 gg?g:originalcccp.green
+  expr2 bb?b:originalcccp.blue
+  expr3 aa?a:originalcccp.alpha
+  name Expression1
+  xpos 588
+  ypos 1518
+ }
+ Remove {
+  channels originalcccp
+  name Remove1
+  xpos 588
+  ypos 1581
+ }
+ Output {
+  name Output1
+  xpos 588
+  ypos 1739
+ }
+end_group

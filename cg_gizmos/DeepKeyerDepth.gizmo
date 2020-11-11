@@ -1,0 +1,61 @@
+Group {
+name DeepKeyerDepth
+ tile_color 0x466ff
+ addUserKnob {20 User l DeepKeyerDepth}
+ addUserKnob {7 near R 1 500}
+ near 10
+ addUserKnob {7 far R 1 500}
+ far 30
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -237
+  ypos 70
+ }
+ DeepExpression {
+  temp_name0 near
+  temp_expr0 "\[value parent.near]"
+  temp_name1 far
+  temp_expr1 "\[value parent.far]"
+  chans1 deep
+  rgba.red "((deep.front - near) / (far - near)) * rgba.alpha"
+  rgba.green "((deep.front - near) / (far - near)) * rgba.alpha"
+  rgba.blue "((deep.front - near) / (far - near)) * rgba.alpha"
+  name DeepExpression
+  xpos -237
+  ypos 109
+ }
+ DeepToImage {
+  name DeepToImage
+  xpos -237
+  ypos 157
+ }
+ Shuffle {
+  alpha red
+  name Shuffle
+  label "\[value in]"
+  xpos -237
+  ypos 203
+ }
+ Clamp {
+  channels rgba
+  name Clamp
+  label "\[value channels]"
+  xpos -237
+  ypos 266
+ }
+set N34758f70 [stack 0]
+ Output {
+  name Output1
+  xpos -237
+  ypos 323
+ }
+push $N34758f70
+ Viewer {
+  input_process false
+  name Viewer1
+  xpos -97
+  ypos 188
+ }
+end_group

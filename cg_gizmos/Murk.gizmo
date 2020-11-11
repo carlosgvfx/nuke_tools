@@ -1,0 +1,186 @@
+#! /softwareLocal/nuke/linux/Nuke8.0v6_x64/libnuke-8.0.v6.so -nx
+version 8.0 v6
+Group {
+name Murk
+ tile_color 0xed883fff
+ addUserKnob {20 User l Murk}
+ addUserKnob {26 MurkText l "Murk Controls"}
+ addUserKnob {41 MurkControl l Blur T Controls.MurkControl}
+ addUserKnob {41 MurkMix l Mix T Controls.MurkMix}
+}
+ Input {
+  inputs 0
+  name Input1
+  selected true
+  xpos -56
+  ypos -292
+ }
+ Dot {
+  name Dot16
+  xpos -19
+  ypos -211
+ }
+ NoOp {
+  name Controls
+  xpos -53
+  ypos -174
+  addUserKnob {20 User}
+  addUserKnob {26 MurkText l "Murk Controls"}
+  addUserKnob {7 MurkControl l Blur R 0 10}
+  MurkControl 1.5
+  addUserKnob {7 MurkMix l Mix}
+  MurkMix 0.1
+ }
+ Dot {
+  name Dot1
+  xpos -19
+  ypos -95
+ }
+set N133abcc0 [stack 0]
+ Dot {
+  name Dot2
+  xpos 100
+  ypos -95
+ }
+set Nf8e72c0 [stack 0]
+ Dot {
+  name Dot3
+  xpos 210
+  ypos -95
+ }
+set Nf8eb500 [stack 0]
+ Dot {
+  name Dot4
+  xpos 320
+  ypos -95
+ }
+set Nf8ef810 [stack 0]
+ Dot {
+  name Dot5
+  xpos 430
+  ypos -95
+ }
+set Nf8f3b60 [stack 0]
+ Dot {
+  name Dot6
+  xpos 540
+  ypos -95
+ }
+set Nf8f7ec0 [stack 0]
+ Dot {
+  name Dot7
+  xpos 650
+  ypos -95
+ }
+set N155477a0 [stack 0]
+ Dot {
+  name Dot8
+  xpos 760
+  ypos -95
+ }
+ Blur {
+  channels rgba
+  size {{parent.Blur8.size*2}}
+  name Blur9
+  xpos 726
+  ypos -77
+ }
+ Dot {
+  name Dot9
+  xpos 760
+  ypos 79
+ }
+push $N155477a0
+ Blur {
+  channels rgba
+  size {{parent.Blur7.size*2}}
+  name Blur8
+  xpos 616
+  ypos -77
+ }
+ Dot {
+  name Dot10
+  xpos 650
+  ypos 79
+ }
+push $Nf8f7ec0
+ Blur {
+  channels rgba
+  size {{parent.Blur6.size*2}}
+  name Blur7
+  xpos 506
+  ypos -77
+ }
+ Dot {
+  name Dot11
+  xpos 540
+  ypos 79
+ }
+push $Nf8f3b60
+ Blur {
+  channels rgba
+  size {{parent.Blur5.size*2}}
+  name Blur6
+  xpos 396
+  ypos -77
+ }
+ Dot {
+  name Dot12
+  xpos 430
+  ypos 79
+ }
+push $Nf8ef810
+ Blur {
+  channels rgba
+  size {{parent.Blur4.size*2}}
+  name Blur5
+  xpos 286
+  ypos -76
+ }
+ Dot {
+  name Dot13
+  xpos 320
+  ypos 79
+ }
+push $Nf8eb500
+ Blur {
+  channels rgba
+  size {{parent.Blur1.size*2}}
+  name Blur4
+  xpos 175
+  ypos -77
+ }
+ Dot {
+  name Dot14
+  xpos 210
+  ypos 79
+ }
+push 0
+push $Nf8e72c0
+ Blur {
+  channels rgba
+  size {{parent.Controls.MurkControl}}
+  name Blur1
+  xpos 66
+  ypos -77
+ }
+ Dot {
+  name Dot15
+  xpos 100
+  ypos 79
+ }
+push $N133abcc0
+ Merge2 {
+  inputs 8+1
+  operation average
+  mix {{parent.Controls.MurkMix}}
+  name Merge8
+  xpos -44
+  ypos 81
+ }
+ Output {
+  name Output1
+  xpos -44
+  ypos 175
+ }
+end_group

@@ -1,0 +1,55 @@
+#! C:/Program Files/Nuke8.0v3/nuke-8.0.v3.dll -nx
+version 8.0 v3
+Group {
+name DirMotionBlur
+ tile_color 0xbf8046ff
+ addUserKnob {20 User l DirMotionBlur}
+ addUserKnob {41 rotate T mainDirection.rotate}
+ addUserKnob {7 size R 0 100}
+ size 18
+ addUserKnob {7 erode R 0 100}
+ addUserKnob {41 filter_1 l filter T motionBlur.filter}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 406
+  ypos 225
+ }
+ AdjBBox {
+  name AdjBBox1
+  xpos 406
+  ypos 264
+ }
+ Transform {
+  rotate 45
+  center {1024 576}
+  name mainDirection
+  xpos 404
+  ypos 306
+ }
+ Blur {
+  size {{parent.size} {parent.erode}}
+  name motionBlur
+  xpos 404
+  ypos 351
+ }
+ Transform {
+  rotate {{-parent.mainDirection.rotate}}
+  center {1024 576}
+  name slaveDirection
+  xpos 404
+  ypos 410
+ }
+ Crop {
+  box {0 0 {format.width} {format.height}}
+  name Crop1
+  xpos 404
+  ypos 457
+ }
+ Output {
+  name Output1
+  xpos 404
+  ypos 512
+ }
+end_group

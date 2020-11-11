@@ -1,0 +1,408 @@
+
+add_layer {worldPosition worldPosition.NX worldPosition.NY worldPosition.NZ}
+Group {
+name PositionPicker
+ tile_color 0x336fadff
+ addUserKnob {20 PositionPicker}
+ addUserKnob {41 in l "" +STARTLINE T worldP.in}
+ addUserKnob {4 Xselec l "X method" M {Range Ascending Descending}}
+ addUserKnob {4 Yselec l "Y method" M {Range Ascending Descending}}
+ addUserKnob {4 Zselec l "Z method" M {Range Ascending Descending}}
+ addUserKnob {4 axis l Axis M {XYZ X Y Z XY XZ YZ}}
+ addUserKnob {4 feather_curve l Feather M {linear smooth0 smooth1 smooth2}}
+ addUserKnob {18 center l Center R -50 50}
+ center {0 0 0}
+ addUserKnob {6 center_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {18 spread l Spread R 0 20}
+ addUserKnob {6 spread_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {18 feather l Feather R 0 10}
+ addUserKnob {6 feather_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 shuffle l "Shuffle in position pass" +STARTLINE}
+ addUserKnob {20 Premult l "Premult Options" n 1}
+ addUserKnob {6 unpremult l "Unpremult position pass" +STARTLINE}
+ addUserKnob {6 premult l "Premult mask" +STARTLINE}
+ addUserKnob {20 endGroup n -1}
+}
+ Input {
+  inputs 0
+  name In_data
+  xpos -469
+  ypos 282
+ }
+set N31bea150 [stack 0]
+ Dot {
+  name Dot4
+  xpos -1194
+  ypos 286
+ }
+ Dot {
+  name Dot5
+  xpos -1194
+  ypos 1387
+ }
+set N321bf100 [stack 0]
+push $N31bea150
+add_layer {objectP objectP.red objectP.green objectP.blue}
+ Shuffle {
+  in objectP
+  in2 rgba
+  alpha alpha2
+  name objectP
+  xpos -377
+  ypos 326
+ }
+push $N31bea150
+ Shuffle {
+  in worldPosition
+  in2 rgba
+  alpha alpha2
+  name worldP
+  xpos -552
+  ypos 324
+ }
+ Switch {
+  inputs 2
+  which {{parent.pass i}}
+  name Switch2
+  xpos -469
+  ypos 370
+ }
+ Unpremult {
+  name Unpremult
+  xpos -469
+  ypos 410
+  disable {{1-parent.unpremult i}}
+ }
+set N321bfb50 [stack 0]
+ Expression {
+  expr0 "-1 / (feather.main.g+0.00001) * ( g - center.main.g - spread.main.g ) + 1"
+  expr1 "-1 / (feather.main.g+0.00001) * ( g - center.main.g - spread.main.g ) + 1"
+  expr2 "-1 / (feather.main.g+0.00001) * ( g - center.main.g - spread.main.g ) + 1"
+  expr3 0
+  name Y_des
+  xpos -405
+  ypos 508
+ }
+ Clamp {
+  name Clamp4
+  xpos -405
+  ypos 534
+ }
+set N321c0230 [stack 0]
+push $N321bfb50
+ Expression {
+  expr0 "1 / (feather.main.g+0.00001) * ( g - center.main.g + spread.main.g ) + 1"
+  expr1 "1 / (feather.main.g+0.00001) * ( g - center.main.g + spread.main.g ) + 1"
+  expr2 "1 / (feather.main.g+0.00001) * ( g - center.main.g + spread.main.g ) + 1"
+  expr3 0
+  name Y_asc
+  xpos -539
+  ypos 515
+ }
+ Clamp {
+  name Clamp3
+  xpos -539
+  ypos 541
+ }
+set N321c0910 [stack 0]
+push $N321c0910
+push $N321c0230
+ Merge2 {
+  inputs 2
+  operation multiply
+  name Multiply2
+  xpos -470
+  ypos 587
+ }
+ Switch {
+  inputs 3
+  which {{parent.Yselec i}}
+  name Switch4
+  xpos -470
+  ypos 647
+ }
+set N31a8e5d0 [stack 0]
+push $N321bfb50
+ Dot {
+  name Dot3
+  xpos 0
+  ypos 420
+ }
+set N321c0ff0 [stack 0]
+ Expression {
+  expr0 "-1 / (feather.main.b+0.00001) * ( b - center.main.b - spread.main.b ) + 1"
+  expr1 "-1 / (feather.main.b+0.00001) * ( b - center.main.b - spread.main.b ) + 1"
+  expr2 "-1 / (feather.main.b+0.00001) * ( b - center.main.b - spread.main.b ) + 1"
+  expr3 0
+  name Z_des
+  xpos 25
+  ypos 466
+ }
+ Clamp {
+  name Clamp6
+  xpos 25
+  ypos 492
+ }
+set N321c16d0 [stack 0]
+push $N321c0ff0
+ Expression {
+  expr0 "1 / (feather.main.b+0.00001) * ( b - center.main.b + spread.main.b ) + 1"
+  expr1 "1 / (feather.main.b+0.00001) * ( b - center.main.b + spread.main.b ) + 1"
+  expr2 "1 / (feather.main.b+0.00001) * ( b - center.main.b + spread.main.b ) + 1"
+  expr3 0
+  name Z_asc
+  xpos -98
+  ypos 472
+ }
+ Clamp {
+  name Clamp5
+  xpos -98
+  ypos 498
+ }
+set N321c1db0 [stack 0]
+push $N321c1db0
+push $N321c16d0
+ Merge2 {
+  inputs 2
+  operation multiply
+  name Multiply3
+  xpos -26
+  ypos 541
+ }
+ Switch {
+  inputs 3
+  which {{parent.Zselec i}}
+  name Switch5
+  xpos -26
+  ypos 637
+ }
+set N31a8f0e0 [stack 0]
+ Merge2 {
+  inputs 2
+  operation multiply
+  name Multiply6
+  xpos -300
+  ypos 781
+ }
+push $N321bfb50
+ Dot {
+  name Dot1
+  xpos -977
+  ypos 420
+ }
+set N321c2800 [stack 0]
+ Expression {
+  expr0 "-1 / (feather.main.r+0.00001) * ( r - center.main.r - spread.main.r ) + 1"
+  expr1 "-1 / (feather.main.r+0.00001) * ( r - center.main.r - spread.main.r ) + 1"
+  expr2 "-1 / (feather.main.r+0.00001) * ( r - center.main.r - spread.main.r ) + 1"
+  expr3 0
+  name X_des
+  xpos -952
+  ypos 477
+ }
+ Clamp {
+  name Clamp2
+  xpos -952
+  ypos 503
+ }
+set N321c2ee0 [stack 0]
+push $N321c2800
+ Expression {
+  expr0 "1 / (feather.main.r+0.00001) * ( r - center.main.r + spread.main.r ) + 1"
+  expr1 "1 / (feather.main.r+0.00001) * ( r - center.main.r + spread.main.r ) + 1"
+  expr2 "1 / (feather.main.r+0.00001) * ( r - center.main.r + spread.main.r ) + 1"
+  expr3 0
+  name X_asc
+  xpos -1077
+  ypos 475
+ }
+ Clamp {
+  name Clamp1
+  xpos -1077
+  ypos 501
+ }
+set N321c35c0 [stack 0]
+push $N321c35c0
+push $N321c2ee0
+ Merge2 {
+  inputs 2
+  operation multiply
+  name Multiply1
+  xpos -1022
+  ypos 551
+ }
+ Switch {
+  inputs 3
+  which {{parent.Xselec i}}
+  name Switch3
+  xpos -1022
+  ypos 643
+ }
+set N31a8fbf0 [stack 0]
+push $N31a8f0e0
+ Merge2 {
+  inputs 2
+  operation multiply
+  name Multiply7
+  xpos -470
+  ypos 784
+ }
+push $N31a8fbf0
+push $N31a8e5d0
+ Merge2 {
+  inputs 2
+  operation multiply
+  name Multiply5
+  xpos -682
+  ypos 782
+ }
+push $N31a8f0e0
+push $N31a8e5d0
+push $N31a8fbf0
+push $N31a8f0e0
+push 0
+push $N31a8fbf0
+push $N31a8e5d0
+ Merge2 {
+  inputs 3+1
+  operation multiply
+  name Multiply4
+  xpos -470
+  ypos 985
+ }
+ Switch {
+  inputs 7
+  which {{parent.axis i}}
+  name Switch6
+  xpos -470
+  ypos 1116
+ }
+set N31f19c50 [stack 0]
+ ColorLookup {
+  lut {master {curve C 0 s0.349999994 1 s0.2199999988}
+    red {}
+    green {}
+    blue {}
+    alpha {curve C 0 s0.3000000119 1 s0.200000003}}
+  name ColorLookup2
+  xpos -124
+  ypos 1194
+ }
+push $N31f19c50
+ ColorLookup {
+  lut {master {curve C 0 s2.150000095 1 s0.349999994}
+    red {}
+    green {}
+    blue {}
+    alpha {curve C 0 s1.799999952 1 s0.400000006}}
+  name ColorLookup1
+  xpos -257
+  ypos 1195
+ }
+push $N31f19c50
+ ColorLookup {
+  lut {master {curve C 0 1 s2.299999952}
+    red {}
+    green {}
+    blue {}
+    alpha {curve C 0 s0.4600000083 1 s2.200000048}}
+  name ColorLookup0
+  xpos -397
+  ypos 1199
+ }
+push $N31f19c50
+ Switch {
+  inputs 4
+  which {{feather_curve i}}
+  name Switch1
+  xpos -468
+  ypos 1302
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy1
+  xpos -468
+  ypos 1377
+ }
+ Premult {
+  name Premult2
+  xpos -468
+  ypos 1415
+ }
+ Unpremult {
+  name Unpremult1
+  xpos -468
+  ypos 1453
+ }
+ Premult {
+  name Premult1
+  xpos -468
+  ypos 1500
+  disable {{1-parent.premult}}
+ }
+ Shuffle {
+  alpha blue
+  name Shuffle1
+  xpos -468
+  ypos 1552
+ }
+push $N321bf100
+ Dot {
+  name Dot6
+  xpos -1194
+  ypos 1612
+ }
+ ShuffleCopy {
+  inputs 2
+  in2 none
+  red red
+  green green
+  blue blue
+  name ShuffleCopy1
+  xpos -468
+  ypos 1608
+ }
+ Dot {
+  name Dot2
+  xpos -434
+  ypos 1689
+ }
+set N321c6950 [stack 0]
+ Shuffle {
+  out objectP
+  name Shuffle_object
+  xpos -409
+  ypos 1746
+  disable {{1-parent.shuffle i}}
+ }
+push $N321c6950
+add_layer {worldP worldP.red worldP.green worldP.blue}
+ Shuffle {
+  out worldP
+  name Shuffle_world
+  xpos -538
+  ypos 1748
+  disable {{1-parent.shuffle i}}
+ }
+ Switch {
+  inputs 2
+  which {{parent.pass}}
+  name Switch7
+  xpos -471
+  ypos 1807
+ }
+ Output {
+  name Output1
+  xpos -471
+  ypos 1888
+ }
+ Viewer {
+  input_process false
+  name Viewer1
+  selected true
+  xpos -552
+  ypos 353
+ }
+end_group

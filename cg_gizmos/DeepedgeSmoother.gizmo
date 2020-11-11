@@ -1,0 +1,54 @@
+#! /builds/nuke/10.0v5/bf0779bfb3/priv/libnuke-10.0.5.so -nx
+version 10.0 v5
+Group {
+name DeepedgeSmoother
+ tile_color 0x466ff
+ addUserKnob {20 DeepEdgeSmoother}
+ addUserKnob {41 softness T DeepExpression2.softness}
+ addUserKnob {41 chans1 T DeepExpression2.chans1}
+ addUserKnob {26 ""}
+ addUserKnob {26 about -STARTLINE T "\nCreated by satheesh.\nBugs and reports satheesrev@gmail.com\nfor more tools: https://satheeshnuketutorials.blogspot.in/"}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 263
+  ypos 28
+ }
+ DeepExpression {
+  temp_name0 smooth
+  temp_expr0 "\[value softness]"
+  chans1 deep
+  rgba.alpha "rgba.alpha * 0.999999"
+  deep.front "deep.front - smooth"
+  deep.back "deep.back + smooth"
+  name DeepExpression2
+  selected true
+  xpos 263
+  ypos 119
+  addUserKnob {20 DeepEdgeSmooth}
+  addUserKnob {7 softness}
+  softness 0.02
+ }
+ Output {
+  name Output1
+  xpos 263
+  ypos 259
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote1
+  tile_color 0xff0000ff
+  label "Nothing fancy smarty pants.\nJust DeepExpression with some basic functions."
+  note_font "Verdana Bold Bold Bold Bold Bold Bold Bold Bold"
+  xpos -71
+  ypos 42
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote
+  label "Expression:\n\nrgba.alpha * 0.999999\ndeep.front - smooth\ndeep.back + smooth"
+  xpos 135
+  ypos 91
+ }
+end_group

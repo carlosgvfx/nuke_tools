@@ -1,0 +1,186 @@
+#! C:/Program Files/Nuke8.0v3/nuke-8.0.v3.dll -nx
+version 8.0 v3
+Group {
+name AdditiveKeyer
+ inputs 3
+ tile_color 0x28d000ff
+ addUserKnob {20 AdditiveKeyer}
+ addUserKnob {6 log +STARTLINE}
+ log true
+ addUserKnob {41 kb_mix_l l "Light: add/mult mode" T mMultiply_l.mix}
+ addUserKnob {41 Kb_mix_d l "Dark: add/mult mode" T mMultiply_d.mix}
+ addUserKnob {41 kb_grade_l l "Lights: grade(mult)" T Grade_l.multiply}
+ addUserKnob {41 kb_grade_d l "Darks: grade(mult)" T Grade_d.multiply}
+ addUserKnob {41 kb_satrtn l Saturation T Saturation.saturation}
+}
+ Input {
+  inputs 0
+  name BG
+  xpos 290
+  ypos -231
+  number 2
+ }
+ Log2Lin {
+  operation lin2log
+  mix {{parent.Log2Lin1.mix}}
+  name Log2Lin3
+  xpos 290
+  ypos -185
+ }
+set N138c2220 [stack 0]
+ Colorspace {
+  colorspace_out HSL
+  name Colorspace
+  label HSL
+  xpos 244
+ }
+ Shuffle {
+  red blue
+  green blue
+  name Shuffle
+  label "Luminace only"
+  xpos 244
+  ypos 50
+ }
+set N138c2900 [stack 0]
+ Input {
+  inputs 0
+  name FG
+  xpos -62
+  ypos -219
+  number 1
+ }
+ Log2Lin {
+  operation lin2log
+  mix {{parent.log}}
+  name Log2Lin1
+  xpos -62
+  ypos -183
+ }
+set N138bffc0 [stack 0]
+ Input {
+  inputs 0
+  name REF
+  xpos 133
+  ypos -235
+ }
+ Log2Lin {
+  operation lin2log
+  mix {{parent.Log2Lin1.mix}}
+  name Log2Lin2
+  xpos 133
+  ypos -177
+ }
+ Merge2 {
+  inputs 2
+  operation minus
+  Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  name Merge1
+  xpos 50
+  ypos -103
+ }
+ Saturation {
+  name Saturation
+  xpos 50
+  ypos -52
+ }
+set N138c36c0 [stack 0]
+ Clamp {
+  channels rgb
+  maximum 1000
+  name Clamp_l
+  label "more than zero\n"
+  xpos -34
+  ypos 1
+ }
+ Merge2 {
+  inputs 2
+  operation multiply
+  Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  name mMultiply_l
+  label light
+  xpos -34
+  ypos 50
+ }
+ Grade {
+  black_clamp false
+  name Grade_l
+  xpos -34
+  ypos 153
+ }
+push $N138c2900
+push $N138c36c0
+ Clamp {
+  channels rgb
+  minimum -10000
+  maximum 0
+  name Clamp_d
+  label "less than zero\n"
+  xpos 111
+  ypos -1
+ }
+ Merge2 {
+  inputs 2
+  operation multiply
+  Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  name mMultiply_d
+  label darks
+  xpos 111
+  ypos 84
+ }
+ Grade {
+  black_clamp false
+  name Grade_d
+  xpos 111
+  ypos 153
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  name Plus2
+  xpos 38
+  ypos 223
+ }
+set N32a8fb90 [stack 0]
+push $N138c2220
+ Merge2 {
+  inputs 2
+  operation plus
+  Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  name Plus3
+  xpos 290
+  ypos 251
+ }
+ Log2Lin {
+  mix {{parent.Log2Lin1.mix}}
+  name Log2Lin4
+  xpos 290
+  ypos 277
+ }
+ Output {
+  name Output1
+  xpos 290
+  ypos 316
+ }
+push $N138bffc0
+push $N32a8fb90
+ Viewer {
+  inputs 2
+  input_number 1
+  input_process false
+  name Viewer1
+  xpos -276
+  ypos -65
+ }
+end_group

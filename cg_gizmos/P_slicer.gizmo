@@ -1,0 +1,67 @@
+Group {
+name P_slicer
+ tile_color 0x336fadff
+ addUserKnob {20 p_slicer l P_slicer}
+ addUserKnob {41 in l "input channel" T input_channel.in}
+ addUserKnob {4 axis M {X Y Z}}
+ addUserKnob {41 min T controls.min}
+ addUserKnob {41 max T controls.max}
+}
+ Input {
+  inputs 0
+  name in
+  xpos 0
+  ypos 5
+ }
+ Shuffle {
+  name input_channel
+  label "\[value in]"
+  xpos 0
+  ypos 55
+ }
+ NoOp {
+  name controls
+  xpos 0
+  ypos 116
+  addUserKnob {20 User}
+  addUserKnob {18 min}
+  min {0 0 0}
+  addUserKnob {18 max}
+  max {0 0 0}
+  addUserKnob {6 max_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 min_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ }
+set N307337b0 [stack 0]
+ Expression {
+  expr3 clamp((b-input.min.b)/(input.max.b-input.min.b))
+  name Z
+  xpos 118
+  ypos 201
+ }
+push $N307337b0
+ Expression {
+  expr3 clamp((g-input.min.g)/(input.max.g-input.min.g))
+  name Y
+  xpos 0
+  ypos 202
+ }
+push $N307337b0
+ Expression {
+  expr3 clamp((r-input.min.r)/(input.max.r-input.min.r))
+  name X
+  xpos -126
+  ypos 201
+ }
+ Switch {
+  inputs 3
+  which {{axis}}
+  name Switch1
+  xpos 0
+  ypos 290
+ }
+ Output {
+  name Output1
+  xpos 0
+  ypos 361
+ }
+end_group

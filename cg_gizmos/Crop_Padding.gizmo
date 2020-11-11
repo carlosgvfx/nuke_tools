@@ -1,0 +1,41 @@
+#! /softwareLocal/nuke/linux/Nuke12.0v5/libnuke-12.0.5.so -nx
+#version 12.0 v5
+Group {
+name Crop_Padding
+tile_color 0xa87eb7ff
+addUserKnob {20 tab l Padding}
+addUserKnob {41 padding l Padding T Crop_Padded.padding}
+addUserKnob {1 Scriplet_Info +DISABLED +INVISIBLE}
+Scriplet_Info central
+}
+Input {
+inputs 0
+name Input1
+xpos -916
+ypos 495
+}
+Crop {
+box {{-(Crop_Padded.padding)} {-(Crop_Padded.padding)} {width+(Crop_Padded.padding)} {height+(Crop_Padded.padding)}}
+name Crop_Padded
+xpos -916
+ypos 556
+addUserKnob {20 tab l Padding -STARTLINE}
+addUserKnob {7 padding l Padding R 100 500}
+padding 100
+}
+Output {
+name Output1
+xpos -916
+ypos 635
+}
+Blur {
+inputs 0
+channels rgba
+size 6.666666667
+name Blur1
+label "size:\[value size]"
+selected true
+xpos -1107
+ypos 623
+}
+end_group
