@@ -1,0 +1,17 @@
+Read {
+ inputs 0
+ file_type jpeg
+ file ~/.nuke/3D_Object/Texture/UV_mapper.jpg
+ localizationPolicy off
+ format "512 512 0 0 512 512 1 square_512"
+ origset true
+ on_error checkerboard
+ colorspace rec709
+ auto_alpha true
+ name CHECKERBOARD_UV
+ tile_color 0xff0001
+ selected true
+ xpos -181
+ ypos 222
+ postage_stamp false
+}

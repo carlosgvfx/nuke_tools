@@ -1,0 +1,12 @@
+set cut_paste_input [stack 0]
+version 10.5 v2
+push $cut_paste_input
+Expression {
+ expr0 cx
+ expr1 cy
+ expr2 0
+ name Expression1
+ selected true
+ xpos 585
+ ypos -157
+}

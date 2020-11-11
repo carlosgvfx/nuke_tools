@@ -1,0 +1,57 @@
+#! /Applications/Nuke10.5v2/Nuke10.5v2.app/Contents/MacOS/libnuke-10.5.2.dylib -nx
+version 10.5 v2
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="23" w="1440" h="836" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="777" stretch="1"/>
+            <splitter orientation="2">
+                <split size="476"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="334"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.scripteditor.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name /Users/gere/.nuke/3D_Object/Tool/DeepThickness.nk
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+}
+DeepExpression {
+ inputs 0
+ temp_name3 t
+ temp_expr3 "\[value tickness]/2"
+ chans1 deep
+ deep.front deep.front-t
+ deep.back deep.back+t
+ name DeepThickness
+ selected true
+ xpos 918
+ ypos 530
+ addUserKnob {20 Thickness}
+ addUserKnob {7 thickness R 0 100}
+}

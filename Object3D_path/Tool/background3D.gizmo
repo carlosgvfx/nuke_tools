@@ -1,0 +1,164 @@
+#! /Applications/Nuke10.5v2/Nuke10.5v2.app/Contents/MacOS/libnuke-10.5.2.dylib -nx
+version 10.5 v2
+Group {
+ name Background3D
+ tile_color 0xaf0000ff
+ note_font "Verdana Bold"
+ note_font_size 12
+ addUserKnob {20 parameters l Parameters}
+ addUserKnob {20 image n 1}
+ addUserKnob {7 scale R 0 10}
+ scale 2
+ addUserKnob {6 reformat l "reformat 2:1" +STARTLINE}
+ reformat true
+ addUserKnob {20 endGroup n -1}
+ addUserKnob {26 ""}
+ addUserKnob {20 distort n 1}
+ addUserKnob {7 horizontal_squash l "horizontal squash"}
+ addUserKnob {7 vertical_squash l "vertical squash"}
+ addUserKnob {20 endGroup_1 l endGroup n -1}
+ addUserKnob {26 ""}
+ addUserKnob {20 model l "3D object" n 1}
+ addUserKnob {41 radius T Sphere9.radius}
+ addUserKnob {41 rows l rows/columns T Sphere9.rows}
+ addUserKnob {41 columns l "" -STARTLINE T Sphere9.columns}
+ addUserKnob {26 ""}
+ addUserKnob {41 translate T Sphere9.translate}
+ addUserKnob {41 rotate T Sphere9.rotate}
+ addUserKnob {41 scaling l scale T Sphere9.scaling}
+ addUserKnob {41 uniform_scale l "uniform scale" T Sphere9.uniform_scale}
+ addUserKnob {41 skew T Sphere9.skew}
+ addUserKnob {41 pivot T Sphere9.pivot}
+ addUserKnob {6 invert l "invert normals" +STARTLINE}
+ addUserKnob {20 endGroup_2 l endGroup n -1}
+ addUserKnob {20 test_tab l Test}
+ addUserKnob {6 test l "test with checkerBoard" +STARTLINE}
+ addUserKnob {20 email l @}
+ addUserKnob {26 message l "" +STARTLINE T "Grizmo created by Andrea Geremia\n\n-------------------------------------------------------\n\nandrea.geremia89@gmail.com\nwww.andreageremia.it"}
+}
+ Input {
+  inputs 0
+  name img
+  xpos 507
+  ypos -283
+ }
+ Dot {
+  name Dot153
+  xpos 541
+  ypos -211
+ }
+set N34071be0 [stack 0]
+ Dot {
+  name Dot148
+  xpos 663
+  ypos -211
+ }
+ CheckerBoard2 {
+  inputs 0
+  format "4096 2160 0 0 4096 2160 1 4K_DCP"
+  name CheckerBoard4
+  xpos 351
+  ypos -90
+ }
+push $N34071be0
+ Grade {
+  channels rgba
+  white 0
+  name Grade50
+  xpos 507
+  ypos -146
+ }
+ Merge2 {
+  inputs 2
+  name Merge24
+  xpos 507
+  ypos -67
+ }
+ Crop {
+  box {0 0 {width} {height}}
+  reformat true
+  crop false
+  name Crop3
+  xpos 507
+  ypos -11
+ }
+ Dot {
+  name Dot154
+  xpos 541
+  ypos 46
+ }
+ Switch {
+  inputs 2
+  which 1
+  name Switch1
+  label "\[value which]"
+  xpos 629
+  ypos 36
+  disable {{test}}
+ }
+ Shuffle {
+  alpha white
+  name Shuffle12
+  tile_color 0xffffffff
+  xpos 629
+  ypos 107
+ }
+ Mirror2 {
+  flop true
+  name Mirror2_1
+  xpos 629
+  ypos 146
+ }
+ Reformat {
+  type "to box"
+  box_width {{"width>height ? width + (width*10)/100 : (height + ((height*10)/100))/2"}}
+  box_height {{"width<height ? height + (height*10)/100 : (width + ((width*10)/100))/2"}}
+  box_fixed true
+  resize none
+  black_outside true
+  name Reformat6
+  xpos 629
+  ypos 228
+  disable {{!parent.reformat}}
+ }
+ Transform {
+  scale {{parent.scale/(10/1.11)}}
+  center {{width/2} {height/2}}
+  shutteroffset centred
+  name Transform20
+  xpos 629
+  ypos 300
+ }
+set N351f30 [stack 0]
+ Sphere {
+  u_extent {{"parent.horizontal_squash < 1 ? 360 - parent.horizontal_squash * 360 : 0"}}
+  v_extent {{"parent.vertical_squash < 1 ? 180 - parent.vertical_squash * 180 : 0"}}
+  close_top false
+  close_bottom false
+  uniform_scale 10
+  name Sphere9
+  xpos 629
+  ypos 372
+ }
+ Normals {
+  action build
+  invert {{"! parent.invert"}}
+  name Normals2
+  xpos 629
+  ypos 429
+ }
+ Output {
+  name Output1
+  xpos 629
+  ypos 528
+ }
+push $N351f30
+ Viewer {
+  frame_range 100-100
+  viewerProcess None
+  input_process false
+  name Viewer1
+  xpos 743
+  ypos 410
+ }
+end_group

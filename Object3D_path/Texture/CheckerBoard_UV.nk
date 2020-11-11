@@ -1,0 +1,18 @@
+set cut_paste_input [stack 0]
+version 10.5 v2
+Read {
+ inputs 0
+ file "\[python \{Object3D_path\} ]/Texture/UV_mapper.jpg"
+ localizationPolicy off
+ format "512 512 0 0 512 512 1 square_512"
+ origset true
+ on_error checkerboard
+ colorspace rec709
+ auto_alpha true
+ name CHECKERBOARD_UV
+ tile_color 0xff0001
+ selected true
+ xpos -3268
+ ypos -1649
+ postage_stamp false
+}
