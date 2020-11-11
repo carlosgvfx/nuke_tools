@@ -1,0 +1,135 @@
+set cut_paste_input [stack 0]
+version 10.5 v7
+push $cut_paste_input
+Group {
+ name MPassGrade
+ help "MPass Grade is a basic relighting tool to color correct one AOV at a time. It is based on the standard Grade Node with the additon of dealing with the subtractive Beauty rebuild automatically.\n\nMPass Grade applies a linear ramp followed by a gamma function to each color channel.\n\nA = multiply * (gain-lift)/(whitepoint-blackpoint)\nB = offset + lift - A*blackpoint\noutput = pow(A*input + B, 1/gamma)\n\nThe reverse option is also provided so that you can copy-paste this node to invert the grade. This will do the opposite gamma correction followed by the opposite linear ramp."
+ tile_color 0x78a4efff
+ label "\[value in]"
+ selected true
+ xpos -923
+ ypos 15189
+ addUserKnob {20 User}
+ addUserKnob {41 in l channel T Shuffle2.in}
+ addUserKnob {41 blackpoint T Grade.blackpoint}
+ addUserKnob {41 whitepoint T Grade.whitepoint}
+ addUserKnob {41 black l lift T Grade.black}
+ addUserKnob {41 white l gain T Grade.white}
+ addUserKnob {41 multiply T Grade.multiply}
+ addUserKnob {41 add l offset T Grade.add}
+ addUserKnob {41 gamma T Grade.gamma}
+ addUserKnob {41 reverse T Grade.reverse}
+ addUserKnob {41 black_clamp l "black clamp" -STARTLINE T Grade.black_clamp}
+ addUserKnob {41 white_clamp l "white clamp" -STARTLINE T Grade.white_clamp}
+ addUserKnob {41 maskChannelMask l mask T Grade.maskChannelMask}
+ addUserKnob {41 inject -STARTLINE T Grade.inject}
+ addUserKnob {41 invert_mask l invert -STARTLINE T Grade.invert_mask}
+ addUserKnob {41 fringe -STARTLINE T Grade.fringe}
+ addUserKnob {41 unpremult l "(un)premult by" T Grade.unpremult}
+ addUserKnob {41 invert_unpremult l invert -STARTLINE T Grade.invert_unpremult}
+ addUserKnob {41 mix T Grade.mix}
+}
+ Input {
+  inputs 0
+  name mask
+  xpos 43
+  ypos -377
+  number 1
+ }
+set Nef3dbb80 [stack 0]
+ Dot {
+  name Dot4
+  xpos 77
+  ypos -222
+ }
+push $Nef3dbb80
+ Input {
+  inputs 0
+  name cg
+  xpos 397
+  ypos -682
+ }
+ Dot {
+  name Dot13
+  xpos 431
+  ypos -534
+ }
+set Nec418c80 [stack 0]
+ Shuffle {
+  in rgb
+  in2 alpha
+  alpha red2
+  black black
+  white black
+  red2 black
+  green2 black
+  out rgb
+  name Shuffle2
+  xpos 213
+  ypos -538
+ }
+set Nec41d6d0 [stack 0]
+ Grade {
+  inputs 1+1
+  maskChannelMask -rgba.alpha
+  maskChannelInput -rgba.alpha
+  name Grade
+  xpos 213
+  ypos -377
+ }
+set Nec42c3d0 [stack 0]
+push $Nec42c3d0
+push $Nec41d6d0
+push $Nec418c80
+ Merge2 {
+  inputs 2
+  operation from
+  Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  name Merge7
+  xpos 397
+  ypos -461
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  name Merge8
+  xpos 397
+  ypos -377
+ }
+ ShuffleCopy {
+  inputs 2
+  in rgb
+  red red
+  green green
+  blue blue
+  alpha alpha2
+  black alpha2
+  white black
+  red2 black
+  green2 black
+  out {{{parent.Shuffle2.in}}}
+  out2 alpha
+  name ShuffleCopy1
+  xpos 397
+  ypos -298
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 mask.a
+  name CopyInject
+  xpos 400
+  ypos -232
+  disable {{!Grade.inject}}
+ }
+ Output {
+  name Output1
+  xpos 400
+  ypos -130
+ }
+end_group

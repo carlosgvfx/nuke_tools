@@ -1,0 +1,327 @@
+set cut_paste_input [stack 0]
+version 9.0 v7
+push $cut_paste_input
+Group {
+name WaterScatter
+selected true
+xpos -31340
+ypos 5338
+addUserKnob {20 User}
+addUserKnob {26 scatterAmount l "scatter amount"}
+addUserKnob {41 value T MultiplyControlScatterAmount.value}
+addUserKnob {26 ""}
+addUserKnob {26 BlurAmount l "blur amount" T ""}
+addUserKnob {41 size T Blur_scatterImage.size}
+addUserKnob {26 ""}
+addUserKnob {26 dissolve}
+addUserKnob {41 which T Dissolve_betweenOriginalAndScatter.which}
+}
+Input {
+inputs 0
+name Input_matte
+xpos -56
+ypos -525
+number 1
+}
+Dot {
+name Dot12
+label " Matte input"
+note_font_size 31
+note_font_color 0xff0000ff
+xpos -22
+ypos -456
+}
+Invert {
+name Invert3
+xpos -56
+ypos -387
+}
+AddChannels {
+channels alpha
+name AddChannels2
+xpos -56
+ypos -333
+}
+Invert {
+name Invert1
+xpos -56
+ypos -297
+}
+Dot {
+name Dot4
+xpos -22
+ypos -192
+}
+Input {
+inputs 0
+name Input1
+xpos -727
+ypos -1298
+}
+Dot {
+name Dot13
+label " Source input"
+note_font_size 31
+note_font_color 0xff0000ff
+xpos -693
+ypos -1211
+}
+Dot {
+name Dot6
+xpos -693
+ypos -1122
+}
+set Nd7b67fc0 [stack 0]
+Dot {
+name Dot8
+xpos -688
+ypos -303
+}
+set N84cb9c40 [stack 0]
+push $Nd7b67fc0
+Dot {
+name Dot5
+xpos -537
+ypos -1122
+}
+Dilate {
+name Dilate
+xpos -571
+ypos -688
+}
+set N2d011030 [stack 0]
+AdjBBox {
+numpixels {{(parent.IDistort.uv_scale/5)+35 i}}
+name AdjBBox1
+xpos -426
+ypos -681
+}
+Constant {
+inputs 0
+color 0.5
+format {{{parent.input.format}}}
+name Constant1
+xpos -268
+ypos -1341
+}
+Dot {
+name Dot2
+xpos -234
+ypos -1235
+}
+set N8926c360 [stack 0]
+push $N8926c360
+Dot {
+name Dot10
+xpos 228
+ypos -1235
+}
+Noise {
+output {rgba.red -rgba.green -rgba.blue rgba.alpha}
+cliptype none
+replace true
+size 0.2
+zoffset {{"value \[Noise_parameters.speed]"}}
+octaves 2
+gamma 1
+center {1024 540}
+name Noise_red
+xpos 194
+ypos -1138
+}
+Noise {
+output {-rgba.red rgba.green -rgba.blue rgba.alpha}
+cliptype none
+replace true
+size 0.1
+zoffset {{frame*.5}}
+octaves 2
+gamma 1
+center {1024 540}
+name Noise_green
+xpos 194
+ypos -1089
+}
+Multiply {
+channels {rgba.red rgba.green -rgba.blue none}
+value 2
+name Multiply6
+xpos 194
+ypos -1042
+}
+Add {
+channels {rgba.red rgba.green -rgba.blue none}
+value -1
+name Add4
+xpos 194
+ypos -990
+}
+Multiply {
+channels {rgba.red rgba.green -rgba.blue none}
+name MultiplyControlScatterAmount
+xpos 194
+ypos -930
+}
+Merge2 {
+inputs 2
+operation plus
+Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+output {rgba.red rgba.green rgba.blue -rgba.alpha}
+name Plus
+xpos -268
+ypos -928
+}
+Clamp {
+maximum_enable false
+name Clamp1
+xpos -268
+ypos -890
+}
+Add {
+channels {rgba.red rgba.green -rgba.blue none}
+value 0.5
+name Add3
+xpos -268
+ypos -848
+}
+Multiply {
+channels {rgba.red rgba.green rgba.blue none}
+value 0.5
+name Multiply4
+xpos -268
+ypos -806
+}
+CopyBBox {
+inputs 2
+name CopyBBox1
+xpos -268
+ypos -681
+disable {{!parent.BBOX i}}
+}
+push $N2d011030
+Dot {
+name Dot1
+xpos -537
+ypos -610
+}
+Copy {
+inputs 2
+from0 rgba.red
+to0 backward.u
+from1 rgba.green
+to1 backward.v
+bbox A
+name Copy
+xpos -268
+ypos -626
+}
+IDistort {
+uv backward
+uv_offset 0.5
+uv_scale 100
+blur_scale 85
+name IDistort
+xpos -268
+ypos -523
+}
+Remove {
+channels backward
+name Remove
+xpos -268
+ypos -461
+}
+Crop {
+box {{0 i} {0 i} {width i} {height i}}
+reformat true
+crop false
+name Crop
+xpos -268
+ypos -412
+disable {{!parent.Crop i}}
+}
+Blur {
+size 2
+name Blur_scatterImage
+selected true
+xpos -268
+ypos -370
+}
+Dissolve {
+inputs 2
+name Dissolve_betweenOriginalAndScatter
+xpos -268
+ypos -312
+}
+push $N84cb9c40
+Dot {
+name Dot7
+xpos -688
+ypos -186
+}
+Keymix {
+inputs 3
+name Keymix1
+xpos -268
+ypos -196
+}
+set N9f7e0850 [stack 0]
+Dot {
+name Dot11
+xpos -234
+ypos -62
+}
+Output {
+name Output
+xpos -268
+ypos -14
+}
+Output {
+name Output1
+xpos -268
+ypos 86
+}
+push $N9f7e0850
+push $N9f7e0850
+Viewer {
+inputs 2
+frame 13
+viewerProcess None
+name Viewer1
+xpos 252
+ypos -804
+}
+NoOp {
+inputs 0
+name Noise_Parameters1
+xpos 439
+ypos -1064
+addUserKnob {20 User}
+addUserKnob {3 seed}
+seed {{parent.seed}}
+addUserKnob {26 ""}
+addUserKnob {7 w_size}
+w_size {{"\[switch \[numvalue parent.JitterPattern] \{0 \{format 3.3\} 1 \{format 2.7\} 2 \{format 1.87\} 3 \{format 0.04\} 4 \{format 0.23\} 5 \{format 0.1\} default \{value parent.size.w\}\}]"}}
+addUserKnob {7 h_size}
+h_size {{"\[switch \[numvalue parent.JitterPattern] \{0 \{format 2.9\} 1 \{format 2.6\} 2 \{format 2.6\} 3 \{format 0.1\} 4 \{format 1.2\} 5 \{format 1.6\} default \{value parent.size.h\}\}]"}}
+addUserKnob {26 ""}
+addUserKnob {7 w_irr}
+w_irr {{"\[switch \[numvalue parent.JitterPattern] \{0 \{format 0.6\} 1 \{format 1\} 2 \{format 1\} 3 \{format 0.9\} 4 \{format 0.6\} 5 \{format 0.6\} default \{value parent.irregularity.w\}\}]"}}
+addUserKnob {7 h_irr}
+h_irr {{"\[switch \[numvalue parent.JitterPattern] \{0 \{format 0.6\} 1 \{format 0.76\} 2 \{format 0.76\} 3 \{format 0.76\} 4 \{format 0.86\} 5 \{format 0.86\} default \{value parent.irregularity.h\}\}]"}}
+addUserKnob {26 ""}
+addUserKnob {7 w_mag}
+w_mag {{"\[switch \[numvalue parent.JitterPattern] \{0 \{format 0.42\} 1 \{format 0.37\} 2 \{format 0.41\} 3 \{format 0.49\} 4 \{format 0.48\} 5 \{format 0.38\} default \{value parent.intensity.w\}\}]"}}
+addUserKnob {7 h_mag}
+h_mag {{"\[switch \[numvalue parent.JitterPattern] \{0 \{format 0.46\} 1 \{format 0.6\} 2 \{format 0.6\} 3 \{format 0.5\} 4 \{format 0.42\} 5 \{format 0.17\} default \{value parent.intensity.h\}\}]"}}
+}
+NoOp {
+inputs 0
+name Noise_Parameters
+xpos 72
+ypos -1179
+addUserKnob {20 User}
+addUserKnob {7 speed}
+addUserKnob {26 ""}
+}
+end_group

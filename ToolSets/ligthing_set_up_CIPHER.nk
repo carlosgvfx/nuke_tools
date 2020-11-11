@@ -1,0 +1,3531 @@
+set cut_paste_input [stack 0]
+version 9.0 v7
+BackdropNode {
+ inputs 0
+ name BackdropNode1
+ tile_color 0x403e37ff
+ label "Global Exposure here"
+ note_font_size 50
+ selected true
+ xpos 1500
+ ypos 4147
+ bdwidth 594
+ bdheight 207
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode2
+ tile_color 0x273037ff
+ label "Additional Adjustments\n<font size><b>Please use Mpass Grade only after the LightID setup"
+ note_font_size 42
+ note_font_color 0x96b8d200
+ selected true
+ xpos 115
+ ypos 6181
+ bdwidth 829
+ bdheight 1012
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode23
+ tile_color 0x2a4c5dff
+ label "CC\nBlacks"
+ note_font_size 42
+ note_font_color 0x9ecaffff
+ selected true
+ xpos 131
+ ypos 8475
+ bdwidth 299
+ bdheight 304
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode24
+ tile_color 0x2c2c2cff
+ label "copy original alpha (just in case)\nand remove any unneeded channels here"
+ note_font_size 22
+ note_font_color 0x7f7f7fff
+ selected true
+ xpos 11
+ ypos 8901
+ bdwidth 435
+ bdheight 269
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode25
+ tile_color 0x273037ff
+ label CG
+ note_font_size 42
+ note_font_color 0x96b8d200
+ selected true
+ xpos 80
+ ypos 1853
+ bdwidth 441
+ bdheight 359
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode26
+ tile_color 0x38445bff
+ label "3d matte example"
+ note_font_size 42
+ note_font_color 0xb2b5a5ff
+ selected true
+ xpos 2250
+ ypos 2984
+ bdwidth 580
+ bdheight 382
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode28
+ tile_color 0x2c2c2cff
+ label "zdepth check"
+ note_font_size 42
+ note_font_color 0x7f7f7fff
+ selected true
+ xpos 698
+ ypos 9332
+ bdwidth 690
+ bdheight 491
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode29
+ tile_color 0x1e2c50ff
+ label zDefocus
+ note_font_size 42
+ note_font_color 0xccae7cff
+ selected true
+ xpos 6
+ ypos 9278
+ bdwidth 369
+ bdheight 635
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode3
+ tile_color 0x3f3838ff
+ label "if you need more control for light ID 2/3/4/5+etc\nChoose the LightID number in this group \nand create the preset to use in the tree"
+ note_font "Bitstream Vera Sans Bold Bold Bold Bold"
+ note_font_size 50
+ selected true
+ xpos 775
+ ypos 5251
+ bdwidth 1258
+ bdheight 538
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode4
+ tile_color 0x2c2c2cff
+ label "texture adjust"
+ note_font_size 42
+ note_font_color 0x7f7f7fff
+ selected true
+ xpos 132
+ ypos 7260
+ bdwidth 1275
+ bdheight 507
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode5
+ tile_color 0x4876a3ff
+ label "CC\nDepth haze"
+ note_font_size 42
+ note_font_color 0x9ecaffff
+ selected true
+ xpos 133
+ ypos 7860
+ bdwidth 823
+ bdheight 534
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode6
+ tile_color 0x403e37ff
+ label "Global Exposure here"
+ note_font_size 50
+ selected true
+ xpos 1500
+ ypos 2991
+ bdwidth 594
+ bdheight 207
+}
+BackdropNode {
+ inputs 0
+ name LightID
+ tile_color 0x273037ff
+ label "LightID1 - Keylight/Sunlight"
+ note_font_size 42
+ note_font_color 0x96b8d200
+ selected true
+ xpos 132
+ ypos 3916
+ bdwidth 1340
+ bdheight 909
+}
+BackdropNode {
+ inputs 0
+ name LightID3
+ tile_color 0x273037ff
+ label "LightID0 - Ambient/HDR/Environment"
+ note_font_size 42
+ note_font_color 0x96b8d200
+ selected true
+ xpos 134
+ ypos 2760
+ bdwidth 1340
+ bdheight 909
+}
+Group {
+ inputs 0
+ name AOVBundle
+ onCreate "__import__('dnnuke.core.bundles.aov', fromlist=\['makeKnobs']).makeKnobs()"
+ knobChanged "__import__('dnnuke.core.bundles.aov', fromlist=\['syncValues']).syncValues()"
+ tile_color 0x242424ff
+ label CG_zc_3200_lighting_environ_L010_BEAUTY_v010
+ note_font_color 0xffffffff
+ selected true
+ xpos 221
+ ypos 1977
+ postage_stamp true
+ addUserKnob {20 AOVBundle}
+ addUserKnob {1 data +INVISIBLE}
+ data "\{\"twigtype_dnuuid\": \"053253ae-c7cf-4d13-b22e-1219a8e5951e\", \"leaf_dnuuid\": \"73cc9161-8477-4926-a0af-4331eed07052\", \"after\": \"hold\", \"last\": 1085, \"ivy_notes\": \"Lighting test with motion blur\", \"ivy_usemanualuri\": false, \"format\": \"2150 1210 0 0 2150 1210 1 CIPHER Delivery\", \"ivy_vnum\": 0, \"leaf_label\": \"main_proxy0\", \"first\": 1001, \"twigtype\": \"render/cg\", \"ivy_version\": \"10\", \"twig_dnuuid\": \"90932ec7-45d6-4690-b17f-cd4657b4fc37\", \"ivy_regex\": false, \"on_error\": \"error\", \"frame_mode\": \"expression\", \"file\": \"/jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/beauty/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010.####.exr\", \"stalk_dnuuid\": \"0addcc5b-f712-4a92-9be8-59d654ee6676\", \"on_exr_error\": \"error\", \"before\": \"hold\"\}"
+ addUserKnob {6 aovbundlegroup -STARTLINE +INVISIBLE}
+ aovbundlegroup true
+ addUserKnob {32 docButton l Documentation T "exec firefox -url http://wiki.dneg.com/SITE/2D/Nuke/Plugins/IvyTemplateNodes" +STARTLINE}
+ addUserKnob {26 docdivider l "" +STARTLINE}
+ addUserKnob {1 file l Beauty}
+ addUserKnob {52 aovpasses l AOVs T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.bundles.aov', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))" +STARTLINE}
+ addUserKnob {20 readknobs l "Read Knobs" n 1}
+ addUserKnob {17 format}
+ addUserKnob {3 first l "frame range"}
+ addUserKnob {4 before l "" -STARTLINE M {hold loop bounce black}}
+ addUserKnob {3 last l "" -STARTLINE}
+ addUserKnob {4 after l "" -STARTLINE M {hold loop bounce black}}
+ addUserKnob {4 frame_mode l frame M {expression "start at" offset}}
+ addUserKnob {1 frame l "" -STARTLINE}
+ addUserKnob {4 on_error l "missing frames" M {error black checkerboard "nearest frame"}}
+ addUserKnob {4 on_exr_error l "incomplete frames" M {error black checkerboard}}
+ addUserKnob {20 readknobs l "Read Knobs" n -1}
+ addUserKnob {20 ivytab l Ivy}
+ addUserKnob {26 spiderlabel l "Spider Query"}
+ addUserKnob {1 ivy_job l Job}
+ addUserKnob {1 ivy_shot l Shot -STARTLINE}
+ addUserKnob {22 ivy_selectshot l "Select shot..." -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['selectShot']).selectShot()"}
+ addUserKnob {1 ivy_type l Type}
+ addUserKnob {22 ivy_selecttype l "Select type..." -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['selectType']).selectType()"}
+ addUserKnob {1 ivy_name l Name}
+ addUserKnob {6 ivy_regex l regex -STARTLINE}
+ addUserKnob {4 ivy_versionquery l Version M {"" latest "latest approved" "latest element in pipe" "latest WIP" "latest pending" specific}}
+ addUserKnob {3 ivy_vnum l vnum -STARTLINE +DISABLED}
+ addUserKnob {22 ivy_autofill l Autofill T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['autofill']).autofill()" +STARTLINE}
+ addUserKnob {22 ivy_clear l Clear -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['clearFields']).clearFields()"}
+ addUserKnob {26 divider3 l "" +STARTLINE}
+ addUserKnob {6 ivy_usemanualuri l "Use manual URI (clears individual fields)" +STARTLINE}
+ addUserKnob {43 spider_uri l "Spider URI" +DISABLED}
+ addUserKnob {22 updateButton l Update T "__import__('dnnuke.core.ivy.template.update', fromlist=\['updateNode']).updateNode(nuke.thisNode())" +STARTLINE}
+ addUserKnob {22 testButton l Test -STARTLINE T "__import__('dnnuke.core.ivy.template.update',fromlist=\['test']).test(nuke.thisNode()\[\"spider_uri\"].value())"}
+ addUserKnob {22 resetButton l "Reset non-spider knobs" -STARTLINE T "__import__('dnnuke.core.ivy.template.reset', fromlist=\['resetNode']).resetNode(nuke.thisNode())"}
+ addUserKnob {22 copyButton l "Copy URI" -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['copyUri']).copyUri()"}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ addUserKnob {1 leaf_label l Leaf}
+ addUserKnob {1 ivy_version l Version}
+ addUserKnob {43 ivy_notes l Notes}
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfo l "DB Info" n -1}
+}
+ Read {
+  inputs 0
+  file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/indirect_specular1/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___indirect_specular1.####.exr
+  format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+  first 1001
+  last 1085
+  origset true
+  logGrade true
+  grade {0 0 0}
+  logReference {394 394 394}
+  linReference {0.18 0.18 0.18}
+  negGamma {0.5064 0.5064 0.5064}
+  blackLevel {0.00947 0.00947 0.00947}
+  densPerCV {0.002 0.002 0.002}
+  gradeFound true
+  twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+  stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+  twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+  leaf_dnuuid d97d61d1-4baa-47a3-8506-21b1e01fe17e
+  twigtype render/cg
+  leaf_label indirect_specular1_proxy0
+  ivy_version 10
+  ivy_notes "Lighting test with motion blur"
+  ivy_vloc /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/indirect_specular1/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___indirect_specular1.####.exr
+  name indirect_specular1
+  selected true
+  xpos -540
+  ypos 1767
+  postage_stamp_frame 1043
+ }
+ Read {
+  inputs 0
+  file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/specular_roughness/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___specular_roughness.####.exr
+  format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+  first 1001
+  last 1085
+  origset true
+  logGrade true
+  grade {0 0 0}
+  logReference {394 394 394}
+  linReference {0.18 0.18 0.18}
+  negGamma {0.5064 0.5064 0.5064}
+  blackLevel {0.00947 0.00947 0.00947}
+  densPerCV {0.002 0.002 0.002}
+  gradeFound true
+  twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+  stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+  twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+  leaf_dnuuid 40c89145-9e0d-45f6-a989-267a8adb3281
+  twigtype render/cg
+  leaf_label specular_roughness_proxy0
+  ivy_version 10
+  ivy_notes "Lighting test with motion blur"
+  ivy_vloc /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/specular_roughness/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___specular_roughness.####.exr
+  name specular_roughness
+  xpos -540
+  ypos 1667
+  postage_stamp_frame 1043
+ }
+ Read {
+  inputs 0
+  file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/direct_diffuse1/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___direct_diffuse1.####.exr
+  format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+  first 1001
+  last 1085
+  origset true
+  logGrade true
+  grade {0 0 0}
+  logReference {394 394 394}
+  linReference {0.18 0.18 0.18}
+  negGamma {0.5064 0.5064 0.5064}
+  blackLevel {0.00947 0.00947 0.00947}
+  densPerCV {0.002 0.002 0.002}
+  gradeFound true
+  twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+  stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+  twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+  leaf_dnuuid 593b6538-cdd3-426b-843c-465cd7a0e8c9
+  twigtype render/cg
+  leaf_label direct_diffuse1_proxy0
+  ivy_version 10
+  ivy_notes "Lighting test with motion blur"
+  ivy_vloc /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/direct_diffuse1/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___direct_diffuse1.####.exr
+  name direct_diffuse1
+  xpos -540
+  ypos 1567
+  postage_stamp_frame 1043
+ }
+ Read {
+  inputs 0
+  file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/globalMatte0/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___globalMatte0.####.exr
+  format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+  first 1001
+  last 1085
+  origset true
+  logGrade true
+  grade {0 0 0}
+  logReference {394 394 394}
+  linReference {0.18 0.18 0.18}
+  negGamma {0.5064 0.5064 0.5064}
+  blackLevel {0.00947 0.00947 0.00947}
+  densPerCV {0.002 0.002 0.002}
+  gradeFound true
+  twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+  stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+  twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+  leaf_dnuuid 3b1a3f66-f069-4d28-9839-9113c1f83264
+  twigtype render/cg
+  leaf_label globalMatte0_proxy0
+  ivy_version 10
+  ivy_notes "Lighting test with motion blur"
+  ivy_vloc /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/globalMatte0/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___globalMatte0.####.exr
+  name globalMatte0
+  xpos -540
+  ypos 1467
+  postage_stamp_frame 1043
+ }
+ Read {
+  inputs 0
+  file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/incandescence/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___incandescence.####.exr
+  format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+  first 1001
+  last 1085
+  origset true
+  logGrade true
+  grade {0 0 0}
+  logReference {394 394 394}
+  linReference {0.18 0.18 0.18}
+  negGamma {0.5064 0.5064 0.5064}
+  blackLevel {0.00947 0.00947 0.00947}
+  densPerCV {0.002 0.002 0.002}
+  gradeFound true
+  twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+  stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+  twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+  leaf_dnuuid 52f72bd9-55e0-412e-bb8b-726a61629971
+  twigtype render/cg
+  leaf_label incandescence_proxy0
+  ivy_version 10
+  ivy_notes "Lighting test with motion blur"
+  ivy_vloc /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/incandescence/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___incandescence.####.exr
+  name incandescence
+  xpos -540
+  ypos 1367
+  postage_stamp_frame 1043
+ }
+ Read {
+  inputs 0
+  file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/indirect_diffuse1/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___indirect_diffuse1.####.exr
+  format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+  first 1001
+  last 1085
+  origset true
+  logGrade true
+  grade {0 0 0}
+  logReference {394 394 394}
+  linReference {0.18 0.18 0.18}
+  negGamma {0.5064 0.5064 0.5064}
+  blackLevel {0.00947 0.00947 0.00947}
+  densPerCV {0.002 0.002 0.002}
+  gradeFound true
+  twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+  stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+  twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+  leaf_dnuuid d2dc536f-65bc-4419-9fe2-767ea29b5cb5
+  twigtype render/cg
+  leaf_label indirect_diffuse1_proxy0
+  ivy_version 10
+  ivy_notes "Lighting test with motion blur"
+  ivy_vloc /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/indirect_diffuse1/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___indirect_diffuse1.####.exr
+  name indirect_diffuse1
+  xpos -540
+  ypos 1267
+  postage_stamp_frame 1043
+ }
+ Read {
+  inputs 0
+  file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/compound_depth/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___compound_depth.####.exr
+  format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+  first 1001
+  last 1085
+  origset true
+  logGrade true
+  grade {0 0 0}
+  logReference {394 394 394}
+  linReference {0.18 0.18 0.18}
+  negGamma {0.5064 0.5064 0.5064}
+  blackLevel {0.00947 0.00947 0.00947}
+  densPerCV {0.002 0.002 0.002}
+  gradeFound true
+  twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+  stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+  twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+  leaf_dnuuid ecbe317e-f69b-4f6b-b759-94262b3eed04
+  twigtype render/cg
+  leaf_label compound_depth_proxy0
+  ivy_version 10
+  ivy_notes "Lighting test with motion blur"
+  ivy_vloc /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/compound_depth/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___compound_depth.####.exr
+  name compound_depth
+  xpos -540
+  ypos 1167
+  postage_stamp_frame 1043
+ }
+ Read {
+  inputs 0
+  file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/diffuse_roughness/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___diffuse_roughness.####.exr
+  format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+  first 1001
+  last 1085
+  origset true
+  logGrade true
+  grade {0 0 0}
+  logReference {394 394 394}
+  linReference {0.18 0.18 0.18}
+  negGamma {0.5064 0.5064 0.5064}
+  blackLevel {0.00947 0.00947 0.00947}
+  densPerCV {0.002 0.002 0.002}
+  gradeFound true
+  twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+  stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+  twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+  leaf_dnuuid aa7cd17c-63ed-42fb-a5a7-4359cce21756
+  twigtype render/cg
+  leaf_label diffuse_roughness_proxy0
+  ivy_version 10
+  ivy_notes "Lighting test with motion blur"
+  ivy_vloc /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/diffuse_roughness/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___diffuse_roughness.####.exr
+  name diffuse_roughness
+  xpos -540
+  ypos 1067
+  postage_stamp_frame 1043
+ }
+ Read {
+  inputs 0
+  file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/indirect_diffuse0/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___indirect_diffuse0.####.exr
+  format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+  first 1001
+  last 1085
+  origset true
+  logGrade true
+  grade {0 0 0}
+  logReference {394 394 394}
+  linReference {0.18 0.18 0.18}
+  negGamma {0.5064 0.5064 0.5064}
+  blackLevel {0.00947 0.00947 0.00947}
+  densPerCV {0.002 0.002 0.002}
+  gradeFound true
+  twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+  stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+  twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+  leaf_dnuuid 619486b8-edf1-4920-95a5-f94cb8810ecf
+  twigtype render/cg
+  leaf_label indirect_diffuse0_proxy0
+  ivy_version 10
+  ivy_notes "Lighting test with motion blur"
+  ivy_vloc /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/indirect_diffuse0/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___indirect_diffuse0.####.exr
+  name indirect_diffuse0
+  xpos -540
+  ypos 967
+  postage_stamp_frame 1043
+ }
+ Read {
+  inputs 0
+  file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/direct_diffuse0/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___direct_diffuse0.####.exr
+  format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+  first 1001
+  last 1085
+  origset true
+  logGrade true
+  grade {0 0 0}
+  logReference {394 394 394}
+  linReference {0.18 0.18 0.18}
+  negGamma {0.5064 0.5064 0.5064}
+  blackLevel {0.00947 0.00947 0.00947}
+  densPerCV {0.002 0.002 0.002}
+  gradeFound true
+  twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+  stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+  twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+  leaf_dnuuid c2c0bf32-e409-45c4-84b7-e17ecd7935d4
+  twigtype render/cg
+  leaf_label direct_diffuse0_proxy0
+  ivy_version 10
+  ivy_notes "Lighting test with motion blur"
+  ivy_vloc /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/direct_diffuse0/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___direct_diffuse0.####.exr
+  name direct_diffuse0
+  xpos -540
+  ypos 867
+  postage_stamp_frame 1043
+ }
+ Read {
+  inputs 0
+  file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/motion/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___motion.####.exr
+  format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+  first 1001
+  last 1085
+  origset true
+  logGrade true
+  grade {0 0 0}
+  logReference {394 394 394}
+  linReference {0.18 0.18 0.18}
+  negGamma {0.5064 0.5064 0.5064}
+  blackLevel {0.00947 0.00947 0.00947}
+  densPerCV {0.002 0.002 0.002}
+  gradeFound true
+  twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+  stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+  twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+  leaf_dnuuid 044df9df-a1e8-4a27-bc9f-256b6031445c
+  twigtype render/cg
+  leaf_label motion_proxy0
+  ivy_version 10
+  ivy_notes "Lighting test with motion blur"
+  ivy_vloc /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/motion/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___motion.####.exr
+  name motion
+  xpos -540
+  ypos 767
+  postage_stamp_frame 1043
+ }
+ Read {
+  inputs 0
+  file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/direct_specular0/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___direct_specular0.####.exr
+  format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+  first 1001
+  last 1085
+  origset true
+  logGrade true
+  grade {0 0 0}
+  logReference {394 394 394}
+  linReference {0.18 0.18 0.18}
+  negGamma {0.5064 0.5064 0.5064}
+  blackLevel {0.00947 0.00947 0.00947}
+  densPerCV {0.002 0.002 0.002}
+  gradeFound true
+  twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+  stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+  twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+  leaf_dnuuid 25e7438c-d537-415d-b3f4-e90e240020a9
+  twigtype render/cg
+  leaf_label direct_specular0_proxy0
+  ivy_version 10
+  ivy_notes "Lighting test with motion blur"
+  ivy_vloc /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/direct_specular0/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___direct_specular0.####.exr
+  name direct_specular0
+  xpos -540
+  ypos 667
+  postage_stamp_frame 1043
+ }
+ Read {
+  inputs 0
+  file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/Pworld/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___Pworld.####.exr
+  format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+  first 1001
+  last 1085
+  origset true
+  logGrade true
+  grade {0 0 0}
+  logReference {394 394 394}
+  linReference {0.18 0.18 0.18}
+  negGamma {0.5064 0.5064 0.5064}
+  blackLevel {0.00947 0.00947 0.00947}
+  densPerCV {0.002 0.002 0.002}
+  gradeFound true
+  twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+  stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+  twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+  leaf_dnuuid 43757d21-38cb-4164-9bfa-08057df64149
+  twigtype render/cg
+  leaf_label Pworld_proxy0
+  ivy_version 10
+  ivy_notes "Lighting test with motion blur"
+  ivy_vloc /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/Pworld/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___Pworld.####.exr
+  name Pworld
+  xpos -540
+  ypos 567
+  postage_stamp_frame 1043
+ }
+ Read {
+  inputs 0
+  file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/Pref/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___Pref.####.exr
+  format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+  first 1001
+  last 1085
+  origset true
+  logGrade true
+  grade {0 0 0}
+  logReference {394 394 394}
+  linReference {0.18 0.18 0.18}
+  negGamma {0.5064 0.5064 0.5064}
+  blackLevel {0.00947 0.00947 0.00947}
+  densPerCV {0.002 0.002 0.002}
+  gradeFound true
+  twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+  stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+  twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+  leaf_dnuuid 0c8aff9b-d5b5-42cc-a4ad-db80ee3f9770
+  twigtype render/cg
+  leaf_label Pref_proxy0
+  ivy_version 10
+  ivy_notes "Lighting test with motion blur"
+  ivy_vloc /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/Pref/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___Pref.####.exr
+  name Pref
+  xpos -540
+  ypos 467
+  postage_stamp_frame 1043
+ }
+ Read {
+  inputs 0
+  file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/Nworld/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___Nworld.####.exr
+  format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+  first 1001
+  last 1085
+  origset true
+  logGrade true
+  grade {0 0 0}
+  logReference {394 394 394}
+  linReference {0.18 0.18 0.18}
+  negGamma {0.5064 0.5064 0.5064}
+  blackLevel {0.00947 0.00947 0.00947}
+  densPerCV {0.002 0.002 0.002}
+  gradeFound true
+  twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+  stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+  twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+  leaf_dnuuid 79340e1b-ac84-4880-ba03-c5e4e01c3d3d
+  twigtype render/cg
+  leaf_label Nworld_proxy0
+  ivy_version 10
+  ivy_notes "Lighting test with motion blur"
+  ivy_vloc /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/Nworld/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___Nworld.####.exr
+  name Nworld
+  xpos -540
+  ypos 367
+  postage_stamp_frame 1043
+ }
+ Read {
+  inputs 0
+  file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/Pobject/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___Pobject.####.exr
+  format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+  first 1001
+  last 1085
+  origset true
+  logGrade true
+  grade {0 0 0}
+  logReference {394 394 394}
+  linReference {0.18 0.18 0.18}
+  negGamma {0.5064 0.5064 0.5064}
+  blackLevel {0.00947 0.00947 0.00947}
+  densPerCV {0.002 0.002 0.002}
+  gradeFound true
+  twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+  stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+  twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+  leaf_dnuuid 8b70f703-97e7-42f7-97dd-3e2b382ae07e
+  twigtype render/cg
+  leaf_label Pobject_proxy0
+  ivy_version 10
+  ivy_notes "Lighting test with motion blur"
+  ivy_vloc /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/Pobject/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___Pobject.####.exr
+  name Pobject
+  xpos -540
+  ypos 267
+  postage_stamp_frame 1043
+ }
+ Read {
+  inputs 0
+  file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/indirect_specular0/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___indirect_specular0.####.exr
+  format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+  first 1001
+  last 1085
+  origset true
+  logGrade true
+  grade {0 0 0}
+  logReference {394 394 394}
+  linReference {0.18 0.18 0.18}
+  negGamma {0.5064 0.5064 0.5064}
+  blackLevel {0.00947 0.00947 0.00947}
+  densPerCV {0.002 0.002 0.002}
+  gradeFound true
+  twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+  stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+  twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+  leaf_dnuuid edef1cba-4c90-4e37-8a53-70779a3cc7f8
+  twigtype render/cg
+  leaf_label indirect_specular0_proxy0
+  ivy_version 10
+  ivy_notes "Lighting test with motion blur"
+  ivy_vloc /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/indirect_specular0/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___indirect_specular0.####.exr
+  name indirect_specular0
+  xpos -540
+  ypos 167
+  postage_stamp_frame 1043
+ }
+ Read {
+  inputs 0
+  file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/direct_specular1/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___direct_specular1.####.exr
+  format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+  first 1001
+  last 1085
+  origset true
+  logGrade true
+  grade {0 0 0}
+  logReference {394 394 394}
+  linReference {0.18 0.18 0.18}
+  negGamma {0.5064 0.5064 0.5064}
+  blackLevel {0.00947 0.00947 0.00947}
+  densPerCV {0.002 0.002 0.002}
+  gradeFound true
+  twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+  stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+  twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+  leaf_dnuuid 8134ce9c-f601-4d75-afbf-12dc8cc04d5d
+  twigtype render/cg
+  leaf_label direct_specular1_proxy0
+  ivy_version 10
+  ivy_notes "Lighting test with motion blur"
+  ivy_vloc /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/direct_specular1/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___direct_specular1.####.exr
+  name direct_specular1
+  xpos -540
+  ypos 67
+  postage_stamp_frame 1043
+ }
+push 0
+ Read {
+  inputs 0
+  file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/texture/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___texture.####.exr
+  format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+  first 1001
+  last 1085
+  origset true
+  logGrade true
+  grade {0 0 0}
+  logReference {394 394 394}
+  linReference {0.18 0.18 0.18}
+  negGamma {0.5064 0.5064 0.5064}
+  blackLevel {0.00947 0.00947 0.00947}
+  densPerCV {0.002 0.002 0.002}
+  gradeFound true
+  twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+  stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+  twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+  leaf_dnuuid a2b452a5-3aec-4e92-8466-979b203af480
+  twigtype render/cg
+  leaf_label texture_proxy0
+  ivy_version 10
+  ivy_notes "Lighting test with motion blur"
+  ivy_vloc /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/texture/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010___texture.####.exr
+  name texture
+  xpos -540
+  ypos -33
+  postage_stamp_frame 1043
+ }
+ Read {
+  inputs 0
+  file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/beauty/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010.####.exr
+  format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+  first 1001
+  last 1085
+  origset true
+  logGrade true
+  grade {0 0 0}
+  logReference {394 394 394}
+  linReference {0.18 0.18 0.18}
+  negGamma {0.5064 0.5064 0.5064}
+  blackLevel {0.00947 0.00947 0.00947}
+  densPerCV {0.002 0.002 0.002}
+  gradeFound true
+  twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+  stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+  twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+  leaf_dnuuid 73cc9161-8477-4926-a0af-4331eed07052
+  twigtype render/cg
+  leaf_label main_proxy0
+  ivy_version 10
+  ivy_notes "Lighting test with motion blur"
+  ivy_vloc /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/beauty/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010.####.exr
+  name main
+  xpos -40
+  ypos -33
+  postage_stamp_frame 1043
+ }
+ Merge2 {
+  inputs 20+1
+  operation plus
+  bbox B
+  also_merge all
+  name Merge1
+  ypos -33
+ }
+ Output {
+  name Output1
+  xpos -40
+  ypos 1917
+ }
+end_group
+Dot {
+ name Dot37
+ label "Input lighting here"
+ note_font_size 61
+ selected true
+ xpos 249
+ ypos 2321
+}
+Group {
+ name Unpremult32bit2
+ note_font "DejaVu Sans"
+ selected true
+ xpos 215
+ ypos 2491
+ addUserKnob {20 User}
+ addUserKnob {41 channels l divide T Unpremult.channels}
+ addUserKnob {26 info l "" +STARTLINE T "\nUnpremulty 32bit channels with compound_depth blue channel.\n\n-_compound_depth\n-_Nworld\n-_Pworld\n-_Pobject\n-_Pref\n-_motion_extra\n-_depth_extra"}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -92
+  ypos 311
+ }
+ Dot {
+  name Dot1
+  xpos -58
+  ypos 394
+ }
+set N9d94470 [stack 0]
+ Dot {
+  name Dot2
+  label 32bit
+  note_font_size 21
+  xpos 100
+  ypos 394
+ }
+add_layer {__compound_depth __compound_depth.red __compound_depth.green __compound_depth.blue}
+ Unpremult {
+  channels {{{parent.Unpremult.channels}}}
+  alpha __compound_depth.blue
+  name Unpremult1
+  xpos 66
+  ypos 442
+ }
+set N9d5ae00 [stack 0]
+push $N9d5ae00
+push $N9d5ae00
+push $N9d5ae00
+push $N9d5ae00
+push $N9d5ae00
+push $N9d94470
+ Unpremult {
+  channels all
+  name Unpremult
+  xpos -92
+  ypos 441
+ }
+ Copy {
+  inputs 2
+  channels __compound_depth
+  name Copy1
+  xpos -92
+  ypos 495
+ }
+add_layer {__Nworld __Nworld.x __Nworld.y __Nworld.z}
+ Copy {
+  inputs 2
+  channels __Nworld
+  name Copy2
+  xpos -92
+  ypos 545
+ }
+add_layer {__Pobject __Pobject.x __Pobject.y __Pobject.z}
+ Copy {
+  inputs 2
+  channels __Pobject
+  name Copy3
+  xpos -92
+  ypos 595
+ }
+add_layer {__Pref __Pref.x __Pref.y __Pref.z}
+ Copy {
+  inputs 2
+  channels __Pref
+  name Copy4
+  xpos -92
+  ypos 645
+ }
+add_layer {__Pworld __Pworld.x __Pworld.y __Pworld.z __Pworld.red __Pworld.green __Pworld.blue __Pworld.alpha}
+ Copy {
+  inputs 2
+  channels __Pworld
+  name Copy5
+  xpos -92
+  ypos 695
+ }
+add_layer {__motion_extra_ __motion_extra_.x __motion_extra_.y}
+ Copy {
+  inputs 2
+  channels __motion_extra_
+  name Copy6
+  xpos -92
+  ypos 745
+ }
+ Output {
+  name Output1
+  xpos -92
+  ypos 839
+ }
+end_group
+set N9de2ac0 [stack 0]
+Dot {
+ name Dot38
+ selected true
+ xpos 249
+ ypos 2633
+}
+set N9edd5b0 [stack 0]
+Dot {
+ name Dot65
+ selected true
+ xpos 2364
+ ypos 2633
+}
+Dot {
+ name Dot24
+ label "For 3d mattes using PWorld/Pobject/Pref\n\nMake sure to disable 'unpremultiply'\n\nas we have already unpremultiplied above."
+ note_font_size 21
+ selected true
+ xpos 2364
+ ypos 3114
+}
+set N9ad8420 [stack 0]
+Noise3D {
+ name Noise3D1
+ selected true
+ xpos 2488
+ ypos 3248
+ in __Pworld
+ to0 rgba.alpha
+ unpremultiply false
+ useAlpha false
+}
+push $N9ad8420
+Mask3DV2 {
+ name Mask3DV2_2
+ note_font "Bitstream Vera Sans"
+ selected true
+ xpos 2330
+ ypos 3250
+ in __Pworld
+ out rgba.alpha
+ unpremultiply false
+ useAlpha false
+ matteShape Cube
+ center {-4473.382324 336.5470886 -2388.531006}
+ radius 300
+ transform 1
+ falloff 0.6
+}
+push $N9de2ac0
+Dot {
+ name Dot81
+ selected true
+ xpos -202
+ ypos 2500
+}
+Dot {
+ name Dot82
+ selected true
+ xpos -202
+ ypos 9033
+}
+set Nc127ea0 [stack 0]
+Dot {
+ name Dot84
+ selected true
+ xpos -202
+ ypos 9626
+}
+push $Nc127ea0
+push $N9edd5b0
+Dot {
+ name setINPUT3
+ label "\n"
+ selected true
+ xpos 249
+ ypos 2900
+}
+set Nc22eed0 [stack 0]
+Dot {
+ name Dot54
+ selected true
+ xpos 525
+ ypos 2900
+}
+set Nc24e980 [stack 0]
+Dot {
+ name Dot55
+ selected true
+ xpos 731
+ ypos 2900
+}
+set Nc24e150 [stack 0]
+Dot {
+ name Dot56
+ selected true
+ xpos 940
+ ypos 2900
+}
+set Na3d6d00 [stack 0]
+Dot {
+ name Dot57
+ selected true
+ xpos 1138
+ ypos 2900
+}
+set Nc1206d0 [stack 0]
+Dot {
+ name Dot58
+ selected true
+ xpos 1358
+ ypos 2900
+}
+add_layer {__refraction0 __refraction0.red __refraction0.green __refraction0.blue __refraction0.alpha}
+Shuffle {
+ in __refraction0
+ alpha red2
+ black black
+ white black
+ red2 black
+ green2 black
+ name __refraction3
+ selected true
+ xpos 1324
+ ypos 3011
+}
+set Nc0c0580 [stack 0]
+dnColorCorrectJA {
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect35
+ label <b>Refraction
+ selected true
+ xpos 1324
+ ypos 3049
+}
+dnColorCorrectJA {
+ channels rgba
+ exposure {{parent.dnColorCorrect34.exposure}}
+ grade {{parent.dnColorCorrect34.grade} {parent.dnColorCorrect34.grade} {parent.dnColorCorrect34.grade}}
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect36
+ label "Global Exposure\n<font color=red><b>Do Not Touch</b>"
+ selected true
+ xpos 1324
+ ypos 3097
+ disable {{parent.dnColorCorrect34.disable}}
+}
+Dot {
+ name Dot59
+ selected true
+ xpos 1358
+ ypos 3344
+}
+set Na5296b0 [stack 0]
+Dot {
+ name Dot60
+ selected true
+ xpos 1358
+ ypos 3458
+}
+push $Nc0c0580
+push $Nc1206d0
+add_layer {__indirect_specular0 __indirect_specular0.red __indirect_specular0.green __indirect_specular0.blue __indirect_specular0.alpha}
+Shuffle {
+ in __indirect_specular0
+ alpha red2
+ black black
+ white black
+ red2 black
+ green2 black
+ name __indirect_specular3
+ selected true
+ xpos 1104
+ ypos 2979
+}
+Merge2 {
+ inputs 2
+ operation from
+ Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ output {rgba.red rgba.green rgba.blue -rgba.alpha}
+ name Merge17
+ selected true
+ xpos 1104
+ ypos 3017
+}
+set Na45dfe0 [stack 0]
+dnColorCorrectJA {
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect37
+ label "<b>Indirect  Spec"
+ selected true
+ xpos 1104
+ ypos 3043
+}
+dnColorCorrectJA {
+ channels rgba
+ exposure {{parent.dnColorCorrect34.exposure}}
+ grade {{parent.dnColorCorrect34.grade} {parent.dnColorCorrect34.grade} {parent.dnColorCorrect34.grade}}
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect38
+ label "Global Exposure\n<font color=red><b>Do Not Touch</b>"
+ selected true
+ xpos 1104
+ ypos 3091
+ disable {{parent.dnColorCorrect34.disable}}
+}
+Dot {
+ name Dot61
+ selected true
+ xpos 1138
+ ypos 3306
+}
+set Na503540 [stack 0]
+Dot {
+ name Dot62
+ selected true
+ xpos 1138
+ ypos 3432
+}
+push $Na3d6d00
+add_layer {__direct_specular0 __direct_specular0.red __direct_specular0.green __direct_specular0.blue __direct_specular0.alpha}
+Shuffle {
+ in __direct_specular0
+ alpha red2
+ black black
+ white black
+ red2 black
+ green2 black
+ name __direct_specular3
+ selected true
+ xpos 906
+ ypos 3011
+}
+set Nbf979d0 [stack 0]
+dnColorCorrectJA {
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect39
+ label "<b>Direct  Spec"
+ selected true
+ xpos 906
+ ypos 3049
+}
+dnColorCorrectJA {
+ channels rgba
+ exposure {{parent.dnColorCorrect34.exposure}}
+ grade {{parent.dnColorCorrect34.grade} {parent.dnColorCorrect34.grade} {parent.dnColorCorrect34.grade}}
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect40
+ label "Global Exposure\n<font color=red><b>Do Not Touch</b>"
+ selected true
+ xpos 906
+ ypos 3097
+ disable {{parent.dnColorCorrect34.disable}}
+}
+Dot {
+ name Dot63
+ selected true
+ xpos 940
+ ypos 3268
+}
+set Nbc121c0 [stack 0]
+Dot {
+ name Dot64
+ selected true
+ xpos 940
+ ypos 3406
+}
+push $Nc24e150
+add_layer {__indirect_diffuse0 __indirect_diffuse0.red __indirect_diffuse0.green __indirect_diffuse0.blue __indirect_diffuse0.alpha}
+Shuffle {
+ in __indirect_diffuse0
+ alpha red2
+ black black
+ white black
+ red2 black
+ green2 black
+ name __indirect_diffuse3
+ selected true
+ xpos 697
+ ypos 3011
+}
+set Nbf37f10 [stack 0]
+dnColorCorrectJA {
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect41
+ label "<b>Indirect  Diffuse"
+ selected true
+ xpos 697
+ ypos 3049
+}
+dnColorCorrectJA {
+ channels rgba
+ exposure {{parent.dnColorCorrect34.exposure}}
+ grade {{parent.dnColorCorrect34.grade} {parent.dnColorCorrect34.grade} {parent.dnColorCorrect34.grade}}
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect42
+ label "Global Exposure\n<font color=red><b>Do Not Touch</b>"
+ selected true
+ xpos 697
+ ypos 3097
+ disable {{parent.dnColorCorrect34.disable}}
+}
+Dot {
+ name Dot66
+ selected true
+ xpos 731
+ ypos 3230
+}
+set Nb9e52d0 [stack 0]
+Dot {
+ name Dot67
+ selected true
+ xpos 731
+ ypos 3380
+}
+push $Nc24e980
+add_layer {__direct_diffuse0 __direct_diffuse0.red __direct_diffuse0.green __direct_diffuse0.blue __direct_diffuse0.alpha}
+Shuffle {
+ in __direct_diffuse0
+ alpha red2
+ black black
+ white black
+ red2 black
+ green2 black
+ name __direct_diffuse3
+ selected true
+ xpos 491
+ ypos 3011
+}
+set Nb986d30 [stack 0]
+dnColorCorrectJA {
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect43
+ label "<b>Direct Diffuse"
+ selected true
+ xpos 491
+ ypos 3049
+}
+dnColorCorrectJA {
+ channels rgba
+ exposure {{parent.dnColorCorrect34.exposure}}
+ grade {{parent.dnColorCorrect34.grade} {parent.dnColorCorrect34.grade} {parent.dnColorCorrect34.grade}}
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect44
+ label "Global Exposure\n<font color=red><b>Do Not Touch</b>"
+ selected true
+ xpos 491
+ ypos 3097
+ disable {{parent.dnColorCorrect34.disable}}
+}
+Dot {
+ name Dot68
+ selected true
+ xpos 525
+ ypos 3192
+}
+set Nbfeec10 [stack 0]
+Merge2 {
+ inputs 2
+ operation plus
+ Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ output {rgba.red rgba.green rgba.blue -rgba.alpha}
+ name Merge18
+ selected true
+ xpos 491
+ ypos 3376
+}
+Merge2 {
+ inputs 2
+ operation plus
+ Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ output {rgba.red rgba.green rgba.blue -rgba.alpha}
+ name Merge19
+ selected true
+ xpos 491
+ ypos 3402
+}
+Merge2 {
+ inputs 2
+ operation plus
+ Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ output {rgba.red rgba.green rgba.blue -rgba.alpha}
+ name Merge20
+ selected true
+ xpos 491
+ ypos 3428
+}
+Merge2 {
+ inputs 2
+ operation plus
+ Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ output {rgba.red rgba.green rgba.blue -rgba.alpha}
+ name Merge21
+ selected true
+ xpos 491
+ ypos 3454
+}
+Dot {
+ name Dot235
+ label "Result. \n<font color=red><b>Do not add grades here."
+ note_font_size 21
+ selected true
+ xpos 525
+ ypos 3625
+}
+push $Na5296b0
+push $Na503540
+push $Nbc121c0
+push $Nb9e52d0
+push $Nbfeec10
+push $Nc0c0580
+push $Na45dfe0
+push $Nbf979d0
+push 0
+push $Nbf37f10
+push $Nb986d30
+Merge2 {
+ inputs 5+1
+ operation plus
+ Achannels rgb
+ Bchannels rgb
+ output rgb
+ name Merge22
+ selected true
+ xpos 351
+ ypos 3041
+ hide_input true
+}
+push $Nc22eed0
+Merge2 {
+ inputs 2
+ operation from
+ Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ output {rgba.red rgba.green rgba.blue -rgba.alpha}
+ name Merge23
+ selected true
+ xpos 215
+ ypos 3041
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out __direct_diffuse0
+ name __direct_diffuse_Copy3
+ label "\[value out]"
+ selected true
+ xpos 215
+ ypos 3182
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out __indirect_diffuse0
+ name __indirect_diffuse_Copy3
+ label "\[value out]"
+ selected true
+ xpos 215
+ ypos 3220
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out __direct_specular0
+ name __direct_specular_Copy3
+ label "\[value out]"
+ selected true
+ xpos 215
+ ypos 3258
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out __indirect_specular0
+ name __indirect_specular_Copy3
+ label "\[value out]"
+ selected true
+ xpos 215
+ ypos 3296
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out __refraction0
+ name __refraction_Copy3
+ label "\[value out]"
+ selected true
+ xpos 215
+ ypos 3334
+}
+Merge2 {
+ inputs 2
+ operation plus
+ Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ output {rgba.red rgba.green rgba.blue -rgba.alpha}
+ name Merge24
+ selected true
+ xpos 215
+ ypos 3621
+}
+Dot {
+ name setOUTPUT5
+ selected true
+ xpos 249
+ ypos 3756
+}
+Dot {
+ name setINPUT
+ label "\n"
+ selected true
+ xpos 249
+ ypos 4056
+}
+set Nbdebf00 [stack 0]
+Dot {
+ name Dot86
+ selected true
+ xpos 525
+ ypos 4056
+}
+set Nbcaeea0 [stack 0]
+Dot {
+ name Dot87
+ selected true
+ xpos 731
+ ypos 4056
+}
+set Nbcb3900 [stack 0]
+Dot {
+ name Dot88
+ selected true
+ xpos 940
+ ypos 4056
+}
+set Nbd64960 [stack 0]
+Dot {
+ name Dot89
+ selected true
+ xpos 1138
+ ypos 4056
+}
+set Nbaab5c0 [stack 0]
+Dot {
+ name Dot90
+ selected true
+ xpos 1358
+ ypos 4056
+}
+add_layer {__refraction1 __refraction1.red __refraction1.green __refraction1.blue}
+Shuffle {
+ in __refraction1
+ alpha red2
+ black black
+ white black
+ red2 black
+ green2 black
+ name __refraction
+ selected true
+ xpos 1324
+ ypos 4167
+}
+set Nbfa8160 [stack 0]
+dnColorCorrectJA {
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect6
+ label <b>Refraction
+ selected true
+ xpos 1324
+ ypos 4205
+}
+dnColorCorrectJA {
+ channels rgba
+ exposure {{parent.dnColorCorrect18.exposure}}
+ grade {{parent.dnColorCorrect18.grade} {parent.dnColorCorrect18.grade} {parent.dnColorCorrect18.grade}}
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect5
+ label "Global Exposure\n<font color=red><b>Do Not Touch</b>"
+ selected true
+ xpos 1324
+ ypos 4255
+ disable {{parent.dnColorCorrect18.disable}}
+}
+Dot {
+ name Dot4
+ selected true
+ xpos 1358
+ ypos 4500
+}
+set Nbff9b70 [stack 0]
+Dot {
+ name Dot91
+ selected true
+ xpos 1358
+ ypos 4614
+}
+push $Nbfa8160
+push $Nbaab5c0
+add_layer {__indirect_specular1 __indirect_specular1.red __indirect_specular1.green __indirect_specular1.blue}
+Shuffle {
+ in __indirect_specular1
+ alpha red2
+ black black
+ white black
+ red2 black
+ green2 black
+ name __indirect_specular
+ selected true
+ xpos 1104
+ ypos 4135
+}
+Merge2 {
+ inputs 2
+ operation from
+ Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ output {rgba.red rgba.green rgba.blue -rgba.alpha}
+ name Merge39
+ selected true
+ xpos 1104
+ ypos 4173
+}
+set Nb7fef00 [stack 0]
+dnColorCorrectJA {
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect14
+ label "<b>Indirect  Spec"
+ selected true
+ xpos 1104
+ ypos 4199
+}
+dnColorCorrectJA {
+ channels rgba
+ exposure {{parent.dnColorCorrect18.exposure}}
+ grade {{parent.dnColorCorrect18.grade} {parent.dnColorCorrect18.grade} {parent.dnColorCorrect18.grade}}
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect4
+ label "Global Exposure\n<font color=red><b>Do Not Touch</b>"
+ selected true
+ xpos 1104
+ ypos 4249
+ disable {{parent.dnColorCorrect18.disable}}
+}
+Dot {
+ name Dot3
+ selected true
+ xpos 1138
+ ypos 4462
+}
+set Nbc55cd0 [stack 0]
+Dot {
+ name Dot93
+ selected true
+ xpos 1138
+ ypos 4588
+}
+push $Nbd64960
+add_layer {__direct_specular1 __direct_specular1.red __direct_specular1.green __direct_specular1.blue}
+Shuffle {
+ in __direct_specular1
+ alpha red2
+ black black
+ white black
+ red2 black
+ green2 black
+ name __direct_specular
+ selected true
+ xpos 906
+ ypos 4167
+}
+set Nbecba40 [stack 0]
+dnColorCorrectJA {
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect15
+ label "<b>Direct  Spec"
+ selected true
+ xpos 906
+ ypos 4205
+}
+dnColorCorrectJA {
+ channels rgba
+ exposure {{parent.dnColorCorrect18.exposure}}
+ grade {{parent.dnColorCorrect18.grade} {parent.dnColorCorrect18.grade} {parent.dnColorCorrect18.grade}}
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect3
+ label "Global Exposure\n<font color=red><b>Do Not Touch</b>"
+ selected true
+ xpos 906
+ ypos 4255
+ disable {{parent.dnColorCorrect18.disable}}
+}
+Dot {
+ name Dot2
+ selected true
+ xpos 940
+ ypos 4424
+}
+set Nc24e570 [stack 0]
+Dot {
+ name Dot94
+ selected true
+ xpos 940
+ ypos 4562
+}
+push $Nbcb3900
+add_layer {__indirect_diffuse1 __indirect_diffuse1.red __indirect_diffuse1.green __indirect_diffuse1.blue}
+Shuffle {
+ in __indirect_diffuse1
+ alpha red2
+ black black
+ white black
+ red2 black
+ green2 black
+ name __indirect_diffuse
+ selected true
+ xpos 697
+ ypos 4167
+}
+set Nbb63fc0 [stack 0]
+dnColorCorrectJA {
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect16
+ label "<b>Indirect  Diffuse"
+ selected true
+ xpos 697
+ ypos 4205
+}
+dnColorCorrectJA {
+ channels rgba
+ exposure {{parent.dnColorCorrect18.exposure}}
+ grade {{parent.dnColorCorrect18.grade} {parent.dnColorCorrect18.grade} {parent.dnColorCorrect18.grade}}
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect2
+ label "Global Exposure\n<font color=red><b>Do Not Touch</b>"
+ selected true
+ xpos 697
+ ypos 4255
+ disable {{parent.dnColorCorrect18.disable}}
+}
+Dot {
+ name Dot5
+ selected true
+ xpos 731
+ ypos 4386
+}
+set Nbcf7190 [stack 0]
+Dot {
+ name Dot6
+ selected true
+ xpos 731
+ ypos 4536
+}
+push $Nbcaeea0
+add_layer {__direct_diffuse1 __direct_diffuse1.red __direct_diffuse1.green __direct_diffuse1.blue}
+Shuffle {
+ in __direct_diffuse1
+ alpha red2
+ black black
+ white black
+ red2 black
+ green2 black
+ name __direct_diffuse
+ selected true
+ xpos 491
+ ypos 4167
+}
+set Nbe572a0 [stack 0]
+dnColorCorrectJA {
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect17
+ label "<b>Direct Diffuse"
+ selected true
+ xpos 491
+ ypos 4205
+}
+dnColorCorrectJA {
+ channels rgba
+ exposure {{parent.dnColorCorrect18.exposure}}
+ grade {{parent.dnColorCorrect18.grade} {parent.dnColorCorrect18.grade} {parent.dnColorCorrect18.grade}}
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect1
+ label "Global Exposure\n<font color=red><b>Do Not Touch</b>"
+ selected true
+ xpos 491
+ ypos 4255
+ disable {{parent.dnColorCorrect18.disable}}
+}
+Dot {
+ name Dot7
+ selected true
+ xpos 525
+ ypos 4348
+}
+set Nbb84ab0 [stack 0]
+Merge2 {
+ inputs 2
+ operation plus
+ Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ output {rgba.red rgba.green rgba.blue -rgba.alpha}
+ name Merge40
+ selected true
+ xpos 491
+ ypos 4532
+}
+Merge2 {
+ inputs 2
+ operation plus
+ Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ output {rgba.red rgba.green rgba.blue -rgba.alpha}
+ name Merge41
+ selected true
+ xpos 491
+ ypos 4558
+}
+Merge2 {
+ inputs 2
+ operation plus
+ Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ output {rgba.red rgba.green rgba.blue -rgba.alpha}
+ name Merge42
+ selected true
+ xpos 491
+ ypos 4584
+}
+Merge2 {
+ inputs 2
+ operation plus
+ Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ output {rgba.red rgba.green rgba.blue -rgba.alpha}
+ name Merge43
+ selected true
+ xpos 491
+ ypos 4610
+}
+Dot {
+ name Dot8
+ label "Result. \n<font color=red><b>Do not add grades here."
+ note_font_size 21
+ selected true
+ xpos 525
+ ypos 4781
+}
+push $Nbff9b70
+push $Nbc55cd0
+push $Nc24e570
+push $Nbcf7190
+push $Nbb84ab0
+push $Nbfa8160
+push $Nb7fef00
+push $Nbecba40
+push 0
+push $Nbb63fc0
+push $Nbe572a0
+Merge2 {
+ inputs 5+1
+ operation plus
+ Achannels rgb
+ Bchannels rgb
+ output rgb
+ name Merge44
+ selected true
+ xpos 351
+ ypos 4197
+ hide_input true
+}
+push $Nbdebf00
+Merge2 {
+ inputs 2
+ operation from
+ Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ output {rgba.red rgba.green rgba.blue -rgba.alpha}
+ name Merge45
+ selected true
+ xpos 215
+ ypos 4197
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out __direct_diffuse1
+ name __direct_diffuse_Copy
+ label "\[value out]"
+ selected true
+ xpos 215
+ ypos 4338
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out __indirect_diffuse1
+ name __indirect_diffuse_Copy
+ label "\[value out]"
+ selected true
+ xpos 215
+ ypos 4376
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out __direct_specular1
+ name __direct_specular_Copy
+ label "\[value out]"
+ selected true
+ xpos 215
+ ypos 4414
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out __indirect_specular1
+ name __indirect_specular_Copy
+ label "\[value out]"
+ selected true
+ xpos 215
+ ypos 4452
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out __refraction1
+ name __refraction_Copy
+ label "\[value out]"
+ selected true
+ xpos 215
+ ypos 4490
+}
+Merge2 {
+ inputs 2
+ operation plus
+ Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ output {rgba.red rgba.green rgba.blue -rgba.alpha}
+ name Merge46
+ selected true
+ xpos 215
+ ypos 4777
+}
+Dot {
+ name setOUTPUT
+ selected true
+ xpos 249
+ ypos 4912
+}
+Dot {
+ name setOUTPUT1
+ label "DO NOT DELETE"
+ selected true
+ xpos 249
+ ypos 5459
+}
+set Nb8d5620 [stack 0]
+Dot {
+ name Dot112
+ label "Use 'MPassGrade' here"
+ note_font_size 31
+ selected true
+ xpos 249
+ ypos 6342
+}
+Group {
+ name MPassGrade1
+ help "MPass Grade is a basic relighting tool to color correct one AOV at a time. It is based on the standard Grade Node with the additon of dealing with the subtractive Beauty rebuild automatically.\n\nMPass Grade applies a linear ramp followed by a gamma function to each color channel.\n\nA = multiply * (gain-lift)/(whitepoint-blackpoint)\nB = offset + lift - A*blackpoint\noutput = pow(A*input + B, 1/gamma)\n\nThe reverse option is also provided so that you can copy-paste this node to invert the grade. This will do the opposite gamma correction followed by the opposite linear ramp."
+ tile_color 0x78a4efff
+ label "\[value in]"
+ selected true
+ xpos 221
+ ypos 6453
+ disable true
+ addUserKnob {20 User}
+ addUserKnob {41 in l channel T Shuffle2.in}
+ addUserKnob {41 blackpoint T Grade.blackpoint}
+ addUserKnob {41 whitepoint T Grade.whitepoint}
+ addUserKnob {41 black l lift T Grade.black}
+ addUserKnob {41 white l gain T Grade.white}
+ addUserKnob {41 multiply T Grade.multiply}
+ addUserKnob {41 add l offset T Grade.add}
+ addUserKnob {41 gamma T Grade.gamma}
+ addUserKnob {41 reverse T Grade.reverse}
+ addUserKnob {41 black_clamp l "black clamp" -STARTLINE T Grade.black_clamp}
+ addUserKnob {41 white_clamp l "white clamp" -STARTLINE T Grade.white_clamp}
+ addUserKnob {41 maskChannelMask l mask T Grade.maskChannelMask}
+ addUserKnob {41 inject -STARTLINE T Grade.inject}
+ addUserKnob {41 invert_mask l invert -STARTLINE T Grade.invert_mask}
+ addUserKnob {41 fringe -STARTLINE T Grade.fringe}
+ addUserKnob {41 unpremult l "(un)premult by" T Grade.unpremult}
+ addUserKnob {41 invert_unpremult l invert -STARTLINE T Grade.invert_unpremult}
+ addUserKnob {41 mix T Grade.mix}
+}
+ Input {
+  inputs 0
+  name mask
+  xpos 43
+  ypos -377
+  number 1
+ }
+set Nbd9cb60 [stack 0]
+ Dot {
+  name Dot4
+  xpos 77
+  ypos -222
+ }
+push $Nbd9cb60
+ Input {
+  inputs 0
+  name cg
+  xpos 397
+  ypos -682
+ }
+ Dot {
+  name Dot13
+  xpos 431
+  ypos -534
+ }
+set Nb97d080 [stack 0]
+ Shuffle {
+  in rgb
+  in2 alpha
+  alpha red2
+  black black
+  white black
+  red2 black
+  green2 black
+  out rgb
+  name Shuffle2
+  xpos 213
+  ypos -538
+ }
+set Nb981aa0 [stack 0]
+ Grade {
+  inputs 1+1
+  maskChannelMask -rgba.alpha
+  maskChannelInput -rgba.alpha
+  name Grade
+  xpos 213
+  ypos -377
+ }
+set Nbb8e2d0 [stack 0]
+push $Nbb8e2d0
+push $Nb981aa0
+push $Nb97d080
+ Merge2 {
+  inputs 2
+  operation from
+  Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  name Merge7
+  xpos 397
+  ypos -461
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  name Merge8
+  xpos 397
+  ypos -377
+ }
+ ShuffleCopy {
+  inputs 2
+  in rgb
+  red red
+  green green
+  blue blue
+  alpha alpha2
+  black alpha2
+  white black
+  red2 black
+  green2 black
+  out {{{parent.Shuffle2.in}}}
+  out2 alpha
+  name ShuffleCopy1
+  xpos 397
+  ypos -298
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 mask.a
+  name CopyInject
+  xpos 400
+  ypos -232
+  disable {{!Grade.inject}}
+ }
+ Output {
+  name Output1
+  xpos 400
+  ypos -130
+ }
+end_group
+Dot {
+ name Dot113
+ selected true
+ xpos 249
+ ypos 7406
+}
+set Nbc3ebb0 [stack 0]
+Dot {
+ name Dot114
+ selected true
+ xpos 456
+ ypos 7406
+}
+set Nbc43de0 [stack 0]
+Shuffle {
+ in __refraction0
+ name Shuffle6
+ selected true
+ xpos 574
+ ypos 7473
+ disable true
+}
+push $Nbc43de0
+add_layer {__texture __texture.red __texture.green __texture.blue}
+Shuffle {
+ in __texture
+ name Shuffle7
+ selected true
+ xpos 422
+ ypos 7472
+ disable true
+}
+Merge2 {
+ inputs 2
+ operation plus
+ name Merge55
+ selected true
+ xpos 422
+ ypos 7552
+ disable true
+}
+set Nb947830 [stack 0]
+Dot {
+ name Dot115
+ label "grade here"
+ note_font_size 21
+ selected true
+ xpos 456
+ ypos 7591
+}
+Dot {
+ name Dot116
+ selected true
+ xpos 456
+ ypos 7667
+}
+push $Nbc3ebb0
+push $Nb947830
+Merge2 {
+ inputs 2
+ operation divide
+ Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ output {rgba.red rgba.green rgba.blue -rgba.alpha}
+ name Merge56
+ selected true
+ xpos 221
+ ypos 7552
+ disable true
+}
+Merge2 {
+ inputs 2
+ operation multiply
+ Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+ output {rgba.red rgba.green rgba.blue -rgba.alpha}
+ name Merge57
+ selected true
+ xpos 221
+ ypos 7663
+ disable true
+}
+Dot {
+ name Dot117
+ selected true
+ xpos 249
+ ypos 8088
+}
+set Nbe15fc0 [stack 0]
+Shuffle {
+ in __compound_depth
+ green red
+ blue red
+ alpha red
+ name Shuffle8
+ selected true
+ xpos 594
+ ypos 8084
+}
+Grade {
+ channels rgba
+ blackpoint 230
+ whitepoint 400
+ name Grade3
+ label "Adjust Depth Matte"
+ selected true
+ xpos 600
+ ypos 8198
+}
+Dot {
+ name Dot118
+ selected true
+ xpos 628
+ ypos 8313
+}
+push $Nbe15fc0
+Grade {
+ inputs 1+1
+ black {0.015841 0.018353 0.02694607526 0}
+ mix 0.5
+ name Grade5
+ label "DEPTH HAZE GRADE\nMATCH TO PLATE"
+ selected true
+ xpos 221
+ ypos 8303
+}
+Grade {
+ black {0.02184077539 0.02435328066 0.02694607526 0}
+ mix 0.5
+ name Grade6
+ label "BLACK LEVEL"
+ selected true
+ xpos 221
+ ypos 8649
+}
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 rgba.alpha
+ name Copy3
+ selected true
+ xpos 221
+ ypos 9029
+}
+Remove {
+ operation keep
+ channels rgba
+ channels2 __compound_depth
+ name Remove2
+ selected true
+ xpos 221
+ ypos 9067
+}
+Dot {
+ name Dot119
+ selected true
+ xpos 249
+ ypos 9414
+}
+Premult {
+ channels all
+ name Premult1
+ selected true
+ xpos 221
+ ypos 9528
+}
+set Nb809c60 [stack 0]
+Copy {
+ inputs 2
+ from0 -rgba.alpha
+ to0 -rgba.alpha
+ channels __compound_depth
+ name Copy4
+ selected true
+ xpos 221
+ ypos 9616
+}
+set Nbab64c0 [stack 0]
+Shuffle {
+ in __compound_depth
+ green red
+ blue red
+ alpha red
+ name Shuffle9
+ selected true
+ xpos 742
+ ypos 9622
+}
+Grade {
+ multiply 0.0001
+ name Grade7
+ selected true
+ xpos 742
+ ypos 9660
+}
+push $Nb809c60
+Constant {
+ inputs 0
+ channels {__compound_depth.red -__compound_depth.green -__compound_depth.blue}
+ color 5000
+ name Constant2
+ selected true
+ xpos 855
+ ypos 9425
+}
+Merge2 {
+ inputs 2
+ also_merge all
+ name Merge58
+ selected true
+ xpos 855
+ ypos 9534
+}
+Shuffle {
+ in __compound_depth
+ green red
+ blue red
+ alpha red
+ name Shuffle10
+ selected true
+ xpos 855
+ ypos 9621
+}
+Grade {
+ multiply 0.0001
+ name Grade8
+ selected true
+ xpos 855
+ ypos 9659
+}
+StickyNote {
+ inputs 0
+ name StickyNote8
+ tile_color 0xffa800ff
+ label "<b>!                                            </b>                        "
+ note_font_size 80
+ selected true
+ xpos 332
+ ypos 9746
+}
+StickyNote {
+ inputs 0
+ name StickyNote10
+ tile_color 0xffa800ff
+ label "<b>!                                            </b>                        "
+ note_font_size 80
+ selected true
+ xpos 1281
+ ypos 9365
+}
+StickyNote {
+ inputs 0
+ name StickyNote11
+ tile_color 0xa5bdccff
+ label "You should keep the compound_depth channel unpremultuplied,\nunless you are merging the depth channels with another render \n(which will cause bright edges in the above zdepth check_"
+ note_font_size 21
+ selected true
+ xpos 771
+ ypos 9713
+}
+StickyNote {
+ inputs 0
+ name StickyNote12
+ tile_color 0xffa800ff
+ label "<b>!                                            </b>                        "
+ note_font_size 80
+ selected true
+ xpos 732
+ ypos 8061
+}
+StickyNote {
+ inputs 0
+ name StickyNote13
+ tile_color 0xa5bdccff
+ label "Adjust to plate"
+ note_font_size 21
+ selected true
+ xpos 702
+ ypos 8195
+}
+StickyNote {
+ inputs 0
+ name StickyNote21
+ tile_color 0xa5bdccff
+ label "If you need to adjust texture colour, you can do so here. \n\nDisable unless needed! Can cause bad values. \n\n\nMake sure you aren't effecting causing bad values (check refraction)\n\nPlus in refraction channels if these are turning black"
+ note_font_size 21
+ selected true
+ xpos 765
+ ypos 7422
+}
+push $Nb8d5620
+Group {
+ name LightID_Generator
+ selected true
+ xpos 809
+ ypos 5455
+ addUserKnob {20 User}
+ addUserKnob {3 lightIDNumber}
+ lightIDNumber 2
+ addUserKnob {22 create T "group = nuke.nuke.thisNode()\n\nwith group:\n   ##select template\n   nuke.selectAll()\n   nuke.invertSelection()\n   nuke.toNode('Output1').setSelected(1)\n   nuke.toNode('Input1').setSelected(1)\n   nuke.invertSelection()\n\n   \n\n\n\n   missChannels = \[]\n\n   for node in  nuke.allNodes('Shuffle'):\n       if \"Shuffle\" not in node.name():\n           aovName = node.name()+str(int(group\['lightIDNumber'].value()))\n           if aovName not in (map(lambda x : x.split('.')\[0], group.channels())):\n               missChannels.append(aovName)\n               \n           else :\n               node\['in'].setValue(aovName)\n               nuke.toNode(node.name()+\"_Copy\")\['out'].setValue(aovName)        \n   nuke.toNode('LightID')\['label'].setValue('LightID'+str(int(group\['lightIDNumber'].value())))\n   nuke.nodeCopy(nukescripts.cut_paste_file())            \n\n\nnuke.nodePaste(nukescripts.cut_paste_file())  \nif missChannels:\n    nuke.message('<font color=\"red\">Missing :\\n'+'\\n '.join(missChannels))\n\n\n" +STARTLINE}
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode1
+  tile_color 0x403e37ff
+  label "Global Exposure here"
+  note_font_size 50
+  xpos 61
+  ypos -2
+  bdwidth 594
+  bdheight 207
+ }
+ BackdropNode {
+  inputs 0
+  name LightID
+  tile_color 0x273037ff
+  label LightID1
+  note_font_size 42
+  note_font_color 0x96b8d200
+  xpos -1307
+  ypos -233
+  bdwidth 1340
+  bdheight 909
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos 930
+  ypos -79
+ }
+ Output {
+  name Output1
+  xpos 930
+  ypos 225
+ }
+ dnColorCorrectJA {
+  inputs 0
+  grade {0 0 0}
+  legalize false
+  clipLogRange false
+  fullLogGrade false
+  name dnColorCorrect18
+  label "GLOBAL LIGHT GRADE"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold"
+  xpos 245
+  ypos 117
+ }
+ Dot {
+  inputs 0
+  name setINPUT
+  label "\n"
+  xpos -1190
+  ypos -93
+ }
+set Nb90f540 [stack 0]
+ Dot {
+  name Dot86
+  xpos -914
+  ypos -93
+ }
+set Nbac2370 [stack 0]
+ Dot {
+  name Dot87
+  xpos -708
+  ypos -93
+ }
+set Nb9ecee0 [stack 0]
+ Dot {
+  name Dot88
+  xpos -499
+  ypos -93
+ }
+set Nb9f1940 [stack 0]
+ Dot {
+  name Dot89
+  xpos -301
+  ypos -93
+ }
+set Nc05ff80 [stack 0]
+ Dot {
+  name Dot90
+  xpos -81
+  ypos -93
+ }
+ Shuffle {
+  in __refraction1
+  alpha red2
+  black black
+  white black
+  red2 black
+  green2 black
+  name __refraction
+  xpos -115
+  ypos 18
+ }
+set Nb98deb0 [stack 0]
+ dnColorCorrectJA {
+  legalize false
+  clipLogRange false
+  fullLogGrade false
+  name dnColorCorrect6
+  label <b>Refraction
+  xpos -115
+  ypos 56
+ }
+ dnColorCorrectJA {
+  channels rgba
+  exposure {{parent.dnColorCorrect18.exposure}}
+  grade {{parent.dnColorCorrect18.grade} {parent.dnColorCorrect18.grade} {parent.dnColorCorrect18.grade}}
+  legalize false
+  clipLogRange false
+  fullLogGrade false
+  name dnColorCorrect5
+  label "Global Exposure\n<font color=red><b>Do Not Touch</b>"
+  xpos -115
+  ypos 106
+  disable {{parent.dnColorCorrect18.disable}}
+ }
+ Dot {
+  name Dot4
+  xpos -81
+  ypos 351
+ }
+set Nbbf0590 [stack 0]
+ Dot {
+  name Dot91
+  xpos -81
+  ypos 465
+ }
+push $Nb98deb0
+push $Nc05ff80
+ Shuffle {
+  in __indirect_specular1
+  alpha red2
+  black black
+  white black
+  red2 black
+  green2 black
+  name __indirect_specular
+  xpos -335
+  ypos -14
+ }
+ Merge2 {
+  inputs 2
+  operation from
+  Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  name Merge39
+  xpos -335
+  ypos 24
+ }
+set Nbce37f0 [stack 0]
+ dnColorCorrectJA {
+  legalize false
+  clipLogRange false
+  fullLogGrade false
+  name dnColorCorrect14
+  label "<b>Indirect  Spec"
+  xpos -335
+  ypos 50
+ }
+ dnColorCorrectJA {
+  channels rgba
+  exposure {{parent.dnColorCorrect18.exposure}}
+  grade {{parent.dnColorCorrect18.grade} {parent.dnColorCorrect18.grade} {parent.dnColorCorrect18.grade}}
+  legalize false
+  clipLogRange false
+  fullLogGrade false
+  name dnColorCorrect4
+  label "Global Exposure\n<font color=red><b>Do Not Touch</b>"
+  xpos -335
+  ypos 100
+  disable {{parent.dnColorCorrect18.disable}}
+ }
+ Dot {
+  name Dot3
+  xpos -301
+  ypos 313
+ }
+set Nb80d660 [stack 0]
+ Dot {
+  name Dot93
+  xpos -301
+  ypos 439
+ }
+push $Nb9f1940
+ Shuffle {
+  in __direct_specular1
+  alpha red2
+  black black
+  white black
+  red2 black
+  green2 black
+  name __direct_specular
+  xpos -533
+  ypos 18
+ }
+set Nb84ae20 [stack 0]
+ dnColorCorrectJA {
+  legalize false
+  clipLogRange false
+  fullLogGrade false
+  name dnColorCorrect15
+  label "<b>Direct  Spec"
+  xpos -533
+  ypos 56
+ }
+ dnColorCorrectJA {
+  channels rgba
+  exposure {{parent.dnColorCorrect18.exposure}}
+  grade {{parent.dnColorCorrect18.grade} {parent.dnColorCorrect18.grade} {parent.dnColorCorrect18.grade}}
+  legalize false
+  clipLogRange false
+  fullLogGrade false
+  name dnColorCorrect3
+  label "Global Exposure\n<font color=red><b>Do Not Touch</b>"
+  xpos -533
+  ypos 106
+  disable {{parent.dnColorCorrect18.disable}}
+ }
+ Dot {
+  name Dot2
+  xpos -499
+  ypos 275
+ }
+set Nbf2e730 [stack 0]
+ Dot {
+  name Dot94
+  xpos -499
+  ypos 413
+ }
+push $Nb9ecee0
+ Shuffle {
+  in __indirect_diffuse1
+  alpha red2
+  black black
+  white black
+  red2 black
+  green2 black
+  name __indirect_diffuse
+  xpos -742
+  ypos 18
+ }
+set Nba97bb0 [stack 0]
+ dnColorCorrectJA {
+  legalize false
+  clipLogRange false
+  fullLogGrade false
+  name dnColorCorrect16
+  label "<b>Indirect  Diffuse"
+  xpos -742
+  ypos 56
+ }
+ dnColorCorrectJA {
+  channels rgba
+  exposure {{parent.dnColorCorrect18.exposure}}
+  grade {{parent.dnColorCorrect18.grade} {parent.dnColorCorrect18.grade} {parent.dnColorCorrect18.grade}}
+  legalize false
+  clipLogRange false
+  fullLogGrade false
+  name dnColorCorrect2
+  label "Global Exposure\n<font color=red><b>Do Not Touch</b>"
+  xpos -742
+  ypos 106
+  disable {{parent.dnColorCorrect18.disable}}
+ }
+ Dot {
+  name Dot1
+  xpos -708
+  ypos 237
+ }
+set Nbafd510 [stack 0]
+ Dot {
+  name Dot95
+  xpos -708
+  ypos 387
+ }
+push $Nbac2370
+ Shuffle {
+  in __direct_diffuse1
+  alpha red2
+  black black
+  white black
+  red2 black
+  green2 black
+  name __direct_diffuse
+  xpos -948
+  ypos 18
+ }
+set Nbadd6a0 [stack 0]
+ dnColorCorrectJA {
+  legalize false
+  clipLogRange false
+  fullLogGrade false
+  name dnColorCorrect17
+  label "<b>Direct Diffuse"
+  xpos -948
+  ypos 56
+ }
+ dnColorCorrectJA {
+  channels rgba
+  exposure {{parent.dnColorCorrect18.exposure}}
+  grade {{parent.dnColorCorrect18.grade} {parent.dnColorCorrect18.grade} {parent.dnColorCorrect18.grade}}
+  legalize false
+  clipLogRange false
+  fullLogGrade false
+  name dnColorCorrect1
+  label "Global Exposure\n<font color=red><b>Do Not Touch</b>"
+  xpos -948
+  ypos 106
+  disable {{parent.dnColorCorrect18.disable}}
+ }
+ Dot {
+  name Dot5
+  xpos -914
+  ypos 199
+ }
+set Na21a180 [stack 0]
+ Merge2 {
+  inputs 2
+  operation plus
+  Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  name Merge40
+  xpos -948
+  ypos 383
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  name Merge41
+  xpos -948
+  ypos 409
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  name Merge42
+  xpos -948
+  ypos 435
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  name Merge43
+  xpos -948
+  ypos 461
+ }
+ Dot {
+  name Dot235
+  label "Result. \n<font color=red><b>Do not add grades here."
+  note_font_size 21
+  xpos -914
+  ypos 632
+ }
+push $Nbbf0590
+push $Nb80d660
+push $Nbf2e730
+push $Nbafd510
+push $Na21a180
+push $Nb98deb0
+push $Nbce37f0
+push $Nb84ae20
+push 0
+push $Nba97bb0
+push $Nbadd6a0
+ Merge2 {
+  inputs 5+1
+  operation plus
+  Achannels rgb
+  Bchannels rgb
+  output rgb
+  name Merge44
+  xpos -1088
+  ypos 48
+  hide_input true
+ }
+push $Nb90f540
+ Merge2 {
+  inputs 2
+  operation from
+  Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  name Merge45
+  xpos -1224
+  ypos 48
+ }
+ ShuffleCopy {
+  inputs 2
+  red red
+  green green
+  blue blue
+  out __direct_diffuse1
+  name __direct_diffuse_Copy
+  label "\[value out]"
+  xpos -1224
+  ypos 189
+ }
+ ShuffleCopy {
+  inputs 2
+  red red
+  green green
+  blue blue
+  out __indirect_diffuse1
+  name __indirect_diffuse_Copy
+  label "\[value out]"
+  xpos -1224
+  ypos 227
+ }
+ ShuffleCopy {
+  inputs 2
+  red red
+  green green
+  blue blue
+  out __direct_specular1
+  name __direct_specular_Copy
+  label "\[value out]"
+  xpos -1224
+  ypos 265
+ }
+ ShuffleCopy {
+  inputs 2
+  red red
+  green green
+  blue blue
+  out __indirect_specular1
+  name __indirect_specular_Copy
+  label "\[value out]"
+  xpos -1224
+  ypos 303
+ }
+ ShuffleCopy {
+  inputs 2
+  red red
+  green green
+  blue blue
+  out __refraction1
+  name __refraction_Copy
+  label "\[value out]"
+  xpos -1224
+  ypos 341
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  name Merge46
+  xpos -1224
+  ypos 628
+ }
+ Dot {
+  name setOUTPUT
+  xpos -1190
+  ypos 763
+ }
+end_group
+push $cut_paste_input
+dnColorCorrectJA {
+ grade {0 0 0}
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect34
+ label "GLOBAL LIGHT GRADE"
+ note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold"
+ selected true
+ xpos 1684
+ ypos 3110
+}
+dnColorCorrectJA {
+ inputs 0
+ grade {0 0 0}
+ legalize false
+ clipLogRange false
+ fullLogGrade false
+ name dnColorCorrect18
+ label "GLOBAL LIGHT GRADE"
+ note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold"
+ selected true
+ xpos 1684
+ ypos 4266
+}
+Read {
+ inputs 0
+ file /jobs/CIPHER/zc_3200/CG/CG_zc_3200_lighting_environ_L010_BEAUTY_v010/beauty/2150x1210/CG_zc_3200_lighting_environ_L010_BEAUTY_v010.####.exr
+ proxy_format "1075 605 0 0 1075 605 1 "
+ first 985
+ last 1043
+ origfirst 985
+ origlast 1085
+ origset true
+ logGrade true
+ grade {0 0 0}
+ logReference {394 394 394}
+ linReference {0.18 0.18 0.18}
+ negGamma {0.5064 0.5064 0.5064}
+ blackLevel {0.00947 0.00947 0.00947}
+ densPerCV {0.002 0.002 0.002}
+ gradeFound true
+ twig_dnuuid 90932ec7-45d6-4690-b17f-cd4657b4fc37
+ stalk_dnuuid 0addcc5b-f712-4a92-9be8-59d654ee6676
+ twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+ leaf_dnuuid 73cc9161-8477-4926-a0af-4331eed07052
+ twigtype render/cg
+ leaf_label main_proxy0
+ ivy_version 10
+ ivy_notes "Lighting test with motion blur"
+ name Read9
+ selected true
+ xpos 338
+ ypos 1981
+ postage_stamp_frame 1014
+}
+push $Nbab64c0
+ZDefocus2 {
+ z_channel __compound_depth.red
+ center 50
+ size 1
+ max_size 2
+ legacy_resize_mode false
+ show_legacy_resize_mode false
+ name ZDefocus2
+ selected true
+ xpos 221
+ ypos 9794
+ addUserKnob {20 camera_tab l "Camera (DNeg)"}
+ addUserKnob {22 create_camera_knobs l "create camera knobs and expressions" -STARTLINE T "__import__('dnnuke.menu.toolbar.filter.zdefocus', fromlist=\['createZDefocusCameraKnobs']).createZDefocusCameraKnobs(nuke.thisNode())"}
+ addUserKnob {43 camera_knobs_info l "" +STARTLINE}
+ camera_knobs_info "For a more intuitive way of controlling the depth of field, you can have camera knobs here (such as focal length, fstop etc.) along with expressions to drive ZDefocus.\n\nThe ZDefocus knobs that will be affected are:\n   depth channel\n   math\n   size\n   maximum\n   filter shape\n   aspect ratio\n\nIf you want to drive the camera knobs as well as the focal point from an existing camera you can use the Tools->Create Node from Selected Node->ZDefocus from ZenCamera, after selecting the ZenCamera node.\n\nThe same applies for BokehZDefocus."
+}
+dnLensDistort_v2 {
+ lensDataFile /jobs/CIPHER/zc_3200/ivy/lnd/LND-zc_3200-layout-shot-v010/LND-zc_3200-layout-shot-v010.lensdata
+ lensMode distort
+ lensSolveFrame {{frame}}
+ ivy_job CIPHER
+ ivy_shot zc_3200
+ ivy_type camera/lensdata
+ ivy_name *layout-*
+ ivy_versionquery latest
+ twig_dnuuid 411fe21a-3a8b-4503-aea9-02775f407f41
+ stalk_dnuuid 5b8588f6-82d2-4dc3-83b5-b278d2a00229
+ twigtype_dnuuid 7912c4c0-9e46-4e27-ab18-7c2529a7dcbe
+ leaf_dnuuid cc9cb56a-deaa-424b-bc79-f02f9e0fb3ea
+ twigtype camera/lensdata
+ leaf_label main
+ ivy_version 10
+ ivy_notes "layout dispatch and cache -- chrysler pos now matching zc3210 at frame 75 -- breakdown update to V71 -- cameratrack V07 -- bodytrack v03 -- LENSES - 7.92mm"
+ ivy_vloc /jobs/CIPHER/zc_3200/ivy/lnd/LND-zc_3200-layout-shot-v010/LND-zc_3200-layout-shot-v010.lensdata
+ name dnLensDistort3
+ note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+ selected true
+ xpos 221
+ ypos 10169
+}
+Group {
+ name AbberationScale3
+ tile_color 0xb286bfff
+ selected true
+ xpos -1472
+ ypos 10174
+ addUserKnob {20 AbberationScale}
+ addUserKnob {41 scaleR l "scale R" T TransformR.scale}
+ addUserKnob {41 scaleG l "scale G" T TransformG.scale}
+ addUserKnob {41 scaleB l "scale B" T TransformB.scale}
+ addUserKnob {6 reverse +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {41 size l "soften R" T SoftenR.size}
+ addUserKnob {41 size_1 l "soften G" T SoftenG.size}
+ addUserKnob {41 size_2 l "soften B" T SoftenB.size}
+ addUserKnob {26 ""}
+ addUserKnob {41 center l "Input center" T TransformR.center}
+ addUserKnob {12 adjustcenter l "Adjust Center"}
+ addUserKnob {6 grid l "Test Grid" +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {26 tip l "" +STARTLINE T "Must use MergeChroma for merging over bg."}
+}
+ Grid {
+  inputs 0
+  number 20
+  name Grid1
+  xpos 190
+  ypos -493
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos 5
+  ypos -540
+ }
+ Switch {
+  inputs 2
+  which {{parent.grid}}
+  name Switch1
+  xpos 5
+  ypos -493
+ }
+set Nf14ed00 [stack 0]
+ Dot {
+  name Dot6
+  tile_color 0xffff
+  note_font_color 0x29ffff
+  xpos 224
+  ypos -422
+ }
+ Transform {
+  translate {0.3 0}
+  center {{parent.TransformR.center x1032 75} {parent.TransformR.center x1032 0}}
+  invert_matrix {{parent.reverse}}
+  shutteroffset centred
+  name TransformB
+  xpos 190
+  ypos -366
+ }
+ Soften {
+  channels {-rgba.red -rgba.green rgba.blue rgba.alpha}
+  size 1
+  name SoftenB
+  xpos 190
+  ypos -340
+  disable {{parent.reverse}}
+ }
+ Dot {
+  name Dot4
+  tile_color 0xffff
+  note_font_color 0x29ffff
+  xpos 224
+  ypos -68
+ }
+push $Nf14ed00
+ Dot {
+  name Dot1
+  tile_color 0xff00ff
+  xpos 39
+  ypos -422
+ }
+ Transform {
+  center {{parent.TransformR.center x1032 0} {parent.TransformR.center x1032 0}}
+  invert_matrix {{parent.reverse}}
+  shutteroffset centred
+  name TransformG
+  selected true
+  xpos 5
+  ypos -365
+ }
+ Soften {
+  channels {-rgba.red rgba.green -rgba.blue rgba.alpha}
+  size 0
+  name SoftenG
+  xpos 5
+  ypos -339
+  disable {{parent.reverse}}
+ }
+ Dot {
+  name Dot3
+  tile_color 0xff00ff
+  xpos 39
+  ypos -136
+ }
+push $Nf14ed00
+ Dot {
+  name Dot2
+  tile_color 0xff0018ff
+  xpos -117
+  ypos -422
+ }
+ Transform {
+  translate {-0.3 0}
+  center {{(input.width/2)+adjustcenter x1032 1065} {(input.height/2)+adjustcenter x1032 604.9}}
+  invert_matrix {{parent.reverse}}
+  shutteroffset centred
+  name TransformR
+  xpos -151
+  ypos -382
+ }
+ Soften {
+  channels {rgba.red -rgba.green -rgba.blue rgba.alpha}
+  size 0
+  name SoftenR
+  xpos -151
+  ypos -340
+  disable {{parent.reverse}}
+ }
+ Dot {
+  name Dot5
+  tile_color 0xff0018ff
+  xpos -117
+  ypos -277
+ }
+set Nf1e3630 [stack 0]
+push $Nf1e3630
+add_layer {chroma_alpha chroma_alpha.red chroma_alpha.green chroma_alpha.blue}
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 chroma_alpha.red
+  name Copy4
+  xpos -151
+  ypos -213
+ }
+ Copy {
+  inputs 2
+  from0 rgba.green
+  to0 rgba.green
+  from1 rgba.alpha
+  to1 chroma_alpha.green
+  name Copy2
+  xpos -151
+  ypos -152
+ }
+ Copy {
+  inputs 2
+  from0 rgba.blue
+  to0 rgba.blue
+  from1 rgba.alpha
+  to1 chroma_alpha.blue
+  name Copy3
+  xpos -151
+  ypos -84
+ }
+ Output {
+  name Output1
+  xpos -151
+  ypos 16
+ }
+end_group
+push 0
+Dot {
+ name Dot120
+ label "Input Neutral BG"
+ note_font_size 51
+ selected true
+ xpos -1606
+ ypos 1817
+}
+Group {
+ inputs 2
+ name IvyGroup4
+ onCreate "__import__('dnnuke.core.ivy.tab', fromlist=\['onCreate']).onCreate()"
+ knobChanged "__import__('dnnuke.core.ivy.tab', fromlist=\['knobChanged']).knobChanged()"
+ tile_color 0xefaffff
+ label "<b>\[value ivy_name]_v\[format %03d \[value ivy_version]]</b>"
+ selected true
+ xpos -1640
+ ypos 10163
+ addUserKnob {20 MergeChroma}
+ addUserKnob {41 operation l "" +STARTLINE T Merge1.operation}
+ addUserKnob {41 bbox l "set bbox to " T Merge4.bbox}
+ addUserKnob {41 metainput l "metadata from" -STARTLINE T Merge1.metainput}
+ addUserKnob {41 rangeinput l "range from" -STARTLINE T Merge1.rangeinput}
+ addUserKnob {41 mix l "" +STARTLINE T Merge1.mix}
+ addUserKnob {6 noChromaAlpha_A l "Don't Merge Chroma Alpha from A" +STARTLINE}
+ addUserKnob {1 default_values +INVISIBLE}
+ default_values "\[('MergeChroma', \{'knob': 'Tab_Knob', 'default': None, 'value': True, 'label': 'MergeChroma', 'link': '', 'flags': \{128: False, 4096: True, 2147483648: False, 1073741824: False, 549755813888: False, 68719476736: False, 134217728: False, 256: False, 4194304: False, 8388608: False, 512: True, 1099511627776: False, 70368744177664: False, 268435456: False, 16777216: False, 33554432: False, 131072: False, 262144: False, 1024: False, 8192: False, 524288: False, 16384: False, 2199023255552: False, 1048576: False, 32768: False, 4294967296: False, 2048: False, 137438953472: False, 67108864: False, 562949953421312: False, 536870912: False, 8589934592: False, 140737488355328: False, 17179869184: False, 2097152: False, 4398046511104: False, 65536: False, 8796093022208: False, 17592186044416: False, 34359738368: False, 274877906944: False, 35184372088832: False, 281474976710656: False\}, 'toScript': '1'\}), ('operation', \{'knob': 'Link_Knob', 'default': \['atop', 'average', 'color-burn', 'color-dodge', 'conjoint-over', 'copy', 'difference', 'disjoint-over', 'divide', 'exclusion', 'from', 'geometric', 'hard-light', 'hypot\\t\\t\\tdiagonal', 'in', 'mask', 'matte', 'max', 'min', 'minus', 'multiply', 'out', 'over', 'overlay', 'plus', 'screen', 'soft-light', 'stencil', 'under', 'xor'], 'value': 'over', 'label': '', 'link': 'Merge1.operation', 'flags': \{128: False, 4096: True, 1073741824: False, 1024: False, 8192: False, 268435456: False, 134217728: False, 256: False, 512: False, 1048576: False, 524288: False\}, 'toScript': 'over'\}), ('bbox', \{'knob': 'Link_Knob', 'default': \['union', 'intersection', 'A', 'B'], 'value': 'union', 'label': 'set bbox to ', 'link': 'Merge4.bbox', 'flags': \{128: False, 4096: True, 1073741824: False, 1024: False, 8192: False, 268435456: False, 134217728: False, 256: False, 512: False, 1048576: False, 524288: False\}, 'toScript': 'union'\}), ('metainput', \{'knob': 'Link_Knob', 'default': \['B', 'A', 'All'], 'value': 'B', 'label': 'metadata from', 'link': 'Merge1.metainput', 'flags': \{128: False, 4096: False, 1073741824: False, 1024: False, 8192: False, 268435456: False, 134217728: False, 256: False, 512: False, 1048576: False, 524288: False\}, 'toScript': 'B'\}), ('rangeinput', \{'knob': 'Link_Knob', 'default': \['B', 'A', 'All'], 'value': 'B', 'label': 'range from', 'link': 'Merge1.rangeinput', 'flags': \{128: False, 4096: False, 1073741824: False, 1024: False, 8192: False, 268435456: False, 134217728: False, 256: False, 512: False, 1048576: False, 524288: False\}, 'toScript': 'B'\}), ('mix', \{'knob': 'Link_Knob', 'default': None, 'value': 1.0, 'label': '', 'link': 'Merge1.mix', 'flags': \{128: False, 4096: True, 1073741824: False, 1024: False, 8192: False, 268435456: False, 134217728: False, 256: False, 512: False, 1048576: False, 524288: False\}, 'toScript': '1'\}), ('noChromaAlpha_A', \{'knob': 'Boolean_Knob', 'default': None, 'value': False, 'label': \"Don't Merge Chroma Alpha from A\", 'link': '', 'flags': \{128: False, 4096: True, 2147483648: False, 1073741824: False, 549755813888: False, 68719476736: False, 134217728: False, 256: False, 4194304: False, 8388608: False, 512: False, 1099511627776: False, 70368744177664: False, 268435456: False, 16777216: False, 33554432: False, 131072: False, 262144: False, 1024: False, 8192: False, 524288: False, 16384: False, 2199023255552: False, 1048576: False, 32768: False, 4294967296: False, 2048: False, 137438953472: False, 67108864: False, 562949953421312: False, 536870912: False, 8589934592: False, 140737488355328: False, 17179869184: False, 2097152: False, 4398046511104: False, 65536: False, 8796093022208: False, 17592186044416: False, 34359738368: False, 274877906944: False, 35184372088832: False, 281474976710656: False\}, 'toScript': 'false'\})]"
+ addUserKnob {20 ivygrouptab l IvyGroup}
+ addUserKnob {2 file l "Script Path"}
+ addUserKnob {6 internal_updates l "Update internal spider nodes..." +STARTLINE}
+ addUserKnob {6 previous_template l "Output Previous Template..." +HIDDEN +STARTLINE}
+ addUserKnob {6 ivygroup -STARTLINE +INVISIBLE}
+ ivygroup true
+ addUserKnob {26 divider10 l "" +STARTLINE}
+ addUserKnob {22 ivy_publish l Publish... T "__import__('dnnuke.core.ivy.template', fromlist=\['publish']).publish(nodes=\[nuke.thisNode()])" +STARTLINE}
+ addUserKnob {22 createPrecompNode l "Create Precomp Node" -STARTLINE +DISABLED T "__import__('dnnuke.core.ivy.template.precomp', fromlist=\['createPrecompNodeFromGroup']).createPrecompNodeFromGroup(nuke.thisNode())"}
+ addUserKnob {6 update_precomp l "Update Precomp Node" +DISABLED +STARTLINE}
+ addUserKnob {20 ivy_data +INVISIBLE}
+ addUserKnob {1 data +INVISIBLE}
+ data "\{\"ivy_shot\": \"CIPHER\", \"ivy_notes\": \"took out empty nodes from inside\", \"ivy_usemanualuri\": false, \"leaf_dnuuid\": \"18b4ba3e-2631-486e-b82b-0fc17e344806\", \"ivy_vnum\": 0, \"ivy_name\": \"comp_group_dnMergeChroma\", \"leaf_label\": \"main\", \"twigtype_dnuuid\": \"9a87d850-8e1b-4781-95c5-e50580d06fe5\", \"twigtype\": \"script/nuke/template\", \"ivy_version\": \"2\", \"twig_dnuuid\": \"d3ef38d4-34c4-44ec-a6a5-817e900e2ac7\", \"ivy_regex\": false, \"ivy_type\": \"script/nuke/template\", \"stalk_dnuuid\": \"e2d43444-6aa6-4383-bd7c-7924aca7b75b\", \"ivy_versionquery\": \"latest approved\", \"ivy_job\": \"CIPHER\"\}"
+ addUserKnob {20 ivytab l Ivy}
+ addUserKnob {26 spiderlabel l "Spider Query"}
+ addUserKnob {1 ivy_job l Job}
+ addUserKnob {1 ivy_shot l Shot -STARTLINE}
+ addUserKnob {22 ivy_selectshot l "Select shot..." -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['selectShot']).selectShot()"}
+ addUserKnob {1 ivy_type l Type}
+ addUserKnob {22 ivy_selecttype l "Select type..." -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['selectType']).selectType()"}
+ addUserKnob {1 ivy_name l Name}
+ addUserKnob {6 ivy_regex l regex -STARTLINE}
+ addUserKnob {4 ivy_versionquery l Version M {"" latest "latest approved" "latest element in pipe" "latest WIP" "latest pending" specific}}
+ addUserKnob {3 ivy_vnum l vnum -STARTLINE +DISABLED}
+ addUserKnob {22 ivy_autofill l Autofill T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['autofill']).autofill()" +STARTLINE}
+ addUserKnob {22 ivy_clear l Clear -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['clearFields']).clearFields()"}
+ addUserKnob {26 divider3 l "" +STARTLINE}
+ addUserKnob {6 ivy_usemanualuri l "Use manual URI (clears individual fields)" +STARTLINE}
+ addUserKnob {43 spider_uri l "Spider URI" +DISABLED}
+ addUserKnob {22 updateButton l Update T "__import__('dnnuke.core.ivy.template.update', fromlist=\['updateNode']).updateNode(nuke.thisNode())" +STARTLINE}
+ addUserKnob {22 testButton l Test -STARTLINE T "__import__('dnnuke.core.ivy.template.update',fromlist=\['test']).test(nuke.thisNode()\[\"spider_uri\"].value())"}
+ addUserKnob {22 resetButton l "Reset non-spider knobs" -STARTLINE T "__import__('dnnuke.core.ivy.template.reset', fromlist=\['resetNode']).resetNode(nuke.thisNode())"}
+ addUserKnob {22 copyButton l "Copy URI" -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['copyUri']).copyUri()"}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ addUserKnob {1 leaf_label l Leaf}
+ addUserKnob {1 ivy_version l Version}
+ addUserKnob {43 ivy_notes l Notes}
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfo l "DB Info" n -1}
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode1
+  tile_color 0x2c2c2cff
+  label "average chroma_alpha "
+  note_font_size 42
+  note_font_color 0x7f7f7fff
+  xpos -101
+  ypos -597
+  bdwidth 461
+  bdheight 320
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode2
+  tile_color 0x681e1aff
+  label "assert if chroma_alpha channel exists"
+  note_font_size 22
+  xpos -110
+  ypos -785
+  bdwidth 399
+  bdheight 150
+ }
+ Input {
+  inputs 0
+  name A
+  xpos 52
+  ypos -888
+  number 1
+ }
+ Assert {
+  expression {{"\[string first \"chroma_alpha\" \[channels \[input this 0]]]>1"}}
+  message "missing chroma_alpha channel, please use one of the Abberration tools to create the correct channel to use with this merge"
+  name chroma_alpha_check
+  xpos 52
+  ypos -671
+ }
+set Nf20b0d0 [stack 0]
+ Shuffle {
+  in chroma_alpha
+  name Shuffle4
+  xpos 52
+  ypos -513
+ }
+set Nf2a0e80 [stack 0]
+ Shuffle {
+  green red
+  blue red
+  alpha red
+  name RED3
+  tile_color 0xff0000ff
+  label "\[value in] -> \[value out]"
+  xpos -80
+  ypos -436
+ }
+push 0
+push $Nf2a0e80
+ Shuffle {
+  red blue
+  green blue
+  alpha blue
+  name BLUE
+  tile_color 0xffff
+  label "\[value in] -> \[value out]"
+  xpos 185
+  ypos -444
+ }
+push $Nf2a0e80
+ Shuffle {
+  red green
+  blue green
+  alpha green
+  name GREEN
+  tile_color 0xff00ff
+  label "\[value in] -> \[value out]"
+  xpos 52
+  ypos -442
+ }
+ Merge2 {
+  inputs 3+1
+  operation average
+  name Merge5
+  xpos 52
+  ypos -332
+ }
+ Shuffle {
+  in chroma_alpha
+  red black
+  green black
+  blue black
+  out chroma_alpha
+  name Chroma_Alpha_Black
+  xpos 798
+  ypos -338
+  disable {{1-parent.noChromaAlpha_A}}
+ }
+ Input {
+  inputs 0
+  name B
+  xpos 598
+  ypos -894
+ }
+ Dot {
+  name Dot13
+  xpos 632
+  ypos -707
+ }
+set Nf5c7120 [stack 0]
+ Dot {
+  name Dot11
+  xpos 981
+  ypos -707
+ }
+ Merge2 {
+  inputs 2
+  also_merge chroma_alpha
+  name Merge6
+  xpos 947
+  ypos -332
+ }
+ Dot {
+  name Dot12
+  xpos 981
+  ypos 128
+ }
+push $Nf20b0d0
+ Dot {
+  name Dot1
+  xpos -146
+  ypos -667
+ }
+ Dot {
+  name Dot2
+  xpos -146
+  ypos -176
+ }
+set Nf2e46e0 [stack 0]
+ Dot {
+  name Dot3
+  xpos -146
+  ypos -54
+ }
+set Nf2e9170 [stack 0]
+ Dot {
+  name Dot4
+  xpos -146
+  ypos 89
+ }
+push $Nf5c7120
+ Dot {
+  name Dot7
+  xpos 632
+  ypos -232
+ }
+set Nf5b6e60 [stack 0]
+ Dot {
+  name Dot6
+  xpos 632
+  ypos -110
+ }
+set Nf173950 [stack 0]
+ Dot {
+  name Dot5
+  xpos 632
+  ypos 25
+ }
+ Shuffle {
+  red black
+  green black
+  black black
+  white black
+  red2 black
+  green2 black
+  name Shuffle3
+  xpos -87
+  ypos 21
+ }
+ Merge2 {
+  inputs 2
+  operation {{Merge1.operation}}
+  bbox {{Merge4.bbox}}
+  Achannels {-rgba.red -rgba.green rgba.blue chroma_alpha.blue}
+  Bchannels {-rgba.red -rgba.green rgba.blue rgba.alpha}
+  output {-rgba.red -rgba.green rgba.blue chroma_alpha.blue}
+  mix {{parent.Merge1.mix}}
+  name Merge3
+  xpos -87
+  ypos 79
+ }
+ Remove {
+  channels alpha
+  name Remove3
+  xpos 43
+  ypos 79
+ }
+ Dot {
+  name Dot9
+  xpos 690
+  ypos 83
+ }
+ Dot {
+  name Dot10
+  xpos 690
+  ypos 19
+ }
+push 0
+push $Nf2e9170
+push $Nf173950
+ Shuffle {
+  red black
+  blue black
+  black black
+  white black
+  red2 black
+  green2 black
+  name Shuffle2
+  xpos -90
+  ypos -120
+ }
+ Merge2 {
+  inputs 2
+  operation {{Merge1.operation}}
+  bbox {{Merge4.bbox}}
+  Achannels {-rgba.red rgba.green -rgba.blue chroma_alpha.green}
+  Bchannels {-rgba.red rgba.green -rgba.blue rgba.alpha}
+  output {-rgba.red rgba.green -rgba.blue chroma_alpha.green}
+  mix {{parent.Merge1.mix}}
+  name Merge2
+  xpos -90
+  ypos -64
+ }
+ Remove {
+  channels alpha
+  name Remove2
+  xpos 45
+  ypos -64
+ }
+push $Nf2e46e0
+push $Nf5b6e60
+ Shuffle {
+  green black
+  blue black
+  black black
+  white black
+  red2 black
+  green2 black
+  name Shuffle1
+  xpos -90
+  ypos -242
+ }
+ Merge2 {
+  inputs 2
+  bbox {{Merge4.bbox}}
+  Achannels {rgba.red -rgba.green -rgba.blue chroma_alpha.red}
+  Bchannels {rgba.red -rgba.green -rgba.blue rgba.alpha}
+  output {rgba.red -rgba.green -rgba.blue chroma_alpha.red}
+  name Merge1
+  xpos -90
+  ypos -186
+ }
+ Remove {
+  channels alpha
+  name Remove1
+  xpos 45
+  ypos -186
+ }
+ Dot {
+  name Dot8
+  xpos 783
+  ypos -172
+ }
+ Merge2 {
+  inputs 3+1
+  operation plus
+  Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  also_merge all
+  name Merge4
+  xpos 749
+  ypos -58
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  channels chroma_alpha
+  name Copy1
+  xpos 749
+  ypos 112
+ }
+ Output {
+  name Output1
+  xpos 749
+  ypos 238
+ }
+end_group

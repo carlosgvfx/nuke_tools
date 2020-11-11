@@ -1,0 +1,31 @@
+set cut_paste_input [stack 0]
+version 11.3 v5
+push $cut_paste_input
+TimeOffset {
+ time_offset {{-parent.SET_FRAME.knob.first_frame}}
+ time ""
+ name TimeOffset7
+ selected true
+ xpos -774
+ ypos -49
+}
+TimeOffset {
+ time_offset 1009
+ time ""
+ name TimeOffset8
+ selected true
+ xpos -774
+ ypos 83
+}
+NoOp {
+ inputs 0
+ name SET_FRAME
+ selected true
+ xpos -907
+ ypos -49
+ addUserKnob {20 User}
+ addUserKnob {3 first_frame l Frame}
+ first_frame 1676
+ addUserKnob {22 SetThisFrame T "node = nuke.thisNode()\nnode\['first_frame'].setValue(nuke.frame()) " +STARTLINE}
+}
+

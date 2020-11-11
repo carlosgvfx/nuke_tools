@@ -1,0 +1,77 @@
+set cut_paste_input [stack 0]
+version 10.0 v5
+push $cut_paste_input
+Group {
+ name ABA_cropmask
+ selected true
+ xpos 11165
+ ypos 3023
+ addUserKnob {20 FilmMask}
+ addUserKnob {22 documentation l Documentation t "Display node's wiki page in browser" T "__import__('dnnuke.utils.asst', fromlist=\['openDocs']).openDocs(nuke.thisNode())" +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {4 maskName l Mask M {1.33 1.34 1.66 1.77 1.85 2.35 2.40 S35 "" ""}}
+ maskName 2.40
+ addUserKnob {6 applyMask l Apply t "Apply mask or not." -STARTLINE}
+ applyMask true
+ addUserKnob {41 reformat l "Crop To Mask" -STARTLINE T Crop1.reformat}
+ addUserKnob {7 areaScale l "Area Scale"}
+ areaScale 0.878
+ addUserKnob {12 position l Position}
+ addUserKnob {7 soundtrack l Soundtrack R 0 2048}
+ addUserKnob {7 aspectRatio l "Aspect Ratio" R 0.1 2}
+ aspectRatio 1
+ addUserKnob {7 maskRatio l INVISIBLE +INVISIBLE}
+ maskRatio {{"\[python -execlocal ratioName\\ =\\ nuke.thisNode()\\\['maskName'\\].value()\\ntry:\\n    ret\\ =\\ float(\\ ratioName\\ )\\nexcept:\\n    ret\\ =\\ 2.35]"}}
+ addUserKnob {7 st l INVISIBLE +INVISIBLE}
+ st {{"\[python 0\\ if\\ nuke.thisNode()\\\[\\\"maskName\\\"\\].value()\\ ==\\ \\\"S35\\\"\\ else\\ nuke.thisNode()\\\[\\\"soundtrack\\\"\\].value()]"}}
+ addUserKnob {26 ""}
+ addUserKnob {3 borderWidth l "Border width"}
+ borderWidth 4
+ addUserKnob {6 applyBorder l Apply t "Apply the border or not." -STARTLINE}
+ addUserKnob {19 borderColour l "Border colour"}
+ borderColour {1 1 1 1}
+ addUserKnob {6 borderColour_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+}
+ Rectangle {
+  inputs 0
+  area {{"Rectangle2.area.x - parent.borderWidth * parent.aspectRatio"} {"Rectangle2.area.y - parent.borderWidth"} {"Rectangle2.area.r + parent.borderWidth * parent.aspectRatio"} {"Rectangle2.area.t + parent.borderWidth"}}
+  color {{parent.borderColour} {parent.borderColour} {parent.borderColour} {parent.borderColour}}
+  name Rectangle1
+  xpos -570
+  ypos 120
+ }
+ Rectangle {
+  area {{Crop1.box} {Crop1.box} {Crop1.box} {Crop1.box}}
+  color {0 0 0 0}
+  name Rectangle2
+  xpos -570
+  ypos 146
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos -449
+  ypos 59
+ }
+ Crop {
+  box {{"int(((width-st)/2.0 + st + position.x) - ((width - st) * areaScale)/2.0) "} {"int( ((height/2) + position.y) - (((width - st) * (areaScale/aspectRatio))/maskRatio)/2.0 )"} {"int( ((width-st)/2.0 + st + position.x) + ((width - st) * areaScale)/2.0 )"} {"int( ((height/2.0) + position.y) + (((width - st) * (areaScale/aspectRatio))/maskRatio)/2.0 )"}}
+  name Crop1
+  selected true
+  xpos -449
+  ypos 120
+  disable {{!parent.applyMask}}
+ }
+ Merge2 {
+  inputs 2
+  operation matte
+  name Merge1
+  xpos -449
+  ypos 146
+  disable {{"!parent.applyBorder || parent.reformat"}}
+ }
+ Output {
+  name Output1
+  xpos -449
+  ypos 204
+ }
+end_group

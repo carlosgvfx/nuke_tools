@@ -1,0 +1,1224 @@
+set cut_paste_input [stack 0]
+version 11.3 v5
+BackdropNode {
+ inputs 0
+ name BackdropNode1
+ tile_color 0x8e388eff
+ note_font_size 42
+ selected true
+ xpos -71
+ ypos 375
+ bdwidth 1132
+ bdheight 336
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode2
+ tile_color 0xff0000ff
+ note_font_size 62
+ selected true
+ xpos -910
+ ypos 368
+ bdwidth 550
+ bdheight 374
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode3
+ tile_color 0x730977b2
+ label "overscan format"
+ note_font_size 62
+ selected true
+ xpos 908
+ ypos 2479
+ bdwidth 489
+ bdheight 161
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode4
+ tile_color 0x666666ff
+ label plate
+ note_font_size 62
+ selected true
+ xpos -24
+ ypos 930
+ bdwidth 263
+ bdheight 290
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode5
+ tile_color 0x15752b32
+ label "lens distort"
+ note_font_size 62
+ selected true
+ xpos 905
+ ypos 2899
+ bdwidth 503
+ bdheight 190
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode6
+ tile_color 0x4f4f4fff
+ label "GREY renders"
+ note_font_size 62
+ selected true
+ xpos 975
+ ypos 1642
+ bdwidth 649
+ bdheight 314
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode7
+ tile_color 0x9800ff
+ label roto
+ note_font_size 62
+ selected true
+ xpos -425
+ ypos 1655
+ bdwidth 331
+ bdheight 310
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode8
+ tile_color 0x4c4c4cff
+ label ref
+ note_font_size 62
+ selected true
+ xpos 550
+ ypos 4076
+ bdwidth 358
+ bdheight 282
+}
+push $cut_paste_input
+Reformat {
+ format {{{parent.ReadRdo.READ.format}}}
+ name Layout_Reformat
+ label "<b>DO NOT TOUCH"
+ note_font "DejaVu Sans"
+ selected true
+ xpos 1462
+ ypos 1743
+}
+Dot {
+ inputs 0
+ name Dot4
+ tile_color 0xff
+ note_font_size 40
+ selected true
+ xpos 113
+ ypos 1124
+}
+set N9d0cac0 [stack 0]
+Dot {
+ name Dot1
+ tile_color 0xff
+ note_font_size 40
+ selected true
+ xpos 113
+ ypos 1749
+}
+set N9d113a0 [stack 0]
+Dot {
+ name Dot2
+ tile_color 0xff
+ note_font_size 40
+ selected true
+ xpos -266
+ ypos 1749
+}
+Primatte3 {
+ data { 5
+    42399 35938 19255
+    65552
+    0 5
+    30234 30234 30234 0
+    1 1 1 1 1 1 7128.47 1 1 10354 1 1404.17 568.513 1201.31 1 1 11690 1 1 796.209 1 1 1 1 286.876 15818.2 1 1 1 161.716 2969.37 1 21031.9 1 1 1 1 1 2610.57 1 1 1 1 677.715 819.15 1 1 1 2989.23 1151.97 225.984 55752 67883.6 110388 1 1 1 3023.75 18724 24315.2 1756.28 38.5835 766.157 1 1 1
+    130560 130560 32632.2 42881 130560 130560 130560 130560 130560 126628 130560 130560 6812.81 130560 130560 130560 12950 52202.3 130560 130560 130560 130560 130560 79940.4 130560 25907.9 130560 130560 130560 130560 17864.4 20715.4 21330.4 130560 130560 130560 130560 130560 8904.31 106739 40238.4 130560 130560 130560 130560 130560 130560 130560 39346.9 130560 51779.9 130560 68988.1 110388 130560 130560 130560 130560 45574.4 24315.2 9781.69 33754.1 20915 130560 130560 130560
+    130560 130560 32632.2 42881 130560 130560 130560 130560 130560 126628 130560 130560 20603.7 130560 130560 130560 30496.2 52202.3 130560 130560 130560 130560 130560 79940.4 130560 29659.9 130560 130560 130560 130560 34081.6 20715.4 74659.7 130560 130560 130560 130560 130560 40409.4 106739 40238.4 130560 130560 130560 130560 130560 130560 130560 39346.9 130560 51779.9 130560 130560 110388 130560 130560 130560 130560 130560 52204.7 18135.6 33754.1 20915 130560 130560 130560
+    -0.100037 -1.81946e+14 -1.81946e+14 4588.48 1.05725e+14 1.05725e+14
+    -0.100037 -2.22551e+14 -2.22551e+14 3225.99 5.48576e+13 5.48576e+13
+    -0.100037 -2.22551e+14 -2.22551e+14 -2607.23 -4.42051e+13 -4.42051e+13
+    -0.100037 -2.22551e+14 -2.22551e+14 -3969.72 -6.76616e+13 -6.76616e+13
+    -0.0996704 -1.81946e+14 -1.81946e+14 3969.72 9.70156e+13 9.70156e+13
+    -0.100159 -2.22551e+14 -2.22551e+14 2607.23 4.4205e+13 4.4205e+13
+    -28.75 -2.22551e+14 -2.22551e+14 815754 -5.48576e+13 -5.48576e+13
+    -28.75 -2.22551e+14 -2.22551e+14 425105 -7.83141e+13 -7.83141e+13
+    -1.35478e+11 -5.11902e+11 -1.17456e+13 -4.08742e+11 1.12023e+12 1.73032e+13
+    -0.183594 -4.06321e+14 -4.06321e+14 5417.89 9.15155e+13 9.15155e+13
+    -0.183105 -4.06321e+14 -4.06321e+14 752.075 1.32361e+13 1.32361e+13
+    -8.48839e+08 -4.06322e+14 -4.06322e+14 -1.60293e+09 -1.66084e+14 -1.66084e+14
+    -139.75 -8.02098e+12 -8.02098e+12 -1.31837e+07 1.82695e+13 1.82695e+13
+    -0.182495 -4.06321e+14 -4.06321e+14 -3769.57 -6.45764e+13 -6.45764e+13
+    -41.375 -9.86681e+13 -9.86681e+13 2.53444e+06 3.06003e+13 3.06003e+13
+    -3.30085e+12 -6.61185e+13 -7.56939e+13 5.98253e+12 1.59156e+14 1.4768e+14
+    -616 -4.06321e+14 -4.06321e+14 -3.35187e+07 1.34068e+14 1.34068e+14
+    -0.182739 -4.06322e+14 -4.06322e+14 -2646.05 -4.52514e+13 -4.52514e+13
+    -0.182251 -2.48786e+14 -2.48786e+14 3769.57 1.52257e+14 1.52257e+14
+    -0.183594 -4.06321e+14 -4.06321e+14 -1721.89 -2.93168e+13 -2.93168e+13
+    -9.78552e+09 -2.05932e+11 -4.08037e+12 -6.02607e+10 8.9948e+11 1.50465e+12
+    -0.183594 -5.00702e+13 -5.00702e+13 -752.075 4.99368e+13 4.99368e+13
+    -8.93847e+10 -2.35674e+13 -2.69805e+13 2.07635e+12 7.98417e+12 1.4497e+13
+    -5.77731e+10 -4.06321e+14 -4.06321e+14 1.15441e+12 -1.85409e+14 -1.85409e+14
+    -2.43336e+10 -9.76926e+13 -2.09746e+14 -3.67123e+11 2.78028e+14 2.63463e+14
+    -0.236084 -5.24559e+14 -5.24559e+14 -1132.05 -1.83673e+13 -1.83673e+13
+    -330.383 -5.24559e+14 -5.24559e+14 -2.90337e+07 1.27774e+14 1.27774e+14
+    -193 -5.24559e+14 -5.24559e+14 1.76272e+07 -1.13136e+14 -1.13136e+14
+    -1.80308e+08 -3.2852e+11 -1.84204e+12 -1.41296e+10 6.32546e+11 4.01369e+12
+    -283.617 -5.24559e+14 -5.24559e+14 2.48341e+07 -1.27774e+14 -1.27774e+14
+    -9.05196e+07 -3.27161e+12 -9.8942e+12 2.37404e+10 3.65202e+13 2.04308e+13
+    -1.74262e+12 -4.43512e+14 -4.43512e+14 4.48384e+13 -1.97886e+14 -1.97886e+14
+    -3.9977e+07 -1.15015e+13 -7.75922e+13 -1.62462e+12 5.2741e+13 1.28016e+14
+    -0.183594 -4.06321e+14 -4.06321e+14 6413.54 1.08849e+14 1.08849e+14
+    -0.183594 -4.06322e+14 -4.06322e+14 -2588.16 -4.41089e+13 -4.41089e+13
+    -882688 -4.06322e+14 -4.06322e+14 -1.77909e+10 -1.59371e+14 -1.59371e+14
+    -7.07812 -4.20016e+13 -4.20016e+13 -516894 5.83069e+13 5.83069e+13
+    -0.182495 -4.06321e+14 -4.06321e+14 977.072 1.68151e+13 1.68151e+13
+    -211 -4.06321e+14 -4.06321e+14 7.48615e+06 -3.614e+13 -3.614e+13
+    -3.68134e+10 -2.08235e+14 -3.94084e+14 5.21318e+12 -2.24708e+14 -1.45479e+14
+    -42496 -4.98512e+12 -2.26234e+13 -5.18256e+09 5.16298e+13 9.18817e+12
+    -0.100098 -2.22551e+14 -2.22551e+14 1823.86 3.10347e+13 3.10347e+13
+    -0.100098 -2.22551e+14 -2.22551e+14 2031.49 3.46091e+13 3.46091e+13
+    -80.9688 -2.22551e+14 -2.22551e+14 5.44607e+06 -7.68878e+13 -7.68878e+13
+    -0.100098 -2.72007e+12 -2.72007e+12 -668.994 4.09315e+12 4.09315e+12
+    -0.100037 -2.22551e+14 -2.22551e+14 -3976.63 -6.76582e+13 -6.76582e+13
+    -298 -6.12378e+12 -1.16829e+13 2.80395e+07 1.22787e+11 1.91822e+13
+    -3.30301e+07 -1.80334e+12 -7.22607e+12 7.17747e+12 -7.32251e+12 7.1124e+12
+    -772096 -4.06321e+14 -4.06321e+14 -7.23645e+10 1.41688e+14 1.41688e+14
+    -0.183838 -4.06321e+14 -4.06321e+14 -3814.88 -6.49258e+13 -6.49258e+13
+    -41514 -4.06321e+14 -4.06321e+14 -3.62455e+09 1.29666e+14 1.29666e+14
+    -0.18335 -4.06321e+14 -4.06321e+14 -2175.19 -3.69364e+13 -3.69364e+13
+    -5.41303e+08 -2.17354e+11 -2.32507e+12 -5.70883e+10 -6.19594e+11 3.19946e+12
+    -4.62766e+06 -6.63833e+13 -2.32352e+14 4.05673e+11 -6.99261e+13 -8.73527e+13
+    -312320 -1.01384e+12 -3.06611e+12 -1.25545e+10 1.49342e+13 6.31443e+12
+    -1.15999e+07 -4.06321e+14 -4.06321e+14 2.47491e+11 -1.65734e+14 -1.65734e+14
+    -1.3353e+07 -1.83107e+14 -5.24559e+14 -6.79247e+11 2.63492e+14 2.12706e+14
+    -0.234863 -5.24559e+14 -5.24559e+14 395.246 7.03222e+12 7.03222e+12
+    -0.234375 -5.24559e+14 -5.24559e+14 2538.13 4.37434e+13 4.37434e+13
+    -160.5 -5.24559e+14 -5.24559e+14 1.49629e+07 -1.033e+14 -1.033e+14
+    -1.86704e+08 -1.0078e+12 -4.40015e+12 -1.52541e+11 4.93475e+12 5.97831e+12
+    -0.23584 -2.09736e+14 -2.09736e+14 -445.585 2.41923e+14 2.41923e+14
+    -8.4037e+09 -1.53325e+14 -1.53325e+14 3.28516e+11 1.62798e+14 1.62798e+14
+    -6.35895e+12 -2.77178e+14 -5.24559e+14 -1.80364e+13 -1.60703e+14 -2.47942e+14
+    61160 -1.41834e+14 -4.06321e+14 -1.88908e+08 2.6324e+14 1.51402e+14
+    -0.182251 -4.06321e+14 -4.06321e+14 2100.59 3.614e+13 3.614e+13
+    -0.183228 -4.06322e+14 -4.06322e+14 -977.072 -1.68151e+13 -1.68151e+13
+    -123.25 -4.06321e+14 -4.06321e+14 9.39292e+06 -8.66619e+13 -8.66619e+13
+    -82944 -8.51841e+12 -2.00602e+13 1.56601e+09 4.11149e+13 2.71749e+13
+    -0.183594 -1.62461e+14 -1.62461e+14 2588.16 -5.01228e+13 -5.01228e+13
+    -6.24718e+08 -3.94085e+14 -3.94085e+14 -1.49848e+11 -1.09827e+14 -1.09827e+14
+    -8.86047e+07 -2.14701e+14 -4.06321e+14 3.59162e+12 -1.63646e+14 -1.78696e+14
+    -1.00812e+09 -7.56724e+13 -1.62469e+14 -1.32893e+11 2.53805e+14 2.30686e+14
+    -0.18335 -4.06321e+14 -4.06321e+14 -78.2249 -8.6789e+11 -8.6789e+11
+    -256 -4.06321e+14 -4.06321e+14 -1.74909e+07 1.05619e+14 1.05619e+14
+    -151.125 -4.06321e+14 -4.06321e+14 8.30415e+06 -1.00994e+14 -1.00994e+14
+    -80128 -5.3891e+11 -1.6298e+12 -1.2251e+10 4.43544e+12 9.00999e+11
+    -221 -4.06321e+14 -4.06321e+14 -1.21343e+06 -1.29666e+14 -1.29666e+14
+    -6.96517e+07 -1.15058e+12 -6.63844e+12 -2.9076e+10 3.12396e+11 4.13764e+12
+    -5.09204e+11 -5.61268e+13 -1.96453e+14 -1.97258e+13 1.79162e+14 1.25351e+13
+    -0.100098 -2.22551e+14 -2.22551e+14 3186.35 5.44913e+13 5.44913e+13
+    -0.100159 -2.22551e+14 -2.22551e+14 -3357.87 -5.70056e+13 -5.70056e+13
+    -16.1875 -4.4755e+13 -4.4755e+13 -335877 5.37355e+13 5.37355e+13
+    -0.100342 -2.22551e+14 -2.22551e+14 668.994 1.11525e+13 1.11525e+13
+    -774144 -6.82109e+11 -5.90565e+12 -5.91229e+09 6.25916e+12 5.00432e+12
+    -2088 -2.80083e+12 -9.80332e+12 2.39212e+08 -9.68387e+12 1.01209e+13
+    -1572 -1.75135e+12 -2.00498e+12 1.50667e+08 1.57932e+12 2.9206e+12
+    -80.5312 -2.22551e+14 -2.22551e+14 4.95386e+06 -8.75403e+13 -8.75403e+13
+    -1.25445e+12 -3.38246e+12 -4.89924e+13 4.2357e+12 9.34374e+12 5.88067e+13
+    -0.236328 -5.24559e+14 -5.24559e+14 5971.18 1.00899e+14 1.00899e+14
+    -0.236328 -5.24559e+14 -5.24559e+14 445.585 8.50718e+12 8.50718e+12
+    -9.32753e+08 -5.24559e+14 -5.24559e+14 4.85979e+10 -1.97166e+14 -1.97166e+14
+    -6944 -8.68636e+12 -8.68636e+12 -5.23111e+08 1.12479e+13 1.12479e+13
+    -0.234863 -5.24559e+14 -5.24559e+14 -2538.13 -4.37434e+13 -4.37434e+13
+    -61184 -2.08039e+14 -2.08039e+14 2.79991e+09 1.72636e+14 1.72636e+14
+    -1.82877e+13 -2.27295e+14 -4.30155e+14 6.52159e+13 -2.11866e+14 -1.88179e+14
+    61152 -1.03714e+14 -2.97117e+14 -1.24609e+08 1.78261e+14 1.23406e+14
+    -0.164307 -3.63425e+14 -3.63425e+14 4735.14 8.0421e+13 8.0421e+13
+    -0.163818 -3.63425e+14 -3.63425e+14 -3116.84 -5.29811e+13 -5.29811e+13
+    -110.75 -3.63425e+14 -3.63425e+14 -2.24338e+06 -1.13403e+14 -1.13403e+14
+    -6.32812 -7.68147e+13 -7.68147e+13 130861 7.27063e+13 7.27063e+13
+    -0.164307 -3.63425e+14 -3.63425e+14 3116.84 5.29812e+13 5.29812e+13
+    -53760 -3.63425e+14 -3.63425e+14 2.71602e+09 -8.0421e+13 -8.0421e+13
+    -3.1785e+06 -1.92034e+14 -3.63425e+14 -5.10934e+10 -1.94219e+14 -1.40843e+14
+    -1.6763e+09 -4.61607e+12 -4.49766e+13 -3.62628e+11 2.14612e+13 7.05183e+13
+    -0.164551 -3.63425e+14 -3.63425e+14 2798.49 4.73202e+13 4.73202e+13
+    -0.164551 -3.63425e+14 -3.63425e+14 3341.51 5.65276e+13 5.65276e+13
+    -106752 -3.63425e+14 -3.63425e+14 7.11424e+09 -1.26222e+14 -1.26222e+14
+    -126.25 -2.84693e+12 -2.84693e+12 -1.92912e+07 5.81372e+12 5.81372e+12
+    -0.164307 -3.63425e+14 -3.63425e+14 -6032.79 -1.02448e+14 -1.02448e+14
+    -109568 -1.20754e+13 -2.30373e+13 5.50593e+09 4.79503e+13 2.79505e+13
+    -5.9971e+12 -9.96179e+12 -3.99174e+13 2.48092e+13 2.70075e+13 4.83447e+13
+    -491 -3.63425e+14 -3.63425e+14 -4.61314e+07 1.07742e+14 1.07742e+14
+    -0.164307 -3.63425e+14 -3.63425e+14 -4414.5 -7.50079e+13 -7.50079e+13
+    -26.4688 -2.22521e+14 -2.22521e+14 -2.54648e+06 1.89548e+13 1.89548e+13
+    -0.164307 -3.63425e+14 -3.63425e+14 -221.933 -3.89421e+12 -3.89421e+12
+    -2.2232e+09 -2.54089e+11 -4.07867e+12 4.74454e+10 2.23999e+12 3.90319e+12
+    -3448 -1.82993e+13 -6.40503e+13 3.93038e+08 -6.32198e+13 6.60832e+13
+    -7.73325e+06 -3.44842e+12 -3.94783e+12 7.99406e+11 1.15793e+11 2.91202e+12
+    -7.25811e+06 -3.63425e+14 -3.63425e+14 2.64374e+11 -1.53662e+14 -1.53662e+14
+    -3.74676e+11 -3.93769e+13 -2.42194e+14 -3.15921e+11 9.203e+13 2.3363e+14
+    -0.270996 -6.05708e+14 -6.05708e+14 2106.38 3.63476e+13 3.63476e+13
+    -0.270996 -6.05708e+14 -6.05708e+14 4249.27 7.30588e+13 7.30588e+13
+    -149504 -6.05708e+14 -6.05708e+14 1.25687e+10 -1.67851e+14 -1.67851e+14
+    -1.4133e+07 -1.87945e+12 -3.48457e+12 1.79957e+10 8.40071e+12 4.47002e+12
+    -0.270996 -6.05708e+14 -6.05708e+14 -4249.27 -7.30588e+13 -7.30588e+13
+    -2.11793e+08 -7.2396e+13 -7.2396e+13 8.71458e+10 3.93263e+13 3.93263e+13
+    -1.13705e+14 -2.70607e+14 -5.12124e+14 -1.24299e+14 -1.71387e+14 -2.2539e+14
+    -1 -1 -1 -1
+    -1 -1 999999 999999
+    -1 -1 -1 -1
+    0.05 1.732 1.732
+    0.05 1.732 1.732
+    0.05 0.866 0.866
+    0.05 0.866 0.866
+    0.05 0.866 0.866
+    0.05 0.866 0.866
+    0.05 0.866 0.866
+    0.05 0.866 0.866
+  }
+
+ primEdgedata { 5
+    42399 35938 19255
+    65552
+    0 5
+    30234 30234 30234 0
+    1 1 1 1 1 1 7128.47 1 1 10354 1 1404.17 568.513 1201.31 1 1 11690 1 1 796.209 1 1 1 1 286.876 15818.2 1 1 1 161.716 2969.37 1 21031.9 1 1 1 1 1 2610.57 1 1 1 1 677.715 819.15 1 1 1 2989.23 1151.97 225.984 55752 67883.6 110388 1 1 1 3023.75 18724 24315.2 1756.28 38.5835 766.157 1 1 1
+    130560 130560 32632.2 42881 130560 130560 130560 130560 130560 126628 130560 130560 6812.81 130560 130560 130560 12950 52202.3 130560 130560 130560 130560 130560 79940.4 130560 25907.9 130560 130560 130560 130560 17864.4 20715.4 21330.4 130560 130560 130560 130560 130560 8904.31 106739 40238.4 130560 130560 130560 130560 130560 130560 130560 39346.9 130560 51779.9 130560 68988.1 110388 130560 130560 130560 130560 45574.4 24315.2 9781.69 33754.1 20915 130560 130560 130560
+    130560 130560 32632.2 42881 130560 130560 130560 130560 130560 126628 130560 130560 20603.7 130560 130560 130560 30496.2 52202.3 130560 130560 130560 130560 130560 79940.4 130560 29659.9 130560 130560 130560 130560 34081.6 20715.4 74659.7 130560 130560 130560 130560 130560 40409.4 106739 40238.4 130560 130560 130560 130560 130560 130560 130560 39346.9 130560 51779.9 130560 130560 110388 130560 130560 130560 130560 130560 52204.7 18135.6 33754.1 20915 130560 130560 130560
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    -1 -1 -1 -1
+    -1 -1 999999 999999
+    -1 -1 -1 -1
+    0.05 1.732 1.732
+    0.05 1.732 1.732
+    0.05 0.866 0.866
+    0.05 0.866 0.866
+    0.05 0.866 0.866
+    0.05 0.866 0.866
+    0.05 0.866 0.866
+    0.05 0.866 0.866
+  }
+
+ primBodydata { 5
+    42399 35938 19255
+    65552
+    0 5
+    30234 30234 30234 0
+    1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+    130560 130560 32632.2 42881 130560 130560 130560 130560 130560 126628 130560 130560 6812.81 130560 130560 130560 12950 52202.3 130560 130560 130560 130560 130560 79940.4 130560 25907.9 130560 130560 130560 130560 17864.4 20715.4 21330.4 130560 130560 130560 130560 130560 8904.31 106739 40238.4 130560 130560 130560 130560 130560 130560 130560 39346.9 130560 51779.9 130560 68988.1 43020.8 130560 130560 130560 130560 45574.4 17524.2 9781.69 33754.1 20915 130560 130560 130560
+    130560 130560 32632.2 42881 130560 130560 130560 130560 130560 126628 130560 130560 20603.7 130560 130560 130560 30496.2 52202.3 130560 130560 130560 130560 130560 79940.4 130560 29659.9 130560 130560 130560 130560 34081.6 20715.4 74659.7 130560 130560 130560 130560 130560 40409.4 106739 40238.4 130560 130560 130560 130560 130560 130560 130560 39346.9 130560 51779.9 130560 130560 51641.5 130560 130560 130560 130560 130560 52204.7 18135.6 33754.1 20915 130560 130560 130560
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    -1 -1 -1 -1
+    -1 -1 999999 999999
+    -1 -1 -1 -1
+    0.05 1.732 1.732
+    0.05 1.732 1.732
+    0.05 0.866 0.866
+    0.05 0.866 0.866
+    0.05 0.866 0.866
+    0.05 0.866 0.866
+    0.05 0.866 0.866
+    0.05 0.866 0.866
+  }
+
+ crop {0 0 2580 2160}
+ "Adjust Lighting" 0
+ "Hybrid Matte" 0
+ "Fine Tuning" 0
+ name Primatte1
+ selected true
+ xpos -294
+ ypos 1840
+}
+Blur {
+ channels rgba
+ size 4
+ name Blur1
+ label "size:\[value size]"
+ selected true
+ xpos -294
+ ypos 1886
+}
+push $N9d113a0
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 rgba.alpha
+ name Copy1
+ selected true
+ xpos 79
+ ypos 1886
+}
+Premult {
+ name Premult1
+ selected true
+ xpos 79
+ ypos 1972
+}
+push $N9d113a0
+Dot {
+ name Dot5
+ tile_color 0xff
+ note_font_size 40
+ selected true
+ xpos 308
+ ypos 1749
+}
+Dot {
+ name Dot9
+ tile_color 0xff
+ note_font_size 40
+ selected true
+ xpos 323
+ ypos 3333
+}
+Clamp {
+ channels rgba
+ maximum 5
+ name Clamp1
+ selected true
+ xpos 485
+ ypos 3330
+}
+Blur {
+ channels rgba
+ size 1500
+ name Blur3
+ label "size:\[value size]"
+ selected true
+ xpos 654
+ ypos 3324
+}
+Saturation {
+ saturation 0.85
+ name Saturation1
+ selected true
+ xpos 801
+ ypos 3330
+}
+Multiply {
+ channels rgba
+ value 0.07
+ name Multiply1
+ selected true
+ xpos 942
+ ypos 3330
+}
+ReadRdo {
+ inputs 0
+ name ReadRdo1
+ selected true
+ xpos 1334
+ ypos 1890
+ _project ded
+ _sequence cam
+ _entity ""
+ _publishType render
+ _publishName ""
+ _publishVersion ""
+ _publishedFile ""
+ _publishStatus ""
+ file ""
+ fileLabel ""
+ localizationPolicy off
+ link_format "1408 1249 0 0 1408 1249 2 "
+ link_proxy ""
+ link_proxy_format 0
+ link_first 1001
+ link_last 1155
+ link_frame ""
+ link_origfirst 1001
+ link_origlast 1155
+ slink_mov64_ycbcr_matrix {}
+ slink_mov64_metadata {}
+ slink_mov64_no_prefix {}
+ slink_mov64_match_meta_format {}
+ slink_mov64_decode_video_levels {}
+ slink_mov64_first_track_only {}
+ slink_args {}
+ slink_breakout {}
+ slink_r3d_sdk {}
+ slink_r3d_init {}
+ slink_Metadata {}
+ slink_r3d_rocket {}
+ slink_r3d_cuda {}
+ slink_hdr_blend_algorithm {}
+ slink_hdr_bias {}
+ slink_r3d_track {}
+ slink_r3d_decode_resolution {}
+ slink_r3d_rockect_custom_scale {}
+ slink_r3d_colorspace {}
+ slink_r3d_gamma_curve {}
+ slink_color_version {}
+ slink_r3d_kelvin {}
+ slink_r3d_tint {}
+ slink_r3d_iso {}
+ slink_r3d_flut {}
+ slink_r3d_shadow {}
+ slink_r3d_drx {}
+ slink_r3d_saturation {}
+ slink_r3d_contrast {}
+ slink_r3d_brightness {}
+ slink_r3d_exposure {}
+ slink_r3d_gain {}
+ slink_r3d_gain_panelDropped {}
+ slink_r3d_olpf {}
+ slink_r3d_denoise {}
+ slink_r3d_detail {}
+ slink_r3d_lggLift {}
+ slink_r3d_lggLift_panelDropped {}
+ slink_r3d_lggGamma {}
+ slink_r3d_lggGamma_panelDropped {}
+ slink_r3d_lggGain {}
+ slink_r3d_lggGain_panelDropped {}
+}
+ReadRdo {
+ inputs 0
+ name ReadRdo
+ selected true
+ xpos 1141
+ ypos 1758
+ _project ded
+ _sequence cam
+ _entity ""
+ _publishType render
+ _publishName ""
+ _publishVersion ""
+ _publishedFile ""
+ _publishStatus ""
+ file ""
+ fileLabel ""
+ localizationPolicy off
+ link_format "1408 1249 0 0 1408 1249 2 "
+ link_proxy ""
+ link_proxy_format 0
+ link_first 1001
+ link_last 1155
+ link_frame ""
+ link_origfirst 1001
+ link_origlast 1155
+ slink_mov64_ycbcr_matrix {}
+ slink_mov64_metadata {}
+ slink_mov64_no_prefix {}
+ slink_mov64_match_meta_format {}
+ slink_mov64_decode_video_levels {}
+ slink_mov64_first_track_only {}
+ slink_args {}
+ slink_breakout {}
+ slink_r3d_sdk {}
+ slink_r3d_init {}
+ slink_Metadata {}
+ slink_r3d_rocket {}
+ slink_r3d_cuda {}
+ slink_hdr_blend_algorithm {}
+ slink_hdr_bias {}
+ slink_r3d_track {}
+ slink_r3d_decode_resolution {}
+ slink_r3d_rockect_custom_scale {}
+ slink_r3d_colorspace {}
+ slink_r3d_gamma_curve {}
+ slink_color_version {}
+ slink_r3d_kelvin {}
+ slink_r3d_tint {}
+ slink_r3d_iso {}
+ slink_r3d_flut {}
+ slink_r3d_shadow {}
+ slink_r3d_drx {}
+ slink_r3d_saturation {}
+ slink_r3d_contrast {}
+ slink_r3d_brightness {}
+ slink_r3d_exposure {}
+ slink_r3d_gain {}
+ slink_r3d_gain_panelDropped {}
+ slink_r3d_olpf {}
+ slink_r3d_denoise {}
+ slink_r3d_detail {}
+ slink_r3d_lggLift {}
+ slink_r3d_lggLift_panelDropped {}
+ slink_r3d_lggGamma {}
+ slink_r3d_lggGamma_panelDropped {}
+ slink_r3d_lggGain {}
+ slink_r3d_lggGain_panelDropped {}
+}
+Merge2 {
+ inputs 2
+ also_merge all
+ name Merge1
+ selected true
+ xpos 1141
+ ypos 1890
+}
+Constant {
+ inputs 0
+ color 0.5
+ format {{{parent.Layout_Reformat.format}}}
+ name Constant1
+ label "\[value format]"
+ selected true
+ xpos 1472
+ ypos 2073
+}
+Merge2 {
+ inputs 2
+ also_merge all
+ name Merge3
+ selected true
+ xpos 1141
+ ypos 2102
+}
+set N9e921e0 [stack 0]
+add_layer {Z Z.alpha}
+Shuffle {
+ in Z
+ name Shuffle1
+ label "\[value in]"
+ selected true
+ xpos 937
+ ypos 2096
+}
+Grade {
+ channels rgba
+ blackpoint 12.66813469
+ whitepoint 209.9437103
+ name Grade1
+ selected true
+ xpos 937
+ ypos 2198
+}
+push $N9e921e0
+Grade {
+ inputs 1+1
+ add 0.085
+ name Grade2
+ selected true
+ xpos 1141
+ ypos 2198
+}
+Group {
+ name Matchtone1
+ help "From: Sample the color from the area you wish to match\n\nTo: sample the color to be matched\n\nDaniel Gonzalez Solozabal\nGONZO FX"
+ selected true
+ xpos 1141
+ ypos 3151
+ addUserKnob {20 User l Matchtone}
+ addUserKnob {18 Fromm l From}
+ Fromm {0.274341166 0.274341166 0.274341166}
+ addUserKnob {6 Fromm_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Fromm_panelDropped_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Fromm_panelDropped_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Fromm_panelDropped_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Fromm_panelDropped_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Fromm_panelDropped_1_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {18 Too l To}
+ Too {0.1263396889 0.07785815746 0.02410555072}
+ addUserKnob {6 Too_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Too_panelDropped_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Too_panelDropped_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Too_panelDropped_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Too_panelDropped_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Too_panelDropped_1_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {26 d l "" +STARTLINE T " \n"}
+ addUserKnob {41 which l Mix T mixalot.which}
+ addUserKnob {26 bh l " " T "\n "}
+ addUserKnob {26 Frim l "" +STARTLINE T "Daniel Gonzalez Solozabal   GONZO FX"}
+}
+ Input {
+  inputs 0
+  name Mask
+  xpos 439
+  ypos 196
+  number 1
+ }
+ Invert {
+  name Invertmask
+  xpos 397
+  ypos 300
+ }
+ Constant {
+  inputs 0
+  name blackass
+  xpos 507
+  ypos 315
+ }
+ Merge2 {
+  inputs 2
+  operation max
+  name Maxmaskl
+  xpos 397
+  ypos 338
+ }
+ Input {
+  inputs 0
+  name Input
+  selected true
+  xpos 310
+  ypos 170
+ }
+ Dot {
+  name Dot1
+  xpos 332
+  ypos 279
+ }
+set N9f0fb60 [stack 0]
+ Constant {
+  inputs 0
+  channels rgb
+  color {{parent.Too.r i} {parent.Too.g i} {parent.Too.b i} 0}
+  name To
+  xpos 3
+  ypos 243
+ }
+ Shuffle {
+  alpha white
+  name Shuffleto
+  xpos 3
+  ypos 338
+ }
+ Constant {
+  inputs 0
+  channels rgb
+  color {{parent.Fromm.r i} {parent.Fromm.g i} {parent.Fromm.b i} 0}
+  name From
+  xpos 87
+  ypos 240
+ }
+ Shuffle {
+  alpha white
+  name Shufflefrom
+  xpos 87
+  ypos 312
+ }
+ Merge2 {
+  inputs 2
+  operation divide
+  name divfromto
+  xpos 87
+  ypos 338
+ }
+push $N9f0fb60
+ Merge2 {
+  inputs 2
+  operation multiply
+  name multfromto
+  xpos 177
+  ypos 338
+ }
+ Keymix {
+  inputs 3
+  channels rgb
+  name Keymixmatchtone
+  xpos 287
+  ypos 338
+ }
+push $N9f0fb60
+ Dissolve {
+  inputs 2
+  which 0.6
+  name mixalot
+  xpos 321
+  ypos 444
+ }
+ Output {
+  name Output1
+  xpos 321
+  ypos 482
+ }
+end_group
+Unpremult {
+ name Unpremult1
+ selected true
+ xpos 1141
+ ypos 3251
+}
+Merge2 {
+ inputs 2
+ output {rgba.red rgba.green rgba.blue -rgba.alpha}
+ name Merge8
+ selected true
+ xpos 1141
+ ypos 3330
+}
+Premult {
+ name Premult2
+ selected true
+ xpos 1141
+ ypos 3398
+}
+Remove {
+ operation keep
+ channels rgba
+ name Remove1
+ selected true
+ xpos 1141
+ ypos 3472
+}
+Dot {
+ name Dot3
+ tile_color 0xff
+ note_font_size 40
+ selected true
+ xpos 1175
+ ypos 3587
+}
+Merge2 {
+ inputs 2
+ name Merge2
+ selected true
+ xpos 79
+ ypos 3587
+}
+Shuffle {
+ alpha black
+ name Shuffle2
+ tile_color 0xff
+ label "\[value in]"
+ selected true
+ xpos 79
+ ypos 3745
+}
+Crop {
+ box {0 0 2580 2160}
+ name Crop1
+ selected true
+ xpos 79
+ ypos 3877
+}
+push $N9d0cac0
+Group {
+ name DED_QT_compare
+ tile_color 0xff00ff
+ selected true
+ xpos -284
+ ypos 1121
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -1272
+  ypos 388
+ }
+ Dot {
+  name Dot14
+  note_font_size 40
+  xpos -1250
+  ypos 452
+ }
+set Na03f720 [stack 0]
+ Transform {
+  scale 0.9495
+  center {1290 1080}
+  name Transform3
+  tile_color 0xff00ff
+  selected true
+  xpos -1392
+  ypos 527
+ }
+ Reformat {
+  format "2580 2160 0 0 2580 2160 2 DED_reformat"
+  resize none
+  name Reformat40
+  xpos -1392
+  ypos 584
+ }
+ Colorspace {
+  colorspace_out AlexaV3LogC
+  name Colorspace9
+  xpos -1392
+  ypos 620
+ }
+ Clamp {
+  maximum 2
+  name Clamp2
+  xpos -1392
+  ypos 665
+ }
+ Reformat {
+  format "1920 1080 0 0 1920 1080 1 HD_1080"
+  filter Simon
+  name Reformat41
+  xpos -1392
+  ypos 731
+ }
+ Transform {
+  scale 1.0535
+  center {960 540}
+  filter Simon
+  black_outside false
+  name Transform5
+  xpos -1392
+  ypos 783
+ }
+ Crop {
+  box {0 117 1920 963}
+  name Crop7
+  xpos -1392
+  ypos 825
+ }
+ Colorspace {
+  colorspace_in AlexaV3LogC
+  name Colorspace10
+  xpos -1392
+  ypos 849
+ }
+ Reformat {
+  format "1920 1080 0 0 1920 1080 1 HD_1080"
+  filter Simon
+  black_outside true
+  name Reformat42
+  xpos -1392
+  ypos 900
+ }
+ Dot {
+  name Dot15
+  note_font_size 40
+  xpos -1370
+  ypos 973
+ }
+push $Na03f720
+ Reformat {
+  format "2580 2160 0 0 2580 2160 2 DED_reformat"
+  resize none
+  name Reformat37
+  xpos -1181
+  ypos 556
+ }
+ Colorspace {
+  colorspace_out AlexaV3LogC
+  name Colorspace7
+  xpos -1181
+  ypos 592
+ }
+ Clamp {
+  maximum 2
+  name Clamp1
+  xpos -1181
+  ypos 637
+ }
+ Reformat {
+  format "1920 1080 0 0 1920 1080 1 HD_1080"
+  filter Simon
+  name Reformat38
+  xpos -1181
+  ypos 703
+ }
+ Transform {
+  scale 1.0535
+  center {960 540}
+  filter Simon
+  black_outside false
+  name Transform4
+  xpos -1181
+  ypos 755
+ }
+ Crop {
+  box {0 117 1920 963}
+  name Crop5
+  xpos -1181
+  ypos 797
+ }
+ Colorspace {
+  colorspace_in AlexaV3LogC
+  name Colorspace8
+  xpos -1181
+  ypos 821
+ }
+ Reformat {
+  format "1920 1080 0 0 1920 1080 1 HD_1080"
+  filter Simon
+  black_outside true
+  name Reformat39
+  xpos -1181
+  ypos 872
+ }
+ Dot {
+  name Dot17
+  note_font_size 40
+  xpos -1159
+  ypos 976
+ }
+ Switch {
+  inputs 2
+  which {{"\[python nuke.thisNode().input(0).metadata('exr/postreformat')] == 1?1:0"}}
+  name Switch3
+  tile_color 0xff0000ff
+  xpos -1281
+  ypos 1051
+ }
+ ModifyMetaData {
+  metadata {
+   {remove exr/postreformat ""}
+  }
+  name ModifyMetaData3
+  xpos -1281
+  ypos 1108
+ }
+ Output {
+  name Output1
+  xpos -1281
+  ypos 1168
+ }
+ Output {
+  name Output2
+  xpos -1281
+  ypos 1268
+ }
+end_group
+

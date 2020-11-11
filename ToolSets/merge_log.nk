@@ -1,0 +1,81 @@
+set cut_paste_input [stack 0]
+version 10.0 v5
+BackdropNode {
+inputs 0
+name BackdropNode3
+tile_color 0x4bb2aab2
+note_font_size 62
+selected true
+xpos 4294
+ypos 5002
+bdwidth 367
+bdheight 467
+}
+Unpremult {
+inputs 0
+name Unpremult15
+selected true
+xpos 4314
+ypos 5234
+}
+dnLogLin {
+operation lin2log
+"log reference" 394
+"lin reference" 0.18
+"negative gamma" 0.5064
+"black level" 0.00947
+"dens per cv" 0.002
+name dnLogLin1
+selected true
+xpos 4314
+ypos 5287
+}
+Premult {
+name Premult2
+selected true
+xpos 4314
+ypos 5338
+}
+push $cut_paste_input
+Unpremult {
+name Unpremult16
+selected true
+xpos 4561
+ypos 5102
+}
+dnLogLin {
+operation lin2log
+"log reference" 394
+"lin reference" 0.18
+"negative gamma" 0.5064
+"black level" 0.00947
+"dens per cv" 0.002
+name dnLogLin2
+selected true
+xpos 4561
+ypos 5152
+}
+Premult {
+name Premult9
+selected true
+xpos 4561
+ypos 5203
+}
+Merge2 {
+inputs 2
+name Merge19
+selected true
+xpos 4561
+ypos 5338
+}
+dnLogLin {
+"log reference" 394
+"lin reference" 0.18
+"negative gamma" 0.5064
+"black level" 0.00947
+"dens per cv" 0.002
+name dnLogLin3
+selected true
+xpos 4561
+ypos 5429
+}

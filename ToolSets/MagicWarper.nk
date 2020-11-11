@@ -1,0 +1,251 @@
+set cut_paste_input [stack 0]
+version 10.5 v7
+push $cut_paste_input
+OFXcom.absoft.neatvideo_v2 {
+ TFRad 1
+ TFThreshold 100
+ TFAdaptive false
+ TFInterlaced false
+ DNP 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
+ NFP NTAyAPotAAAAAAAAAAAAAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPzMzMz8AAIA/AACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAABAAAA
+ LinearInputData true
+ name "Reduce Noise2"
+ selected true
+ xpos 8980
+ ypos -3986
+}
+Dot {
+ name Dot64
+ label Denoise
+ selected true
+ xpos 9014
+ ypos -3900
+}
+FilmLUT {
+ name FilmLUT3
+ selected true
+ xpos 8980
+ ypos -3844
+ disable true
+ vfield_file /tools/SARC/data/colsci/cubes/SARC_Film_EIZO_v01.cub
+ variables DN_FILM_CUBE
+}
+VectorGenerator {
+ motionEstimation Regularized
+ vectorDetailReg 1
+ strengthReg 1
+ Advanced 1
+ Tolerances 1
+ name VectorGenerator1
+ selected true
+ xpos 8980
+ ypos -3760
+}
+set N3bde81b0 [stack 0]
+Expression {
+ inputs 0
+ expr0 (0.5+x)/width
+ expr1 (0.5+y)/height
+ expr2 0
+ expr3 1
+ name Expression3
+ selected true
+ xpos 8653
+ ypos -3682
+}
+push $N3bde81b0
+Group {
+ inputs 2
+ name MagicWarper
+ selected true
+ xpos 8872
+ ypos -3682
+ addUserKnob {20 MagicWarper}
+ addUserKnob {41 documentation l Documentation T VectorAccumulator1.documentation}
+ addUserKnob {3 ref_frame l "reference frame"}
+ ref_frame 1009
+ addUserKnob {6 reverse t "Reverses the warping so that all of the images are aligned to the reference frame" -STARTLINE}
+ addUserKnob {41 allow_backtrack l "allow backtrack" -STARTLINE T VectorAccumulator1.allow_backtrack}
+ addUserKnob {41 uv_scale l "UV scale" T VectorAccumulator1.uv_scale}
+ addUserKnob {41 max_layer l "max layer" +INVISIBLE T VectorAccumulator1.max_layer}
+ addUserKnob {41 mode T VectorAccumulator1.mode}
+ addUserKnob {20 stabilise_options l "stabilise options" n 1}
+ addUserKnob {6 x_stabilise l x-stabilise t "Stabilise horizontally" -STARTLINE}
+ x_stabilise true
+ addUserKnob {6 y_stabilise l y-stabilise t "Stabilise vertically" -STARTLINE}
+ y_stabilise true
+ addUserKnob {20 endGroup n -1}
+}
+ Input {
+  inputs 0
+  name element
+  xpos 249
+  ypos 293
+  number 1
+ }
+set N86835c0 [stack 0]
+ Dot {
+  name Dot2
+  xpos 283
+  ypos 211
+ }
+ Input {
+  inputs 0
+  name vectors
+  xpos -184
+  ypos 146
+ }
+ VectorAccumulator {
+  inputs 1+1
+  ref_frame {{"abs(parent.reverse - parent.mode) ? frame : parent.ref_frame"}}
+  current_frame {{"abs(parent.reverse - parent.mode) ? parent.ref_frame : frame"}}
+  uv_scale {2 1}
+  name VectorAccumulator1
+  xpos -184
+  ypos 207
+ }
+ Input {
+  inputs 0
+  name sequence
+  xpos 112
+  ypos 543
+  number 2
+ }
+set N2e7ed430 [stack 0]
+push $N2e7ed430
+push $N86835c0
+ Switch {
+  inputs 2
+  which {{parent.mode}}
+  name Switch3
+  xpos 112
+  ypos 293
+ }
+ Switch {
+  inputs 2
+  which {{parent.reverse}}
+  name Switch6
+  xpos 2
+  ypos 293
+ }
+ Copy {
+  inputs 2
+  from0 forward.u
+  to0 forward.u
+  from1 forward.v
+  to1 forward.v
+  from2 backward.u
+  to2 backward.u
+  from3 backward.v
+  to3 backward.v
+  name Copy1
+  xpos -184
+  ypos 269
+ }
+set N1a126c10 [stack 0]
+ Expression {
+  channel0 {forward.u -forward.v}
+  expr0 "parent.mode == 1 ? forward.u * parent.x_stabilise : forward.u"
+  channel1 {-forward.u forward.v}
+  expr1 "parent.mode == 1 ? forward.v * parent.y_stabilise : forward.v"
+  channel2 {-rgba.red -rgba.green -rgba.blue none}
+  name Expression2
+  xpos -263
+  ypos 359
+ }
+ IDistort {
+  uv forward
+  uv_scale {{parent.uv_scale} {parent.uv_scale}}
+  name IDistort2
+  xpos -263
+  ypos 415
+  addUserKnob {20 User}
+ }
+push $N1a126c10
+ Expression {
+  channel0 {backward.u -backward.v}
+  expr0 "parent.mode == 1 ? backward.u * parent.x_stabilise : backward.u"
+  channel1 {-backward.u backward.v}
+  expr1 "parent.mode == 1 ? backward.v * parent.y_stabilise : backward.v"
+  channel2 {-rgba.red -rgba.green -rgba.blue none}
+  name Expression1
+  selected true
+  xpos -108
+  ypos 363
+ }
+ IDistort {
+  uv backward
+  uv_scale {{parent.uv_scale} {parent.uv_scale}}
+  name IDistort1
+  xpos -108
+  ypos 415
+  addUserKnob {20 User}
+ }
+ Switch {
+  inputs 2
+  which {{"abs(parent.reverse - parent.mode) ? (frame > parent.ref_frame) : (frame < parent.ref_frame)"}}
+  name Switch1
+  xpos -174
+  ypos 466
+ }
+set N150d0bc0 [stack 0]
+ Dot {
+  name Dot3
+  xpos -278
+  ypos 470
+ }
+ Dot {
+  name Dot4
+  xpos -278
+  ypos 601
+ }
+push $N150d0bc0
+push $N86835c0
+push $N2e7ed430
+ Switch {
+  inputs 2
+  which {{parent.reverse}}
+  name Switch5
+  xpos -27
+  ypos 543
+ }
+ Merge2 {
+  inputs 2
+  name Merge1
+  xpos -174
+  ypos 543
+ }
+ Switch {
+  inputs 2
+  which {{parent.mode}}
+  name Switch4
+  xpos -174
+  ypos 597
+ }
+push $N2e7ed430
+ Dot {
+  name Dot1
+  xpos 146
+  ypos 658
+ }
+ Switch {
+  inputs 2
+  which {{"\[exists parent.input0] && \[exists parent.input1]"}}
+  name Switch2
+  xpos -174
+  ypos 654
+ }
+ Output {
+  name Output1
+  xpos -174
+  ypos 698
+ }
+end_group
+Copy {
+ inputs 2
+ channels motion
+ name Copy15
+ selected true
+ xpos 8980
+ ypos -3599
+}

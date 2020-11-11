@@ -1,0 +1,66 @@
+set cut_paste_input [stack 0]
+version 8.0 v3
+push $cut_paste_input
+Expression {
+ expr0 "(sqrt((x-center.x) * (x-center.x) + (y-center.y) * (y-center.y) ) / size)"
+ name Expression3
+ selected true
+ xpos 2107
+ ypos 3692
+ addUserKnob {20 User}
+ addUserKnob {12 center}
+ center {610 502}
+ addUserKnob {7 size R 3 50}
+ size 176
+}
+push 0
+Expression {
+ inputs 1+1
+ expr0 "1-(sqrt((x-center.x) * (x-center.x) + (y-center.y) * (y-center.y) ) / size)"
+ maskChannelMask rgba.red
+ name Expression2
+ selected true
+ xpos 1967
+ ypos 3692
+ addUserKnob {20 User}
+ addUserKnob {12 center}
+ center {926 574}
+ addUserKnob {7 size R 3 50}
+ size 520
+}
+Expression {
+ inputs 0
+ temp_name0 dis
+ temp_expr0 "( sin(y / size ) + 1 ) / 2 *( cos(x / size ) + 1 ) / 2 "
+ expr0 dis
+ expr1 "sin(sqrt((x-center.x) * (x-center.x) + (y-center.y) * (y-center.y) ) /radiog)"
+ expr2 "(radio - sqrt( x * x +y *y ) ) / radio"
+ name Expression1
+ selected true
+ xpos 2220
+ ypos 3693
+ addUserKnob {20 User}
+ addUserKnob {12 center}
+ center {728 418}
+ addUserKnob {7 radiog R 1 100}
+ radiog 6.5
+ addUserKnob {7 radio R 100 1000}
+ radio 850
+ addUserKnob {16 size}
+ size 0.3
+}
+Expression {
+expr0 "sin( (atan(x-center.x, y-center.y) + offset) * size)"
+channel3 alpha
+name Expression6
+selected true
+xpos -12447
+ypos 13780
+addUserKnob {20 User}
+addUserKnob {7 offset}
+addUserKnob {12 center}
+center {1332.5 858.5}
+addUserKnob {7 size}
+size 21
+}
+

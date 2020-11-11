@@ -1,0 +1,50 @@
+set cut_paste_input [stack 0]
+version 8.0 v3
+Colorspace {
+ inputs 0
+ colorspace_out AlexaV3LogC
+ name Colorspace3
+ label "\[value colorspace_in] >> \[value colorspace_out]"
+ selected true
+ xpos 2703
+ ypos 5639
+}
+Premult {
+ name Premult3
+ selected true
+ xpos 2704
+ ypos 5696
+}
+Crop {
+ box {0 0 2150 1210}
+ crop false
+ name Crop1
+ selected true
+ xpos 2704
+ ypos 5744
+}
+push $cut_paste_input
+Colorspace {
+ colorspace_out AlexaV3LogC
+ name Colorspace4
+ label "\[value colorspace_in] >> \[value colorspace_out]"
+ selected true
+ xpos 2554
+ ypos 5803
+}
+Merge2 {
+ inputs 2
+ name Merge16
+ label "bbox:\[value bbox]"
+ selected true
+ xpos 2704
+ ypos 5803
+}
+Colorspace {
+ colorspace_in AlexaV3LogC
+ name Colorspace5
+ label "\[value colorspace_in] >> \[value colorspace_out]"
+ selected true
+ xpos 2704
+ ypos 5875
+}

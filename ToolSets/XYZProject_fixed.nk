@@ -1,0 +1,1248 @@
+set cut_paste_input [stack 0]
+version 9.0 v7
+push 0
+push 0
+push $cut_paste_input
+add_layer {__Pref __Pref.x __Pref.y __Pref.z}
+Group {
+inputs 3
+name XYZProject1
+knobChanged "\nif nuke.thisKnob().name() in 'inputChange':\n    def loopUP(currentN,stopClass) :\n        try :            \n            while currentN.Class() not in stopClass:        \n                if currentN.Class() not in stopClass :\n                    currentN = currentN.input(0)\n                else :\n                    pass\n                \n            nodeOBJ = currentN\n            return nodeOBJ.name()\n        except AttributeError:\n            return 'no_input'\n    \n    \n    this = nuke.thisNode()\n    camInput = loopUP(this.input(1),\['Camera2','ZenCamera'])\n    if not this\['lockFrame'].value():\n        this\['first_frame'].setValue(nuke.frame())\n    this.begin()\n    nuke.toNode('copyCam')\['camName'].setValue(camInput)\n    this.end()\n"
+selected true
+xpos 4149
+ypos -14273
+addUserKnob {20 User}
+addUserKnob {41 camName l "Cam Name" t "Name of the Camera to use for projection" T copyCam.camName}
+addUserKnob {26 ""}
+addUserKnob {41 in l "position pass" T Shuffle10.in}
+addUserKnob {41 first_frame l "frame to project" T FrameHold1.first_frame}
+addUserKnob {6 lockFrame l "lock proj frame" -STARTLINE}
+lockFrame true
+addUserKnob {26 ""}
+addUserKnob {41 uvSmooth l "UV Smooth" T Blur1.size}
+addUserKnob {14 colorDilate_growTexture l "Grow Texture" R 0 100}
+}
+Input {
+inputs 0
+name position
+xpos -462
+ypos 340
+}
+set N118b6360 [stack 0]
+Dot {
+name Dot5
+xpos -352
+ypos 344
+}
+Dot {
+name Dot7
+xpos -352
+ypos 1055
+}
+Dot {
+name Dot6
+xpos -352
+ypos 1134
+}
+Input {
+inputs 0
+name cam
+xpos -621
+ypos 355
+number 1
+}
+Camera2 {
+focal {{"\[value camName].focal"}}
+haperture {{"\[value camName].haperture"}}
+vaperture {{"\[value camName].vaperture"}}
+win_scale {{"\[value camName].win_scale"} {"\[value camName].win_scale"}}
+name copyCam
+label "\[value camName]\n"
+xpos -611
+ypos 434
+addUserKnob {20 DNeg}
+addUserKnob {26 _version l "" +STARTLINE +INVISIBLE T 1.0}
+addUserKnob {41 "horiz aperture" T haperture}
+addUserKnob {41 "vert aperture" T vaperture}
+addUserKnob {4 setApertureValues l "" t "Set aperture values based on registered camera sensor data. The 'read from file' knob needs to be disabled and any potential curves deleted." +STARTLINE M {"Set Aperture Values" "ALEXA XT/Anamorphic Open Gate" "ALEXA XT/Anamorphic Open Gate Unsqueezed" "ALEXA XT/Full Aperture" "ALEXA XT/16:9" "ALEXA XT/4:3" "ALEXA XT/Anamorphic 4:3" "ALEXA XT/Anamorphic 16:9" "Sony F65/4k" Extractions/f65c Extractions/aogc Extractions/a43c Extractions/a16c Extractions/sogc Extractions/s16c "Digital SLR/Full Frame" "Digital SLR/Full Frame Portrait" "Digital SLR/APS-C" "Digital SLR/APS-C Portrait" Generic/HD LatLong/360 LatLong/180}}
+addUserKnob {26 ""}
+addUserKnob {22 makeProjector l "Make Projector..." T "__import__('dnnuke.init.callbacks.on_user_create.tabs.camera', fromlist=\['makeProjectorNode']).makeProjectorNode()" +STARTLINE}
+addUserKnob {20 ivy_data +INVISIBLE}
+addUserKnob {1 data +INVISIBLE}
+data "\{\}"
+addUserKnob {20 user}
+addUserKnob {1 camName}
+camName Camera2
+addUserKnob {20 ivytab l Ivy}
+addUserKnob {26 spiderlabel l "Spider Query"}
+addUserKnob {1 ivy_job l Job}
+addUserKnob {1 ivy_shot l Shot -STARTLINE}
+addUserKnob {22 ivy_selectshot l "Select shot..." -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['selectShot']).selectShot()"}
+addUserKnob {1 ivy_type l Type}
+addUserKnob {22 ivy_selecttype l "Select type..." -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['selectType']).selectType()"}
+addUserKnob {1 ivy_name l Name}
+addUserKnob {6 ivy_regex l regex -STARTLINE}
+addUserKnob {4 ivy_versionquery l Version M {"" latest "latest approved" "latest element in pipe" "latest WIP" "latest pending" specific}}
+addUserKnob {3 ivy_vnum l vnum -STARTLINE +DISABLED}
+addUserKnob {22 ivy_autofill l Autofill T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['autofill']).autofill()" +STARTLINE}
+addUserKnob {22 ivy_clear l Clear -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['clearFields']).clearFields()"}
+addUserKnob {26 divider3 l "" +STARTLINE}
+addUserKnob {6 ivy_usemanualuri l "Use manual URI (clears individual fields)" +STARTLINE}
+addUserKnob {43 spider_uri l "Spider URI" +DISABLED}
+addUserKnob {22 updateButton l Update T "__import__('dnnuke.core.ivy.template.update', fromlist=\['updateNode']).updateNode(nuke.thisNode())" +STARTLINE}
+addUserKnob {22 testButton l Test -STARTLINE T "__import__('dnnuke.core.ivy.template.update',fromlist=\['test']).test(nuke.thisNode()\[\"spider_uri\"].value())"}
+addUserKnob {22 resetButton l "Reset non-spider knobs" -STARTLINE T "__import__('dnnuke.core.ivy.template.reset', fromlist=\['resetNode']).resetNode(nuke.thisNode())"}
+addUserKnob {22 copyButton l "Copy URI" -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['copyUri']).copyUri()"}
+addUserKnob {26 divider0 l "" +STARTLINE}
+addUserKnob {20 dbinfo l "DB Info" n 1}
+addUserKnob {1 twig_dnuuid l "Twig Id"}
+addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+addUserKnob {26 divider1 l "" +STARTLINE}
+addUserKnob {1 twigtype l "Twig Type"}
+addUserKnob {1 leaf_label l Leaf}
+addUserKnob {1 ivy_version l Version}
+addUserKnob {43 ivy_notes l Notes}
+addUserKnob {26 divider2 l "" +STARTLINE}
+addUserKnob {1 build_label l "Build Label"}
+addUserKnob {20 dbinfo l "DB Info" n -1}
+}
+FrameHold {
+first_frame 1003
+name FrameHold1
+xpos -621
+ypos 518
+addUserKnob {20 dneg l DNeg}
+addUserKnob {26 _version l "" +STARTLINE +INVISIBLE T 1.0}
+addUserKnob {22 documentation l Documentation -STARTLINE T nukescripts.start('http://dnet/x/PwBDBg')}
+addUserKnob {26 ""}
+addUserKnob {22 comp_first l "comp first" t "Set the hold frame to the comp first frame, a.k.a. in Nuke parlance, root.first_frame, or in Shotgun parlance, 'sg_head_in'" -STARTLINE T "__import__(\"dnnuke.init.callbacks.on_user_create.tabs.framehold\", fromlist=\[\"compFirstButton\"]).compFirstButton()"}
+addUserKnob {22 cut_in l "cut in" t "Set the hold frame to the cut in frame, which is the comp first frame plus head handles, or in Shotgun parlance, 'sg_cut_in'" -STARTLINE T "__import__(\"dnnuke.init.callbacks.on_user_create.tabs.framehold\", fromlist=\[\"cutInButton\"]).cutInButton()"}
+addUserKnob {22 cut_out l "cut out" t "Set the hold frame to the cut out frame, which is the comp last frame minus tail handles, or in Shotgun parlance, 'sg_cut_out'" -STARTLINE T "__import__(\"dnnuke.init.callbacks.on_user_create.tabs.framehold\", fromlist=\[\"cutOutButton\"]).cutOutButton()"}
+addUserKnob {22 comp_last l "comp last" t "Set the hold frame to the comp last frame, a.k.a. in Nuke parlance, root.last_frame, or in Shotgun parlance, 'sg_tail_out'" -STARTLINE T "__import__(\"dnnuke.init.callbacks.on_user_create.tabs.framehold\", fromlist=\[\"compLastButton\"]).compLastButton()"}
+addUserKnob {26 "" -STARTLINE T " "}
+addUserKnob {22 hero_frame l "hero frame" t "Set the hold frame to the hero frame from Shotgun, a.k.a. 'sg_hero_frame'. Beware that this may not always be set by the sequence supervisor. If not, go bug him or her!" T "__import__(\"dnnuke.init.callbacks.on_user_create.tabs.framehold\", fromlist=\[\"getHeroFrameButton\"]).getHeroFrameButton()" +STARTLINE}
+addUserKnob {22 middle_frame l "middle frame" t "Set the hold frame to the frame between the cut in and cut out." -STARTLINE T "__import__(\"dnnuke.init.callbacks.on_user_create.tabs.framehold\", fromlist=\[\"middleFrameButton\"]).middleFrameButton()"}
+addUserKnob {22 current_frame l "current frame" t "Set the hold frame to the current frame as in the active viewer's timeline, a.k.a. nuke.frame()." -STARTLINE T "__import__(\"dnnuke.init.callbacks.on_user_create.tabs.framehold\", fromlist=\[\"currentFrameButton\"]).currentFrameButton()"}
+addUserKnob {26 ""}
+addUserKnob {4 get_show_shot_from l "get show/shot from" t "Which should be used to retrieve info from the database? Default is <b>environment</b>, which uses \$SHOW and \$SHOT. If you want to use this node's input, use <b>metadata</b>, which will grab the input/filename value. Or, you can type it in manually with <b>specify</b>.," M {environment metadata specify}}
+addUserKnob {6 always_refresh l "always refresh" t "If unchecked, use locally-cached frame range information if available. If checked, always refresh from the database no matter what. Certain actions will cause locally-cached frame range info to become stale and override this preference, such as changing the <i>get show/shot from</i> value." -STARTLINE}
+addUserKnob {1 hidden_foce_startline +HIDDEN}
+addUserKnob {26 show -STARTLINE +HIDDEN T " "}
+addUserKnob {26 shot -STARTLINE +HIDDEN T " "}
+addUserKnob {1 show_specify l show +HIDDEN}
+show_specify " "
+addUserKnob {1 shot_specify l shot +HIDDEN}
+shot_specify " "
+addUserKnob {26 cut_range l "cut range" +HIDDEN T " "}
+addUserKnob {26 comp_range l "comp range" +HIDDEN T " "}
+addUserKnob {26 hero_frame_value l "hero frame" +HIDDEN T " "}
+addUserKnob {6 hidden_is_stale l "" -STARTLINE +HIDDEN}
+addUserKnob {1 cut_in_specify +HIDDEN}
+addUserKnob {1 cut_out_specify +HIDDEN}
+addUserKnob {1 comp_first_specify +HIDDEN}
+addUserKnob {1 comp_last_specify +HIDDEN}
+addUserKnob {1 hero_frame_specify +HIDDEN}
+}
+Dot {
+name Dot20
+xpos -587
+ypos 568
+}
+set N118fa660 [stack 0]
+Dot {
+name Dot21
+xpos -587
+ypos 694
+}
+set N118ff090 [stack 0]
+Dot {
+name Dot22
+xpos -587
+ypos 761
+}
+push $N118ff090
+push $N118fa660
+push $N118b6360
+Shuffle {
+in __Pref
+in2 rgba
+alpha white
+name Shuffle10
+xpos -455
+ypos 445
+}
+C44Matrix {
+inputs 2
+matrixFrom "from camera input"
+invert true
+name C44Matrix9
+xpos -462
+ypos 564
+}
+Shuffle {
+alpha white
+name Shuffle12
+xpos -462
+ypos 624
+}
+C44Matrix {
+inputs 2
+matrixFrom "from camera input"
+matrixType projection
+w_divide true
+name C44Matrix10
+xpos -462
+ypos 690
+}
+C44Matrix {
+inputs 2
+matrixFrom "from camera input"
+matrixType format
+name C44Matrix11
+xpos -462
+ypos 757
+}
+Expression {
+expr0 r/format.w
+expr1 g/format.h
+name Expression4
+xpos -462
+ypos 794
+}
+Expression {
+expr0 isnan(r)?0:r
+expr1 isnan(r)?0:g
+expr2 isnan(r)?0:b
+expr3 isnan(r)?0:a
+name Expression2
+xpos -462
+ypos 845
+}
+set N11956180 [stack 0]
+push $N11956180
+Dot {
+name Dot2
+xpos -614
+ypos 857
+}
+set N11964010 [stack 0]
+Shuffle {
+red alpha
+green alpha
+blue alpha
+name ALPHA1
+tile_color 0x7f7f7fff
+label "\[value in] -> \[value out]"
+xpos -855
+ypos 906
+}
+push $N11964010
+push $N11964010
+Group {
+inputs 2
+name colorDilate
+xpos -648
+ypos 914
+addUserKnob {20 User l fColourDilate}
+addUserKnob {14 blurGrain l "Blur Grain" t "Preblur the image to smooth out grain if necessary" R 0 100}
+addUserKnob {14 growTexture l "Grow Texture" t "Expands the texture out from pure white pixels in the matte.  Values can go above 100." R 0 100}
+growTexture {{parent.colorDilate_growTexture.w} {parent.colorDilate_growTexture.h}}
+addUserKnob {14 shrinkMatte l "Shrink Matte" t "Adjusts the point from which the texture grows.  Values are not constrained to +-20." R -20 20}
+addUserKnob {7 alphaToWhite l "Alpha To White" t "Lifts the alpha to white" R 0 0.99999}
+alphaToWhite 0.1
+addUserKnob {4 quality l Quality M {fast better best "" ""}}
+quality better
+addUserKnob {26 "" -STARTLINE T "             "}
+addUserKnob {6 invertMatte l "Invert Matte" -STARTLINE}
+invertMatte true
+}
+Input {
+inputs 0
+name Mask
+xpos 1025
+ypos 42
+number 1
+}
+Dot {
+name Dot1
+xpos 1059
+ypos 177
+}
+set N11986940 [stack 0]
+Dot {
+name Dot2
+xpos 949
+ypos 177
+}
+Invert {
+channels rgba
+name Invert1
+xpos 915
+ypos 211
+}
+push $N11986940
+Switch {
+inputs 2
+which {{invertMatte i}}
+name Switch1
+xpos 1025
+ypos 211
+}
+Grade {
+channels alpha
+whitepoint {{1-alphaToWhite i}}
+white_clamp true
+name Grade1
+xpos 1025
+ypos 258
+}
+Group {
+name DilateErode_v04_3
+tile_color 0xbf7e0bff
+selected true
+xpos 1025
+ypos 310
+addUserKnob {20 "" l User}
+addUserKnob {41 channels T Copy1.channels}
+addUserKnob {26 ""}
+addUserKnob {41 size T DilateMaster.size}
+addUserKnob {26 ""}
+addUserKnob {41 maskChannelInput l mask -STARTLINE T Copy1.maskChannelInput}
+addUserKnob {41 invert_mask l invert -STARTLINE T Copy1.invert_mask}
+addUserKnob {41 mix T Copy1.mix}
+}
+Dilate {
+inputs 0
+size {{-shrinkMatte.w} {-shrinkMatte.h}}
+name DilateMaster
+label "Do Not Delets\n"
+xpos -297
+ypos -24
+}
+Input {
+inputs 0
+name Input1
+xpos 37
+ypos -138
+}
+Dot {
+name Dot1
+xpos 71
+ypos -64
+}
+set N119ce610 [stack 0]
+Dot {
+name Dot4
+xpos -95
+ypos -64
+}
+push $N119ce610
+Dot {
+name Dot2
+xpos 188
+ypos -64
+}
+set N119d7b60 [stack 0]
+Dilate {
+size {{parent.size.w==parent.size.h?ceil(parent.size.h):0} {ceil(parent.size.h) i}}
+name DilateHeightCeil
+xpos 269
+ypos -15
+}
+push $N119d7b60
+Dilate {
+size {{parent.size.w==parent.size.h?floor(parent.size.h):0 i} {floor(parent.size.h) i}}
+name DilateHeightFloor
+xpos 154
+ypos -14
+}
+Dissolve {
+inputs 2
+which {{parent.size.h%1}}
+name Dissolve1
+xpos 154
+ypos 50
+}
+set N119f37f0 [stack 0]
+push $N119f37f0
+Dot {
+name Dot3
+xpos 322
+ypos 121
+}
+set N119fe980 [stack 0]
+Dilate {
+size {{ceil(parent.size.w)} 0}
+name DilateWidthCeil
+xpos 404
+ypos 188
+}
+push $N119fe980
+Dilate {
+size {{floor(parent.size.w)} 0}
+name DilateWidthFloor
+xpos 288
+ypos 189
+}
+Dissolve {
+inputs 2
+which {{parent.size.w%1}}
+name Dissolve3
+xpos 288
+ypos 275
+}
+Switch {
+inputs 2
+which {{parent.size.w==parent.size.h}}
+name Switch1
+xpos 157
+ypos 355
+}
+push $N119ce610
+Copy {
+inputs 2
+from0 -rgba.alpha
+to0 -rgba.alpha
+channels rgba
+maskChannelMask none
+name Copy1
+xpos 37
+ypos 396
+}
+Output {
+name Output1
+xpos 45
+ypos 818
+}
+end_group
+Grade {
+channels alpha
+whitepoint 0.99
+black_clamp false
+white_clamp true
+name Grade6
+xpos 1025
+ypos 368
+}
+set N11a3ecf0 [stack 0]
+Dot {
+name Dot4
+xpos 1059
+ypos 932
+}
+push $N11a3ecf0
+Input {
+inputs 0
+name RGB
+xpos -317
+ypos 108
+}
+Shuffle {
+alpha white
+name Shuffle1
+xpos -317
+ypos 279
+}
+Blur {
+channels rgba
+size {{blurGrain.w i} {blurGrain.h i}}
+maskChannelMask -rgba.alpha
+name Blur1
+xpos -317
+ypos 376
+}
+set N11a67720 [stack 0]
+Merge2 {
+inputs 2
+operation stencil
+name Merge1
+xpos -135
+ypos 376
+}
+Dot {
+name Dot3
+xpos -101
+ypos 423
+}
+set N11a84240 [stack 0]
+Blur {
+channels rgba
+size {{growTexture.w} {growTexture.h}}
+maskChannelMask -rgba.alpha
+name Blur2
+xpos -135
+ypos 455
+}
+Unpremult {
+name Unpremult1
+xpos -135
+ypos 504
+}
+Expression {
+expr3 a==0?0:1
+name Expression2
+xpos -135
+ypos 551
+}
+ColorCorrect {
+name ColorCorrect1
+xpos -135
+ypos 598
+}
+Dot {
+name Dot17
+xpos -101
+ypos 756
+}
+set N11ac6b80 [stack 0]
+Dot {
+name Dot15
+xpos -101
+ypos 836
+}
+set N11acb390 [stack 0]
+push $N11a84240
+Dot {
+name Dot6
+xpos 52
+ypos 423
+}
+set N11acfec0 [stack 0]
+Blur {
+channels rgba
+size {{growTexture.w*.5 x1 72.7} {growTexture.h*.5 x1 64.662}}
+maskChannelMask -rgba.alpha
+name Blur3
+xpos 18
+ypos 454
+}
+Unpremult {
+name Unpremult2
+xpos 18
+ypos 504
+}
+set N11ae1e80 [stack 0]
+Expression {
+expr3 a==0?0:1
+name Expression1
+xpos 18
+ypos 551
+}
+set N11aea360 [stack 0]
+Group {
+name DilateErode_v04_2
+tile_color 0xbf7e0bff
+xpos 244
+ypos 545
+addUserKnob {20 "" l User}
+addUserKnob {41 channels T Copy1.channels}
+addUserKnob {26 ""}
+addUserKnob {41 size T DilateMaster.size}
+addUserKnob {26 ""}
+addUserKnob {41 maskChannelInput l mask -STARTLINE T Copy1.maskChannelInput}
+addUserKnob {41 invert_mask l invert -STARTLINE T Copy1.invert_mask}
+addUserKnob {41 mix T Copy1.mix}
+}
+Dilate {
+inputs 0
+size {{parent.parent.Blur3.size.w} {parent.parent.Blur3.size.h/2}}
+name DilateMaster
+label "Do Not Delets\n"
+xpos -297
+ypos -24
+}
+Input {
+inputs 0
+name Input1
+xpos 37
+ypos -138
+}
+Dot {
+name Dot1
+xpos 71
+ypos -64
+}
+set N11b10e80 [stack 0]
+Dot {
+name Dot4
+xpos -95
+ypos -64
+}
+push $N11b10e80
+Dot {
+name Dot2
+xpos 188
+ypos -64
+}
+set N11b1a350 [stack 0]
+Dilate {
+size {{parent.size.w==parent.size.h?ceil(parent.size.h):0} {ceil(parent.size.h) i}}
+name DilateHeightCeil
+xpos 269
+ypos -15
+}
+push $N11b1a350
+Dilate {
+size {{parent.size.w==parent.size.h?floor(parent.size.h):0 i} {floor(parent.size.h) i}}
+name DilateHeightFloor
+xpos 154
+ypos -14
+}
+Dissolve {
+inputs 2
+which {{parent.size.h%1}}
+name Dissolve1
+xpos 154
+ypos 50
+}
+set N11b353f0 [stack 0]
+push $N11b353f0
+Dot {
+name Dot3
+xpos 322
+ypos 121
+}
+set N11b404a0 [stack 0]
+Dilate {
+size {{ceil(parent.size.w)} 0}
+name DilateWidthCeil
+xpos 404
+ypos 188
+}
+push $N11b404a0
+Dilate {
+size {{floor(parent.size.w)} 0}
+name DilateWidthFloor
+xpos 288
+ypos 189
+}
+Dissolve {
+inputs 2
+which {{parent.size.w%1}}
+name Dissolve3
+xpos 288
+ypos 275
+}
+Switch {
+inputs 2
+which {{parent.size.w==parent.size.h}}
+name Switch1
+xpos 157
+ypos 355
+}
+push $N11b10e80
+Copy {
+inputs 2
+from0 -rgba.alpha
+to0 -rgba.alpha
+channels alpha
+maskChannelMask none
+name Copy1
+xpos 37
+ypos 396
+}
+Output {
+name Output1
+xpos 45
+ypos 818
+}
+end_group
+Premult {
+name Premult6
+xpos 244
+ypos 606
+}
+Merge2 {
+inputs 2
+operation under
+name Merge5
+xpos 244
+ypos 830
+}
+push $N11acfec0
+Dot {
+name Dot7
+xpos 416
+ypos 423
+}
+set N11b97da0 [stack 0]
+Blur {
+channels rgba
+size {{growTexture.w*.25 i} {growTexture.h*.25 i}}
+maskChannelMask -rgba.alpha
+name Blur4
+xpos 382
+ypos 457
+}
+Unpremult {
+name Unpremult3
+xpos 382
+ypos 504
+}
+set N11ba9e90 [stack 0]
+Expression {
+expr3 a==0?0:1
+name Expression3
+xpos 382
+ypos 551
+}
+set N11bb21f0 [stack 0]
+Group {
+name DilateErode_v04_1
+tile_color 0xbf7e0bff
+xpos 583
+ypos 545
+addUserKnob {20 "" l User}
+addUserKnob {41 channels T Copy1.channels}
+addUserKnob {26 ""}
+addUserKnob {41 size T DilateMaster.size}
+addUserKnob {26 ""}
+addUserKnob {41 maskChannelInput l mask -STARTLINE T Copy1.maskChannelInput}
+addUserKnob {41 invert_mask l invert -STARTLINE T Copy1.invert_mask}
+addUserKnob {41 mix T Copy1.mix}
+}
+Dilate {
+inputs 0
+size {{parent.parent.Blur4.size.w/2} {parent.parent.Blur4.size.h/2}}
+name DilateMaster
+label "Do Not Delets\n"
+xpos -297
+ypos -24
+}
+Input {
+inputs 0
+name Input1
+xpos 37
+ypos -138
+}
+Dot {
+name Dot1
+xpos 71
+ypos -64
+}
+set N11bd8c30 [stack 0]
+Dot {
+name Dot4
+xpos -95
+ypos -64
+}
+push $N11bd8c30
+Dot {
+name Dot2
+xpos 188
+ypos -64
+}
+set N11be20e0 [stack 0]
+Dilate {
+size {{parent.size.w==parent.size.h?ceil(parent.size.h):0} {ceil(parent.size.h) i}}
+name DilateHeightCeil
+xpos 269
+ypos -15
+}
+push $N11be20e0
+Dilate {
+size {{parent.size.w==parent.size.h?floor(parent.size.h):0 i} {floor(parent.size.h) i}}
+name DilateHeightFloor
+xpos 154
+ypos -14
+}
+Dissolve {
+inputs 2
+which {{parent.size.h%1}}
+name Dissolve1
+xpos 154
+ypos 50
+}
+set N11bfd180 [stack 0]
+push $N11bfd180
+Dot {
+name Dot3
+xpos 322
+ypos 121
+}
+set N11c08230 [stack 0]
+Dilate {
+size {{ceil(parent.size.w)} 0}
+name DilateWidthCeil
+xpos 404
+ypos 188
+}
+push $N11c08230
+Dilate {
+size {{floor(parent.size.w)} 0}
+name DilateWidthFloor
+xpos 288
+ypos 189
+}
+Dissolve {
+inputs 2
+which {{parent.size.w%1}}
+name Dissolve3
+xpos 288
+ypos 275
+}
+Switch {
+inputs 2
+which {{parent.size.w==parent.size.h}}
+name Switch1
+xpos 157
+ypos 355
+}
+push $N11bd8c30
+Copy {
+inputs 2
+from0 -rgba.alpha
+to0 -rgba.alpha
+channels alpha
+maskChannelMask none
+name Copy1
+xpos 37
+ypos 396
+}
+Output {
+name Output1
+xpos 45
+ypos 818
+}
+end_group
+Premult {
+name Premult5
+xpos 583
+ypos 606
+}
+Merge2 {
+inputs 2
+operation under
+name Merge7
+xpos 583
+ypos 830
+}
+push $N11b97da0
+Dot {
+name Dot8
+xpos 759
+ypos 423
+}
+Blur {
+channels rgba
+size {{growTexture.w*.125 i} {growTexture.h*.125 i}}
+maskChannelMask -rgba.alpha
+name Blur5
+xpos 725
+ypos 461
+}
+Unpremult {
+name Unpremult4
+xpos 725
+ypos 504
+}
+set N11c71d40 [stack 0]
+Expression {
+expr3 a==0?0:1
+name Expression4
+xpos 725
+ypos 551
+}
+set N11c79e80 [stack 0]
+Group {
+name DilateErode_v04_
+tile_color 0xbf7e0bff
+xpos 934
+ypos 545
+addUserKnob {20 "" l User}
+addUserKnob {41 channels T Copy1.channels}
+addUserKnob {26 ""}
+addUserKnob {41 size T DilateMaster.size}
+addUserKnob {26 ""}
+addUserKnob {41 maskChannelInput l mask -STARTLINE T Copy1.maskChannelInput}
+addUserKnob {41 invert_mask l invert -STARTLINE T Copy1.invert_mask}
+addUserKnob {41 mix T Copy1.mix}
+}
+Dilate {
+inputs 0
+size {{parent.parent.Blur5.size.w/2} {parent.parent.Blur5.size.h/2}}
+name DilateMaster
+label "Do Not Delets\n"
+xpos -297
+ypos -24
+}
+Input {
+inputs 0
+name Input1
+xpos 37
+ypos -138
+}
+Dot {
+name Dot1
+xpos 71
+ypos -64
+}
+set N11ca0b10 [stack 0]
+Dot {
+name Dot4
+xpos -95
+ypos -64
+}
+push $N11ca0b10
+Dot {
+name Dot2
+xpos 188
+ypos -64
+}
+set N11caa060 [stack 0]
+Dilate {
+size {{parent.size.w==parent.size.h?ceil(parent.size.h):0} {ceil(parent.size.h) i}}
+name DilateHeightCeil
+xpos 269
+ypos -15
+}
+push $N11caa060
+Dilate {
+size {{parent.size.w==parent.size.h?floor(parent.size.h):0 i} {floor(parent.size.h) i}}
+name DilateHeightFloor
+xpos 154
+ypos -14
+}
+Dissolve {
+inputs 2
+which {{parent.size.h%1}}
+name Dissolve1
+xpos 154
+ypos 50
+}
+set N11cc5050 [stack 0]
+push $N11cc5050
+Dot {
+name Dot3
+xpos 322
+ypos 121
+}
+set N11cd0100 [stack 0]
+Dilate {
+size {{ceil(parent.size.w)} 0}
+name DilateWidthCeil
+xpos 404
+ypos 188
+}
+push $N11cd0100
+Dilate {
+size {{floor(parent.size.w)} 0}
+name DilateWidthFloor
+xpos 288
+ypos 189
+}
+Dissolve {
+inputs 2
+which {{parent.size.w%1}}
+name Dissolve3
+xpos 288
+ypos 275
+}
+Switch {
+inputs 2
+which {{parent.size.w==parent.size.h}}
+name Switch1
+xpos 157
+ypos 355
+}
+push $N11ca0b10
+Copy {
+inputs 2
+from0 -rgba.alpha
+to0 -rgba.alpha
+channels alpha
+maskChannelMask none
+name Copy1
+xpos 37
+ypos 396
+}
+Output {
+name Output1
+xpos 45
+ypos 818
+}
+end_group
+Premult {
+name Premult1
+xpos 934
+ypos 606
+}
+Merge2 {
+inputs 2
+operation under
+name Merge9
+xpos 934
+ypos 830
+}
+Dot {
+name Dot18
+xpos 968
+ypos 877
+}
+push $N11ac6b80
+push $N11ae1e80
+Dot {
+name Dot9
+xpos -17
+ypos 510
+}
+Dot {
+name Dot10
+xpos -17
+ypos 646
+}
+push $N11aea360
+Dot {
+name Dot20
+xpos 52
+ypos 598
+}
+set N11d35a20 [stack 0]
+Merge2 {
+inputs 2
+operation from
+Achannels alpha
+Bchannels alpha
+output alpha
+name Merge2
+xpos 18
+ypos 632
+}
+Grade {
+channels alpha
+gamma 0.005
+black_clamp false
+name Grade2
+xpos 18
+ypos 695
+}
+push $N11d35a20
+Dot {
+name Dot19
+xpos 162
+ypos 598
+}
+Merge2 {
+inputs 2
+operation stencil
+name Merge11
+xpos 128
+ypos 703
+}
+Merge2 {
+inputs 2
+operation under
+name Merge6
+xpos 128
+ypos 750
+}
+push $N11ba9e90
+Dot {
+name Dot11
+xpos 347
+ypos 510
+}
+Dot {
+name Dot12
+xpos 347
+ypos 646
+}
+push $N11bb21f0
+Dot {
+name Dot21
+xpos 416
+ypos 598
+}
+set N11d86a90 [stack 0]
+Merge2 {
+inputs 2
+operation from
+Achannels alpha
+Bchannels alpha
+output alpha
+name Merge3
+xpos 382
+ypos 632
+}
+Grade {
+channels alpha
+gamma 0.005
+black_clamp false
+name Grade3
+xpos 382
+ypos 695
+}
+push $N11d86a90
+Dot {
+name Dot23
+xpos 526
+ypos 598
+}
+Merge2 {
+inputs 2
+operation stencil
+name Merge12
+xpos 492
+ypos 703
+}
+Merge2 {
+inputs 2
+operation under
+name Merge8
+xpos 492
+ypos 750
+}
+push $N11c71d40
+Dot {
+name Dot13
+xpos 690
+ypos 510
+}
+Dot {
+name Dot14
+xpos 690
+ypos 646
+}
+push $N11c79e80
+Dot {
+name Dot24
+xpos 759
+ypos 598
+}
+set N11dd8200 [stack 0]
+Merge2 {
+inputs 2
+operation from
+Achannels alpha
+Bchannels alpha
+output alpha
+name Merge4
+xpos 725
+ypos 632
+}
+Grade {
+channels alpha
+gamma 0.005
+black_clamp false
+name Grade4
+xpos 725
+ypos 695
+}
+push $N11dd8200
+Dot {
+name Dot25
+xpos 869
+ypos 598
+}
+Merge2 {
+inputs 2
+operation stencil
+name Merge13
+xpos 835
+ypos 703
+}
+Merge2 {
+inputs 2
+operation under
+name Merge10
+xpos 835
+ypos 750
+}
+Dot {
+name Dot22
+xpos 869
+ypos 797
+}
+Dot {
+name Dot16
+xpos -3
+ypos 797
+}
+push $N11acb390
+Switch {
+inputs 3
+which {{quality}}
+name Switch2
+xpos -135
+ypos 871
+}
+push $N11a67720
+Dot {
+name Dot5
+xpos -295
+ypos 932
+}
+Keymix {
+inputs 3
+name Keymix1
+xpos -135
+ypos 918
+}
+Output {
+name Output1
+xpos -135
+ypos 1032
+}
+end_group
+Blur {
+channels rgba
+name Blur1
+xpos -648
+ypos 950
+}
+Merge2 {
+inputs 2
+operation multiply
+name Multiply1
+xpos -648
+ypos 982
+}
+Switch {
+inputs 2
+which {{Blur1.size?0:1}}
+name Switch1
+xpos -462
+ypos 982
+}
+Input {
+inputs 0
+name src
+xpos -195
+ypos 339
+number 2
+}
+Reformat {
+type "to box"
+box_width {{position.format.w}}
+box_height {{position.format.h}}
+box_fixed true
+resize none
+pbb true
+name Reformat2
+xpos -195
+ypos 395
+}
+STMap {
+inputs 2
+channels rgba
+uv rgb
+blur rgba.alpha
+blur_scale 0
+name STMap1
+xpos -195
+ypos 982
+}
+CopyBBox {
+inputs 2
+name CopyBBox1
+xpos -195
+ypos 1130
+}
+Output {
+name Output1
+xpos -195
+ypos 1226
+}
+end_group

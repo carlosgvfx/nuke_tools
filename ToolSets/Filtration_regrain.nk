@@ -1,0 +1,320 @@
+set cut_paste_input [stack 0]
+version 9.0 v7
+BackdropNode {
+inputs 0
+name BackdropNode7
+tile_color 0x2c2c2cff
+label "Filtration regrain\n"
+note_font_size 42
+note_font_color 0x7f7f7fff
+selected true
+xpos 8831
+ypos 4252
+bdwidth 1230
+bdheight 1098
+}
+Read {
+inputs 0
+file /jobs/CIPHER/zc_3135/OUT/O_zc_3135_comp_v021/2150x1210/o_zc_3135_comp_v021.%04d.exr
+format "2150 1210 0 0 2150 1210 1 CIPHER Delivery"
+first 1001
+last 1063
+origfirst 1001
+origlast 1063
+origset true
+logGrade true
+grade {0 0 0}
+logReference {394 394 394}
+linReference {0.18 0.18 0.18}
+negGamma {0.5064 0.5064 0.5064}
+blackLevel {0.00947 0.00947 0.00947}
+densPerCV {0.002 0.002 0.002}
+gradeFound true
+twig_dnuuid 6b75061b-7785-4cca-a4cb-63f72eaec9af
+stalk_dnuuid 6fee06c7-2b21-4ec2-b30b-ae54db5e8bbd
+twigtype_dnuuid 83d53166-fd6d-464f-ad31-1ca8d1fe19c5
+leaf_dnuuid c4bd4c27-fb0c-4973-8282-1709db4c8ef3
+twigtype render/out
+leaf_label main_proxy0
+ivy_version 21
+name Read176
+selected true
+xpos 9431
+ypos 4058
+}
+Dot {
+name Dot29
+note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold Bold Bold Bold"
+note_font_size 33
+selected true
+xpos 9465
+ypos 4341
+}
+Dot {
+name Dot31
+selected true
+xpos 9465
+ypos 4419
+}
+set Na45e2c30 [stack 0]
+Expression {
+expr0 (x%2&&y%2)?1:x%2==0&&y%2==0?1:0
+expr1 (x%2&&y%2)?0:x%2==0&&y%2==0?0:1
+expr2 (x%2&&y%2)?1:x%2==0&&y%2==0?1:0
+name Expression5
+label "Filtration Mask\n"
+selected true
+xpos 9601
+ypos 4409
+}
+Dot {
+name Dot32
+selected true
+xpos 9635
+ypos 4484
+}
+push $Na45e2c30
+add_layer {filtration filtration.red filtration.green}
+Copy {
+inputs 2
+from0 rgba.red
+to0 filtration.red
+from1 rgba.green
+to1 filtration.green
+name Copy11
+selected true
+xpos 9431
+ypos 4468
+}
+BlackOutside {
+name BlackOutside3
+selected true
+xpos 9431
+ypos 4528
+}
+Dot {
+name Dot33
+selected true
+xpos 9465
+ypos 4643
+}
+set N6c794ae0 [stack 0]
+Expression {
+expr0 (x+0.5)/(width)
+expr1 (y+0.5)/(height)
+channel2 alpha
+expr2 1
+channel3 {-rgba.red -rgba.green rgba.blue none}
+expr3 0
+name Expression6
+label "STMap "
+note_font_size 30
+selected true
+xpos 8971
+ypos 4611
+}
+OFXuk.co.thefoundry.furnace.f_steadiness_v403 {
+renderOn true
+range "Source Clip Range"
+start 0
+stop 100
+mode Smooth
+scale false
+rotate true
+translate true
+perspective false
+"Analysis Region" 0
+regionBL {13.99999955 70.99999826}
+regionTR {2124.00029 1199.00001}
+Advanced 0
+smooth 10
+lockFrame 0
+accuracy 0.6
+filtering Medium
+invert false
+autoScale 1
+"Four Corner Pin" 0
+pinBL {{curve x1001 0.5181530694 1.356045235 0.3797080964 -0.6566729426 1.270554427 -0.9824892768 1.342487492 -0.3101994313 -0.08336377177 -0.008011043087 0.3651328188 -0.1046868532 0.4712975111 0.3047137609 0.666196589 -0.6605641844 0.9893510578 0.3053478467 -0.1957302069 1.703179895 -1.414685117 0.3694159881 0.354071748 -1.236298709 2.008074243 -1.531001879 0.6725358835 -0.1587400388 1.201372332 -0.3098304369 0.02520799553 1.250310359 -1.07514835 1.198855136 0.08991050436 -1.031953107 1.142321594 -0.2256020281 -0.3664517375 0.2187681235 -0.09547519694 -0.2982957492 0.1108447948 -0.2902419481 -0.6561873117 0.5359321905 -0.09518814222 -0.2549898611 0.02750182084 -0.2084325581 0.07571840179 0.3540043879 0.05305659724 -0.231403052 0.1193939726 -0.1580467273 -0.3706671087 -0.4059025669 0.2161057575 -0.389146612 -0.1385802094 -0.2713718313 -0.8546119221} {curve x1001 1.671572097e-05 -0.6310164946 0.6709970161 -0.0559344895 -0.3339970543 0.7729981869 -0.6727830123 0.06798852399 0.1799820387 0.3901422565 -0.959714934 1.071396812 -0.01129108666 -1.843845001 1.947262615 -0.7914137101 -1.685173211 2.683871994 -1.59015847 -0.3537796836 1.638632087 -0.6517801259 -0.6158846885 1.42023951 -0.6337774004 -1.155079373 2.178149277 -0.8891411114 -0.7312321622 1.921950885 -0.9742659639 -0.3802042987 1.222439206 -0.6727867451 -0.927971279 1.877764419 -1.697590385 0.111181561 0.775626541 -0.9080662753 -0.07218551455 0.8428121265 -0.8417011437 0.2402662049 0.9885880922 -1.051703243 0.3827064048 0.2558726122 0.01357430225 -0.6907098129 1.239658243 -1.240415097 0.303498272 0.2379935463 -0.229737047 -0.3311030334 0.8134640503 -0.3922504405 -0.2043840614 0.5572730888 -0.6328458764 0.1231951723 -0.05244967353}}
+pinBR {{curve x1001 2150.518495 2151.356596 2150.380093 2149.342591 2151.270223 2149.017346 2151.343012 2149.690005 2149.917471 2149.992695 2150.366509 2149.896711 2150.472105 2150.303972 2150.663817 2149.338105 2150.990599 2150.304484 2149.803033 2151.70337 2148.585993 2150.370866 2150.354975 2148.764634 2152.007598 2148.465532 2150.670224 2149.839813 2151.201791 2149.69039 2150.025886 2151.251513 2148.925334 2151.199484 2150.090474 2148.969033 2151.143098 2149.774712 2149.634004 2150.218624 2149.904785 2149.702179 2150.111234 2149.710253 2149.343744 2150.53618 2149.905041 2149.745366 2150.02768 2149.791756 2150.076377 2150.354719 2150.053054 2149.769074 2150.119436 2149.841991 2149.62939 2149.593508 2150.216317 2149.611321 2149.861342 2149.728706 2149.145752} {curve x1001 -1.148605261 -0.7445538847 1.910661598 -2.534847034 1.943707245 -1.643687503 1.458910222 -2.124088065 1.542274363 -0.8287553833 -0.1325100687 0.7979540987 0.7431477949 -4.189705499 5.818274226 -3.570821143 -1.876287053 6.269203387 -4.90621971 2.280254334 1.020582553 -0.7852346339 -0.4547285408 0.6415766774 1.440794877 -5.275538187 5.907296534 -3.993063085 0.6786736724 2.533443761 -2.035502854 0.5988739169 1.377658173 -0.689864356 -1.039635197 1.739037497 -1.262951131 -0.4883608807 1.995824272 -2.367216104 0.3426951048 1.173073295 -1.421425291 0.286012195 1.161512847 -1.073552995 0.03546515743 1.295753086 -1.058502678 -0.5699398005 1.289005207 -1.229728279 -0.3422414922 1.131541947 -1.170980782 0.1052548577 0.9789988748 -1.107476709 0.275805718 0.6307313184 -0.7503994688 0.3346543893 0.2131023257}}
+pinTL {{curve x1001 1.164586778 1.41994252 -0.3179636748 0.7384360128 -0.01131689564 0.3775990655 0.1427903087 0.9234805882 -0.8500492695 0.6779733725 -0.1004105905 0.04920371675 0.04670587923 1.624942201 -1.512372951 0.903660203 1.096907942 -1.712442361 1.670519169 0.2207703263 -1.066851514 0.4445235187 0.2633749406 -0.7980734372 0.8405239336 0.7879548444 -1.426191835 1.588118353 0.4078899241 -0.6539734706 0.6224617144 0.6992940136 -1.162504591 1.208466009 0.1527546741 -0.9538794169 0.8977113655 0.1118149303 -1.053167373 1.039963732 -0.3289658329 -0.4841642578 0.4371081835 -0.315988269 -0.7535074023 0.5482294582 0.1002354558 -0.840225209 0.6308566022 -0.2764010613 0.0479460221 0.3479896921 0.4164728132 -0.7342840283 0.6491171618 -0.4036251514 -0.4638287071 -0.003380030682 -0.05414044781 -0.4304882168 -0.07242192642 -0.3903789919 -1.004061838} {curve x1001 1210.000577 1209.369513 1210.671308 1209.943817 1209.666149 1210.773 1209.327394 1210.068516 1210.180593 1210.390755 1209.040999 1211.072016 1209.989759 1208.155634 1211.945986 1209.208105 1208.315527 1212.68278 1208.409069 1209.646099 1211.639613 1209.349247 1209.384658 1211.420652 1209.366123 1208.843025 1212.176919 1209.110091 1209.269047 1211.922185 1209.025998 1209.619991 1211.222606 1209.327754 1209.0723 1211.877903 1208.302401 1210.111212 1210.775452 1209.092133 1209.928095 1210.842669 1209.158701 1210.240021 1210.988643 1208.948611 1210.382677 1210.255743 1210.013415 1209.309291 1211.240059 1208.759869 1210.303488 1210.238146 1209.770293 1209.668818 1210.813532 1209.607658 1209.795679 1210.557644 1209.367566 1210.123472 1209.947495}}
+pinTR {{curve x1001 2151.16514 2151.420158 2149.681932 2150.737375 2149.988338 2150.37753 2150.143015 2150.923449 2149.150878 2150.678682 2149.901068 2150.050235 2150.048184 2151.624686 2148.485395 2150.902689 2151.098502 2148.286378 2151.669794 2150.220674 2148.934561 2150.445962 2150.264502 2149.203163 2150.840664 2150.784791 2148.572025 2151.587009 2150.408798 2149.346435 2150.623065 2150.700468 2148.838192 2151.20948 2150.153524 2149.04682 2150.898075 2150.111747 2148.946735 2151.039553 2149.671423 2149.516106 2150.437248 2149.68411 2149.246606 2150.547969 2150.099957 2149.160105 2150.630754 2149.723837 2150.048441 2150.348568 2150.416487 2149.265829 2150.649208 2149.596199 2149.536097 2149.996284 2149.946049 2149.569544 2149.92798 2149.609911 2148.996073} {curve x1001 1208.851824 1209.255705 1211.910934 1207.464853 1211.943822 1208.356348 1211.45902 1207.87609 1211.542681 1209.171611 1209.868162 1210.798531 1210.744151 1205.810094 1215.816897 1206.428682 1208.124405 1216.268234 1205.092989 1212.280197 1211.021531 1209.215677 1209.545778 1210.642027 1211.440701 1204.722789 1215.906039 1206.006121 1210.679097 1212.533633 1207.964944 1210.599186 1211.377956 1209.310517 1208.960583 1211.739429 1208.73715 1209.511737 1211.995894 1207.63268 1210.34301 1211.172986 1208.578843 1210.285746 1211.161447 1208.926758 1210.035628 1211.295593 1208.941399 1209.430167 1211.289246 1208.770543 1209.657567 1211.1313 1208.828961 1210.105153 1210.979267 1208.892428 1210.275937 1210.631064 1209.250007 1210.334789 1210.213192}}
+badAnalysis true
+pinOriginBL {0 0}
+pinOriginTR {2150 1210}
+mat00 {{curve x1001 1 0.9999998808 0.9999996424 0.9999983311 0.9999973178 0.999997437 0.999997735 0.9999981523 0.9999986887 0.999999404 0.9999995828 0.9999998212 0.9999998808 0.9999989867 0.9999957681 0.9999950528 0.9999992847 0.9999985099 0.9999948144 0.9999960065 0.9999988079 0.9999999404 0.9999999404 0.9999999404 0.9999992847 0.9999960065 0.9999932647 0.999994576 0.999997735 0.9999998808 0.9999997616 0.9999995828 0.9999999404 1 1 1 0.9999999404 0.9999999404 0.9999996424 0.9999992251 0.9999996424 1 0.9999998808 0.9999998808 1 1 1.000000119 0.9999998212 0.9999994636 0.9999998808 1 1 0.9999998808 0.999999702 0.9999995828 0.999999702 0.9999999404 0.9999998808 0.9999998808 0.9999999404 1 0.9999999404 1}}
+mat10 {{curve x1001 0 -0.0004752793466 -0.0006620183703 0.001809365698 -0.002349768765 0.002273119753 -0.002114711562 0.001910201507 -0.001564600505 0.001132358215 -0.0009348883177 0.0005096860696 -0.0004530227743 0.00139620027 -0.002881029388 0.003131359117 -0.001242619008 -0.001726641902 0.003208291484 -0.00280176918 0.001563238213 -0.0002476039808 -0.0001159384192 0.0003921579919 -0.001223087893 0.002825331641 -0.003652853891 0.003282271558 -0.00219448423 0.0004796510621 0.000763706048 -0.0009473792743 0.0004129951703 7.505909161e-05 9.828076873e-05 -7.011948765e-05 -0.0001587481529 0.0003931231913 -0.0007744367467 0.001264762017 -0.0008888422744 7.063044904e-05 0.0004480832431 -0.0003055164416 -3.576943709e-05 8.544922457e-05 0.0001599405514 -0.0006341978442 0.001002395991 -0.0005883221747 4.860101035e-05 2.208620572e-05 0.0002842250396 -0.0007136286586 0.0008579555433 -0.0006406703033 0.0001160519751 0.0004407022207 -0.0005921261618 0.0001927575213 8.89693838e-05 -0.0001548873552 -5.581167352e-05}}
+mat20 {{curve x1001 0 0.7654776573 -0.9985097051 -1.080142021 1.91002202 -2.365989685 2.319586039 -1.70600152 0.145502001 0.09250054508 0.2239838094 -0.6186680198 0.4635862708 -0.3115803003 0.2668882906 -1.491124511 1.475986004 -0.8268784285 -0.5994542837 1.710805893 -3.301916838 1.680255294 -0.2695417404 -1.722662687 3.028074503 -3.741513491 2.018061638 -1.056853652 1.150188088 -1.783903241 0.2011598498 0.9869141579 -2.534130573 2.119525671 -1.440090656 -1.211504698 1.941744804 -1.562526822 -0.3840610683 0.4111173749 -0.4894671142 -0.417609334 0.2983380556 -0.6343079209 -0.5105537772 1.089581132 -0.8435590267 -0.2975840271 0.1917248964 -0.3790081143 0.1753337234 0.1795996428 -0.4459720254 -0.3312866092 0.326654017 -0.3684243262 -0.2620236278 -0.07177855819 0.5667119026 -0.6395936608 0.1957933158 -0.2138967812 -0.6357920766}}
+mat01 {{curve x1001 0 0.0004752793757 0.0006620184868 -0.001809365698 0.002349768765 -0.002273119753 0.002114711562 -0.00191020174 0.001564600621 -0.001132358215 0.0009348882595 -0.0005096861278 0.0004530227743 -0.00139620027 0.002881029621 -0.003131358651 0.001242619008 0.001726642135 -0.003208291251 0.002801769413 -0.00156323798 0.0002476040099 0.0001159384046 -0.0003921579919 0.001223087776 -0.002825331409 0.003652854124 -0.003282272024 0.002194483764 -0.0004796511494 -0.000763706048 0.0009473792161 -0.000412995083 -7.505904796e-05 -9.82808051e-05 7.011946582e-05 0.000158748182 -0.0003931231913 0.0007744368049 -0.001264762133 0.0008888422744 -7.063045632e-05 -0.0004480831849 0.0003055164125 3.576943709e-05 -8.544922457e-05 -0.0001599404932 0.000634197786 -0.001002395991 0.0005883221747 -4.860101762e-05 -2.208620936e-05 -0.0002842250688 0.0007136286586 -0.0008579556015 0.0006406703615 -0.0001160519532 -0.0004407022207 0.0005921262782 -0.0001927575358 -8.896937652e-05 0.0001548873552 5.58116808e-05}}
+mat11 {{curve x1001 1 0.9999998212 0.9999997616 0.9999983907 0.9999973178 0.999997437 0.9999976754 0.9999981523 0.9999988079 0.9999992847 0.9999996424 0.9999998212 0.9999999404 0.9999989271 0.9999958277 0.9999950528 0.9999992251 0.9999985695 0.9999948144 0.9999961853 0.9999988079 0.9999999404 1 0.9999999404 0.9999992847 0.9999960661 0.9999932051 0.9999946356 0.9999976754 0.9999998808 0.9999998212 0.9999995828 0.9999999404 1 1 1 1 0.9999999404 0.9999997616 0.9999992251 0.999999702 1 0.9999999404 0.9999998808 1 1 1 0.9999998212 0.9999995232 0.9999998808 1 1 0.9999999404 0.9999996424 0.9999996424 0.9999997616 1 0.9999999404 0.9999998212 1 1.000000119 1 1}}
+mat21 {{curve x1001 0 -0.5241699219 1.294921875 -0.8657226562 -0.1268310547 1.051391602 -1.541381836 0.9110107422 0.02197265625 0.1982421875 -1.261108398 2.029052734 -1.144897461 -1.74621582 3.771728516 -2.826171875 -0.7399902344 4.314819336 -4.312988281 1.317260742 1.989135742 -2.364624023 0.09729003906 2.086669922 -2.200317383 -0.3817138672 3.324951172 -3.201416016 0.271484375 2.609741211 -2.992797852 0.6585693359 1.575805664 -1.971069336 -0.1824951172 2.789794922 -3.679931641 1.856811523 0.6831054688 -1.827636719 0.9361572266 0.8563232422 -1.743041992 1.117919922 0.7670898438 -2.163208008 1.551391602 -0.1641845703 -0.3049316406 -0.6350097656 1.887939453 -2.522338867 1.578491211 -0.08178710938 -0.5285644531 -0.0419921875 1.114501953 -1.229003906 0.1834716797 0.8051757812 -1.29675293 0.859375 -0.2094726562}}
+mat02 {{curve x1001 0 5.571033272e-14 4.768795832e-14 5.472122525e-14 -9.173812019e-14 6.083034873e-14 1.372143772e-13 3.676325601e-14 -3.412684564e-14 -7.990806333e-15 -1.066707012e-13 -2.870389676e-14 -6.162306993e-14 -6.423433698e-14 1.732072195e-13 3.71922057e-13 3.086194359e-14 1.208958199e-13 1.964103251e-13 2.357162588e-13 1.848121672e-13 3.358424649e-15 -6.906482982e-17 4.582341518e-14 8.967339607e-15 1.263583015e-13 2.222868292e-13 -4.981369592e-13 -2.463676778e-13 5.275006205e-16 4.472427135e-14 8.161458908e-15 4.155884485e-14 2.586468256e-15 -9.916816107e-15 6.86961762e-15 1.745847269e-16 -7.277735882e-15 -7.700729736e-15 -1.415273606e-13 -9.204904905e-14 2.975979956e-15 1.611812727e-14 -1.570773812e-14 7.785598626e-16 -5.113726791e-15 2.29984048e-14 -7.968532924e-14 -8.341442906e-14 -5.850070743e-15 -1.905248572e-15 -5.457548687e-16 2.458955281e-14 2.527772134e-14 -2.712688913e-14 2.116684005e-14 4.823319427e-15 1.76600237e-14 3.372652431e-14 -1.488324133e-14 7.379135043e-15 1.674288183e-14 2.64187141e-15}}
+mat12 {{curve x1001 0 5.86079657e-11 3.601706433e-11 -1.512158454e-11 -1.952051021e-11 -1.338026218e-11 3.244259028e-11 -9.622819902e-12 -1.090588904e-11 3.528384182e-12 -5.7049903e-11 2.815839402e-11 -6.80131923e-11 2.30031983e-11 3.005957636e-11 -5.938581571e-11 1.241807525e-11 3.500878407e-11 -3.060932757e-11 4.206511528e-11 -5.911175716e-11 6.781845484e-12 -2.978513703e-13 -5.842467482e-11 3.665852778e-12 -2.23614096e-11 3.042584587e-11 7.588172452e-11 -5.613299756e-11 -5.498792068e-13 -2.928105328e-11 4.307381708e-12 -5.031395786e-11 -1.722955806e-11 5.045144164e-11 4.898509723e-11 5.498794237e-13 9.256301454e-12 -4.971821566e-12 5.595005709e-11 -5.178024329e-11 -2.106725731e-11 -1.798563382e-11 -2.570686025e-11 1.088303146e-11 2.992260606e-11 -7.18967455e-11 -6.282367682e-11 4.1607464e-11 -4.9718233e-12 1.960091291e-11 1.235510479e-11 -4.325717562e-11 1.771068188e-11 1.580901209e-11 1.651928073e-11 -2.078086141e-11 -2.003622615e-11 2.84791548e-11 3.860611483e-11 -4.147008084e-11 5.404857117e-11 2.366772923e-11}}
+mat22 {{curve x1001 1 0.9999999404 0.9999999404 1 1 1 0.9999999404 1 1 1 1.000000119 0.9999999404 1.000000119 1 0.9999999404 1.000000119 1 0.9999999404 1 0.9999999404 1.000000119 1 1 1.000000119 1 1 0.9999999404 0.9999998808 1.000000119 1 1 1 1.000000119 1 0.9999999404 0.9999999404 1 1 1 0.9999999404 1.000000119 1 1 1 1 0.9999999404 1.000000119 1.000000119 0.9999999404 1 1 1 1 1 1 1 1 1 0.9999999404 0.9999999404 1 0.9999999404 1}}
+autoScaleBL {2.000000043 5.999999861}
+autoScaleTR {2133.999962 1205.000024}
+cacheBreaker true
+name F_Steadiness1
+selected true
+xpos 8971
+ypos 4775
+}
+CornerPin2D {
+to1 {2.5 6.199999809}
+to2 {2132.5 7.099999905}
+to3 {2132.100098 1205.800049}
+to4 {1.799999952 1204.800049}
+invert false
+shutteroffset centred
+from1 {0 0}
+from2 {2150 0}
+from3 {2150 1210}
+from4 {0 1210}
+name CornerPin2D1
+label "match back to f1001 before"
+selected true
+xpos 8971
+ypos 4816
+}
+Dot {
+name Dot34
+selected true
+xpos 9005
+ypos 4920
+}
+push $N6c794ae0
+dnLogLin {
+operation lin2log
+"log reference" 394
+"lin reference" 0.18
+"negative gamma" 0.5064
+"black level" 0.00947
+"dens per cv" 0.002
+name dnLogLin5
+selected true
+xpos 9431
+ypos 4832
+}
+STMap {
+inputs 2
+uv rgb
+name STMap3
+label "\[value filter]"
+selected true
+xpos 9431
+ypos 4904
+}
+dnLogLin {
+"log reference" 394
+"lin reference" 0.18
+"negative gamma" 0.5064
+"black level" 0.00947
+"dens per cv" 0.002
+name dnLogLin6
+selected true
+xpos 9431
+ypos 4992
+}
+Dot {
+name Dot35
+selected true
+xpos 9465
+ypos 5150
+}
+set N64585940 [stack 0]
+Dot {
+name Dot36
+selected true
+xpos 9887
+ypos 5150
+}
+set N6458e6c0 [stack 0]
+Shuffle {
+in filtration
+green red
+blue red
+alpha red
+name Shuffle3
+label RRRR
+selected true
+xpos 9805
+ypos 5203
+}
+push $N6458e6c0
+Shuffle {
+in filtration
+red green
+blue green
+alpha green
+name Shuffle18
+label GGGG
+selected true
+xpos 9900
+ypos 5205
+}
+Merge2 {
+inputs 2
+operation min
+name Min2
+selected true
+xpos 9855
+ypos 5260
+}
+Grade {
+channels alpha
+gamma 3
+name Grade32
+selected true
+xpos 9841
+ypos 5308
+}
+Dot {
+name Dot38
+selected true
+xpos 9889
+ypos 5375
+}
+push $N64585940
+dnDigiNoise {
+name dnDigiNoise1
+selected true
+xpos 9519
+ypos 5264
+inputFormatStatic ""
+inputFormat2 {{0} "CIPHER Delivery"}
+inputSensor {{0} "Delivery Extractions/Alexa XT OpenGate AE" "Delivery Extractions/Alexa XT 4:3 Cropped AB" "Delivery Extractions/Alexa XT 4:3 Full AC" "Delivery Extractions/Red Dragon 5.5k DB" "Delivery Extractions/Red Dragon 5k WS DC" "Delivery Extractions/Canon C500 CB" "Delivery Extractions/Phantom Flex 4k PB" "Delivery Extractions/Alexa XT 16:9 1.78 AD" "Delivery Extractions/GoPro 4k GP" "Delivery Extractions/BlackMagic BB BC" "Delivery Extractions/Panasonic VariCam35 VC" "Delivery Extractions/GoPro 2.7k GQ" "Delivery Extractions/Red Dragon 6K DE"}
+presetSelection "AE Alexa XT OpenGate"
+mixToBayerPattern {0.7 0.55 0.47}
+blur {1.1 1.2 2.5}
+intensity {0.36 0.5 0.4}
+basicNoiseIntensity 1
+noiseInBlacks 0
+maskEnable {{"\[exists input1]"}}
+lut {master {}
+  red {curve 0.008184909821 x0.003064865246 0.8413131833 x0.05999999866 1.562348843 x0.369235009 2.9308815 x0.5328509808 3.633826494 x1.064229965 5.25 x1.365730047 6 C x3.761070013 12}
+  green {curve 0.008184909821 x0.005810277537 0.6619912386 x0.05999999866 1.187142968 x0.369235009 2.937155247 x0.5328509808 3.633826494 x1.064229965 5.25 x1.365730047 6 C x3.761070013 12}
+  blue {curve 0.008184909821 x0.006664032117 0.7126347423 x0.05999999866 1.49469769 x0.369235009 2.895579338 x0.5328509808 3.633826494 x1.064229965 5.25 x1.3657341 6 C x3.76107192 12}
+  alpha {}}
+seed {{frame} {r+1000} {r+2000}}
+pixelRandomSeed {{seed.r+3000}}
+noiseDataFile /jobs/CIPHER/2D/CIPHER_digitalNoisePresets/CIPHERnoisePresets.json
+serialisation "\[\[\"useSerialisation\", \{\"toScript\": \"true\", \"value\": true\}], \[\"clamp\", \{\"toScript\": \"false\", \"value\": false\}], \[\"documentation\", \{\"toScript\": \"\", \"value\": \"__import__(\\\"dnnuke.nodes.dnRasReformat.callbacks\\\", fromlist = \[\\\"openDocs\\\"]).openDocs()\"\}], \[\"inputResolutionAspect\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"outputResolutionName\", \{\"toScript\": \"Alexa XT OpenGate AE\", \"value\": \"Alexa XT OpenGate AE\"\}], \[\"lifetimeEnd\", \{\"toScript\": \"0\", \"value\": 0.0\}], \[\"outputSensorCenterY\", \{\"toScript\": \"9.066749573\", \"value\": 9.066749573\}], \[\"outputSensorCenterX\", \{\"toScript\": \"14.08275032\", \"value\": 14.08275032\}], \[\"resolutionMaskLeft\", \{\"toScript\": \"0\", \"value\": 0.0\}], \[\"preserveBoundingBox\", \{\"toScript\": \"true\", \"value\": true\}], \[\"inputSensorHeight\", \{\"toScript\": \"15.85130024\", \"value\": 15.85130024\}], \[\"_version\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"inputSensorCenterY\", \{\"toScript\": \"7.92565012\", \"value\": 7.92565012\}], \[\"enableRasDataKnobs\", \{\"toScript\": \"false\", \"value\": false\}], \[\"inputFormat2\", \{\"toScript\": \"\{0\} \\\"CIPHER Delivery\\\"\", \"value\": \"CIPHER Delivery\"\}], \[\"outputSensor\", \{\"toScript\": \"\{0\} \\\"Alexa XT/OpenGate\\\"\", \"value\": \"Alexa XT/OpenGate\"\}], \[\"extraResolutionsXML\", \{\"toScript\": \"\", \"value\": \"\"\}], \[\"dnRasReformat\", \{\"toScript\": \"1\", \"value\": true\}], \[\"inputSensorSqueeze\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"inputSensorCenterX\", \{\"toScript\": \"14.08275032\", \"value\": 14.08275032\}], \[\"outputSensorWidth\", \{\"toScript\": \"28.16550064\", \"value\": 28.16550064\}], \[\"bookmark\", \{\"toScript\": \"false\", \"value\": false\}], \[\"inputFormat\", \{\"toScript\": \"\", \"value\": \"\"\}], \[\"resolutionMaskRight\", \{\"toScript\": \"3414\", \"value\": 3414.0\}], \[\"dope_sheet\", \{\"toScript\": \"false\", \"value\": false\}], \[\"nodeBuilt\", \{\"toScript\": \"true\", \"value\": true\}], \[\"outputResolutionHeight\", \{\"toScript\": \"2198\", \"value\": 2198.0\}], \[\"window\", \{\"toScript\": \"\", \"value\": null\}], \[\"lock_connections\", \{\"toScript\": \"\", \"value\": null\}], \[\"resolutionMaskBottom\", \{\"toScript\": \"0\", \"value\": 0.0\}], \[\"outputSensorName\", \{\"toScript\": \"Alexa XT/OpenGate\", \"value\": \"Alexa XT/OpenGate\"\}], \[\"_class\", \{\"toScript\": \"\", \"value\": \"dnRasReformat\"\}], \[\"removeFormatCheck\", \{\"toScript\": \"true\", \"value\": true\}], \[\"direction\", \{\"toScript\": \"\{1\} \\\"from scan to client delivery\\\" \\\"from client delivery to scan\\\"\", \"value\": \"from client delivery to scan\"\}], \[\"inputSensor\", \{\"toScript\": \"\{0\} \\\"Delivery Extractions/Alexa XT OpenGate AE\\\" \\\"Delivery Extractions/Alexa XT 4:3 Cropped AB\\\" \\\"Delivery Extractions/Alexa XT 4:3 Full AC\\\" \\\"Delivery Extractions/Red Dragon 5.5k DB\\\" \\\"Delivery Extractions/Red Dragon 5k WS DC\\\" \\\"Delivery Extractions/Canon C500 CB\\\" \\\"Delivery Extractions/Phantom Flex 4k PB\\\" \\\"Delivery Extractions/Alexa XT 16:9 1.78 AD\\\" \\\"Delivery Extractions/GoPro 4k GP\\\" \\\"Delivery Extractions/BlackMagic BB BC\\\" \\\"Delivery Extractions/Panasonic VariCam35 VC\\\" \\\"Delivery Extractions/GoPro 2.7k GQ\\\" \\\"Delivery Extractions/Red Dragon 6K DE\\\"\", \"value\": \"Delivery Extractions/Alexa XT OpenGate AE\"\}], \[\"outputSensorHeight\", \{\"toScript\": \"18.13349915\", \"value\": 18.13349915\}], \[\"includeProxyFormats\", \{\"toScript\": \"false\", \"value\": false\}], \[\"outputFormat\", \{\"toScript\": \"\{0\} \\\"Alexa XT OpenGate AE\\\"\", \"value\": \"Alexa XT OpenGate AE\"\}], \[\"postage_stamp_frame\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"extraRasDataFilesKnobsLineBreak\", \{\"toScript\": \"\", \"value\": \"\"\}], \[\"postage_stamp\", \{\"toScript\": \"false\", \"value\": false\}], \[\"disable\", \{\"toScript\": \"false\", \"value\": false\}], \[\"inputFormatPixelAspect\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"lifetimeStart\", \{\"toScript\": \"0\", \"value\": 0.0\}], \[\"inputResolutionHeight\", \{\"toScript\": \"1210\", \"value\": 1210.0\}], \[\"outputSensorSqueeze\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"extraSensorsXML\", \{\"toScript\": \"\", \"value\": \"\"\}], \[\"logPreset\", \{\"toScript\": \"alexa\", \"value\": \"alexa\"\}], \[\"refreshInput\", \{\"toScript\": \"\", \"value\": \"__import__(\\\"dnnuke.nodes.dnRasReformat.callbacks\\\", fromlist = \[\\\"resetInputFormat\\\"]).resetInputFormat()\"\}], \[\"inputResolutionName\", \{\"toScript\": \"CIPHER Delivery\", \"value\": \"CIPHER Delivery\"\}], \[\"showExtraRasDataFilesKnobs\", \{\"toScript\": \"false\", \"value\": false\}], \[\"resolutionMaskTop\", \{\"toScript\": \"2198\", \"value\": 2198.0\}], \[\"rasData\", \{\"toScript\": \"1\", \"value\": true\}], \[\"inputFormatResolution\", \{\"toScript\": \"2150 1210\", \"value\": \[2150.0, 1210.0]\}], \[\"gizmo_file\", \{\"toScript\": \"\", \"value\": null\}], \[\"blackOutside\", \{\"toScript\": \"false\", \"value\": false\}], \[\"cached\", \{\"toScript\": \"false\", \"value\": false\}], \[\"mapsize\", \{\"toScript\": \"\", \"value\": null\}], \[\"outputResolutionWidth\", \{\"toScript\": \"3414\", \"value\": 3414.0\}], \[\"mask\", \{\"toScript\": \"\{0\} none\", \"value\": \"none\"\}], \[\"inputSensorWidth\", \{\"toScript\": \"28.16550064\", \"value\": 28.16550064\}], \[\"useLogSpace\", \{\"toScript\": \"false\", \"value\": false\}], \[\"filter\", \{\"toScript\": \"Simon\", \"value\": \"Simon\"\}], \[\"useLifetime\", \{\"toScript\": \"false\", \"value\": false\}], \[\"inputSensorName\", \{\"toScript\": \"Delivery Extractions/Alexa XT OpenGate AE\", \"value\": \"Delivery Extractions/Alexa XT OpenGate AE\"\}], \[\"outputResolutionAspect\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"maskMethod\", \{\"toScript\": \"cropped\", \"value\": \"cropped\"\}], \[\"inputResolutionWidth\", \{\"toScript\": \"2150\", \"value\": 2150.0\}], \[\"reformatMethod\", \{\"toScript\": \"Resize, then Crop\", \"value\": \"Resize, then Crop\"\}]]"
+serialisation_1 "\[\[\"useSerialisation\", \{\"toScript\": \"true\", \"value\": true\}], \[\"clamp\", \{\"toScript\": \"\{dnRasReformat_DELIVERY_TO_SCAN.clamp\}\", \"value\": false\}], \[\"documentation\", \{\"toScript\": \"\", \"value\": \"__import__(\\\"dnnuke.nodes.dnRasReformat.callbacks\\\", fromlist = \[\\\"openDocs\\\"]).openDocs()\"\}], \[\"inputResolutionAspect\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"outputResolutionName\", \{\"toScript\": \"CIPHER Delivery\", \"value\": \"CIPHER Delivery\"\}], \[\"lifetimeEnd\", \{\"toScript\": \"0\", \"value\": 0.0\}], \[\"outputSensorCenterY\", \{\"toScript\": \"7.92565012\", \"value\": 7.92565012\}], \[\"outputSensorCenterX\", \{\"toScript\": \"14.08275032\", \"value\": 14.08275032\}], \[\"resolutionMaskLeft\", \{\"toScript\": \"0\", \"value\": 0.0\}], \[\"preserveBoundingBox\", \{\"toScript\": \"\{dnRasReformat_DELIVERY_TO_SCAN.preserveBoundingBox\}\", \"value\": true\}], \[\"inputSensorHeight\", \{\"toScript\": \"18.13349915\", \"value\": 18.13349915\}], \[\"_version\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"inputSensorCenterY\", \{\"toScript\": \"9.066749573\", \"value\": 9.066749573\}], \[\"enableRasDataKnobs\", \{\"toScript\": \"false\", \"value\": false\}], \[\"inputFormat2\", \{\"toScript\": \"\{0\} \\\"Alexa XT OpenGate AE\\\"\", \"value\": \"Alexa XT OpenGate AE\"\}], \[\"outputSensor\", \{\"toScript\": \"\{0\} \\\"Delivery Extractions/Alexa XT OpenGate AE\\\" Lensgrids/AlexaOG_to_Red_5.5FF \\\"Alexa XT/OpenGate\\\"\", \"value\": \"Delivery Extractions/Alexa XT OpenGate AE\"\}], \[\"extraResolutionsXML\", \{\"toScript\": \"\", \"value\": \"\"\}], \[\"dnRasReformat\", \{\"toScript\": \"1\", \"value\": true\}], \[\"inputSensorSqueeze\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"inputSensorCenterX\", \{\"toScript\": \"14.08275032\", \"value\": 14.08275032\}], \[\"outputSensorWidth\", \{\"toScript\": \"28.16550064\", \"value\": 28.16550064\}], \[\"bookmark\", \{\"toScript\": \"false\", \"value\": false\}], \[\"inputFormat\", \{\"toScript\": \"\", \"value\": \"\"\}], \[\"resolutionMaskRight\", \{\"toScript\": \"2150\", \"value\": 2150.0\}], \[\"dope_sheet\", \{\"toScript\": \"false\", \"value\": false\}], \[\"nodeBuilt\", \{\"toScript\": \"true\", \"value\": true\}], \[\"outputResolutionHeight\", \{\"toScript\": \"1210\", \"value\": 1210.0\}], \[\"window\", \{\"toScript\": \"\", \"value\": null\}], \[\"lock_connections\", \{\"toScript\": \"\", \"value\": null\}], \[\"resolutionMaskBottom\", \{\"toScript\": \"0\", \"value\": 0.0\}], \[\"outputSensorName\", \{\"toScript\": \"Delivery Extractions/Alexa XT OpenGate AE\", \"value\": \"Delivery Extractions/Alexa XT OpenGate AE\"\}], \[\"_class\", \{\"toScript\": \"\", \"value\": \"dnRasReformat\"\}], \[\"removeFormatCheck\", \{\"toScript\": \"true\", \"value\": true\}], \[\"direction\", \{\"toScript\": \"\{0\} \\\"from scan to client delivery\\\" \\\"from client delivery to scan\\\"\", \"value\": \"from scan to client delivery\"\}], \[\"inputSensor\", \{\"toScript\": \"\{0\} \\\"Alexa XT/OpenGate\\\"\", \"value\": \"Alexa XT/OpenGate\"\}], \[\"outputSensorHeight\", \{\"toScript\": \"15.85130024\", \"value\": 15.85130024\}], \[\"includeProxyFormats\", \{\"toScript\": \"false\", \"value\": false\}], \[\"outputFormat\", \{\"toScript\": \"\{0\} \\\"CIPHER Delivery\\\"\", \"value\": \"CIPHER Delivery\"\}], \[\"postage_stamp_frame\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"extraRasDataFilesKnobsLineBreak\", \{\"toScript\": \"\", \"value\": \"\"\}], \[\"postage_stamp\", \{\"toScript\": \"false\", \"value\": false\}], \[\"disable\", \{\"toScript\": \"false\", \"value\": false\}], \[\"inputFormatPixelAspect\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"lifetimeStart\", \{\"toScript\": \"0\", \"value\": 0.0\}], \[\"inputResolutionHeight\", \{\"toScript\": \"2198\", \"value\": 2198.0\}], \[\"outputSensorSqueeze\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"extraSensorsXML\", \{\"toScript\": \"\", \"value\": \"\"\}], \[\"logPreset\", \{\"toScript\": \"alexa\", \"value\": \"alexa\"\}], \[\"refreshInput\", \{\"toScript\": \"\", \"value\": \"__import__(\\\"dnnuke.nodes.dnRasReformat.callbacks\\\", fromlist = \[\\\"resetInputFormat\\\"]).resetInputFormat()\"\}], \[\"inputResolutionName\", \{\"toScript\": \"Alexa XT OpenGate AE\", \"value\": \"Alexa XT OpenGate AE\"\}], \[\"showExtraRasDataFilesKnobs\", \{\"toScript\": \"false\", \"value\": false\}], \[\"resolutionMaskTop\", \{\"toScript\": \"1210\", \"value\": 1210.0\}], \[\"rasData\", \{\"toScript\": \"1\", \"value\": true\}], \[\"inputFormatResolution\", \{\"toScript\": \"3414 2198\", \"value\": \[3414.0, 2198.0]\}], \[\"gizmo_file\", \{\"toScript\": \"\", \"value\": null\}], \[\"blackOutside\", \{\"toScript\": \"\{dnRasReformat_DELIVERY_TO_SCAN.blackOutside\}\", \"value\": false\}], \[\"cached\", \{\"toScript\": \"false\", \"value\": false\}], \[\"mapsize\", \{\"toScript\": \"\", \"value\": null\}], \[\"outputResolutionWidth\", \{\"toScript\": \"2150\", \"value\": 2150.0\}], \[\"mask\", \{\"toScript\": \"\{0\} none Projection\", \"value\": \"none\"\}], \[\"inputSensorWidth\", \{\"toScript\": \"28.16550064\", \"value\": 28.16550064\}], \[\"useLogSpace\", \{\"toScript\": \"\{dnRasReformat_DELIVERY_TO_SCAN.useLogSpace\}\", \"value\": false\}], \[\"filter\", \{\"toScript\": \"\{dnRasReformat_DELIVERY_TO_SCAN.filter\}\", \"value\": \"Simon\"\}], \[\"useLifetime\", \{\"toScript\": \"false\", \"value\": false\}], \[\"inputSensorName\", \{\"toScript\": \"Alexa XT/OpenGate\", \"value\": \"Alexa XT/OpenGate\"\}], \[\"outputResolutionAspect\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"maskMethod\", \{\"toScript\": \"cropped\", \"value\": \"cropped\"\}], \[\"inputResolutionWidth\", \{\"toScript\": \"3414\", \"value\": 3414.0\}], \[\"reformatMethod\", \{\"toScript\": \"\{dnRasReformat_DELIVERY_TO_SCAN.reformatMethod\}\", \"value\": \"Resize, then Crop\"\}]]"
+serialisation_2 "\[\[\"useSerialisation\", \{\"toScript\": \"true\", \"value\": true\}], \[\"clamp\", \{\"toScript\": \"\{dnRasReformat_DELIVERY_TO_SCAN.clamp\}\", \"value\": false\}], \[\"documentation\", \{\"toScript\": \"\", \"value\": \"__import__(\\\"dnnuke.nodes.dnRasReformat.callbacks\\\", fromlist = \[\\\"openDocs\\\"]).openDocs()\"\}], \[\"inputResolutionAspect\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"outputResolutionName\", \{\"toScript\": \"CIPHER Delivery\", \"value\": \"CIPHER Delivery\"\}], \[\"lifetimeEnd\", \{\"toScript\": \"0\", \"value\": 0.0\}], \[\"outputSensorCenterY\", \{\"toScript\": \"7.92565012\", \"value\": 7.92565012\}], \[\"outputSensorCenterX\", \{\"toScript\": \"14.08275032\", \"value\": 14.08275032\}], \[\"resolutionMaskLeft\", \{\"toScript\": \"0\", \"value\": 0.0\}], \[\"preserveBoundingBox\", \{\"toScript\": \"\{dnRasReformat_DELIVERY_TO_SCAN.preserveBoundingBox\}\", \"value\": true\}], \[\"inputSensorHeight\", \{\"toScript\": \"18.13349915\", \"value\": 18.13349915\}], \[\"_version\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"inputSensorCenterY\", \{\"toScript\": \"9.066749573\", \"value\": 9.066749573\}], \[\"enableRasDataKnobs\", \{\"toScript\": \"false\", \"value\": false\}], \[\"inputFormat2\", \{\"toScript\": \"\{0\} \\\"Alexa XT OpenGate AE\\\"\", \"value\": \"Alexa XT OpenGate AE\"\}], \[\"outputSensor\", \{\"toScript\": \"\{0\} \\\"Delivery Extractions/Alexa XT OpenGate AE\\\" Lensgrids/AlexaOG_to_Red_5.5FF \\\"Alexa XT/OpenGate\\\"\", \"value\": \"Delivery Extractions/Alexa XT OpenGate AE\"\}], \[\"extraResolutionsXML\", \{\"toScript\": \"\", \"value\": \"\"\}], \[\"dnRasReformat\", \{\"toScript\": \"1\", \"value\": true\}], \[\"inputSensorSqueeze\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"inputSensorCenterX\", \{\"toScript\": \"14.08275032\", \"value\": 14.08275032\}], \[\"outputSensorWidth\", \{\"toScript\": \"28.16550064\", \"value\": 28.16550064\}], \[\"bookmark\", \{\"toScript\": \"false\", \"value\": false\}], \[\"inputFormat\", \{\"toScript\": \"\", \"value\": \"\"\}], \[\"resolutionMaskRight\", \{\"toScript\": \"2150\", \"value\": 2150.0\}], \[\"dope_sheet\", \{\"toScript\": \"false\", \"value\": false\}], \[\"nodeBuilt\", \{\"toScript\": \"true\", \"value\": true\}], \[\"outputResolutionHeight\", \{\"toScript\": \"1210\", \"value\": 1210.0\}], \[\"window\", \{\"toScript\": \"\", \"value\": null\}], \[\"lock_connections\", \{\"toScript\": \"\", \"value\": null\}], \[\"resolutionMaskBottom\", \{\"toScript\": \"0\", \"value\": 0.0\}], \[\"outputSensorName\", \{\"toScript\": \"Delivery Extractions/Alexa XT OpenGate AE\", \"value\": \"Delivery Extractions/Alexa XT OpenGate AE\"\}], \[\"_class\", \{\"toScript\": \"\", \"value\": \"dnRasReformat\"\}], \[\"removeFormatCheck\", \{\"toScript\": \"true\", \"value\": true\}], \[\"direction\", \{\"toScript\": \"\{0\} \\\"from scan to client delivery\\\" \\\"from client delivery to scan\\\"\", \"value\": \"from scan to client delivery\"\}], \[\"inputSensor\", \{\"toScript\": \"\{0\} \\\"Alexa XT/OpenGate\\\"\", \"value\": \"Alexa XT/OpenGate\"\}], \[\"outputSensorHeight\", \{\"toScript\": \"15.85130024\", \"value\": 15.85130024\}], \[\"includeProxyFormats\", \{\"toScript\": \"false\", \"value\": false\}], \[\"outputFormat\", \{\"toScript\": \"\{0\} \\\"CIPHER Delivery\\\"\", \"value\": \"CIPHER Delivery\"\}], \[\"postage_stamp_frame\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"extraRasDataFilesKnobsLineBreak\", \{\"toScript\": \"\", \"value\": \"\"\}], \[\"postage_stamp\", \{\"toScript\": \"false\", \"value\": false\}], \[\"disable\", \{\"toScript\": \"false\", \"value\": false\}], \[\"inputFormatPixelAspect\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"lifetimeStart\", \{\"toScript\": \"0\", \"value\": 0.0\}], \[\"inputResolutionHeight\", \{\"toScript\": \"2198\", \"value\": 2198.0\}], \[\"outputSensorSqueeze\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"extraSensorsXML\", \{\"toScript\": \"\", \"value\": \"\"\}], \[\"logPreset\", \{\"toScript\": \"alexa\", \"value\": \"alexa\"\}], \[\"refreshInput\", \{\"toScript\": \"\", \"value\": \"__import__(\\\"dnnuke.nodes.dnRasReformat.callbacks\\\", fromlist = \[\\\"resetInputFormat\\\"]).resetInputFormat()\"\}], \[\"inputResolutionName\", \{\"toScript\": \"Alexa XT OpenGate AE\", \"value\": \"Alexa XT OpenGate AE\"\}], \[\"showExtraRasDataFilesKnobs\", \{\"toScript\": \"false\", \"value\": false\}], \[\"resolutionMaskTop\", \{\"toScript\": \"1210\", \"value\": 1210.0\}], \[\"rasData\", \{\"toScript\": \"1\", \"value\": true\}], \[\"inputFormatResolution\", \{\"toScript\": \"3414 2198\", \"value\": \[3414.0, 2198.0]\}], \[\"gizmo_file\", \{\"toScript\": \"\", \"value\": null\}], \[\"blackOutside\", \{\"toScript\": \"\{dnRasReformat_DELIVERY_TO_SCAN.blackOutside\}\", \"value\": false\}], \[\"cached\", \{\"toScript\": \"false\", \"value\": false\}], \[\"mapsize\", \{\"toScript\": \"\", \"value\": null\}], \[\"outputResolutionWidth\", \{\"toScript\": \"2150\", \"value\": 2150.0\}], \[\"mask\", \{\"toScript\": \"\{0\} none Projection\", \"value\": \"none\"\}], \[\"inputSensorWidth\", \{\"toScript\": \"28.16550064\", \"value\": 28.16550064\}], \[\"useLogSpace\", \{\"toScript\": \"\{dnRasReformat_DELIVERY_TO_SCAN.useLogSpace\}\", \"value\": false\}], \[\"filter\", \{\"toScript\": \"\{dnRasReformat_DELIVERY_TO_SCAN.filter\}\", \"value\": \"Simon\"\}], \[\"useLifetime\", \{\"toScript\": \"false\", \"value\": false\}], \[\"inputSensorName\", \{\"toScript\": \"Alexa XT/OpenGate\", \"value\": \"Alexa XT/OpenGate\"\}], \[\"outputResolutionAspect\", \{\"toScript\": \"1\", \"value\": 1.0\}], \[\"maskMethod\", \{\"toScript\": \"cropped\", \"value\": \"cropped\"\}], \[\"inputResolutionWidth\", \{\"toScript\": \"3414\", \"value\": 3414.0\}], \[\"reformatMethod\", \{\"toScript\": \"\{dnRasReformat_DELIVERY_TO_SCAN.reformatMethod\}\", \"value\": \"Resize, then Crop\"\}]]"
+}
+push $N64585940
+Keymix {
+inputs 3
+name Keymix1
+selected true
+xpos 9431
+ypos 5365
+}
+StickyNote {
+inputs 0
+name StickyNote2
+label "\[unless you are adding noise at end of shot entirely,]\n add this at end to regrain anywhere that is softened ->"
+note_font_size 41
+selected true
+xpos 8412
+ypos 5213
+}

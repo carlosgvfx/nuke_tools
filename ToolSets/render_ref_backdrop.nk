@@ -1,0 +1,104 @@
+set cut_paste_input [stack 0]
+version 9.0 v7
+BackdropNode {
+inputs 0
+name BackdropNode12
+tile_color 0x2a4c5dff
+label "Renders and Reference"
+note_font_size 150
+note_font_color 0x9ecaffff
+selected true
+xpos 3459
+ypos 4268
+bdwidth 3415
+bdheight 2060
+}
+BackdropNode {
+inputs 0
+name BackdropNode123
+tile_color 0xff46ff
+label "client version"
+note_font_size 62
+selected true
+xpos 2119
+ypos 4723
+bdwidth 761
+bdheight 797
+}
+StickyNote {
+inputs 0
+name StickyNote13
+tile_color 0x2d2d2dff
+label anim
+note_font "SamsungImagination Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+note_font_size 40
+selected true
+xpos 5658
+ypos 4761
+}
+StickyNote {
+inputs 0
+name StickyNote3
+tile_color 0x2d2d2dff
+label fx
+note_font "SamsungImagination Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+note_font_size 40
+selected true
+xpos 5285
+ypos 4761
+}
+StickyNote {
+inputs 0
+name StickyNote9
+tile_color 0x2d2d2dff
+label comp
+note_font "SamsungImagination Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+note_font_size 40
+selected true
+xpos 3958
+ypos 4772
+}
+StickyNote {
+inputs 0
+name StickyNote11
+tile_color 0x2d2d2dff
+label layout
+note_font "SamsungImagination Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+note_font_size 40
+selected true
+xpos 6060
+ypos 4761
+}
+StickyNote {
+inputs 0
+name StickyNote1
+tile_color 0xad0000ff
+label ref
+note_font "SamsungImagination Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+note_font_size 40
+selected true
+xpos 6453
+ypos 4765
+}
+StickyNote {
+inputs 0
+name StickyNote10
+tile_color 0x2d2d2dff
+label lighting
+note_font "SamsungImagination Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+note_font_size 40
+selected true
+xpos 4788
+ypos 4762
+}
+StickyNote {
+inputs 0
+name StickyNote2
+tile_color 0x2d2d2dff
+label environment
+note_font "SamsungImagination Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+note_font_size 40
+selected true
+xpos 4300
+ypos 4767
+}

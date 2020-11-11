@@ -1,0 +1,5955 @@
+set cut_paste_input [stack 0]
+version 8.0 v3
+Bezier {
+ inputs 0
+ cliptype none
+ points {{
+{711.7 977.1 22.4 -2.6 22.4 0 -59.3 0.62 0 0.46 20}
+{714.5 927.2 22.4 -0.7 22.4 0 -54.9 -0.11 35.2 0.02}
+{808 925 28.5 0.62 23.2 0 -53.5 0.27 2.1 0.07 40.2}
+{811.1 979.6 26.7 2.66 20.3 0 -43.8 -0.26 8.2 -0.16 28.9}
+}}
+ shape {{curve L x1001 0}}
+ linear true
+ center {1138 733}
+ name Bezier7
+ selected true
+ xpos 738
+ ypos 4128
+}
+Bezier {
+ inputs 0
+ cliptype none
+ points {{
+{653 1131.5 23.5 -2.59 23.5 0 -28.2 0.68}
+{638.9 1026.7 23.5 -0.86 23.5 0 -68.5 0.57}
+{764.6 1002.4 24.8 0.21 24.8 0 -73.2 -0.1}
+{851.6 1072.2 17.7 1.09 17.7 0 -93.5 -0.52}
+{841.5 1151 17.7 2.85 17.7 0 -19.1 -0.46}
+}}
+ shape {}
+ linear true
+ center {1138 733}
+ name Bezier15
+ selected true
+ xpos 1046
+ ypos 4028
+}
+Bezier {
+ inputs 0
+ cliptype none
+ points {{
+{943.7 1106.7 28.7 -1.12 28.7 0 90.3}
+{974.7 763.7 31.9 -1.93 31.9 0 90.3 -0.03}
+{807.5 762.5 31.9 2.02 31.9 0 90.3 0 152.1 0.86}
+{797.3 1127.1 28.7 1.21 28.7 0 92.2 0 0 -0.66 90.9}
+}}
+ shape {}
+ linear true
+ center {1138 733}
+ name Bezier19
+ selected true
+ xpos 1046
+ ypos 3978
+}
+Bezier {
+ inputs 0
+ cliptype none
+ points {{
+{1227.7 870.2 16.7 3.89 16.7}
+{1182.1 919 16.7 0.75 16.7}
+}}
+ shape {{curve L x1001 0}}
+ linear true
+ center {1138 733}
+ name Bezier18
+ selected true
+ xpos 806
+ ypos 3492
+}
+Grade {
+ multiply 0.6
+ name Grade9
+ selected true
+ xpos 806
+ ypos 3538
+}
+Transform {
+ rotate {{parent.CurveFactory2.curve_data}}
+ center {1227.050049 869.4500122}
+ name Transform9
+ selected true
+ xpos 806
+ ypos 3621
+}
+Bezier {
+ inputs 0
+ cliptype none
+ points {{
+{1265.7 932.4 16.5 -0.71 16.5}
+{1217.4 876.3 16.5 -3.85 16.5}
+}}
+ shape {{curve L x1018 0}}
+ linear true
+ center {1138 733}
+ name Bezier22
+ selected true
+ xpos 1091
+ ypos 3505
+}
+Blur {
+ channels rgba
+ size 6
+ name Blur8
+ label "size:\[value size]"
+ selected true
+ xpos 1091
+ ypos 3535
+}
+push $cut_paste_input
+Bezier {
+ cliptype none
+ points {{
+{1227.6 871.3 16.7 2.44 16.7}
+{1270.4 922.5 16.7 -0.7 16.7}
+}}
+ shape {{curve L x1001 0}}
+ linear true
+ center {1138 733}
+ name Bezier20
+ selected true
+ xpos 957
+ ypos 3492
+}
+Grade {
+ inputs 1+1
+ multiply {{parent.Grade9.multiply}}
+ name Grade10
+ selected true
+ xpos 950
+ ypos 3541
+}
+Transform {
+ rotate {{-parent.Transform9.rotate}}
+ center {1227.050049 869.4500122}
+ name Transform11
+ selected true
+ xpos 950
+ ypos 3619
+}
+Merge2 {
+ inputs 2
+ name Merge25
+ selected true
+ xpos 881
+ ypos 3704
+}
+TimeBlur {
+ divisions 4
+ shutter 1
+ shutteroffset start
+ shuttercustomoffset 0
+ name TimeBlur1
+ selected true
+ xpos 881
+ ypos 3728
+}
+Transform {
+ translate {{parent.CurveFactory3.curve_data} 0}
+ center {1227.050049 869.4500122}
+ motionblur 1
+ name Transform10
+ selected true
+ xpos 881
+ ypos 3757
+}
+Transform {
+ translate {{curve x1001 0 x1020 4 x1040 -5 13 -14 11 x1118 -13} {curve x1001 0 x1020 300 x1040 -338 282 -335 262 x1118 -383}}
+ center {1227.050049 869.4500122}
+ name Transform12
+ selected true
+ xpos 881
+ ypos 3801
+}
+Group {
+ name RandomTile
+ selected true
+ xpos 881
+ ypos 3839
+ addUserKnob {20 RandomTile}
+ addUserKnob {7 uSize l "Tile scale" t "Adjust the overall size of all tiles. To change the scale variation, delete and create a new RandomTile node." R 0 0.7}
+ uSize 0.11
+ addUserKnob {6 cropChoice l "Crop to format" t "Crop result to the project format." -STARTLINE}
+ cropChoice true
+ addUserKnob {4 uOperation l "Merge operation" t "Change the merge operation on every tile." M {atop average color-burn color-dodge conjoint-over copy difference disjoint-over divide exclusion from geometric hard-light hypot in mask matte max min minus multiply out over overlay plus screen soft-light stencil under xor}}
+ uOperation over
+ addUserKnob {26 endHR l "" +STARTLINE}
+ addUserKnob {26 "Number of tiles" l "" +STARTLINE T "Number of tiles: 300"}
+ addUserKnob {26 warning l "" +STARTLINE T "<font color='gray'><h5>Do not attempt to open this group node\n</h5></font>"}
+}
+ Input {
+  inputs 0
+  name Tile
+ }
+ Reformat {
+  name Reformat1
+ }
+ Transform {
+  scale {{uSize}}
+  name Transform1
+  label SCALE
+ }
+set N129d7d40 [stack 0]
+ TimeOffset {
+  time_offset -24
+  time ""
+  name TimeOffset300
+ }
+ Transform {
+  translate {{"2251-((width * uSize)/2)"} {"954-((height * uSize)/2)"}}
+  rotate -99
+  scale {1.97 1.97}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform301
+  label main
+ }
+ Dot {
+  name Dot300
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 22
+  time ""
+  name TimeOffset299
+ }
+ Transform {
+  translate {{"317-((width * uSize)/2)"} {"184-((height * uSize)/2)"}}
+  rotate -147
+  scale {1.85 1.85}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform300
+  label main
+ }
+ Dot {
+  name Dot299
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -13
+  time ""
+  name TimeOffset298
+ }
+ Transform {
+  translate {{"229-((width * uSize)/2)"} {"579-((height * uSize)/2)"}}
+  rotate 162
+  scale {1.11 1.11}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform299
+  label main
+ }
+ Dot {
+  name Dot298
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 1
+  time ""
+  name TimeOffset297
+ }
+ Transform {
+  translate {{"1879-((width * uSize)/2)"} {"1005-((height * uSize)/2)"}}
+  rotate 42
+  scale {1.28 1.28}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform298
+  label main
+ }
+ Dot {
+  name Dot297
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 21
+  time ""
+  name TimeOffset296
+ }
+ Transform {
+  translate {{"57-((width * uSize)/2)"} {"135-((height * uSize)/2)"}}
+  rotate 142
+  scale {1.15 1.15}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform297
+  label main
+ }
+ Dot {
+  name Dot296
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -14
+  time ""
+  name TimeOffset295
+ }
+ Transform {
+  translate {{"425-((width * uSize)/2)"} {"1257-((height * uSize)/2)"}}
+  rotate 101
+  scale {1.27 1.27}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform296
+  label main
+ }
+ Dot {
+  name Dot295
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 23
+  time ""
+  name TimeOffset294
+ }
+ Transform {
+  translate {{"1227-((width * uSize)/2)"} {"726-((height * uSize)/2)"}}
+  rotate 8
+  scale {0.25 0.25}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform295
+  label main
+ }
+ Dot {
+  name Dot294
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -21
+  time ""
+  name TimeOffset293
+ }
+ Transform {
+  translate {{"1149-((width * uSize)/2)"} {"418-((height * uSize)/2)"}}
+  rotate -143
+  scale {1.45 1.45}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform294
+  label main
+ }
+ Dot {
+  name Dot293
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time ""
+  name TimeOffset292
+ }
+ Transform {
+  translate {{"502-((width * uSize)/2)"} {"1011-((height * uSize)/2)"}}
+  rotate 68
+  scale {1.49 1.49}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform293
+  label main
+ }
+ Dot {
+  name Dot292
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -1
+  time ""
+  name TimeOffset291
+ }
+ Transform {
+  translate {{"270-((width * uSize)/2)"} {"613-((height * uSize)/2)"}}
+  rotate 5
+  scale {1.1 1.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform292
+  label main
+ }
+ Dot {
+  name Dot291
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -6
+  time ""
+  name TimeOffset290
+ }
+ Transform {
+  translate {{"488-((width * uSize)/2)"} {"156-((height * uSize)/2)"}}
+  rotate 54
+  scale {0.52 0.52}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform291
+  label main
+ }
+ Dot {
+  name Dot290
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -8
+  time ""
+  name TimeOffset289
+ }
+ Transform {
+  translate {{"1263-((width * uSize)/2)"} {"885-((height * uSize)/2)"}}
+  rotate 143
+  scale {0.54 0.54}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform290
+  label main
+ }
+ Dot {
+  name Dot289
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -4
+  time ""
+  name TimeOffset288
+ }
+ Transform {
+  translate {{"1266-((width * uSize)/2)"} {"1410-((height * uSize)/2)"}}
+  rotate -154
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform289
+  label main
+ }
+ Dot {
+  name Dot288
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -19
+  time ""
+  name TimeOffset287
+ }
+ Transform {
+  translate {{"620-((width * uSize)/2)"} {"136-((height * uSize)/2)"}}
+  rotate -120
+  scale {0.85 0.85}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform288
+  label main
+ }
+ Dot {
+  name Dot287
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -8
+  time ""
+  name TimeOffset286
+ }
+ Transform {
+  translate {{"573-((width * uSize)/2)"} {"1284-((height * uSize)/2)"}}
+  rotate 78
+  scale {0.69 0.69}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform287
+  label main
+ }
+ Dot {
+  name Dot286
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 15
+  time ""
+  name TimeOffset285
+ }
+ Transform {
+  translate {{"496-((width * uSize)/2)"} {"356-((height * uSize)/2)"}}
+  rotate -128
+  scale {0.79 0.79}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform286
+  label main
+ }
+ Dot {
+  name Dot285
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 4
+  time ""
+  name TimeOffset284
+ }
+ Transform {
+  translate {{"1432-((width * uSize)/2)"} {"925-((height * uSize)/2)"}}
+  rotate 29
+  scale {1.61 1.61}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform285
+  label main
+ }
+ Dot {
+  name Dot284
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 5
+  time ""
+  name TimeOffset283
+ }
+ Transform {
+  translate {{"371-((width * uSize)/2)"} {"1416-((height * uSize)/2)"}}
+  rotate -142
+  scale {0.12 0.12}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform284
+  label main
+ }
+ Dot {
+  name Dot283
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 8
+  time ""
+  name TimeOffset282
+ }
+ Transform {
+  translate {{"858-((width * uSize)/2)"} {"234-((height * uSize)/2)"}}
+  rotate -131
+  scale {1.12 1.12}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform283
+  label main
+ }
+ Dot {
+  name Dot282
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 9
+  time ""
+  name TimeOffset281
+ }
+ Transform {
+  translate {{"109-((width * uSize)/2)"} {"792-((height * uSize)/2)"}}
+  rotate 97
+  scale {1.71 1.71}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform282
+  label main
+ }
+ Dot {
+  name Dot281
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -24
+  time ""
+  name TimeOffset280
+ }
+ Transform {
+  translate {{"1514-((width * uSize)/2)"} {"172-((height * uSize)/2)"}}
+  rotate 110
+  scale {0.51 0.51}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform281
+  label main
+ }
+ Dot {
+  name Dot280
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 17
+  time ""
+  name TimeOffset279
+ }
+ Transform {
+  translate {{"131-((width * uSize)/2)"} {"470-((height * uSize)/2)"}}
+  rotate -137
+  scale {0.79 0.79}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform280
+  label main
+ }
+ Dot {
+  name Dot279
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -7
+  time ""
+  name TimeOffset278
+ }
+ Transform {
+  translate {{"368-((width * uSize)/2)"} {"1194-((height * uSize)/2)"}}
+  rotate -178
+  scale {0.74 0.74}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform279
+  label main
+ }
+ Dot {
+  name Dot278
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 16
+  time ""
+  name TimeOffset277
+ }
+ Transform {
+  translate {{"1890-((width * uSize)/2)"} {"176-((height * uSize)/2)"}}
+  rotate 58
+  scale {1.42 1.42}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform278
+  label main
+ }
+ Dot {
+  name Dot277
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time ""
+  name TimeOffset276
+ }
+ Transform {
+  translate {{"1561-((width * uSize)/2)"} {"1016-((height * uSize)/2)"}}
+  rotate -147
+  scale {1.5 1.5}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform277
+  label main
+ }
+ Dot {
+  name Dot276
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -14
+  time ""
+  name TimeOffset275
+ }
+ Transform {
+  translate {{"2161-((width * uSize)/2)"} {"1105-((height * uSize)/2)"}}
+  rotate -87
+  scale {0.19 0.19}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform276
+  label main
+ }
+ Dot {
+  name Dot275
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -3
+  time ""
+  name TimeOffset274
+ }
+ Transform {
+  translate {{"2184-((width * uSize)/2)"} {"1144-((height * uSize)/2)"}}
+  rotate -60
+  scale {1.35 1.35}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform275
+  label main
+ }
+ Dot {
+  name Dot274
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -19
+  time ""
+  name TimeOffset273
+ }
+ Transform {
+  translate {{"1315-((width * uSize)/2)"} {"549-((height * uSize)/2)"}}
+  rotate -94
+  scale {1.66 1.66}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform274
+  label main
+ }
+ Dot {
+  name Dot273
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -6
+  time ""
+  name TimeOffset272
+ }
+ Transform {
+  translate {{"1376-((width * uSize)/2)"} {"564-((height * uSize)/2)"}}
+  rotate -114
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform273
+  label main
+ }
+ Dot {
+  name Dot272
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 17
+  time ""
+  name TimeOffset271
+ }
+ Transform {
+  translate {{"1055-((width * uSize)/2)"} {"990-((height * uSize)/2)"}}
+  rotate -6
+  scale {0.12 0.12}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform272
+  label main
+ }
+ Dot {
+  name Dot271
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 6
+  time ""
+  name TimeOffset270
+ }
+ Transform {
+  translate {{"1842-((width * uSize)/2)"} {"181-((height * uSize)/2)"}}
+  rotate 23
+  scale {1.89 1.89}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform271
+  label main
+ }
+ Dot {
+  name Dot270
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -21
+  time ""
+  name TimeOffset269
+ }
+ Transform {
+  translate {{"431-((width * uSize)/2)"} {"455-((height * uSize)/2)"}}
+  rotate -161
+  scale {1.25 1.25}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform270
+  label main
+ }
+ Dot {
+  name Dot269
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -15
+  time ""
+  name TimeOffset268
+ }
+ Transform {
+  translate {{"2165-((width * uSize)/2)"} {"493-((height * uSize)/2)"}}
+  rotate 164
+  scale {1.86 1.86}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform269
+  label main
+ }
+ Dot {
+  name Dot268
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -1
+  time ""
+  name TimeOffset267
+ }
+ Transform {
+  translate {{"1572-((width * uSize)/2)"} {"353-((height * uSize)/2)"}}
+  rotate 60
+  scale {1.9 1.9}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform268
+  label main
+ }
+ Dot {
+  name Dot267
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -15
+  time ""
+  name TimeOffset266
+ }
+ Transform {
+  translate {{"2246-((width * uSize)/2)"} {"7-((height * uSize)/2)"}}
+  rotate -106
+  scale {0.68 0.68}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform267
+  label main
+ }
+ Dot {
+  name Dot266
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -14
+  time ""
+  name TimeOffset265
+ }
+ Transform {
+  translate {{"320-((width * uSize)/2)"} {"983-((height * uSize)/2)"}}
+  rotate -64
+  scale {1.89 1.89}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform266
+  label main
+ }
+ Dot {
+  name Dot265
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 17
+  time ""
+  name TimeOffset264
+ }
+ Transform {
+  translate {{"1499-((width * uSize)/2)"} {"1416-((height * uSize)/2)"}}
+  rotate 91
+  scale {0.73 0.73}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform265
+  label main
+ }
+ Dot {
+  name Dot264
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -12
+  time ""
+  name TimeOffset263
+ }
+ Transform {
+  translate {{"1110-((width * uSize)/2)"} {"775-((height * uSize)/2)"}}
+  rotate -13
+  scale {0.75 0.75}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform264
+  label main
+ }
+ Dot {
+  name Dot263
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 12
+  time ""
+  name TimeOffset262
+ }
+ Transform {
+  translate {{"408-((width * uSize)/2)"} {"960-((height * uSize)/2)"}}
+  rotate 106
+  scale {0.14 0.14}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform263
+  label main
+ }
+ Dot {
+  name Dot262
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -4
+  time ""
+  name TimeOffset261
+ }
+ Transform {
+  translate {{"1228-((width * uSize)/2)"} {"475-((height * uSize)/2)"}}
+  rotate 168
+  scale {1.74 1.74}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform262
+  label main
+ }
+ Dot {
+  name Dot261
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 10
+  time ""
+  name TimeOffset260
+ }
+ Transform {
+  translate {{"1522-((width * uSize)/2)"} {"285-((height * uSize)/2)"}}
+  rotate -101
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform261
+  label main
+ }
+ Dot {
+  name Dot260
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -3
+  time ""
+  name TimeOffset259
+ }
+ Transform {
+  translate {{"947-((width * uSize)/2)"} {"1058-((height * uSize)/2)"}}
+  rotate -5
+  scale {1.34 1.34}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform260
+  label main
+ }
+ Dot {
+  name Dot259
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 20
+  time ""
+  name TimeOffset258
+ }
+ Transform {
+  translate {{"1423-((width * uSize)/2)"} {"106-((height * uSize)/2)"}}
+  rotate 71
+  scale {0.36 0.36}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform259
+  label main
+ }
+ Dot {
+  name Dot258
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 3
+  time ""
+  name TimeOffset257
+ }
+ Transform {
+  translate {{"2216-((width * uSize)/2)"} {"743-((height * uSize)/2)"}}
+  rotate -169
+  scale {1.21 1.21}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform258
+  label main
+ }
+ Dot {
+  name Dot257
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 21
+  time ""
+  name TimeOffset256
+ }
+ Transform {
+  translate {{"1270-((width * uSize)/2)"} {"1113-((height * uSize)/2)"}}
+  rotate -9
+  scale {0.43 0.43}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform257
+  label main
+ }
+ Dot {
+  name Dot256
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -10
+  time ""
+  name TimeOffset255
+ }
+ Transform {
+  translate {{"532-((width * uSize)/2)"} {"1027-((height * uSize)/2)"}}
+  rotate -143
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform256
+  label main
+ }
+ Dot {
+  name Dot255
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -8
+  time ""
+  name TimeOffset254
+ }
+ Transform {
+  translate {{"1272-((width * uSize)/2)"} {"594-((height * uSize)/2)"}}
+  rotate 42
+  scale {1.51 1.51}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform255
+  label main
+ }
+ Dot {
+  name Dot254
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -1
+  time ""
+  name TimeOffset253
+ }
+ Transform {
+  translate {{"1872-((width * uSize)/2)"} {"1044-((height * uSize)/2)"}}
+  rotate -75
+  scale {0.3 0.3}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform254
+  label main
+ }
+ Dot {
+  name Dot253
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 7
+  time ""
+  name TimeOffset252
+ }
+ Transform {
+  translate {{"160-((width * uSize)/2)"} {"659-((height * uSize)/2)"}}
+  rotate -81
+  scale {1.96 1.96}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform253
+  label main
+ }
+ Dot {
+  name Dot252
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 19
+  time ""
+  name TimeOffset251
+ }
+ Transform {
+  translate {{"674-((width * uSize)/2)"} {"649-((height * uSize)/2)"}}
+  rotate 31
+  scale {1.29 1.29}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform252
+  label main
+ }
+ Dot {
+  name Dot251
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -10
+  time ""
+  name TimeOffset250
+ }
+ Transform {
+  translate {{"1451-((width * uSize)/2)"} {"1228-((height * uSize)/2)"}}
+  rotate 86
+  scale {1.45 1.45}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform251
+  label main
+ }
+ Dot {
+  name Dot250
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 22
+  time ""
+  name TimeOffset249
+ }
+ Transform {
+  translate {{"1867-((width * uSize)/2)"} {"927-((height * uSize)/2)"}}
+  rotate -88
+  scale {0.58 0.58}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform250
+  label main
+ }
+ Dot {
+  name Dot249
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 20
+  time ""
+  name TimeOffset248
+ }
+ Transform {
+  translate {{"2184-((width * uSize)/2)"} {"542-((height * uSize)/2)"}}
+  rotate 141
+  scale {1.76 1.76}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform249
+  label main
+ }
+ Dot {
+  name Dot248
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time ""
+  name TimeOffset247
+ }
+ Transform {
+  translate {{"505-((width * uSize)/2)"} {"82-((height * uSize)/2)"}}
+  rotate 176
+  scale {1.72 1.72}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform248
+  label main
+ }
+ Dot {
+  name Dot247
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -20
+  time ""
+  name TimeOffset246
+ }
+ Transform {
+  translate {{"2270-((width * uSize)/2)"} {"674-((height * uSize)/2)"}}
+  rotate -180
+  scale {1.7 1.7}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform247
+  label main
+ }
+ Dot {
+  name Dot246
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 13
+  time ""
+  name TimeOffset245
+ }
+ Transform {
+  translate {{"2110-((width * uSize)/2)"} {"487-((height * uSize)/2)"}}
+  rotate 170
+  scale {1.83 1.83}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform246
+  label main
+ }
+ Dot {
+  name Dot245
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -14
+  time ""
+  name TimeOffset244
+ }
+ Transform {
+  translate {{"103-((width * uSize)/2)"} {"18-((height * uSize)/2)"}}
+  rotate 82
+  scale {1.7 1.7}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform245
+  label main
+ }
+ Dot {
+  name Dot244
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time ""
+  name TimeOffset243
+ }
+ Transform {
+  translate {{"668-((width * uSize)/2)"} {"810-((height * uSize)/2)"}}
+  rotate 1
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform244
+  label main
+ }
+ Dot {
+  name Dot243
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 18
+  time ""
+  name TimeOffset242
+ }
+ Transform {
+  translate {{"1040-((width * uSize)/2)"} {"1383-((height * uSize)/2)"}}
+  rotate -100
+  scale {1.71 1.71}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform243
+  label main
+ }
+ Dot {
+  name Dot242
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time ""
+  name TimeOffset241
+ }
+ Transform {
+  translate {{"1322-((width * uSize)/2)"} {"251-((height * uSize)/2)"}}
+  rotate -98
+  scale {1.61 1.61}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform242
+  label main
+ }
+ Dot {
+  name Dot241
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -22
+  time ""
+  name TimeOffset240
+ }
+ Transform {
+  translate {{"1520-((width * uSize)/2)"} {"1448-((height * uSize)/2)"}}
+  rotate -77
+  scale {0.73 0.73}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform241
+  label main
+ }
+ Dot {
+  name Dot240
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -17
+  time ""
+  name TimeOffset239
+ }
+ Transform {
+  translate {{"1739-((width * uSize)/2)"} {"1239-((height * uSize)/2)"}}
+  rotate -133
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform240
+  label main
+ }
+ Dot {
+  name Dot239
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 23
+  time ""
+  name TimeOffset238
+ }
+ Transform {
+  translate {{"1377-((width * uSize)/2)"} {"673-((height * uSize)/2)"}}
+  rotate 73
+  scale {1.77 1.77}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform239
+  label main
+ }
+ Dot {
+  name Dot238
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -22
+  time ""
+  name TimeOffset237
+ }
+ Transform {
+  translate {{"1681-((width * uSize)/2)"} {"761-((height * uSize)/2)"}}
+  rotate 154
+  scale {0.25 0.25}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform238
+  label main
+ }
+ Dot {
+  name Dot237
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -23
+  time ""
+  name TimeOffset236
+ }
+ Transform {
+  translate {{"516-((width * uSize)/2)"} {"1008-((height * uSize)/2)"}}
+  rotate 133
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform237
+  label main
+ }
+ Dot {
+  name Dot236
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 19
+  time ""
+  name TimeOffset235
+ }
+ Transform {
+  translate {{"1659-((width * uSize)/2)"} {"1038-((height * uSize)/2)"}}
+  rotate 43
+  scale {0.79 0.79}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform236
+  label main
+ }
+ Dot {
+  name Dot235
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -21
+  time ""
+  name TimeOffset234
+ }
+ Transform {
+  translate {{"1186-((width * uSize)/2)"} {"1431-((height * uSize)/2)"}}
+  rotate -7
+  scale {1.23 1.23}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform235
+  label main
+ }
+ Dot {
+  name Dot234
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 24
+  time ""
+  name TimeOffset233
+ }
+ Transform {
+  translate {{"1357-((width * uSize)/2)"} {"8-((height * uSize)/2)"}}
+  rotate 46
+  scale {1.15 1.15}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform234
+  label main
+ }
+ Dot {
+  name Dot233
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 10
+  time ""
+  name TimeOffset232
+ }
+ Transform {
+  translate {{"130-((width * uSize)/2)"} {"84-((height * uSize)/2)"}}
+  rotate 102
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform233
+  label main
+ }
+ Dot {
+  name Dot232
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 3
+  time ""
+  name TimeOffset231
+ }
+ Transform {
+  translate {{"2090-((width * uSize)/2)"} {"1312-((height * uSize)/2)"}}
+  rotate 123
+  scale {1.93 1.93}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform232
+  label main
+ }
+ Dot {
+  name Dot231
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -11
+  time ""
+  name TimeOffset230
+ }
+ Transform {
+  translate {{"209-((width * uSize)/2)"} {"744-((height * uSize)/2)"}}
+  rotate -83
+  scale {1.06 1.06}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform231
+  label main
+ }
+ Dot {
+  name Dot230
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 18
+  time ""
+  name TimeOffset229
+ }
+ Transform {
+  translate {{"1476-((width * uSize)/2)"} {"125-((height * uSize)/2)"}}
+  rotate 121
+  scale {1.66 1.66}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform230
+  label main
+ }
+ Dot {
+  name Dot229
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -20
+  time ""
+  name TimeOffset228
+ }
+ Transform {
+  translate {{"1544-((width * uSize)/2)"} {"870-((height * uSize)/2)"}}
+  rotate -92
+  scale {0.63 0.63}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform229
+  label main
+ }
+ Dot {
+  name Dot228
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 6
+  time ""
+  name TimeOffset227
+ }
+ Transform {
+  translate {{"881-((width * uSize)/2)"} {"998-((height * uSize)/2)"}}
+  rotate -33
+  scale {0.59 0.59}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform228
+  label main
+ }
+ Dot {
+  name Dot227
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 2
+  time ""
+  name TimeOffset226
+ }
+ Transform {
+  translate {{"1262-((width * uSize)/2)"} {"593-((height * uSize)/2)"}}
+  rotate -52
+  scale {0.94 0.94}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform227
+  label main
+ }
+ Dot {
+  name Dot226
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -22
+  time ""
+  name TimeOffset225
+ }
+ Transform {
+  translate {{"1385-((width * uSize)/2)"} {"53-((height * uSize)/2)"}}
+  rotate 135
+  scale {1.1 1.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform226
+  label main
+ }
+ Dot {
+  name Dot225
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -19
+  time ""
+  name TimeOffset224
+ }
+ Transform {
+  translate {{"1797-((width * uSize)/2)"} {"703-((height * uSize)/2)"}}
+  rotate -133
+  scale {1.51 1.51}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform225
+  label main
+ }
+ Dot {
+  name Dot224
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -23
+  time ""
+  name TimeOffset223
+ }
+ Transform {
+  translate {{"735-((width * uSize)/2)"} {"714-((height * uSize)/2)"}}
+  rotate -52
+  scale {1.92 1.92}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform224
+  label main
+ }
+ Dot {
+  name Dot223
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 14
+  time ""
+  name TimeOffset222
+ }
+ Transform {
+  translate {{"231-((width * uSize)/2)"} {"1220-((height * uSize)/2)"}}
+  rotate -22
+  scale {0.19 0.19}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform223
+  label main
+ }
+ Dot {
+  name Dot222
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -6
+  time ""
+  name TimeOffset221
+ }
+ Transform {
+  translate {{"1962-((width * uSize)/2)"} {"992-((height * uSize)/2)"}}
+  rotate -84
+  scale {1.91 1.91}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform222
+  label main
+ }
+ Dot {
+  name Dot221
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -10
+  time ""
+  name TimeOffset220
+ }
+ Transform {
+  translate {{"1478-((width * uSize)/2)"} {"961-((height * uSize)/2)"}}
+  rotate 46
+  scale {1.62 1.62}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform221
+  label main
+ }
+ Dot {
+  name Dot220
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 15
+  time ""
+  name TimeOffset219
+ }
+ Transform {
+  translate {{"398-((width * uSize)/2)"} {"977-((height * uSize)/2)"}}
+  rotate 128
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform220
+  label main
+ }
+ Dot {
+  name Dot219
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 24
+  time ""
+  name TimeOffset218
+ }
+ Transform {
+  translate {{"719-((width * uSize)/2)"} {"23-((height * uSize)/2)"}}
+  rotate -67
+  scale {1.14 1.14}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform219
+  label main
+ }
+ Dot {
+  name Dot218
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -1
+  time ""
+  name TimeOffset217
+ }
+ Transform {
+  translate {{"80-((width * uSize)/2)"} {"253-((height * uSize)/2)"}}
+  rotate -21
+  scale {0.41 0.41}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform218
+  label main
+ }
+ Dot {
+  name Dot217
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 21
+  time ""
+  name TimeOffset216
+ }
+ Transform {
+  translate {{"2215-((width * uSize)/2)"} {"914-((height * uSize)/2)"}}
+  rotate -99
+  scale {0.71 0.71}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform217
+  label main
+ }
+ Dot {
+  name Dot216
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -2
+  time ""
+  name TimeOffset215
+ }
+ Transform {
+  translate {{"19-((width * uSize)/2)"} {"1318-((height * uSize)/2)"}}
+  rotate 154
+  scale {0.88 0.88}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform216
+  label main
+ }
+ Dot {
+  name Dot215
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 1
+  time ""
+  name TimeOffset214
+ }
+ Transform {
+  translate {{"498-((width * uSize)/2)"} {"961-((height * uSize)/2)"}}
+  rotate -42
+  scale {0.94 0.94}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform215
+  label main
+ }
+ Dot {
+  name Dot214
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 24
+  time ""
+  name TimeOffset213
+ }
+ Transform {
+  translate {{"906-((width * uSize)/2)"} {"817-((height * uSize)/2)"}}
+  rotate -147
+  scale {1.99 1.99}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform214
+  label main
+ }
+ Dot {
+  name Dot213
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time ""
+  name TimeOffset212
+ }
+ Transform {
+  translate {{"913-((width * uSize)/2)"} {"631-((height * uSize)/2)"}}
+  rotate 57
+  scale {1.95 1.95}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform213
+  label main
+ }
+ Dot {
+  name Dot212
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -2
+  time ""
+  name TimeOffset211
+ }
+ Transform {
+  translate {{"2031-((width * uSize)/2)"} {"575-((height * uSize)/2)"}}
+  rotate -80
+  scale {1.35 1.35}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform212
+  label main
+ }
+ Dot {
+  name Dot211
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -18
+  time ""
+  name TimeOffset210
+ }
+ Transform {
+  translate {{"2096-((width * uSize)/2)"} {"335-((height * uSize)/2)"}}
+  rotate 52
+  scale {0.65 0.65}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform211
+  label main
+ }
+ Dot {
+  name Dot210
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -6
+  time ""
+  name TimeOffset209
+ }
+ Transform {
+  translate {{"830-((width * uSize)/2)"} {"555-((height * uSize)/2)"}}
+  rotate 109
+  scale {0.64 0.64}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform210
+  label main
+ }
+ Dot {
+  name Dot209
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -21
+  time ""
+  name TimeOffset208
+ }
+ Transform {
+  translate {{"179-((width * uSize)/2)"} {"936-((height * uSize)/2)"}}
+  rotate 178
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform209
+  label main
+ }
+ Dot {
+  name Dot208
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 6
+  time ""
+  name TimeOffset207
+ }
+ Transform {
+  translate {{"524-((width * uSize)/2)"} {"1128-((height * uSize)/2)"}}
+  rotate -81
+  scale {0.69 0.69}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform208
+  label main
+ }
+ Dot {
+  name Dot207
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -9
+  time ""
+  name TimeOffset206
+ }
+ Transform {
+  translate {{"1328-((width * uSize)/2)"} {"518-((height * uSize)/2)"}}
+  rotate 51
+  scale {1.75 1.75}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform207
+  label main
+ }
+ Dot {
+  name Dot206
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -12
+  time ""
+  name TimeOffset205
+ }
+ Transform {
+  translate {{"830-((width * uSize)/2)"} {"118-((height * uSize)/2)"}}
+  rotate 120
+  scale {1.04 1.04}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform206
+  label main
+ }
+ Dot {
+  name Dot205
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 1
+  time ""
+  name TimeOffset204
+ }
+ Transform {
+  translate {{"89-((width * uSize)/2)"} {"1045-((height * uSize)/2)"}}
+  rotate 112
+  scale {1.83 1.83}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform205
+  label main
+ }
+ Dot {
+  name Dot204
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -13
+  time ""
+  name TimeOffset203
+ }
+ Transform {
+  translate {{"2223-((width * uSize)/2)"} {"831-((height * uSize)/2)"}}
+  rotate -165
+  scale {0.67 0.67}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform204
+  label main
+ }
+ Dot {
+  name Dot203
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 5
+  time ""
+  name TimeOffset202
+ }
+ Transform {
+  translate {{"1806-((width * uSize)/2)"} {"363-((height * uSize)/2)"}}
+  rotate 30
+  scale {0.71 0.71}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform203
+  label main
+ }
+ Dot {
+  name Dot202
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -1
+  time ""
+  name TimeOffset201
+ }
+ Transform {
+  translate {{"2211-((width * uSize)/2)"} {"272-((height * uSize)/2)"}}
+  rotate 99
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform202
+  label main
+ }
+ Dot {
+  name Dot201
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -1
+  time ""
+  name TimeOffset200
+ }
+ Transform {
+  translate {{"1800-((width * uSize)/2)"} {"1023-((height * uSize)/2)"}}
+  rotate 80
+  scale {0.52 0.52}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform201
+  label main
+ }
+ Dot {
+  name Dot200
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -2
+  time ""
+  name TimeOffset199
+ }
+ Transform {
+  translate {{"1830-((width * uSize)/2)"} {"685-((height * uSize)/2)"}}
+  rotate -63
+  scale {1.01 1.01}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform200
+  label main
+ }
+ Dot {
+  name Dot199
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 4
+  time ""
+  name TimeOffset198
+ }
+ Transform {
+  translate {{"385-((width * uSize)/2)"} {"1225-((height * uSize)/2)"}}
+  rotate 171
+  scale {0.8 0.8}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform199
+  label main
+ }
+ Dot {
+  name Dot198
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 21
+  time ""
+  name TimeOffset197
+ }
+ Transform {
+  translate {{"469-((width * uSize)/2)"} {"134-((height * uSize)/2)"}}
+  rotate -101
+  scale {0.78 0.78}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform198
+  label main
+ }
+ Dot {
+  name Dot197
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 16
+  time ""
+  name TimeOffset196
+ }
+ Transform {
+  translate {{"1726-((width * uSize)/2)"} {"968-((height * uSize)/2)"}}
+  rotate -34
+  scale {0.46 0.46}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform197
+  label main
+ }
+ Dot {
+  name Dot196
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -18
+  time ""
+  name TimeOffset195
+ }
+ Transform {
+  translate {{"1542-((width * uSize)/2)"} {"1233-((height * uSize)/2)"}}
+  rotate -18
+  scale {0.18 0.18}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform196
+  label main
+ }
+ Dot {
+  name Dot195
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -2
+  time ""
+  name TimeOffset194
+ }
+ Transform {
+  translate {{"1404-((width * uSize)/2)"} {"900-((height * uSize)/2)"}}
+  rotate -72
+  scale {0.86 0.86}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform195
+  label main
+ }
+ Dot {
+  name Dot194
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 5
+  time ""
+  name TimeOffset193
+ }
+ Transform {
+  translate {{"1789-((width * uSize)/2)"} {"1053-((height * uSize)/2)"}}
+  rotate -32
+  scale {0.21 0.21}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform194
+  label main
+ }
+ Dot {
+  name Dot193
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 12
+  time ""
+  name TimeOffset192
+ }
+ Transform {
+  translate {{"498-((width * uSize)/2)"} {"602-((height * uSize)/2)"}}
+  rotate 48
+  scale {1.89 1.89}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform193
+  label main
+ }
+ Dot {
+  name Dot192
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 3
+  time ""
+  name TimeOffset191
+ }
+ Transform {
+  translate {{"1795-((width * uSize)/2)"} {"1266-((height * uSize)/2)"}}
+  rotate -8
+  scale {1.31 1.31}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform192
+  label main
+ }
+ Dot {
+  name Dot191
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 3
+  time ""
+  name TimeOffset190
+ }
+ Transform {
+  translate {{"1364-((width * uSize)/2)"} {"26-((height * uSize)/2)"}}
+  rotate 31
+  scale {0.14 0.14}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform191
+  label main
+ }
+ Dot {
+  name Dot190
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 1
+  time ""
+  name TimeOffset189
+ }
+ Transform {
+  translate {{"805-((width * uSize)/2)"} {"233-((height * uSize)/2)"}}
+  rotate -158
+  scale {1.96 1.96}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform190
+  label main
+ }
+ Dot {
+  name Dot189
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -10
+  time ""
+  name TimeOffset188
+ }
+ Transform {
+  translate {{"1198-((width * uSize)/2)"} {"740-((height * uSize)/2)"}}
+  rotate -19
+  scale {1.09 1.09}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform189
+  label main
+ }
+ Dot {
+  name Dot188
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 17
+  time ""
+  name TimeOffset187
+ }
+ Transform {
+  translate {{"1193-((width * uSize)/2)"} {"153-((height * uSize)/2)"}}
+  rotate 148
+  scale {0.5 0.5}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform188
+  label main
+ }
+ Dot {
+  name Dot187
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -20
+  time ""
+  name TimeOffset186
+ }
+ Transform {
+  translate {{"869-((width * uSize)/2)"} {"1246-((height * uSize)/2)"}}
+  rotate -132
+  scale {0.7 0.7}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform187
+  label main
+ }
+ Dot {
+  name Dot186
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -16
+  time ""
+  name TimeOffset185
+ }
+ Transform {
+  translate {{"466-((width * uSize)/2)"} {"572-((height * uSize)/2)"}}
+  rotate 86
+  scale {1.67 1.67}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform186
+  label main
+ }
+ Dot {
+  name Dot185
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 13
+  time ""
+  name TimeOffset184
+ }
+ Transform {
+  translate {{"2055-((width * uSize)/2)"} {"456-((height * uSize)/2)"}}
+  rotate -81
+  scale {1.37 1.37}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform185
+  label main
+ }
+ Dot {
+  name Dot184
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 16
+  time ""
+  name TimeOffset183
+ }
+ Transform {
+  translate {{"1913-((width * uSize)/2)"} {"274-((height * uSize)/2)"}}
+  rotate 110
+  scale {0.3 0.3}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform184
+  label main
+ }
+ Dot {
+  name Dot183
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -12
+  time ""
+  name TimeOffset182
+ }
+ Transform {
+  translate {{"1644-((width * uSize)/2)"} {"36-((height * uSize)/2)"}}
+  rotate -155
+  scale {1.76 1.76}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform183
+  label main
+ }
+ Dot {
+  name Dot182
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -16
+  time ""
+  name TimeOffset181
+ }
+ Transform {
+  translate {{"928-((width * uSize)/2)"} {"7-((height * uSize)/2)"}}
+  rotate 101
+  scale {1.64 1.64}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform182
+  label main
+ }
+ Dot {
+  name Dot181
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -6
+  time ""
+  name TimeOffset180
+ }
+ Transform {
+  translate {{"559-((width * uSize)/2)"} {"341-((height * uSize)/2)"}}
+  rotate -179
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform181
+  label main
+ }
+ Dot {
+  name Dot180
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 13
+  time ""
+  name TimeOffset179
+ }
+ Transform {
+  translate {{"1643-((width * uSize)/2)"} {"578-((height * uSize)/2)"}}
+  rotate 131
+  scale {2 2}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform180
+  label main
+ }
+ Dot {
+  name Dot179
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 23
+  time ""
+  name TimeOffset178
+ }
+ Transform {
+  translate {{"1122-((width * uSize)/2)"} {"1187-((height * uSize)/2)"}}
+  rotate 103
+  scale {1.54 1.54}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform179
+  label main
+ }
+ Dot {
+  name Dot178
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -16
+  time ""
+  name TimeOffset177
+ }
+ Transform {
+  translate {{"1484-((width * uSize)/2)"} {"1271-((height * uSize)/2)"}}
+  rotate 177
+  scale {1.41 1.41}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform178
+  label main
+ }
+ Dot {
+  name Dot177
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -24
+  time ""
+  name TimeOffset176
+ }
+ Transform {
+  translate {{"2144-((width * uSize)/2)"} {"1147-((height * uSize)/2)"}}
+  rotate -45
+  scale {0.88 0.88}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform177
+  label main
+ }
+ Dot {
+  name Dot176
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 1
+  time ""
+  name TimeOffset175
+ }
+ Transform {
+  translate {{"1206-((width * uSize)/2)"} {"559-((height * uSize)/2)"}}
+  rotate 153
+  scale {0.75 0.75}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform176
+  label main
+ }
+ Dot {
+  name Dot175
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -21
+  time ""
+  name TimeOffset174
+ }
+ Transform {
+  translate {{"512-((width * uSize)/2)"} {"1055-((height * uSize)/2)"}}
+  rotate 30
+  scale {1.37 1.37}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform175
+  label main
+ }
+ Dot {
+  name Dot174
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 3
+  time ""
+  name TimeOffset173
+ }
+ Transform {
+  translate {{"2074-((width * uSize)/2)"} {"658-((height * uSize)/2)"}}
+  rotate -179
+  scale {1.29 1.29}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform174
+  label main
+ }
+ Dot {
+  name Dot173
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 4
+  time ""
+  name TimeOffset172
+ }
+ Transform {
+  translate {{"798-((width * uSize)/2)"} {"1423-((height * uSize)/2)"}}
+  rotate 97
+  scale {1.53 1.53}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform173
+  label main
+ }
+ Dot {
+  name Dot172
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 15
+  time ""
+  name TimeOffset171
+ }
+ Transform {
+  translate {{"989-((width * uSize)/2)"} {"1285-((height * uSize)/2)"}}
+  rotate 38
+  scale {0.52 0.52}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform172
+  label main
+ }
+ Dot {
+  name Dot171
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -3
+  time ""
+  name TimeOffset170
+ }
+ Transform {
+  translate {{"1183-((width * uSize)/2)"} {"66-((height * uSize)/2)"}}
+  rotate -164
+  scale {1.52 1.52}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform171
+  label main
+ }
+ Dot {
+  name Dot170
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 11
+  time ""
+  name TimeOffset169
+ }
+ Transform {
+  translate {{"299-((width * uSize)/2)"} {"207-((height * uSize)/2)"}}
+  rotate -110
+  scale {1.75 1.75}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform170
+  label main
+ }
+ Dot {
+  name Dot169
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 5
+  time ""
+  name TimeOffset168
+ }
+ Transform {
+  translate {{"799-((width * uSize)/2)"} {"1110-((height * uSize)/2)"}}
+  rotate 175
+  scale {0.43 0.43}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform169
+  label main
+ }
+ Dot {
+  name Dot168
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -13
+  time ""
+  name TimeOffset167
+ }
+ Transform {
+  translate {{"2087-((width * uSize)/2)"} {"908-((height * uSize)/2)"}}
+  rotate 165
+  scale {0.3 0.3}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform168
+  label main
+ }
+ Dot {
+  name Dot167
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -9
+  time ""
+  name TimeOffset166
+ }
+ Transform {
+  translate {{"1364-((width * uSize)/2)"} {"1137-((height * uSize)/2)"}}
+  rotate -159
+  scale {1.49 1.49}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform167
+  label main
+ }
+ Dot {
+  name Dot166
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time ""
+  name TimeOffset165
+ }
+ Transform {
+  translate {{"35-((width * uSize)/2)"} {"1084-((height * uSize)/2)"}}
+  rotate -43
+  scale {1.69 1.69}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform166
+  label main
+ }
+ Dot {
+  name Dot165
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 20
+  time ""
+  name TimeOffset164
+ }
+ Transform {
+  translate {{"2172-((width * uSize)/2)"} {"877-((height * uSize)/2)"}}
+  rotate 164
+  scale {0.11 0.11}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform165
+  label main
+ }
+ Dot {
+  name Dot164
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 18
+  time ""
+  name TimeOffset163
+ }
+ Transform {
+  translate {{"1864-((width * uSize)/2)"} {"1345-((height * uSize)/2)"}}
+  rotate -97
+  scale {0.16 0.16}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform164
+  label main
+ }
+ Dot {
+  name Dot163
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 14
+  time ""
+  name TimeOffset162
+ }
+ Transform {
+  translate {{"2201-((width * uSize)/2)"} {"1455-((height * uSize)/2)"}}
+  rotate -71
+  scale {0.8 0.8}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform163
+  label main
+ }
+ Dot {
+  name Dot162
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 16
+  time ""
+  name TimeOffset161
+ }
+ Transform {
+  translate {{"1527-((width * uSize)/2)"} {"1182-((height * uSize)/2)"}}
+  rotate -18
+  scale {0.86 0.86}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform162
+  label main
+ }
+ Dot {
+  name Dot161
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -11
+  time ""
+  name TimeOffset160
+ }
+ Transform {
+  translate {{"1509-((width * uSize)/2)"} {"988-((height * uSize)/2)"}}
+  rotate -79
+  scale {1.25 1.25}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform161
+  label main
+ }
+ Dot {
+  name Dot160
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -17
+  time ""
+  name TimeOffset159
+ }
+ Transform {
+  translate {{"1454-((width * uSize)/2)"} {"1013-((height * uSize)/2)"}}
+  rotate -55
+  scale {1.58 1.58}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform160
+  label main
+ }
+ Dot {
+  name Dot159
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 4
+  time ""
+  name TimeOffset158
+ }
+ Transform {
+  translate {{"285-((width * uSize)/2)"} {"373-((height * uSize)/2)"}}
+  rotate -48
+  scale {0.56 0.56}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform159
+  label main
+ }
+ Dot {
+  name Dot158
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -10
+  time ""
+  name TimeOffset157
+ }
+ Transform {
+  translate {{"151-((width * uSize)/2)"} {"86-((height * uSize)/2)"}}
+  rotate 52
+  scale {1.98 1.98}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform158
+  label main
+ }
+ Dot {
+  name Dot157
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 10
+  time ""
+  name TimeOffset156
+ }
+ Transform {
+  translate {{"1620-((width * uSize)/2)"} {"53-((height * uSize)/2)"}}
+  rotate -12
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform157
+  label main
+ }
+ Dot {
+  name Dot156
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -7
+  time ""
+  name TimeOffset155
+ }
+ Transform {
+  translate {{"1125-((width * uSize)/2)"} {"86-((height * uSize)/2)"}}
+  rotate 97
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform156
+  label main
+ }
+ Dot {
+  name Dot155
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -1
+  time ""
+  name TimeOffset154
+ }
+ Transform {
+  translate {{"1983-((width * uSize)/2)"} {"344-((height * uSize)/2)"}}
+  rotate 74
+  scale {1.05 1.05}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform155
+  label main
+ }
+ Dot {
+  name Dot154
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -14
+  time ""
+  name TimeOffset153
+ }
+ Transform {
+  translate {{"2190-((width * uSize)/2)"} {"914-((height * uSize)/2)"}}
+  rotate -21
+  scale {0.56 0.56}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform154
+  label main
+ }
+ Dot {
+  name Dot153
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 2
+  time ""
+  name TimeOffset152
+ }
+ Transform {
+  translate {{"2020-((width * uSize)/2)"} {"1304-((height * uSize)/2)"}}
+  rotate -101
+  scale {1.62 1.62}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform153
+  label main
+ }
+ Dot {
+  name Dot152
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 17
+  time ""
+  name TimeOffset151
+ }
+ Transform {
+  translate {{"1160-((width * uSize)/2)"} {"292-((height * uSize)/2)"}}
+  rotate -132
+  scale {0.21 0.21}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform152
+  label main
+ }
+ Dot {
+  name Dot151
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -24
+  time ""
+  name TimeOffset150
+ }
+ Transform {
+  translate {{"596-((width * uSize)/2)"} {"42-((height * uSize)/2)"}}
+  rotate -35
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform151
+  label main
+ }
+ Dot {
+  name Dot150
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 12
+  time ""
+  name TimeOffset149
+ }
+ Transform {
+  translate {{"1227-((width * uSize)/2)"} {"2-((height * uSize)/2)"}}
+  rotate 104
+  scale {1.73 1.73}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform150
+  label main
+ }
+ Dot {
+  name Dot149
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 10
+  time ""
+  name TimeOffset148
+ }
+ Transform {
+  translate {{"638-((width * uSize)/2)"} {"1074-((height * uSize)/2)"}}
+  rotate -136
+  scale {1.36 1.36}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform149
+  label main
+ }
+ Dot {
+  name Dot148
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 10
+  time ""
+  name TimeOffset147
+ }
+ Transform {
+  translate {{"1241-((width * uSize)/2)"} {"912-((height * uSize)/2)"}}
+  rotate 132
+  scale {1.22 1.22}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform148
+  label main
+ }
+ Dot {
+  name Dot147
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -6
+  time ""
+  name TimeOffset146
+ }
+ Transform {
+  translate {{"1753-((width * uSize)/2)"} {"388-((height * uSize)/2)"}}
+  rotate 114
+  scale {1.44 1.44}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform147
+  label main
+ }
+ Dot {
+  name Dot146
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -2
+  time ""
+  name TimeOffset145
+ }
+ Transform {
+  translate {{"589-((width * uSize)/2)"} {"1455-((height * uSize)/2)"}}
+  rotate -115
+  scale {0.91 0.91}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform146
+  label main
+ }
+ Dot {
+  name Dot145
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -18
+  time ""
+  name TimeOffset144
+ }
+ Transform {
+  translate {{"1801-((width * uSize)/2)"} {"167-((height * uSize)/2)"}}
+  rotate 25
+  scale {1.3 1.3}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform145
+  label main
+ }
+ Dot {
+  name Dot144
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -16
+  time ""
+  name TimeOffset143
+ }
+ Transform {
+  translate {{"1929-((width * uSize)/2)"} {"90-((height * uSize)/2)"}}
+  rotate 65
+  scale {0.8 0.8}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform144
+  label main
+ }
+ Dot {
+  name Dot143
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -21
+  time ""
+  name TimeOffset142
+ }
+ Transform {
+  translate {{"299-((width * uSize)/2)"} {"778-((height * uSize)/2)"}}
+  rotate 135
+  scale {1.42 1.42}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform143
+  label main
+ }
+ Dot {
+  name Dot142
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -17
+  time ""
+  name TimeOffset141
+ }
+ Transform {
+  translate {{"1950-((width * uSize)/2)"} {"963-((height * uSize)/2)"}}
+  rotate 140
+  scale {0.23 0.23}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform142
+  label main
+ }
+ Dot {
+  name Dot141
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 9
+  time ""
+  name TimeOffset140
+ }
+ Transform {
+  translate {{"1698-((width * uSize)/2)"} {"1422-((height * uSize)/2)"}}
+  rotate 46
+  scale {0.88 0.88}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform141
+  label main
+ }
+ Dot {
+  name Dot140
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -11
+  time ""
+  name TimeOffset139
+ }
+ Transform {
+  translate {{"1303-((width * uSize)/2)"} {"1330-((height * uSize)/2)"}}
+  rotate -63
+  scale {0.33 0.33}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform140
+  label main
+ }
+ Dot {
+  name Dot139
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time ""
+  name TimeOffset138
+ }
+ Transform {
+  translate {{"1628-((width * uSize)/2)"} {"1251-((height * uSize)/2)"}}
+  rotate 178
+  scale {0.56 0.56}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform139
+  label main
+ }
+ Dot {
+  name Dot138
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -21
+  time ""
+  name TimeOffset137
+ }
+ Transform {
+  translate {{"532-((width * uSize)/2)"} {"1340-((height * uSize)/2)"}}
+  rotate 10
+  scale {1.8 1.8}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform138
+  label main
+ }
+ Dot {
+  name Dot137
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 24
+  time ""
+  name TimeOffset136
+ }
+ Transform {
+  translate {{"396-((width * uSize)/2)"} {"843-((height * uSize)/2)"}}
+  rotate -83
+  scale {1.66 1.66}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform137
+  label main
+ }
+ Dot {
+  name Dot136
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -8
+  time ""
+  name TimeOffset135
+ }
+ Transform {
+  translate {{"1248-((width * uSize)/2)"} {"800-((height * uSize)/2)"}}
+  rotate -77
+  scale {0.99 0.99}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform136
+  label main
+ }
+ Dot {
+  name Dot135
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -15
+  time ""
+  name TimeOffset134
+ }
+ Transform {
+  translate {{"601-((width * uSize)/2)"} {"998-((height * uSize)/2)"}}
+  rotate 42
+  scale {1.19 1.19}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform135
+  label main
+ }
+ Dot {
+  name Dot134
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -5
+  time ""
+  name TimeOffset133
+ }
+ Transform {
+  translate {{"1194-((width * uSize)/2)"} {"212-((height * uSize)/2)"}}
+  rotate 95
+  scale {1.59 1.59}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform134
+  label main
+ }
+ Dot {
+  name Dot133
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -20
+  time ""
+  name TimeOffset132
+ }
+ Transform {
+  translate {{"14-((width * uSize)/2)"} {"1110-((height * uSize)/2)"}}
+  rotate 147
+  scale {0.94 0.94}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform133
+  label main
+ }
+ Dot {
+  name Dot132
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 19
+  time ""
+  name TimeOffset131
+ }
+ Transform {
+  translate {{"1876-((width * uSize)/2)"} {"1002-((height * uSize)/2)"}}
+  rotate -157
+  scale {0.4 0.4}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform132
+  label main
+ }
+ Dot {
+  name Dot131
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -2
+  time ""
+  name TimeOffset130
+ }
+ Transform {
+  translate {{"753-((width * uSize)/2)"} {"546-((height * uSize)/2)"}}
+  rotate -74
+  scale {1.57 1.57}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform131
+  label main
+ }
+ Dot {
+  name Dot130
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -19
+  time ""
+  name TimeOffset129
+ }
+ Transform {
+  translate {{"88-((width * uSize)/2)"} {"1314-((height * uSize)/2)"}}
+  rotate -7
+  scale {1.77 1.77}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform130
+  label main
+ }
+ Dot {
+  name Dot129
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 17
+  time ""
+  name TimeOffset128
+ }
+ Transform {
+  translate {{"500-((width * uSize)/2)"} {"1200-((height * uSize)/2)"}}
+  rotate 166
+  scale {1.79 1.79}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform129
+  label main
+ }
+ Dot {
+  name Dot128
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time ""
+  name TimeOffset127
+ }
+ Transform {
+  translate {{"1301-((width * uSize)/2)"} {"267-((height * uSize)/2)"}}
+  rotate 122
+  scale {1.49 1.49}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform128
+  label main
+ }
+ Dot {
+  name Dot127
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -7
+  time ""
+  name TimeOffset126
+ }
+ Transform {
+  translate {{"88-((width * uSize)/2)"} {"24-((height * uSize)/2)"}}
+  rotate 170
+  scale {1.45 1.45}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform127
+  label main
+ }
+ Dot {
+  name Dot126
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 23
+  time ""
+  name TimeOffset125
+ }
+ Transform {
+  translate {{"1559-((width * uSize)/2)"} {"444-((height * uSize)/2)"}}
+  rotate -62
+  scale {1.33 1.33}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform126
+  label main
+ }
+ Dot {
+  name Dot125
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 5
+  time ""
+  name TimeOffset124
+ }
+ Transform {
+  translate {{"367-((width * uSize)/2)"} {"1293-((height * uSize)/2)"}}
+  rotate -37
+  scale {0.98 0.98}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform125
+  label main
+ }
+ Dot {
+  name Dot124
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 14
+  time ""
+  name TimeOffset123
+ }
+ Transform {
+  translate {{"861-((width * uSize)/2)"} {"896-((height * uSize)/2)"}}
+  rotate 149
+  scale {1.04 1.04}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform124
+  label main
+ }
+ Dot {
+  name Dot123
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -18
+  time ""
+  name TimeOffset122
+ }
+ Transform {
+  translate {{"1088-((width * uSize)/2)"} {"1339-((height * uSize)/2)"}}
+  rotate 130
+  scale {0.77 0.77}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform123
+  label main
+ }
+ Dot {
+  name Dot122
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 13
+  time ""
+  name TimeOffset121
+ }
+ Transform {
+  translate {{"490-((width * uSize)/2)"} {"230-((height * uSize)/2)"}}
+  rotate 96
+  scale {1.04 1.04}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform122
+  label main
+ }
+ Dot {
+  name Dot121
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 12
+  time ""
+  name TimeOffset120
+ }
+ Transform {
+  translate {{"914-((width * uSize)/2)"} {"529-((height * uSize)/2)"}}
+  rotate 21
+  scale {1.28 1.28}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform121
+  label main
+ }
+ Dot {
+  name Dot120
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -20
+  time ""
+  name TimeOffset119
+ }
+ Transform {
+  translate {{"1139-((width * uSize)/2)"} {"837-((height * uSize)/2)"}}
+  rotate 177
+  scale {1.83 1.83}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform120
+  label main
+ }
+ Dot {
+  name Dot119
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 22
+  time ""
+  name TimeOffset118
+ }
+ Transform {
+  translate {{"527-((width * uSize)/2)"} {"1337-((height * uSize)/2)"}}
+  rotate -80
+  scale {0.98 0.98}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform119
+  label main
+ }
+ Dot {
+  name Dot118
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 18
+  time ""
+  name TimeOffset117
+ }
+ Transform {
+  translate {{"525-((width * uSize)/2)"} {"1077-((height * uSize)/2)"}}
+  rotate 14
+  scale {1.9 1.9}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform118
+  label main
+ }
+ Dot {
+  name Dot117
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -15
+  time ""
+  name TimeOffset116
+ }
+ Transform {
+  translate {{"1609-((width * uSize)/2)"} {"71-((height * uSize)/2)"}}
+  rotate -50
+  scale {0.73 0.73}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform117
+  label main
+ }
+ Dot {
+  name Dot116
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -2
+  time ""
+  name TimeOffset115
+ }
+ Transform {
+  translate {{"1571-((width * uSize)/2)"} {"949-((height * uSize)/2)"}}
+  rotate -102
+  scale {0.21 0.21}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform116
+  label main
+ }
+ Dot {
+  name Dot115
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 3
+  time ""
+  name TimeOffset114
+ }
+ Transform {
+  translate {{"2147-((width * uSize)/2)"} {"91-((height * uSize)/2)"}}
+  rotate 110
+  scale {0.55 0.55}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform115
+  label main
+ }
+ Dot {
+  name Dot114
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 24
+  time ""
+  name TimeOffset113
+ }
+ Transform {
+  translate {{"1427-((width * uSize)/2)"} {"1138-((height * uSize)/2)"}}
+  rotate -68
+  scale {1.07 1.07}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform114
+  label main
+ }
+ Dot {
+  name Dot113
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 18
+  time ""
+  name TimeOffset112
+ }
+ Transform {
+  translate {{"2246-((width * uSize)/2)"} {"786-((height * uSize)/2)"}}
+  rotate -56
+  scale {1.86 1.86}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform113
+  label main
+ }
+ Dot {
+  name Dot112
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 19
+  time ""
+  name TimeOffset111
+ }
+ Transform {
+  translate {{"2110-((width * uSize)/2)"} {"427-((height * uSize)/2)"}}
+  rotate -92
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform112
+  label main
+ }
+ Dot {
+  name Dot111
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 11
+  time ""
+  name TimeOffset110
+ }
+ Transform {
+  translate {{"2251-((width * uSize)/2)"} {"1106-((height * uSize)/2)"}}
+  rotate -109
+  scale {1.14 1.14}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform111
+  label main
+ }
+ Dot {
+  name Dot110
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 16
+  time ""
+  name TimeOffset109
+ }
+ Transform {
+  translate {{"1110-((width * uSize)/2)"} {"527-((height * uSize)/2)"}}
+  rotate -164
+  scale {1.58 1.58}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform110
+  label main
+ }
+ Dot {
+  name Dot109
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -22
+  time ""
+  name TimeOffset108
+ }
+ Transform {
+  translate {{"628-((width * uSize)/2)"} {"445-((height * uSize)/2)"}}
+  rotate 18
+  scale {0.89 0.89}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform109
+  label main
+ }
+ Dot {
+  name Dot108
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -21
+  time ""
+  name TimeOffset107
+ }
+ Transform {
+  translate {{"1372-((width * uSize)/2)"} {"46-((height * uSize)/2)"}}
+  rotate -165
+  scale {0.89 0.89}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform108
+  label main
+ }
+ Dot {
+  name Dot107
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -8
+  time ""
+  name TimeOffset106
+ }
+ Transform {
+  translate {{"1702-((width * uSize)/2)"} {"397-((height * uSize)/2)"}}
+  rotate -16
+  scale {1.59 1.59}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform107
+  label main
+ }
+ Dot {
+  name Dot106
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 7
+  time ""
+  name TimeOffset105
+ }
+ Transform {
+  translate {{"2011-((width * uSize)/2)"} {"688-((height * uSize)/2)"}}
+  rotate -114
+  scale {1.31 1.31}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform106
+  label main
+ }
+ Dot {
+  name Dot105
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 1
+  time ""
+  name TimeOffset104
+ }
+ Transform {
+  translate {{"1584-((width * uSize)/2)"} {"1327-((height * uSize)/2)"}}
+  rotate -116
+  scale {0.47 0.47}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform105
+  label main
+ }
+ Dot {
+  name Dot104
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 12
+  time ""
+  name TimeOffset103
+ }
+ Transform {
+  translate {{"1198-((width * uSize)/2)"} {"269-((height * uSize)/2)"}}
+  rotate -118
+  scale {0.2 0.2}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform104
+  label main
+ }
+ Dot {
+  name Dot103
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -20
+  time ""
+  name TimeOffset102
+ }
+ Transform {
+  translate {{"1052-((width * uSize)/2)"} {"507-((height * uSize)/2)"}}
+  rotate -144
+  scale {0.68 0.68}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform103
+  label main
+ }
+ Dot {
+  name Dot102
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 7
+  time ""
+  name TimeOffset101
+ }
+ Transform {
+  translate {{"2019-((width * uSize)/2)"} {"471-((height * uSize)/2)"}}
+  rotate 159
+  scale {2 2}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform102
+  label main
+ }
+ Dot {
+  name Dot101
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -24
+  time ""
+  name TimeOffset100
+ }
+ Transform {
+  translate {{"583-((width * uSize)/2)"} {"1029-((height * uSize)/2)"}}
+  rotate -108
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform101
+  label main
+ }
+ Dot {
+  name Dot100
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -14
+  time ""
+  name TimeOffset99
+ }
+ Transform {
+  translate {{"1950-((width * uSize)/2)"} {"1041-((height * uSize)/2)"}}
+  rotate -5
+  scale {0.98 0.98}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform100
+  label main
+ }
+ Dot {
+  name Dot99
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 13
+  time ""
+  name TimeOffset98
+ }
+ Transform {
+  translate {{"707-((width * uSize)/2)"} {"569-((height * uSize)/2)"}}
+  rotate -80
+  scale {1.26 1.26}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform99
+  label main
+ }
+ Dot {
+  name Dot98
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -24
+  time ""
+  name TimeOffset97
+ }
+ Transform {
+  translate {{"834-((width * uSize)/2)"} {"0-((height * uSize)/2)"}}
+  rotate 81
+  scale {1.56 1.56}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform98
+  label main
+ }
+ Dot {
+  name Dot97
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -15
+  time ""
+  name TimeOffset96
+ }
+ Transform {
+  translate {{"900-((width * uSize)/2)"} {"210-((height * uSize)/2)"}}
+  rotate 88
+  scale {0.12 0.12}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform97
+  label main
+ }
+ Dot {
+  name Dot96
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -22
+  time ""
+  name TimeOffset95
+ }
+ Transform {
+  translate {{"2176-((width * uSize)/2)"} {"1005-((height * uSize)/2)"}}
+  rotate -83
+  scale {1.79 1.79}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform96
+  label main
+ }
+ Dot {
+  name Dot95
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -4
+  time ""
+  name TimeOffset94
+ }
+ Transform {
+  translate {{"2222-((width * uSize)/2)"} {"391-((height * uSize)/2)"}}
+  rotate 101
+  scale {1.66 1.66}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform95
+  label main
+ }
+ Dot {
+  name Dot94
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 11
+  time ""
+  name TimeOffset93
+ }
+ Transform {
+  translate {{"258-((width * uSize)/2)"} {"1163-((height * uSize)/2)"}}
+  rotate 100
+  scale {1.3 1.3}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform94
+  label main
+ }
+ Dot {
+  name Dot93
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -1
+  time ""
+  name TimeOffset92
+ }
+ Transform {
+  translate {{"1193-((width * uSize)/2)"} {"1405-((height * uSize)/2)"}}
+  rotate 116
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform93
+  label main
+ }
+ Dot {
+  name Dot92
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -7
+  time ""
+  name TimeOffset91
+ }
+ Transform {
+  translate {{"1066-((width * uSize)/2)"} {"1143-((height * uSize)/2)"}}
+  rotate -35
+  scale {1.47 1.47}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform92
+  label main
+ }
+ Dot {
+  name Dot91
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 6
+  time ""
+  name TimeOffset90
+ }
+ Transform {
+  translate {{"2160-((width * uSize)/2)"} {"736-((height * uSize)/2)"}}
+  rotate 7
+  scale {0.42 0.42}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform91
+  label main
+ }
+ Dot {
+  name Dot90
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -17
+  time ""
+  name TimeOffset89
+ }
+ Transform {
+  translate {{"40-((width * uSize)/2)"} {"809-((height * uSize)/2)"}}
+  rotate -85
+  scale {1.37 1.37}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform90
+  label main
+ }
+ Dot {
+  name Dot89
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 15
+  time ""
+  name TimeOffset88
+ }
+ Transform {
+  translate {{"2072-((width * uSize)/2)"} {"223-((height * uSize)/2)"}}
+  rotate 132
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform89
+  label main
+ }
+ Dot {
+  name Dot88
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -5
+  time ""
+  name TimeOffset87
+ }
+ Transform {
+  translate {{"830-((width * uSize)/2)"} {"1256-((height * uSize)/2)"}}
+  rotate -36
+  scale {0.96 0.96}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform88
+  label main
+ }
+ Dot {
+  name Dot87
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 14
+  time ""
+  name TimeOffset86
+ }
+ Transform {
+  translate {{"969-((width * uSize)/2)"} {"335-((height * uSize)/2)"}}
+  rotate -155
+  scale {0.92 0.92}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform87
+  label main
+ }
+ Dot {
+  name Dot86
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -21
+  time ""
+  name TimeOffset85
+ }
+ Transform {
+  translate {{"1192-((width * uSize)/2)"} {"284-((height * uSize)/2)"}}
+  rotate -32
+  scale {0.87 0.87}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform86
+  label main
+ }
+ Dot {
+  name Dot85
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 10
+  time ""
+  name TimeOffset84
+ }
+ Transform {
+  translate {{"1436-((width * uSize)/2)"} {"389-((height * uSize)/2)"}}
+  rotate 168
+  scale {1.45 1.45}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform85
+  label main
+ }
+ Dot {
+  name Dot84
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 6
+  time ""
+  name TimeOffset83
+ }
+ Transform {
+  translate {{"156-((width * uSize)/2)"} {"1427-((height * uSize)/2)"}}
+  rotate -11
+  scale {0.98 0.98}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform84
+  label main
+ }
+ Dot {
+  name Dot83
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 6
+  time ""
+  name TimeOffset82
+ }
+ Transform {
+  translate {{"118-((width * uSize)/2)"} {"342-((height * uSize)/2)"}}
+  rotate -172
+  scale {0.19 0.19}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform83
+  label main
+ }
+ Dot {
+  name Dot82
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 24
+  time ""
+  name TimeOffset81
+ }
+ Transform {
+  translate {{"1494-((width * uSize)/2)"} {"457-((height * uSize)/2)"}}
+  rotate 46
+  scale {0.55 0.55}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform82
+  label main
+ }
+ Dot {
+  name Dot81
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 24
+  time ""
+  name TimeOffset80
+ }
+ Transform {
+  translate {{"1531-((width * uSize)/2)"} {"1225-((height * uSize)/2)"}}
+  rotate -143
+  scale {1.22 1.22}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform81
+  label main
+ }
+ Dot {
+  name Dot80
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -5
+  time ""
+  name TimeOffset79
+ }
+ Transform {
+  translate {{"1794-((width * uSize)/2)"} {"998-((height * uSize)/2)"}}
+  rotate -150
+  scale {0.54 0.54}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform80
+  label main
+ }
+ Dot {
+  name Dot79
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 15
+  time ""
+  name TimeOffset78
+ }
+ Transform {
+  translate {{"977-((width * uSize)/2)"} {"667-((height * uSize)/2)"}}
+  rotate 103
+  scale {1.5 1.5}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform79
+  label main
+ }
+ Dot {
+  name Dot78
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -21
+  time ""
+  name TimeOffset77
+ }
+ Transform {
+  translate {{"879-((width * uSize)/2)"} {"962-((height * uSize)/2)"}}
+  rotate -96
+  scale {0.23 0.23}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform78
+  label main
+ }
+ Dot {
+  name Dot77
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -4
+  time ""
+  name TimeOffset76
+ }
+ Transform {
+  translate {{"1315-((width * uSize)/2)"} {"1083-((height * uSize)/2)"}}
+  rotate -100
+  scale {1.72 1.72}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform77
+  label main
+ }
+ Dot {
+  name Dot76
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -12
+  time ""
+  name TimeOffset75
+ }
+ Transform {
+  translate {{"1488-((width * uSize)/2)"} {"1188-((height * uSize)/2)"}}
+  rotate -157
+  scale {1.11 1.11}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform76
+  label main
+ }
+ Dot {
+  name Dot75
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -13
+  time ""
+  name TimeOffset74
+ }
+ Transform {
+  translate {{"906-((width * uSize)/2)"} {"853-((height * uSize)/2)"}}
+  rotate 16
+  scale {0.61 0.61}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform75
+  label main
+ }
+ Dot {
+  name Dot74
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 22
+  time ""
+  name TimeOffset73
+ }
+ Transform {
+  translate {{"1241-((width * uSize)/2)"} {"308-((height * uSize)/2)"}}
+  rotate -41
+  scale {1.57 1.57}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform74
+  label main
+ }
+ Dot {
+  name Dot73
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time ""
+  name TimeOffset72
+ }
+ Transform {
+  translate {{"119-((width * uSize)/2)"} {"902-((height * uSize)/2)"}}
+  rotate 60
+  scale {1.97 1.97}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform73
+  label main
+ }
+ Dot {
+  name Dot72
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -3
+  time ""
+  name TimeOffset71
+ }
+ Transform {
+  translate {{"1170-((width * uSize)/2)"} {"540-((height * uSize)/2)"}}
+  rotate 126
+  scale {1.03 1.03}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform72
+  label main
+ }
+ Dot {
+  name Dot71
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -17
+  time ""
+  name TimeOffset70
+ }
+ Transform {
+  translate {{"1446-((width * uSize)/2)"} {"1261-((height * uSize)/2)"}}
+  rotate -129
+  scale {0.55 0.55}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform71
+  label main
+ }
+ Dot {
+  name Dot70
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -11
+  time ""
+  name TimeOffset69
+ }
+ Transform {
+  translate {{"1027-((width * uSize)/2)"} {"669-((height * uSize)/2)"}}
+  rotate 164
+  scale {0.94 0.94}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform70
+  label main
+ }
+ Dot {
+  name Dot69
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -6
+  time ""
+  name TimeOffset68
+ }
+ Transform {
+  translate {{"1534-((width * uSize)/2)"} {"1364-((height * uSize)/2)"}}
+  rotate -92
+  scale {1.76 1.76}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform69
+  label main
+ }
+ Dot {
+  name Dot68
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -19
+  time ""
+  name TimeOffset67
+ }
+ Transform {
+  translate {{"1852-((width * uSize)/2)"} {"6-((height * uSize)/2)"}}
+  rotate 76
+  scale {1.21 1.21}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform68
+  label main
+ }
+ Dot {
+  name Dot67
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 19
+  time ""
+  name TimeOffset66
+ }
+ Transform {
+  translate {{"1949-((width * uSize)/2)"} {"189-((height * uSize)/2)"}}
+  rotate -43
+  scale {0.18 0.18}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform67
+  label main
+ }
+ Dot {
+  name Dot66
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -20
+  time ""
+  name TimeOffset65
+ }
+ Transform {
+  translate {{"135-((width * uSize)/2)"} {"633-((height * uSize)/2)"}}
+  rotate -122
+  scale {0.84 0.84}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform66
+  label main
+ }
+ Dot {
+  name Dot65
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -14
+  time ""
+  name TimeOffset64
+ }
+ Transform {
+  translate {{"1342-((width * uSize)/2)"} {"478-((height * uSize)/2)"}}
+  rotate 167
+  scale {1.09 1.09}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform65
+  label main
+ }
+ Dot {
+  name Dot64
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -21
+  time ""
+  name TimeOffset63
+ }
+ Transform {
+  translate {{"747-((width * uSize)/2)"} {"1025-((height * uSize)/2)"}}
+  rotate -132
+  scale {1.22 1.22}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform64
+  label main
+ }
+ Dot {
+  name Dot63
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 11
+  time ""
+  name TimeOffset62
+ }
+ Transform {
+  translate {{"1608-((width * uSize)/2)"} {"860-((height * uSize)/2)"}}
+  rotate 24
+  scale {0.41 0.41}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform63
+  label main
+ }
+ Dot {
+  name Dot62
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -10
+  time ""
+  name TimeOffset61
+ }
+ Transform {
+  translate {{"541-((width * uSize)/2)"} {"236-((height * uSize)/2)"}}
+  rotate 135
+  scale {0.24 0.24}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform62
+  label main
+ }
+ Dot {
+  name Dot61
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 11
+  time ""
+  name TimeOffset60
+ }
+ Transform {
+  translate {{"870-((width * uSize)/2)"} {"1363-((height * uSize)/2)"}}
+  rotate -17
+  scale {1.39 1.39}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform61
+  label main
+ }
+ Dot {
+  name Dot60
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -19
+  time ""
+  name TimeOffset59
+ }
+ Transform {
+  translate {{"1015-((width * uSize)/2)"} {"428-((height * uSize)/2)"}}
+  rotate 176
+  scale {0.74 0.74}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform60
+  label main
+ }
+ Dot {
+  name Dot59
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -3
+  time ""
+  name TimeOffset58
+ }
+ Transform {
+  translate {{"1146-((width * uSize)/2)"} {"130-((height * uSize)/2)"}}
+  rotate -85
+  scale {1.59 1.59}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform59
+  label main
+ }
+ Dot {
+  name Dot58
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -2
+  time ""
+  name TimeOffset57
+ }
+ Transform {
+  translate {{"1613-((width * uSize)/2)"} {"1312-((height * uSize)/2)"}}
+  rotate -27
+  scale {0.78 0.78}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform58
+  label main
+ }
+ Dot {
+  name Dot57
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -19
+  time ""
+  name TimeOffset56
+ }
+ Transform {
+  translate {{"1463-((width * uSize)/2)"} {"1302-((height * uSize)/2)"}}
+  rotate -178
+  scale {1.77 1.77}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform57
+  label main
+ }
+ Dot {
+  name Dot56
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -3
+  time ""
+  name TimeOffset55
+ }
+ Transform {
+  translate {{"1804-((width * uSize)/2)"} {"332-((height * uSize)/2)"}}
+  rotate -83
+  scale {0.59 0.59}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform56
+  label main
+ }
+ Dot {
+  name Dot55
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -21
+  time ""
+  name TimeOffset54
+ }
+ Transform {
+  translate {{"444-((width * uSize)/2)"} {"784-((height * uSize)/2)"}}
+  rotate -42
+  scale {1.02 1.02}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform55
+  label main
+ }
+ Dot {
+  name Dot54
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 2
+  time ""
+  name TimeOffset53
+ }
+ Transform {
+  translate {{"1032-((width * uSize)/2)"} {"681-((height * uSize)/2)"}}
+  rotate -158
+  scale {0.2 0.2}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform54
+  label main
+ }
+ Dot {
+  name Dot53
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 17
+  time ""
+  name TimeOffset52
+ }
+ Transform {
+  translate {{"2272-((width * uSize)/2)"} {"282-((height * uSize)/2)"}}
+  rotate 149
+  scale {0.86 0.86}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform53
+  label main
+ }
+ Dot {
+  name Dot52
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -5
+  time ""
+  name TimeOffset51
+ }
+ Transform {
+  translate {{"1341-((width * uSize)/2)"} {"60-((height * uSize)/2)"}}
+  rotate -151
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform52
+  label main
+ }
+ Dot {
+  name Dot51
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -22
+  time ""
+  name TimeOffset50
+ }
+ Transform {
+  translate {{"171-((width * uSize)/2)"} {"160-((height * uSize)/2)"}}
+  rotate 27
+  scale {0.56 0.56}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform51
+  label main
+ }
+ Dot {
+  name Dot50
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 16
+  time ""
+  name TimeOffset49
+ }
+ Transform {
+  translate {{"2095-((width * uSize)/2)"} {"1023-((height * uSize)/2)"}}
+  rotate -42
+  scale {1.77 1.77}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform50
+  label main
+ }
+ Dot {
+  name Dot49
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -8
+  time ""
+  name TimeOffset48
+ }
+ Transform {
+  translate {{"927-((width * uSize)/2)"} {"55-((height * uSize)/2)"}}
+  rotate -42
+  scale {0.53 0.53}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform49
+  label main
+ }
+ Dot {
+  name Dot48
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 10
+  time ""
+  name TimeOffset47
+ }
+ Transform {
+  translate {{"812-((width * uSize)/2)"} {"1444-((height * uSize)/2)"}}
+  rotate 34
+  scale {0.22 0.22}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform48
+  label main
+ }
+ Dot {
+  name Dot47
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 9
+  time ""
+  name TimeOffset46
+ }
+ Transform {
+  translate {{"1397-((width * uSize)/2)"} {"1379-((height * uSize)/2)"}}
+  rotate -153
+  scale {1.23 1.23}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform47
+  label main
+ }
+ Dot {
+  name Dot46
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 23
+  time ""
+  name TimeOffset45
+ }
+ Transform {
+  translate {{"1522-((width * uSize)/2)"} {"712-((height * uSize)/2)"}}
+  rotate 151
+  scale {0.75 0.75}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform46
+  label main
+ }
+ Dot {
+  name Dot45
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 5
+  time ""
+  name TimeOffset44
+ }
+ Transform {
+  translate {{"1734-((width * uSize)/2)"} {"203-((height * uSize)/2)"}}
+  rotate 79
+  scale {1.78 1.78}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform45
+  label main
+ }
+ Dot {
+  name Dot44
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 15
+  time ""
+  name TimeOffset43
+ }
+ Transform {
+  translate {{"1815-((width * uSize)/2)"} {"892-((height * uSize)/2)"}}
+  rotate 109
+  scale {1.12 1.12}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform44
+  label main
+ }
+ Dot {
+  name Dot43
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -8
+  time ""
+  name TimeOffset42
+ }
+ Transform {
+  translate {{"1664-((width * uSize)/2)"} {"375-((height * uSize)/2)"}}
+  rotate -34
+  scale {0.98 0.98}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform43
+  label main
+ }
+ Dot {
+  name Dot42
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 22
+  time ""
+  name TimeOffset41
+ }
+ Transform {
+  translate {{"927-((width * uSize)/2)"} {"785-((height * uSize)/2)"}}
+  rotate -81
+  scale {0.36 0.36}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform42
+  label main
+ }
+ Dot {
+  name Dot41
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -21
+  time ""
+  name TimeOffset40
+ }
+ Transform {
+  translate {{"1277-((width * uSize)/2)"} {"1334-((height * uSize)/2)"}}
+  rotate 158
+  scale {1.37 1.37}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform41
+  label main
+ }
+ Dot {
+  name Dot40
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -6
+  time ""
+  name TimeOffset39
+ }
+ Transform {
+  translate {{"839-((width * uSize)/2)"} {"1068-((height * uSize)/2)"}}
+  rotate -45
+  scale {0.16 0.16}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform40
+  label main
+ }
+ Dot {
+  name Dot39
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -9
+  time ""
+  name TimeOffset38
+ }
+ Transform {
+  translate {{"516-((width * uSize)/2)"} {"1007-((height * uSize)/2)"}}
+  rotate 103
+  scale {1 1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform39
+  label main
+ }
+ Dot {
+  name Dot38
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 18
+  time ""
+  name TimeOffset37
+ }
+ Transform {
+  translate {{"209-((width * uSize)/2)"} {"339-((height * uSize)/2)"}}
+  rotate -140
+  scale {1.53 1.53}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform38
+  label main
+ }
+ Dot {
+  name Dot37
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 2
+  time ""
+  name TimeOffset36
+ }
+ Transform {
+  translate {{"1088-((width * uSize)/2)"} {"298-((height * uSize)/2)"}}
+  rotate 60
+  scale {1.32 1.32}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform37
+  label main
+ }
+ Dot {
+  name Dot36
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -21
+  time ""
+  name TimeOffset35
+ }
+ Transform {
+  translate {{"987-((width * uSize)/2)"} {"479-((height * uSize)/2)"}}
+  rotate -70
+  scale {0.67 0.67}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform36
+  label main
+ }
+ Dot {
+  name Dot35
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -13
+  time ""
+  name TimeOffset34
+ }
+ Transform {
+  translate {{"1841-((width * uSize)/2)"} {"14-((height * uSize)/2)"}}
+  rotate -85
+  scale {1.1 1.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform35
+  label main
+ }
+ Dot {
+  name Dot34
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -9
+  time ""
+  name TimeOffset33
+ }
+ Transform {
+  translate {{"131-((width * uSize)/2)"} {"855-((height * uSize)/2)"}}
+  rotate 158
+  scale {0.16 0.16}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform34
+  label main
+ }
+ Dot {
+  name Dot33
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -19
+  time ""
+  name TimeOffset32
+ }
+ Transform {
+  translate {{"2110-((width * uSize)/2)"} {"678-((height * uSize)/2)"}}
+  rotate -124
+  scale {1.69 1.69}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform33
+  label main
+ }
+ Dot {
+  name Dot32
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 1
+  time ""
+  name TimeOffset31
+ }
+ Transform {
+  translate {{"1651-((width * uSize)/2)"} {"665-((height * uSize)/2)"}}
+  rotate -130
+  scale {1.11 1.11}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform32
+  label main
+ }
+ Dot {
+  name Dot31
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -14
+  time ""
+  name TimeOffset30
+ }
+ Transform {
+  translate {{"61-((width * uSize)/2)"} {"1011-((height * uSize)/2)"}}
+  rotate -174
+  scale {0.33 0.33}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform31
+  label main
+ }
+ Dot {
+  name Dot30
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -10
+  time ""
+  name TimeOffset29
+ }
+ Transform {
+  translate {{"803-((width * uSize)/2)"} {"260-((height * uSize)/2)"}}
+  rotate 18
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform30
+  label main
+ }
+ Dot {
+  name Dot29
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 21
+  time ""
+  name TimeOffset28
+ }
+ Transform {
+  translate {{"1427-((width * uSize)/2)"} {"291-((height * uSize)/2)"}}
+  rotate -114
+  scale {1.85 1.85}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform29
+  label main
+ }
+ Dot {
+  name Dot28
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 11
+  time ""
+  name TimeOffset27
+ }
+ Transform {
+  translate {{"1110-((width * uSize)/2)"} {"1409-((height * uSize)/2)"}}
+  rotate 72
+  scale {0.89 0.89}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform28
+  label main
+ }
+ Dot {
+  name Dot27
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 19
+  time ""
+  name TimeOffset26
+ }
+ Transform {
+  translate {{"1168-((width * uSize)/2)"} {"770-((height * uSize)/2)"}}
+  rotate -41
+  scale {0.46 0.46}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform27
+  label main
+ }
+ Dot {
+  name Dot26
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -20
+  time ""
+  name TimeOffset25
+ }
+ Transform {
+  translate {{"916-((width * uSize)/2)"} {"29-((height * uSize)/2)"}}
+  rotate -151
+  scale {1.52 1.52}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform26
+  label main
+ }
+ Dot {
+  name Dot25
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 5
+  time ""
+  name TimeOffset24
+ }
+ Transform {
+  translate {{"1815-((width * uSize)/2)"} {"1170-((height * uSize)/2)"}}
+  rotate 66
+  scale {1.95 1.95}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform25
+  label main
+ }
+ Dot {
+  name Dot24
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -23
+  time ""
+  name TimeOffset23
+ }
+ Transform {
+  translate {{"2192-((width * uSize)/2)"} {"897-((height * uSize)/2)"}}
+  rotate -141
+  scale {1.4 1.4}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform24
+  label main
+ }
+ Dot {
+  name Dot23
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 19
+  time ""
+  name TimeOffset22
+ }
+ Transform {
+  translate {{"544-((width * uSize)/2)"} {"944-((height * uSize)/2)"}}
+  rotate 66
+  scale {0.57 0.57}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform23
+  label main
+ }
+ Dot {
+  name Dot22
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 17
+  time ""
+  name TimeOffset21
+ }
+ Transform {
+  translate {{"246-((width * uSize)/2)"} {"1455-((height * uSize)/2)"}}
+  rotate 52
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform22
+  label main
+ }
+ Dot {
+  name Dot21
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 20
+  time ""
+  name TimeOffset20
+ }
+ Transform {
+  translate {{"1082-((width * uSize)/2)"} {"612-((height * uSize)/2)"}}
+  rotate 71
+  scale {0.13 0.13}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform21
+  label main
+ }
+ Dot {
+  name Dot20
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -4
+  time ""
+  name TimeOffset19
+ }
+ Transform {
+  translate {{"1277-((width * uSize)/2)"} {"765-((height * uSize)/2)"}}
+  rotate 96
+  scale {1.82 1.82}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform20
+  label main
+ }
+ Dot {
+  name Dot19
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -2
+  time ""
+  name TimeOffset18
+ }
+ Transform {
+  translate {{"604-((width * uSize)/2)"} {"1169-((height * uSize)/2)"}}
+  rotate 148
+  scale {1.78 1.78}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform19
+  label main
+ }
+ Dot {
+  name Dot18
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 9
+  time ""
+  name TimeOffset17
+ }
+ Transform {
+  translate {{"2149-((width * uSize)/2)"} {"500-((height * uSize)/2)"}}
+  rotate -27
+  scale {1.86 1.86}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform18
+  label main
+ }
+ Dot {
+  name Dot17
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 14
+  time ""
+  name TimeOffset16
+ }
+ Transform {
+  translate {{"823-((width * uSize)/2)"} {"1215-((height * uSize)/2)"}}
+  rotate 124
+  scale {1.06 1.06}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform17
+  label main
+ }
+ Dot {
+  name Dot16
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 3
+  time ""
+  name TimeOffset15
+ }
+ Transform {
+  translate {{"249-((width * uSize)/2)"} {"152-((height * uSize)/2)"}}
+  rotate -155
+  scale {0.99 0.99}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform16
+  label main
+ }
+ Dot {
+  name Dot15
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 12
+  time ""
+  name TimeOffset14
+ }
+ Transform {
+  translate {{"420-((width * uSize)/2)"} {"1414-((height * uSize)/2)"}}
+  rotate 136
+  scale {1.97 1.97}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform15
+  label main
+ }
+ Dot {
+  name Dot14
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 19
+  time ""
+  name TimeOffset13
+ }
+ Transform {
+  translate {{"100-((width * uSize)/2)"} {"382-((height * uSize)/2)"}}
+  rotate 38
+  scale {0.96 0.96}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform14
+  label main
+ }
+ Dot {
+  name Dot13
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -21
+  time ""
+  name TimeOffset12
+ }
+ Transform {
+  translate {{"1804-((width * uSize)/2)"} {"114-((height * uSize)/2)"}}
+  rotate -18
+  scale {1.75 1.75}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform13
+  label main
+ }
+ Dot {
+  name Dot12
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -7
+  time ""
+  name TimeOffset11
+ }
+ Transform {
+  translate {{"1503-((width * uSize)/2)"} {"1166-((height * uSize)/2)"}}
+  rotate -122
+  scale {1.95 1.95}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform12
+  label main
+ }
+ Dot {
+  name Dot11
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -23
+  time ""
+  name TimeOffset10
+ }
+ Transform {
+  translate {{"1259-((width * uSize)/2)"} {"112-((height * uSize)/2)"}}
+  rotate 124
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform11
+  label main
+ }
+ Dot {
+  name Dot10
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -18
+  time ""
+  name TimeOffset9
+ }
+ Transform {
+  translate {{"1833-((width * uSize)/2)"} {"1243-((height * uSize)/2)"}}
+  rotate -119
+  scale {0.93 0.93}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform10
+  label main
+ }
+ Dot {
+  name Dot9
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -24
+  time ""
+  name TimeOffset8
+ }
+ Transform {
+  translate {{"267-((width * uSize)/2)"} {"594-((height * uSize)/2)"}}
+  rotate -78
+  scale {1.36 1.36}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform9
+  label main
+ }
+ Dot {
+  name Dot8
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 16
+  time ""
+  name TimeOffset7
+ }
+ Transform {
+  translate {{"222-((width * uSize)/2)"} {"554-((height * uSize)/2)"}}
+  rotate -19
+  scale {0.18 0.18}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform8
+  label main
+ }
+ Dot {
+  name Dot7
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -22
+  time ""
+  name TimeOffset6
+ }
+ Transform {
+  translate {{"1782-((width * uSize)/2)"} {"717-((height * uSize)/2)"}}
+  rotate -99
+  scale {1.07 1.07}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform7
+  label main
+ }
+ Dot {
+  name Dot6
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -24
+  time ""
+  name TimeOffset5
+ }
+ Transform {
+  translate {{"1801-((width * uSize)/2)"} {"149-((height * uSize)/2)"}}
+  rotate 37
+  scale {0.1 0.1}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform6
+  label main
+ }
+ Dot {
+  name Dot5
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -12
+  time ""
+  name TimeOffset4
+ }
+ Transform {
+  translate {{"880-((width * uSize)/2)"} {"125-((height * uSize)/2)"}}
+  rotate -105
+  scale {1.56 1.56}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform5
+  label main
+ }
+ Dot {
+  name Dot4
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset 15
+  time ""
+  name TimeOffset3
+ }
+ Transform {
+  translate {{"1464-((width * uSize)/2)"} {"16-((height * uSize)/2)"}}
+  rotate 23
+  scale {1.96 1.96}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform4
+  label main
+ }
+ Dot {
+  name Dot3
+  tile_color 0xff
+  note_font_size 40
+ }
+push 0
+push $N129d7d40
+ TimeOffset {
+  time_offset -21
+  time ""
+  name TimeOffset2
+ }
+ Transform {
+  translate {{"733-((width * uSize)/2)"} {"296-((height * uSize)/2)"}}
+  rotate -83
+  scale {1.74 1.74}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform3
+  label main
+ }
+ Dot {
+  name Dot2
+  tile_color 0xff
+  note_font_size 40
+ }
+push $N129d7d40
+ TimeOffset {
+  time_offset -18
+  time ""
+  name TimeOffset1
+ }
+ Transform {
+  translate {{"2076-((width * uSize)/2)"} {"819-((height * uSize)/2)"}}
+  rotate -160
+  scale {0.81 0.81}
+  center {{"(width * uSize)/2"} {"(width * uSize)/2"}}
+  name Transform2
+  label main
+ }
+ Dot {
+  name Dot1
+  tile_color 0xff
+  note_font_size 40
+ }
+ Merge2 {
+  inputs 300+1
+  operation {{uOperation}}
+  name Merge1
+ }
+ Crop {
+  box {0 0 2276 1466}
+  name Crop1
+  disable {{1-cropChoice}}
+ }
+ Output {
+  name Output1
+ }
+end_group
+Transform {
+ translate {-565.2000122 201.8000031}
+ scale 0.17
+ center {1162 747}
+ name Transform4
+ selected true
+ xpos 881
+ ypos 3876
+}
+Grade {
+ multiply 1.36
+ gamma 0.305
+ name Grade7
+ selected true
+ xpos 881
+ ypos 3913
+}
+Grade {
+ inputs 1+1
+ multiply 0.4
+ name Grade8
+ selected true
+ xpos 884
+ ypos 3978
+}
+Grade {
+ inputs 1+1
+ multiply 0.2
+ name Grade11
+ selected true
+ xpos 884
+ ypos 4028
+}
+Multiply {
+ channels rgba
+ value 0.65
+ name Multiply2
+ selected true
+ xpos 880
+ ypos 4077
+}
+Merge2 {
+ inputs 2
+ operation mask
+ name Merge15
+ selected true
+ xpos 880
+ ypos 4128
+}

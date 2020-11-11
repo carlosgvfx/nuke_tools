@@ -1,0 +1,341 @@
+set cut_paste_input [stack 0]
+version 8.0 v3
+BackdropNode {
+ inputs 0
+ name BackdropNode16
+ tile_color 0x455246ff
+ label "TECH CHECK"
+ note_font_size 30
+ selected true
+ xpos 53
+ ypos 458
+ bdwidth 492
+ bdheight 528
+}
+push $cut_paste_input
+Dot {
+ name Dot179
+ note_font_size 40
+ selected true
+ xpos 138
+ ypos 388
+}
+Dot {
+ name Dot209
+ note_font_size 40
+ selected true
+ xpos 138
+ ypos 622
+}
+Dot {
+ name Dot210
+ note_font_size 40
+ selected true
+ xpos 138
+ ypos 678
+}
+set N33a24ae0 [stack 0]
+Dot {
+ name Dot211
+ note_font_size 40
+ selected true
+ xpos 138
+ ypos 738
+}
+set N2a1db8f0 [stack 0]
+Dot {
+ name Dot212
+ note_font_size 40
+ selected true
+ xpos 138
+ ypos 789
+}
+set N2a1d9690 [stack 0]
+Dot {
+ name Dot213
+ note_font_size 40
+ selected true
+ xpos 138
+ ypos 840
+}
+set N2a1d4e60 [stack 0]
+Dot {
+ name Dot214
+ note_font_size 40
+ selected true
+ xpos 138
+ ypos 886
+}
+set N2a1d7e80 [stack 0]
+Grade {
+ gamma 0.2
+ black_clamp false
+ name Gamma_Check1
+ selected true
+ xpos 350
+ ypos 882
+}
+push $N2a1db8f0
+ViewMetaData {
+ name ViewMetaData1
+ selected true
+ xpos 354
+ ypos 735
+}
+push $N2a1d9690
+Group {
+ name VIEWER_INPUT1
+ selected true
+ xpos 352
+ ypos 786
+ addUserKnob {20 User}
+ addUserKnob {41 mix T Merge1.mix}
+}
+ Constant {
+  inputs 0
+  channels rgb
+  name Constant1
+  xpos 434
+  ypos -134
+ }
+ Shuffle {
+  alpha white
+  name Shuffle1
+  xpos 434
+  ypos -62
+ }
+ Crop {
+  box {151 0 2729 2160}
+  name Crop1
+  xpos 434
+  ypos -36
+ }
+ Invert {
+  channels alpha
+  name Invert1
+  xpos 434
+  ypos -10
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos 262
+  ypos -234
+ }
+ Dot {
+  name Dot1
+  note_font_size 40
+  xpos 296
+  ypos -194
+ }
+ Merge2 {
+  inputs 2
+  mix 0.5
+  name Merge1
+  xpos 262
+  ypos -4
+ }
+ Output {
+  name Output1
+  xpos 262
+  ypos 96
+ }
+end_group
+push $N2a1d4e60
+Grade {
+ gamma 2.2
+ black_clamp false
+ name Gamma_Check
+ selected true
+ xpos 350
+ ypos 837
+}
+push $N33a24ae0
+Dot {
+ inputs 0
+ name Dot216
+ note_font_size 40
+ selected true
+ xpos 385
+ ypos 386
+}
+Dot {
+ name Dot217
+ note_font_size 40
+ selected true
+ xpos 388
+ ypos 618
+}
+Merge2 {
+ inputs 2
+ operation difference
+ name Merge49
+ selected true
+ xpos 354
+ ypos 675
+}
+push $N2a1d7e80
+Dot {
+ name Dot215
+ note_font_size 40
+ selected true
+ xpos 138
+ ypos 939
+}
+Group {
+ name False_Color
+ selected true
+ xpos 348
+ ypos 936
+ addUserKnob {20 User}
+ addUserKnob {4 Method M {Boundries Color Below Above "" "" ""}}
+ Method Below
+ addUserKnob {7 below}
+ addUserKnob {7 above}
+ above 14
+ addUserKnob {26 ""}
+ addUserKnob {6 plate l "View Source Image" +STARTLINE}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 48
+  ypos -94
+ }
+ Dot {
+  name Dot1
+  note_font_size 40
+  xpos 82
+  ypos -30
+ }
+set N2a1d70c0 [stack 0]
+ Dot {
+  name Dot3
+  note_font_size 40
+  xpos 82
+  ypos 42
+ }
+set N2a1dbc60 [stack 0]
+ Dot {
+  name Dot5
+  note_font_size 40
+  xpos 199
+  ypos 42
+ }
+set N2a1d9a00 [stack 0]
+ Dot {
+  name Dot2
+  note_font_size 40
+  xpos 334
+  ypos 42
+ }
+set N2a1d8fb0 [stack 0]
+ Dot {
+  name Dot4
+  note_font_size 40
+  xpos 476
+  ypos 42
+ }
+ Expression {
+  expr0 "r > parent.above ? 1 : 0"
+  expr1 "g > parent.above ? 1 : 0"
+  expr2 "b > parent.above ? 1 : 0"
+  name above
+  xpos 442
+  ypos 102
+ }
+push $N2a1d8fb0
+ Expression {
+  expr0 "r < parent.below ? 1 : 0 "
+  expr1 "g < parent.below ? 1 : 0"
+  expr2 "b < parent.below ? 1 :0"
+  name below
+  xpos 300
+  ypos 102
+ }
+push $N2a1d9a00
+ Expression {
+  expr0 "r < parent.below ? 1 : r > parent.above ? 1 : 0"
+  expr1 "g < parent.below ? 1 : g > parent.above ? 1 : 0"
+  expr2 "b < parent.below ? 1 : b > parent.above ? 1 : 0"
+  name boundries_color
+  xpos 165
+  ypos 102
+ }
+push $N2a1dbc60
+ Expression {
+  expr0 "min(r,g,b) < parent.below ? 0 : max(r,g,b) > parent.above ? 1 :0"
+  expr1 "min(r,g,b) < parent.below ? 0 : max(r,g,b) > parent.above ? 0 : 0"
+  expr2 "min(r,g,b) < parent.below ? 1 : max(r,g,b) > parent.above ? 0 : 0"
+  name boundries
+  xpos 48
+  ypos 102
+ }
+ Switch {
+  inputs 4
+  which {{parent.Method}}
+  name Switch1
+  xpos 250
+  ypos 192
+ }
+ Dot {
+  name Dot7
+  note_font_size 40
+  xpos 284
+  ypos 234
+ }
+set N2a1d4410 [stack 0]
+ Dot {
+  name Dot8
+  note_font_size 40
+  xpos 284
+  ypos 339
+ }
+push $N2a1d4410
+push $N2a1d70c0
+ Dot {
+  name Dot6
+  note_font_size 40
+  xpos -90
+  ypos -30
+ }
+ MergeExpression {
+  inputs 2
+  temp_name0 matte
+  temp_expr0 max(Ar,Ab)
+  expr0 Br*!matte+Ar
+  expr1 Bg*!matte+Ag
+  expr2 Bb*!matte+Ab
+  name MergeExpression1
+  xpos -124
+  ypos 231
+ }
+ Switch {
+  inputs 2
+  which {{!parent.plate}}
+  name Switch2
+  xpos -124
+  ypos 335
+ }
+ Output {
+  name Output1
+  xpos -124
+  ypos 383
+ }
+end_group
+StickyNote {
+ inputs 0
+ name StickyNote36
+ label COMP
+ selected true
+ xpos 100
+ ypos 548
+}
+StickyNote {
+ inputs 0
+ name StickyNote37
+ label ORIGINAL
+ selected true
+ xpos 355
+ ypos 548
+}

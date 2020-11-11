@@ -1,0 +1,536 @@
+set cut_paste_input [stack 0]
+version 10.0 v5
+Read {
+inputs 0
+file /jobs/CRB/tt_0195/SCAN/S_tt_0195_fg01_s01/2156x1806/s_tt_0195_fg01_s01.####.exr
+localizationPolicy off
+proxy /jobs/CRB/tt_0195/SCAN/S_tt_0195_fg01_s01/1078x903/s_tt_0195_fg01_s01.%04d.exr
+proxy_format "1078 903 0 0 1078 903 2 "
+first 1001
+last 1048
+origfirst 1001
+origlast 1048
+origset true
+version 24
+logGrade true
+grade {0 0 0}
+logReference {394 394 394}
+linReference {0.18 0.18 0.18}
+negGamma {0.5064 0.5064 0.5064}
+blackLevel {0.00947 0.00947 0.00947}
+densPerCV {0.002 0.002 0.002}
+gradeFound true
+name Read6
+selected true
+xpos 9055
+ypos -21594
+postage_stamp_frame 1024
+addUserKnob {20 Ivy}
+addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.utils.asst.common', fromlist=\['openDocsName']).openDocsName('IvyTab')" +STARTLINE}
+addUserKnob {26 divider4 l "" +STARTLINE}
+addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+_ivyVals "\{'ivy_job': '', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \{\}, 'ivy_shot': '', 'ivy_regex': False, 'ivy_type': '', 'ivy_versionquery': '', 'spider_uri': ''\}"
+addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+_ivyFile /jobs/CRB/tt_0195/SCAN/S_tt_0195_fg01_s01/2156x1806/s_tt_0195_fg01_s01.####.exr
+addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+_expressions {{curve}}
+addUserKnob {26 divider0 l "" +STARTLINE}
+addUserKnob {20 dbinfo l "DB Info" n 1}
+dbinfo 0
+addUserKnob {1 twig_dnuuid l "Twig Id"}
+twig_dnuuid 40e41ef4-f775-41fd-8ffc-3bdd1558d23e
+addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+stalk_dnuuid 1bbe1b19-d37b-4237-bd11-21fb16272306
+addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+twigtype_dnuuid 38226990-7e50-479d-9b0e-7db373dd96c9
+addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+leaf_dnuuid aae60283-3f03-4591-9049-20de8dc51dbe
+addUserKnob {26 divider1 l "" +STARTLINE}
+addUserKnob {1 twigtype l "Twig Type"}
+twigtype scan
+addUserKnob {1 leaf_label l Leaf}
+leaf_label main_proxy0
+addUserKnob {1 ivy_version l Version}
+ivy_version 1
+addUserKnob {43 ivy_notes l Notes}
+addUserKnob {26 divider2 l "" +STARTLINE}
+addUserKnob {1 build_label l "Build Label"}
+addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+OFXcom.absoft.neatvideo_v2 {
+TFRad 1
+TFThreshold 100
+TFAdaptive false
+TFInterlaced false
+DNP NTAyAIyjDHsAAAAAAAABoUi3Gfhe30Gjiay1m+39YoCUXr8qlopsX+pDPbUSaddmFVXKJ2RLjCMx8WaTRedLqG9fg0KVQjSlBOP9YL+eQrNqTpEdndq/fLGACTDvpaXCdoebQqGAYP1cOyW4F/bqGxO+o4r1NSqylPZZo8m9IbgX9upz0rGvLo1sdOlIJzm54uF+fyxy1aYJjzCrCun3ZsWkvCGAXwHcOxrGl/bVi1KxkFANbEsVyCcG2oPiwZ8+nXxk+Vg3KbQT8u5vzq2zKoloeOVEIz2g/96CW7qZRxZ1VAzRMA/RjOvKlkemhVsCYUAgvRz75XjXtqozknFv7k0sNKkI5/lkw6K+H35dA9o5GMiV9NONUK+OUgtqSRfGJQTcgeC/oTybemb3VjUrshHw8G3Mq7Uoh2Z640IhP5793IRZuJdJFHNSDs8uDdN84dxEA8TldxUvPKAwxftdAF8+Irsa+ed21bSsMZBvcWv3YNQVIL4gHAX1ay2FbPRpyKe5JINift8+HcOa+diIx8CBChsD/V7UxI0S0J7nSBNyUQ/OLQzUiejHmUSjgl6xcG3u4z2AIdNiX4Bnq4d440IhP5793IRZuJdJFHNSDp9VGTgruocpka46nK42A5Tp/pO1uYx65Km+wGfSU6wxiL2rNYDbD1FOfaKGGuLDHXB/hae9M8lzCahfgb0n+VtBMoYoqzy8HpwoGUeFFYvNHSDcvzkrQ/y96pe4Vs5g4zdzTvP91utM2YHjbLH743z02uNMbkfrTBoq7W5chqGSh2iF9skG1As5/Nx/4pThdhEHs6TvOG/wKFa8nw/Ic+xqHRc26Pz4XueZ3QNd+PtczytF9xGkTzGhcC0ON0g6JaGA2ny0dtt9G6upMtL0CTb1hY+uXmiZ/1iwd+hxNRq+tm1K9+sGgNcT8CU2PVxROXI2b9PjJjerMpFwcO1MKzW7s6U2l5NTPOnHoDVhtF6CBJ501IXkw51An35i+1o5J+bQ6VZPfZiJukHQUdf53EYXdlUL0jEQ0I3sy5VIp4ZapWYzJD2dl3hJcGf4Y8Khvx59XATZOBfJlPPSjk+ujVMKaUgYxSQD3YDfvqI7mnln9lU0LLEQ7/Fsy6q2J4Zle+JBIMCd/NuFWLeWShNyUQ/OLQzUiejHmUSjgl7/Xj0juhn46HXUs60wj25y60opN6YF5PxhwJ9BHHtaBtc2FcuS8dCQTayLVQhnRhrDIgHfft28pDmYd2n0UzIurw7t82rJqLglhGN94D8ewpv62YdWtZRMEXBPEcwrCtaH5sWbrllAoGOaPaOOmvRm0xAdP5793IRZuJdJFHNSDs8uDdPg9KuUeWQvMJsLEzxJZ1DFmPfWilOykU8ObUwUySgH2Yue7VIk9NIFZ8LeAdGVxB3AH/7ie9q5pzaVdGzxUC8xeML/YJ57d+gop23O33GgqTSTcm7vTi0zqgno+GXEo72Yj7qerpcD1e5JdusAoESbRpCIdmgsPqBbEdRNGVpBLs+/+l7XdrOlUZGslHq43gDiUye5v0XOcqWyPaMWIxa6ERsfwDVMIi0uAHjnHLO3GBT4yXacbWjxdYcrrPSPKq/3BW7zFwGPkNDoFsnxgrAvEKvIFd171UYenYNc3uVnyMibD1BGM+5TTRbEu5IbnAEqhMQbnKmQCePryBVxnvxjoUjzVWXJCDjcTN4By5fVRly4mQfcKasNhV0liift6VaE1I5QD5KxnwewkjxhZGnyC7ki+YT2ja9i3kcppmooE+zc43xewBO0zVSllqhZuCkBdmL2EG/avB18WwXYNxbK5hnVCnmx2kfOPymKFlIhCSHuwQXUMxLOj+7Nk0qpiFiRPY8wySuSz1W+3wBhICS3JoVkfOFAH8Gc+9qGV7aVS1a/et+2Hv9gkjAdQhl4VwnUMxLOj+7Nk0qpiFgFZEMdwB/+4nvauac2lXRs8VAvMawL6vZnxqW7IoFgAN08G8WY99aKU7KRTw5tTBTJKAfZhOPCnj+efWP6WTgotRTz7XDPrrIriml35kUkPKEA34Fcu5pGF3ZVC9IxENCN7MuVSKeGWgNiQR++Hfzkedi3qTSTcm7vTi0zqgno+GXEo70gf14C2zoZx5b11IxRsI9RDGtKFscmBduC4cCgPZx7ZWl1V8mV08+xSnB169HHJbcmhWR84UAfwZz72oZXtpVLJGGavpWlUoaWiOpM3gjvUQxrShbHJgXbguHAoD2ce2XuM81OS51Fm1krZ9jDXE0urQzr9WjHprojgmF/3j0cxMVSFfocYFI9Kz3JVpqbgepx0K+xLItqdudGJTuiAeCAs+9ujaQoFftBBGnzRVTaBc4X5XcGbUWL5reFN6Dnj7C34tV7xxSoCoxzQv4OEhtFHYimqF9Cb9GqaZuFo+UYCOzhYNAd8VnHohLmeBOvMZO6riWnDHYSBexoMxQQLSy0CQFn2FymZfbRlXbrkWh22VZ+QuU8Tlj79jm1Kpf03wAoZEjvTQLME2de3EMDoU/QVqLxWmlwv6BSvkPkfLfzZAFS7A0zexnDUyls9O/UiEuVkzMtQXpI9jVz+WNfVcMMXXNB+7cXgPVriTsc8maWSXDdSOfnqtsF47Aok81FAlbJT60unM4DRILBZdr+CehSexGG2E46sCixEO/xbMuqtqCin8Dvi9NMM+9t7rkYedn6iQVJEG9OEssqCdeG5cScLCQTRIk/+l+ephKFLgNp0YjnxppDooFf/l08JLkY9+lrP+VGtYa6HWni3QLZOBfJlPPSjk+ujVMKaUgYxSQD3YDfvqI7mnln9lU0LLEQ7/Fsy6q2J4Zle+JBIMCd/NuFWLeWShNyUQ/OLQzUiejHmUSjgl7/Xj0juhn46HXUs60wj25y60opN6YF5PxhwJ9BHHtaBtc2FcuS8dCQTayLVQhnRhrDIgHfft28pDmYd2n0UzIurw7t82rJqLglhGN94D8ewpv62YdWtZRMEXBPEcwrCtaH5sWbQqGAYP1cOyWYfYqWsBf2akK8RdvMhGrUiejHmUSjgl7/Xj0juhn46B/dR5iEln/gklsM8b6eUjWoB+b6Y8Khvx59XATZOBfJ4E+ip3H2PiHyyyg1UDgVilGwj1EMa0oWxyYF24LhwKDJXymKmh62GZ1bcepYXM+wK4ppd+ZFJDyhAN+BXLuaRj17NRceIhX3yymGCzdie+QdenHfCJJ05g/NXsO8zPVqXtXFC3M+TPLdyWLu2xpCLNt2/GIu04HLOkXFe+fHNqoBlNhDIiIDnPUNig9yJY0yrwgaBVDuDA8WNvpdUP85GjRn2L3deI+w1Du9HkeyDbITYIZZ9MZd/gf3fuP2JiS3n47KDeRyoJtiFp+AAlClGgMTSDX9MzmiwHOhmjsnmn/1mU8x5KiYfha5jRJ3lTSd1SEDjTF23gC/zjQbXE2mG4stA71PCtpFLMEJbtX+p4tVQ4Y6XAQ2KKIZdN3NzFw/Xt3AqQplTdISoYHWOErIUzm38GYzOhtHFnVUDNEwD9Erm27TY6Hav0DBa8yhsPJmY9EAWgNiQR++Hfzkedi3qbgsM6w9zzIXJUCMD1q4WYVUs5JOD25NE8opCNiF5MOd6YIlGgzSrS6px5NHFnVUDNEwD9GM68qWR6aFWwJhQCC9HPvleNe2qjOScW/uTSw0qQjn+WTDor4ffl0D2jkYyJX0041Qr45SC2pJF8YlBNyB4L+hPJt6ZvdWNSuyEfDwbcyrtSiHZnrjQiE/nv3chFm4l0kUc1IOzy4N04rpyJhFpINdAF8+Irsa+ed21bSsMZBvcexLKjanBuX7YsGgQB18WwXYNxbKk/LRj06tjFQJaEcZxCMC3n/evaM6mXhoguRA7luT61XVjZD5gL4fQRx7WgbXNhXLkvHQkE2si1Wp9KK9X+ugneBmRDffQLIdwB/+4nvauac2lXRs8VAvMcjqatVnFcKvbSdv8IOkC4xPro1TCmlIGMUkA92A376iGy7Tt52sIq5eqxGJzOj0WAFgPyG8G/rmd9a1qzKRcHDh0EQmv6wfgZY5E4zOJakW+cxYwj6uLrBDS3bbpwWFiW6gncMLtyC0B20uEwMZ40RP+7ukHc/iZ0CENRrnpU+Qt6u8IYVgXD9jqzabgXhK7WqkEUadvvpdlfkOEy8z1ruyW54DYIHhdsFWJrlZoOFC6UvscSYAWISSuJzDvsu4plriLjL8dE/zeH9+4DXq3gKjF+dbCxlWOPNV5UmM4i0NV58AZImLUTt758K3OB6XeGgSPZ/5hqM1wWVj9EYHI7Tf9EXXjhlAoGW7NqtpxlbJIP77XQ8bIj7GBQhY1wCxmhgQ+mXd0yKvBmVl+muGVMvoW0Ul0ziewpv62YdWtZRMXe34YZhKbtEOup8AW2sTf3SSzrIriml35kUkPKEA34GrorMsg4gxGhPoXD8nxXnldNOyri+ObXPqSSg4pQTj/Uc2kcYJX+BF1c0gqTSTcm7vTi0zqgno+GXEo70gf14C2zoZx5b11IxRsI9RDGtKFscmBduC4cCgPZx7ZfhXNiqzEvHvbs2stCmIZ3nkQyI+n/7dg1q5mEgVdFMN0C8O0ovqyZdGpYRcAWA/Ibwb+uZ31rWrMpFwcO1MKzWoB+b6Y8Khvx59XATZOBfJlPPSjk+ujVMKaUgYxSQD3YDfvqI7mnln9lU0LLEQ7/Fsy6q2J4Zle+JBIMCd/NuFWLeWSmNOyE4lQfdpxkiiHBczE70gf14C2zoZx5b11IxRsI9RrRFl6siJPCWs5JtEYqQhjk2si1UIZ0YawyIB337dvKR8IrAbHMfnWPpb9lujJLIluBf26nPSsa8ujWx06UgnOX5zMx8e1kuP3cHne8NW92jzUjEvrg3s9GnIp7kkg2J+tpzGGLlpiFiHLtwD3Edx4qHIxhi1uTCwz8/4XWAU1XoM15XHQ0SmGKI+n8E+ngxvC5PTTJvM81R3qVk+mtTYRwnV+GHsyte4jt7Zut+Nce67dEDzbkwor2iIBUo6H/RZqta3KEiCo4xaZPdY+JSmOZ55xltX93TpoexbhCfeZ8jHf2TK6IguknCHD5M6nCgM8h3TDxTElnr/k70dh6LVuRb+1HbCYpRGa3sNLlkAOh3mc5xASsdThTDI9Gv84lI9c72KFxTqa9TTnh6BpItX+ARdrJW9AJw/94yBAqpo52hMa9a7YAty3ySP81SvU2v0Z51Jln2hAe7xbgvMOWQJ0o5wOB9EZnXlKsEqtDdu/2Dqr0uMT64NbMsqiehHpgVkwyKB4J5x0LmW9ScY3aXucutKqQhnxiWE40KhAF++HXzbOpn4Ptjafs0861e/Q9d4UMm5JiVP91gs1gHyHrE+o88Sgs1pykrV3LMjvLPXl8gc4YxVIHIoM1XE82wlbXTdcp6V9vlmA9QxXHHaJEEW+3y6L7O3Qk3RuW38ZemsTpFMqwppyCeG5USjAmHAH37dJuVew7Fhu6QpUZL+X74dfNs6mfhXthV00zKR8E+uDWy23xl5jpGcRg0hDJWYnoptoAjXCBGe1rnWou5xFHGMtTQn53jNYai5CD6sDz9QeuV9RG7RXisI9ZBBsheF8YWa3Tpn+NW4Xf65NCuUdXlg0pSS0w+WwgqV175H6HPSMZDvTq0Ma8opiOdGpQRaKGXq+fLlemFrt5lEowJhwB9+3Tyb+lm4F3bVNJPyURHoprr+CQS9eN08m3t7e9HrGrt9EWWmwcQBpslmXYNauZjIlfTTDdAvDlILakmXRqUEY8MigeH/PbMtsA/ucutKKbcmhWT8YcCfwZ38W7oZeNc23938ZPlYN6k0k3Lub86tM6oJ6HjkRaQDYsEgQO99dupz0rEvrg3sdOlIJ7kkg2L+Xr8efdw7mvmUwa4yqwrpd+ZFJLwhgF+BXLuaxpf2VbQSc9IIBbYfQRx7WoZXtpXLkvHQEM0sC1UIZ8YlheRDos1uR4lUs5LOj+7NE8opCFgFZEOdQJ/+Xb0ce9v2J4zQjezLFcgnBloDYkGfPp185HnYN5b0VbQTvt+0GMUkA10AXz6iO5p553bVtCyxEG/OLI3sS4+H+10AXz6iO5p553bVtCyxEO9x7EuqCWnIJ4Yo36YK0zIRTw5tTJRJqIfZhOPCHr4fft08m/rPUgxs8mvKqTemBeR84UAfQRx7WoZWtxZ11DOS8aTqxgjVNBNNEG9OkkuqideG5cQcwSB/3jyd/FpPRzudQJ9+4nvauSe2FfRs8VAvsSyL6kmpCGfG0TGtM6oJ6HjlRCO9IH9eglu6mceW9VSzE3LRuOMjn8Gc+9oG1zYVSxJxUJBNrIvViOdGpQVkwyJ1nfFXBmVEnEGgf+F827omtxb1a/JRsA9vzi2b9hxw1ofmxRvCIQBg/Vw7pTiXdupz0jGQ7k+uDT+jsx3AH/5i+1o5pzaVdOxx0K8xrAtqySmI50bjQiaYRaSD3YDfviK7Gvln9lU0rDCR8E+uDWyP7KvqVgdmRZtCoYDgfdy7JbgX9mryU7IRcM8u1AFVjdOK6cgYxSQDXQBfPqI7mnnndtU0k/NSsRArr6cptBPybu9OLbMqiWj4ZcSjPaD/Xr0dfNsb/uDwXv9ePaM6mXjoddSzLbAP7nLrSqkIZscmhaA6KrQpiGf5ZMOiPp/+3QPaORhIFXTTMpDxUK9KDESKU7KRz47tzBTJKAdZBGNCnj+e/Vy6G3rZfGZ+4H3cuyW4F/Zq81Ixry6NbPRpyCeG5EWkl3r5Ta5Z
+NFP NTAyAPotAAAAAAAAAAAAAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPzMzMz8AAIA/AACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAABAAAA
+LinearInputData true
+name "Reduce Noise2"
+selected true
+xpos 9050
+ypos -21406
+}
+Dot {
+name Dot10
+label Denoise
+selected true
+xpos 9084
+ypos -21327
+}
+FilmLUT {
+name FilmLUT2
+selected true
+xpos 9050
+ypos -21260
+vfield_file /tools/SARC/data/colsci/cubes/SARC_Film_EIZO_v01.cub
+variables DN_FILM_CUBE
+}
+VectorGenerator {
+motionEstimation Regularized
+vectorDetailReg 1
+strengthReg 1
+Advanced 1
+Tolerances 1
+name VectorGenerator1
+selected true
+xpos 9050
+ypos -21197
+}
+set N2bd6b840 [stack 0]
+push $cut_paste_input
+Expression {
+expr0 (0.5+x)/width
+expr1 (0.5+y)/height
+expr2 0
+expr3 1
+name Expression3
+selected true
+xpos 8821
+ypos -21103
+}
+push $N2bd6b840
+MagicWarper {
+inputs 2
+name MagicWarper1
+selected true
+xpos 8968
+ypos -21103
+ref_frame 1048
+uv_scale {2 1}
+stabilise_options 1
+}
+Copy {
+inputs 2
+channels motion
+name Copy15
+selected true
+xpos 9050
+ypos -21027
+}
+FileOut {
+name FileOut8
+tile_color 0xbfbf00ff
+selected true
+xpos 9208
+ypos -21027
+channels rgba
+_destination /jobs
+file /jobs/CRB/tt_0195/ELEMENT/E_tt_0195_comp_precomp_warperSTMap_v002/2156x1806/E_tt_0195_comp_precomp_warperSTMap_v002.####.exr
+proxy /jobs/CRB/tt_0195/ELEMENT/E_tt_0195_comp_precomp_warperSTMap_v002/1078x903/E_tt_0195_comp_precomp_warperSTMap_v002.####.exr
+fileProxy /jobs/CRB/tt_0195/ELEMENT/E_tt_0195_comp_precomp_warperSTMap_v002/1078x903/E_tt_0195_comp_precomp_warperSTMap_v002.####.exr
+views {main}
+first 1001
+last 1048
+tex_metadata "default metadata and exr/*"
+_format "2156 1806 0 0 2156 1806 2.0 CRB Working"
+_generator "NukeRenderGenerator dnnuke.core.render.generators"
+_ivyVals "\{'variant': None, 'host': None, 'versionNum': '2', 'twigType': 'spider://query@TwigType.one?TwigType.code==2d', 'twigNameTags': \{'subtask': u'precomp', 'task': u'comp', 'label': u'warperSTMap', 'out_dir': u'ELEMENT'\}, 'job': 'CRB', 'stalk': None, 'stalkAttrs': \{'framerange': '1001-1048'\}, 'twig': None, 'stem': 'spider://query@Stem.one?Stem.dnuuid==bd0bbdb1-923d-4604-921f-e98d02212df7&Stem.stemname==tt_0195&Stem.stemtype==shot'\}"
+_old_filetype exr
+_stalkname E_tt_0195_comp_precomp_warperSTMap_v002
+_twigtype 2d
+_wrapper "FileOut dnnuke.nodes.file_out.wrapper"
+beforeRender ""
+beforeFrameRender ""
+afterFrameRender ""
+afterRender ""
+renderProgress ""
+}
+Read {
+inputs 0
+file /jobs/CRB/tt_0195/ELEMENT/E_tt_0195_comp_precomp_warperSTMap_v002/2156x1806/E_tt_0195_comp_precomp_warperSTMap_v002.%04d.exr
+localizationPolicy off
+format "2156 1806 0 0 2156 1806 2 CRB Working"
+proxy_format "640 480 0 0 640 480 1 PC_Video"
+first 1001
+last 1048
+origfirst 1001
+origlast 1048
+origset true
+version 24
+logGrade true
+grade {0 0 0}
+logReference {394 394 394}
+linReference {0.18 0.18 0.18}
+negGamma {0.5064 0.5064 0.5064}
+blackLevel {0.00947 0.00947 0.00947}
+densPerCV {0.002 0.002 0.002}
+gradeFound true
+name Read4
+selected true
+xpos 9050
+ypos -20909
+postage_stamp_frame 1024
+addUserKnob {20 Ivy}
+addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.utils.asst.common', fromlist=\['openDocsName']).openDocsName('IvyTab')" +STARTLINE}
+addUserKnob {26 divider4 l "" +STARTLINE}
+addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+_ivyVals "\{'ivy_job': '', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \{\}, 'ivy_shot': '', 'ivy_regex': False, 'ivy_type': '', 'ivy_versionquery': '', 'spider_uri': ''\}"
+addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+_ivyFile /jobs/CRB/tt_0195/ELEMENT/E_tt_0195_comp_precomp_warperSTMap_v002/2156x1806/E_tt_0195_comp_precomp_warperSTMap_v002.####.exr
+addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+_expressions {{curve}}
+addUserKnob {26 divider0 l "" +STARTLINE}
+addUserKnob {20 dbinfo l "DB Info" n 1}
+dbinfo 0
+addUserKnob {1 twig_dnuuid l "Twig Id"}
+twig_dnuuid d5c9d135-3ab8-40c6-8bc5-f8997771999c
+addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+stalk_dnuuid 13da3671-a4ef-40b5-b975-505cae41c6b7
+addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+twigtype_dnuuid e9f824fa-c932-4c3e-acbd-c612fb5ea846
+addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+leaf_dnuuid 7ebb308b-4650-4d7a-865d-1016c3cd20a5
+addUserKnob {26 divider1 l "" +STARTLINE}
+addUserKnob {1 twigtype l "Twig Type"}
+twigtype elmr
+addUserKnob {1 leaf_label l Leaf}
+leaf_label main_proxy0
+addUserKnob {1 ivy_version l Version}
+ivy_version 2
+addUserKnob {43 ivy_notes l Notes}
+addUserKnob {26 divider2 l "" +STARTLINE}
+addUserKnob {1 build_label l "Build Label"}
+addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+Roto {
+inputs 0
+cliptype none
+curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097664}
+    {t x4486c000 x4461c000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup OpenSpline4 1049088 bezier
+     {{cc
+       {f 1056800}
+       {p
+        {}
+        {{a osw 0 osf 0}	x448ab7ab x44829c40}
+        {xbe1fc000 xbfc7ac00}
+        {{a osw 1 osf 0}	xbdc08000 x3f842800}
+        {{a osw 1 osf 0}	x448af71a x44821f6d}
+        {{a osw 1 osf 0}	x3db20000 xbf73f000}
+        {xbdffc000 x3ec4a000}
+        {{a osw 1 osf 0}	x448afb50 x4481e9f8}
+        {x3e852000 xbf4cd000}
+        {xbdcd0000}
+        {{a osw 1 osf 0}	x448b15d7 x4481be90}
+        {x3dcd0000}
+        {xbf853000 x3f0aa000}
+        {{a osw 0 osf 0}	x448b0c39 x44817ecb}
+        {}}}
+      {cc
+       {f 1056800}
+       {p
+        {}
+        {}
+        {xbe1fc000 xbfc7ac00}
+        {xbdc08000 x3f842800}
+        {}
+        {x3db20000 xbf73f000}
+        {xbdffc000 x3ec4a000}
+        {}
+        {x3e852000 xbf4cd000}
+        {xbdcd0000}
+        {}
+        {x3dcd0000}
+        {xbf853000 x3f0aa000}
+        {}
+        {}}}}
+     {t x448a923d x4484dcf6}
+     {a osbe 0 osee 0 osw x3e4ccccd opc x3f000000 fx x3fa00000 fy x40a00000 osf 0 str 1 ltn x447a4000 ltm x447a4000 tt x41200000}}
+    {curvegroup OpenSpline3 1049088 bezier
+     {{cc
+       {f 1056800}
+       {p
+        {}
+        {{a osw 0 osf 0}	x448af3fb x4482cff2}
+        {xbe1fc000 xbfc7ac00}
+        {{a osw 1 osf 0}	xbdc08000 x3f842800}
+        {{a osw 1 osf 0}	x448b45e0 x44824946}
+        {{a osw 1 osf 0}	x3db20000 xbf73f000}
+        {xbdffc000 x3ec4a000}
+        {{a osw 1 osf 0}	x448b83ef x44822021}
+        {x3e852000 xbf4cd000}
+        {xbdcd0000}
+        {{a osw 1 osf 0}	x448bb84e x4481b242}
+        {x3dcd0000}
+        {xbf853000 x3f0aa000}
+        {{a osw 0 osf 0}	x448c0d75 x448159df}
+        {}}}
+      {cc
+       {f 1056800}
+       {p
+        {}
+        {}
+        {xbe1fc000 xbfc7ac00}
+        {xbdc08000 x3f842800}
+        {}
+        {x3db20000 xbf73f000}
+        {xbdffc000 x3ec4a000}
+        {}
+        {x3e852000 xbf4cd000}
+        {xbdcd0000}
+        {}
+        {x3dcd0000}
+        {xbf853000 x3f0aa000}
+        {}
+        {}}}}
+     {t x448a923d x4484dcf6}
+     {a osbe 0 osee 0 osw x3e4ccccd opc x3f000000 fx x3fa00000 fy x40a00000 osf 0 str 1 ltn x447a4000 ltm x447a4000 tt x41200000}}
+    {curvegroup OpenSpline2 1049088 bezier
+     {{cc
+       {f 1056800}
+       {p
+        {}
+        {{a osw 0 osf 0}	x448a13fa x44847350}
+        {xbe1fc000 xbfc7ac00}
+        {{a osw 1 osf 0}	xbdc08000 x3f842800}
+        {{a osw 1 osf 0}	x4489ebc4 x4483e0d9}
+        {{a osw 1 osf 0}	x3db20000 xbf73f000}
+        {xbdffc000 x3ec4a000}
+        {{a osw 1 osf 0}	x448a123f x44838020}
+        {x3e852000 xbf4cd000}
+        {xbdcd0000}
+        {{a osw 1 osf 0}	x448a35c7 x448309d6}
+        {x3dcd0000}
+        {xbe386000 x3f75c000}
+        {{a osw 0 osf 0}	x448a4d75 x4482cc65}
+        {}}}
+      {cc
+       {f 1056800}
+       {p
+        {}
+        {}
+        {xbe1fc000 xbfc7ac00}
+        {xbdc08000 x3f842800}
+        {}
+        {x3db20000 xbf73f000}
+        {xbdffc000 x3ec4a000}
+        {}
+        {x3e852000 xbf4cd000}
+        {xbdcd0000}
+        {}
+        {x3dcd0000}
+        {xbe386000 x3f75c000}
+        {}
+        {}}}}
+     {t x448a923d x4484dcf6}
+     {a osbe 0 osee 0 osw x3e4ccccd opc x3f000000 fx x3fa00000 fy x40a00000 osf 0 str 1 ltn x447a4000 ltm x447a4000 tt x41200000}}
+    {curvegroup OpenSpline1 1049088 bezier
+     {{cc
+       {f 1056800}
+       {p
+        {x3e99a000 x40400000}
+        {{a osw 0 osf 0}	x448a69cd x4485a9b4}
+        {xbe1fc000 xbfc7ac00}
+        {{a osw 1 osf 0}	xbdc08000 x3f842800}
+        {{a osw 1 osf 0}	x448a35c3 x44851ccd}
+        {{a osw 1 osf 0}	x3db20000 xbf73f000}
+        {xbdffc000 x3ec4a000}
+        {{a osw 1 osf 0}	x448a6333 x4484f51f}
+        {x3e852000 xbf4cd000}
+        {xbdcd0000}
+        {{a osw 1 osf 0}	x448ab28f x44849d71}
+        {x3dcd0000}
+        {xbe386000 x3f75c000}
+        {{a osw 0 osf 0}	x448aca3d x44846000}
+        {x3e386000 xbf75c000}}}
+      {cc
+       {f 1056800}
+       {p
+        {x3e99a000 x40400000}
+        {}
+        {xbe1fc000 xbfc7ac00}
+        {xbdc08000 x3f842800}
+        {}
+        {x3db20000 xbf73f000}
+        {xbdffc000 x3ec4a000}
+        {}
+        {x3e852000 xbf4cd000}
+        {xbdcd0000}
+        {}
+        {x3dcd0000}
+        {xbe386000 x3f75c000}
+        {}
+        {x3e386000 xbf75c000}}}}
+     {t x448a923d x4484dcf6}
+     {a osbe 0 osee 0 osw x3e4ccccd opc x3f000000 fx x3fa00000 fy x40a00000 osf 0 str 1 ltn x447a4000 ltm x447a4000 tt x41200000}}
+    {curvegroup Bezier2 1049088 bezier
+     {{cc
+       {f 8192}
+       {p
+        {xc10ccd00 x42620000}
+        {x44832666 x44836000}
+        {x410ccd00 xc2620000}
+        {xc0999a00 x42120000}
+        {x4485c666 x445d6000}
+        {x40999a00 xc2120000}
+        {x40f99a00 xc2120000}
+        {x4482599a x445a4000}
+        {xc0f99a00 x42120000}
+        {xc08ccd00 xc18c0000}
+        {x44802ccd x44824000}
+        {x408ccd00 x418c0000}}}
+      {cc
+       {f 8192}
+       {p
+        {xc10ccd00 x42620000}
+        {x41be0000 x41b40000}
+        {x410ccd00 xc2620000}
+        {xc0999a00 x42120000}
+        {x41240000 xc0a00000}
+        {x40999a00 xc2120000}
+        {x40f99a00 xc2120000}
+        {xc0500000 xc2140000}
+        {xc0f99a00 x42120000}
+        {xc08ccd00 xc18c0000}
+        {xc1a60000 x41600000}
+        {x408ccd00 x418c0000}}}}
+     {t x4482f4cd x44710000}
+     {a fx x40200000 fy x40a00000 osw x41200000 osf 0 str 1 spx x4486c000 spy x4461c000 sb 1 ltn x447a4000 ltm x447a4000 tt x40800000 opc x3f000000}}
+    {curvegroup Bezier1 512 bezier
+     {{cc
+       {f 8192}
+       {p
+        {xc0333400 xc0b99a00}
+        {x4487bc66 x44806c00}
+        {x40333400 x40b99a00}
+        {xbf999800 xc0000000}
+        {x4488f99a x44830ccd}
+        {x3f999800 x40000000}
+        {xbf000000 x3fb33400}
+        {x448a4ccd x44857333}
+        {x3f000000 xbfb33400}
+        {xbe99a000 x3fcccc00}
+        {x44892b33 x44818800}
+        {x3e99a000 xbfcccc00}
+        {xbf800000 x3f999c00}
+        {x448a1444 x44813b77}
+        {1 xbf999c00}}}
+      {cc
+       {f 8192}
+       {p
+        {xc0333400 xc0b99a00}
+        {xc0555600 xc0700200}
+        {x40333400 x40b99a00}
+        {xbf999800 xc0000000}
+        {xbe556000 x40055600}
+        {x3f999800 x40000000}
+        {xbf000000 x3fb33400}
+        {x40195600 x40ad5500}
+        {x3f000000 xbfb33400}
+        {xbe99a000 x3fcccc00}
+        {x40c80000 x40ad5600}
+        {x3e99a000 xbfcccc00}
+        {xbf800000 x3f999c00}
+        {x40d20000 x3e558000}
+        {1 xbf999c00}}}}
+     {t x4489751e x448268f6}
+     {a fx x40a00000 fy x40a00000 osw x41200000 osf 0 str 1 spx x4486c000 spy x4461c000 sb 1 ltn x447a4000 ltm x447a4000 tt x40800000}}
+    {curvegroup OpenSpline5 512 bezier
+     {{cc
+       {f 1056800}
+       {p
+        {}
+        {{a osw 0 osf 0}     x449055ba x44853a0d}
+        {xbe1fc000 xbfc7ac00}
+        {{a osw 1 osf 0}     xbdc08000 x3f842800}
+        {{a osw 1 osf 0}     x4490679f x44847ac4}
+        {{a osw 1 osf 0}     x3db20000 xbf73f000}
+        {xbf853000 x3f0aa000}
+        {{a osw 0 osf 0}     x4490790d x448432bf}
+        {}}}
+      {cc
+       {f 1056800}
+       {p
+        {}
+        {}
+        {xbe1fc000 xbfc7ac00}
+        {xbdc08000 x3f842800}
+        {}
+        {x3db20000 xbf73f000}
+        {xbf853000 x3f0aa000}
+        {}
+        {}}}}
+     {t x448a923d x4484dcf6}
+     {a osbe 0 osee 0 osw x3e4ccccd fx x3fa00000 fy x40a00000 osf 0 str 1 ltn x447a4000 ltm x447a4000 tt x41200000}}}}}}
+toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createOpenSpline str 1 ssx 1 ssy 1 sf 1 tt 10 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+toolbar_brush_hardness 0.200000003
+toolbar_openspline_width 0.200000003
+toolbar_source_transform_scale {1 1}
+toolbar_source_transform_center {320 240}
+colorOverlay {0 0 0 0}
+opacity 0.5
+lifetime_type "all frames"
+lifetime_start 1001
+lifetime_end 1001
+motionblur_shutter_offset_type centred
+feather {1.25 5}
+openspline_width 0.200000003
+name RotoIncreaseExistingFeatures1
+selected true
+xpos 8527
+ypos -20774
+}
+Transform {
+translate {177.1999969 167.3999939}
+rotate -2.5
+scale 1.41
+center {1129.400024 1054.400024}
+shutteroffset centred
+name Transform21
+selected true
+xpos 8527
+ypos -20713
+}
+STMap {
+inputs 2
+uv rgb
+name STMap3
+selected true
+xpos 9050
+ypos -20719
+}

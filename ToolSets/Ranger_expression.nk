@@ -1,0 +1,10 @@
+set cut_paste_input [stack 0]
+version 9.0 v7
+push $cut_paste_input
+Expression {
+ expr3 a>=17.9999&&a<=18.00001?1:0
+ name Ranger_Expression
+ selected true
+ xpos 189
+ ypos -59
+}

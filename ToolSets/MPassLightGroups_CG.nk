@@ -1,0 +1,591 @@
+set cut_paste_input [stack 0]
+version 10.0 v5
+push $cut_paste_input
+add_layer {__light_grp0_direct_diffuse __light_grp0_direct_diffuse.red __light_grp0_direct_diffuse.green __light_grp0_direct_diffuse.blue __light_grp0_direct_diffuse.alpha}
+add_layer {__light_grp0_indirect_diffuse __light_grp0_indirect_diffuse.red __light_grp0_indirect_diffuse.green __light_grp0_indirect_diffuse.blue __light_grp0_indirect_diffuse.alpha}
+add_layer {__light_grp0_direct_specular __light_grp0_direct_specular.red __light_grp0_direct_specular.green __light_grp0_direct_specular.blue __light_grp0_direct_specular.alpha}
+add_layer {__light_grp0_indirect_specular __light_grp0_indirect_specular.red __light_grp0_indirect_specular.green __light_grp0_indirect_specular.blue __light_grp0_indirect_specular.alpha}
+Group {
+name MPassLightGroups2
+help "MPass Grade is a basic relighting tool to color correct one AOV at a time. It is based on the standard Grade Node with the additon of dealing with the subtractive Beauty rebuild automatically.\n\nMPass Grade applies a linear ramp followed by a gamma function to each color channel.\n\nA = multiply * (gain-lift)/(whitepoint-blackpoint)\nB = offset + lift - A*blackpoint\noutput = pow(A*input + B, 1/gamma)\n\nThe reverse option is also provided so that you can copy-paste this node to invert the grade. This will do the opposite gamma correction followed by the opposite linear ramp."
+knobChanged "\ndef get_groups():\n    this  = nuke.thisNode()\n    input_node = this.input(0)\n    channels = nuke.channels(input_node)\n    group_list = \[]\n    for name in channels:\n        tmp = name.split('_')\n        for i in tmp:\n            if 'grp' in i:\n                light_group_name = 'light_' + i.split(\".\")\[0]\n                if light_group_name not in group_list:\n                    group_list.append(light_group_name)\n    group_list.sort()            \n    this\['lightGroups'].setValues(group_list)\n\ndef pulldown_menu_callback():\n    this  = nuke.thisNode()\n    light_group = this\['lightGroups'].value()\n    input_node = this.input(0)\n    channels = nuke.layers(input_node)\n    if not channels:\n        this\['lightGroups'].setValues(\[])\n        print None\n        return None\n    for name in channels:\n        if light_group in name:\n            if '_direct_diffuse' in name and 'unoccluded' not in name:\n                this\['in'].setValue(name)\n            if '_indirect_diffuse' in name:\n                this\['in_1'].setValue(name)\n            if '_direct_specular' in name:\n                this\['in_3'].setValue(name)\n            if '_indirect_specular' in name:\n                this\['in_4'].setValue(name)\n\ndef menu_callback():\n    this = nuke.thisNode()\n    knob = nuke.thisKnob()\n\n    if knob.name()==\"slider\" or knob.name()==\"showPanel\":\n        get_groups()\n\n    if knob.name()==\"hide_passes\":\n        if  not knob.value():\n            this.knobs()\['in'].setVisible(True)\n            this.knobs()\['in_1'].setVisible(True)\n            this.knobs()\['in_3'].setVisible(True)\n            this.knobs()\['in_4'].setVisible(True)\n\n            this\['switch_directDiffuse'].setVisible(True)\n            this\['switch_indirectDiffuse'].setVisible(True)\n            this\['switch_directSpec'].setVisible(True)\n            this\['switch_indirectSpec'].setVisible(True)\n\n        else:\n\n            this.knobs()\['in'].setVisible(False)\n            this.knobs()\['in_1'].setVisible(False)\n            this.knobs()\['in_3'].setVisible(False)\n            this.knobs()\['in_4'].setVisible(False)\n\n            this\['switch_directDiffuse'].setVisible(False)\n            this\['switch_indirectDiffuse'].setVisible(False)\n            this\['switch_directSpec'].setVisible(False)\n            this\['switch_indirectSpec'].setVisible(False)\n\n    if knob.name()==\"lightGroups\":\n        pulldown_menu_callback()\n\nmenu_callback()        \n"
+tile_color 0x78a4efff
+label "\[value lightGroups]"
+selected true
+xpos 1405
+ypos -7277
+addUserKnob {20 User}
+addUserKnob {22 refresh_list l Refresh T "def get_groups():\n    this  = nuke.thisNode()\n    input_node = this.input(0)\n    channels = nuke.channels(input_node)\n    group_list = \[]\n    for name in channels:\n        tmp = name.split('_')\n        for i in tmp:\n            if 'grp' in i:\n                light_group_name = 'light_' + i.split(\".\")\[0]\n                if light_group_name not in group_list:\n                    group_list.append(light_group_name)\n    group_list.sort()            \n    this\['lightGroups'].setValues(group_list)\n\nget_groups()" +STARTLINE}
+addUserKnob {4 lightGroups l "light groups" M {light_grp0 light_grp1 light_grp2 light_grp3 light_grp4 light_grp5 light_grp6 light_grp7}}
+addUserKnob {6 hide_passes l hide -STARTLINE}
+addUserKnob {26 div1 l "" +STARTLINE T " "}
+addUserKnob {41 in l Direct_diffuse_channel T Shuffle_dirDiff.in}
+addUserKnob {6 switch_directDiffuse l on -STARTLINE}
+switch_directDiffuse true
+addUserKnob {41 in_1 l Indirect_diffuse_channel T Shuffle_indirDiff.in}
+addUserKnob {6 switch_indirectDiffuse l on -STARTLINE}
+switch_indirectDiffuse true
+addUserKnob {41 in_3 l direct_Specular_channel T Shuffle_dirSpec.in}
+addUserKnob {6 switch_directSpec l on -STARTLINE}
+switch_directSpec true
+addUserKnob {41 in_4 l indirect_specualr_channel T Shuffle_indirSpec.in}
+addUserKnob {6 switch_indirectSpec l on -STARTLINE}
+switch_indirectSpec true
+addUserKnob {41 blackpoint T Grade.blackpoint}
+addUserKnob {41 whitepoint T Grade.whitepoint}
+addUserKnob {41 black l lift T Grade.black}
+addUserKnob {41 white l gain T Grade.white}
+addUserKnob {41 exposure l exposure(stops) T Exposure1.red}
+addUserKnob {41 multiply T Grade.multiply}
+addUserKnob {41 add l offset T Grade.add}
+addUserKnob {41 gamma T Grade.gamma}
+addUserKnob {41 reverse T Grade.reverse}
+addUserKnob {41 black_clamp l "black clamp" -STARTLINE T Grade.black_clamp}
+addUserKnob {41 white_clamp l "white clamp" -STARTLINE T Grade.white_clamp}
+addUserKnob {41 maskChannelMask_1 l mask T Grade.maskChannelMask}
+addUserKnob {41 inject -STARTLINE T Grade.inject}
+addUserKnob {41 invert_mask l invert -STARTLINE T Grade.invert_mask}
+addUserKnob {41 fringe -STARTLINE T Grade.fringe}
+addUserKnob {41 unpremult l "(un)premult by" T Grade.unpremult}
+addUserKnob {41 invert_unpremult l invert -STARTLINE T Grade.invert_unpremult}
+addUserKnob {41 mix T Grade.mix}
+addUserKnob {26 ""}
+addUserKnob {6 viewLightGroup l "view Light Group Only" +STARTLINE}
+addUserKnob {6 disableGrade l "disable grade" -STARTLINE}
+}
+Input {
+inputs 0
+name mask
+xpos 43
+ypos -377
+number 1
+}
+set N6c248f30 [stack 0]
+Dot {
+name Dot5
+xpos 77
+ypos -26
+}
+set N6c24d910 [stack 0]
+Dot {
+name Dot6
+xpos 77
+ypos 309
+}
+set N6c438dc0 [stack 0]
+push $N6c438dc0
+push $N6c24d910
+push $N6c24d910
+push $N6c248f30
+push $N6c248f30
+Input {
+inputs 0
+name cg
+xpos 397
+ypos -687
+}
+Dot {
+name Dot13
+xpos 431
+ypos -528
+}
+set N6c442200 [stack 0]
+Shuffle {
+in __light_grp0_direct_diffuse
+in2 alpha
+alpha red2
+black black
+white black
+red2 black
+green2 black
+out rgb
+name Shuffle_dirDiff
+xpos 213
+ypos -538
+}
+set N6c446c50 [stack 0]
+Grade {
+inputs 1+1
+name Grade
+xpos 213
+ypos -377
+}
+set N6c4559a0 [stack 0]
+EXPTool {
+inputs 1+1
+mode Stops
+gang false
+green {{red}}
+blue {{red}}
+maskChannelMask {{{parent.Grade.maskChannelMask}}}
+maskChannelInput {{{parent.Grade.maskChannelInput}}}
+inject {{parent.Grade.inject}}
+invert_mask {{parent.Grade.invert_mask}}
+fringe {{parent.Grade.fringe}}
+invert_unpremult {{parent.Grade.invert_unpremult}}
+mix {{parent.Grade.mix}}
+name Exposure1
+xpos 213
+ypos -328
+}
+set N6c5451f0 [stack 0]
+push $N6c5451f0
+push $N6c446c50
+push $N6c442200
+Merge2 {
+inputs 2
+operation from
+Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+output {rgba.red rgba.green rgba.blue -rgba.alpha}
+name Merge7
+xpos 397
+ypos -472
+disable {{1-parent.switch_directDiffuse x1038 0}}
+}
+Merge2 {
+inputs 2
+operation plus
+Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+output {rgba.red rgba.green rgba.blue -rgba.alpha}
+name Merge8
+xpos 397
+ypos -322
+disable {{1-parent.switch_directDiffuse}}
+}
+ShuffleCopy {
+inputs 2
+in rgb
+red red
+green green
+blue blue
+alpha alpha2
+black alpha2
+white black
+red2 black
+green2 black
+out {{{parent.Shuffle_dirDiff.in}}}
+out2 alpha
+name ShuffleCopy1
+xpos 397
+ypos -279
+disable {{1-parent.switch_directDiffuse}}
+}
+Dot {
+name Dot1
+xpos 431
+ypos -181
+}
+set N952e8300 [stack 0]
+Shuffle {
+in __light_grp0_indirect_diffuse
+in2 alpha
+alpha red2
+black black
+white black
+red2 black
+green2 black
+out rgb
+name Shuffle_indirDiff
+xpos 213
+ypos -191
+}
+set N952ecce0 [stack 0]
+Grade {
+inputs 1+1
+blackpoint {{parent.Grade.blackpoint} {parent.Grade.blackpoint} {parent.Grade.blackpoint} {parent.Grade.blackpoint}}
+whitepoint {{parent.Grade.whitepoint} {parent.Grade.whitepoint} {parent.Grade.whitepoint} {parent.Grade.whitepoint}}
+black {{parent.Grade.black} {parent.Grade.black} {parent.Grade.black} {parent.Grade.black}}
+white {{parent.Grade.white} {parent.Grade.white} {parent.Grade.white} {parent.Grade.white}}
+multiply {{parent.Grade.multiply} {parent.Grade.multiply} {parent.Grade.multiply} {parent.Grade.multiply}}
+add {{parent.Grade.add} {parent.Grade.add} {parent.Grade.add} {parent.Grade.add}}
+gamma {{parent.Grade.gamma} {parent.Grade.gamma} {parent.Grade.gamma} {parent.Grade.gamma}}
+reverse {{parent.Grade.reverse}}
+black_clamp {{parent.Grade.black_clamp}}
+white_clamp {{parent.Grade.white_clamp}}
+maskChannelMask {{{parent.Grade.maskChannelMask}}}
+maskChannelInput {{{parent.Grade.maskChannelInput}}}
+inject {{parent.Grade.inject}}
+invert_mask {{parent.Grade.invert_mask}}
+fringe {{parent.Grade.fringe}}
+invert_unpremult {{parent.Grade.invert_unpremult}}
+mix_luminance {{parent.Grade.mix_luminance}}
+mix {{parent.Grade.mix}}
+name Grade1
+xpos 213
+ypos -30
+}
+EXPTool {
+inputs 1+1
+mode Stops
+gang false
+red {{parent.Exposure1.red}}
+green {{red}}
+blue {{red}}
+maskChannelMask {{{parent.Grade.maskChannelMask}}}
+maskChannelInput {{{parent.Grade.maskChannelInput}}}
+inject {{parent.Grade.inject}}
+invert_mask {{parent.Grade.invert_mask}}
+fringe {{parent.Grade.fringe}}
+mix {{parent.Grade.mix}}
+name Exposure2
+xpos 213
+ypos 31
+}
+set N95a74570 [stack 0]
+push $N95a74570
+push $N952ecce0
+push $N952e8300
+Merge2 {
+inputs 2
+operation from
+Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+output {rgba.red rgba.green rgba.blue -rgba.alpha}
+name Merge1
+xpos 397
+ypos -117
+disable {{1-parent.switch_indirectDiffuse}}
+}
+Merge2 {
+inputs 2
+operation plus
+Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+output {rgba.red rgba.green rgba.blue -rgba.alpha}
+name Merge2
+xpos 397
+ypos 31
+disable {{1-parent.switch_indirectDiffuse}}
+}
+ShuffleCopy {
+inputs 2
+in rgb
+red red
+green green
+blue blue
+alpha alpha2
+black alpha2
+white black
+red2 black
+green2 black
+out {{{parent.Shuffle_indirDiff.in}}}
+out2 alpha
+name ShuffleCopy2
+xpos 397
+ypos 68
+disable {{1-parent.switch_indirectDiffuse}}
+}
+Dot {
+name Dot2
+xpos 431
+ypos 154
+}
+set N6bf4c380 [stack 0]
+Shuffle {
+in __light_grp0_direct_specular
+in2 alpha
+alpha red2
+black black
+white black
+red2 black
+green2 black
+out rgb
+name Shuffle_dirSpec
+xpos 213
+ypos 144
+}
+set N6bf50d60 [stack 0]
+Grade {
+inputs 1+1
+blackpoint {{parent.Grade.blackpoint} {parent.Grade.blackpoint} {parent.Grade.blackpoint} {parent.Grade.blackpoint}}
+whitepoint {{parent.Grade.whitepoint} {parent.Grade.whitepoint} {parent.Grade.whitepoint} {parent.Grade.whitepoint}}
+black {{parent.Grade.black} {parent.Grade.black} {parent.Grade.black} {parent.Grade.black}}
+white {{parent.Grade.white} {parent.Grade.white} {parent.Grade.white} {parent.Grade.white}}
+multiply {{parent.Grade.multiply} {parent.Grade.multiply} {parent.Grade.multiply} {parent.Grade.multiply}}
+add {{parent.Grade.add} {parent.Grade.add} {parent.Grade.add} {parent.Grade.add}}
+gamma {{parent.Grade.gamma} {parent.Grade.gamma} {parent.Grade.gamma} {parent.Grade.gamma}}
+reverse {{parent.Grade.reverse}}
+black_clamp {{parent.Grade.black_clamp}}
+white_clamp {{parent.Grade.white_clamp}}
+maskChannelMask {{{parent.Grade.maskChannelMask}}}
+maskChannelInput {{{parent.Grade.maskChannelInput}}}
+inject {{parent.Grade.inject}}
+invert_mask {{parent.Grade.invert_mask}}
+fringe {{parent.Grade.fringe}}
+invert_unpremult {{parent.Grade.invert_unpremult}}
+mix_luminance {{parent.Grade.mix_luminance}}
+mix {{parent.Grade.mix}}
+name Grade4
+xpos 213
+ypos 305
+}
+EXPTool {
+inputs 1+1
+mode Stops
+gang false
+red {{parent.Exposure1.red}}
+green {{red}}
+blue {{red}}
+maskChannelMask {{{parent.Grade.maskChannelMask}}}
+maskChannelInput {{{parent.Grade.maskChannelInput}}}
+inject {{parent.Grade.inject}}
+invert_mask {{parent.Grade.invert_mask}}
+fringe {{parent.Grade.fringe}}
+mix {{parent.Grade.mix}}
+name Exposure3
+xpos 213
+ypos 362
+}
+set N30e83da0 [stack 0]
+push $N30e83da0
+push $N6bf50d60
+push $N6bf4c380
+Merge2 {
+inputs 2
+operation from
+Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+output {rgba.red rgba.green rgba.blue -rgba.alpha}
+name Merge3
+xpos 397
+ypos 220
+disable {{1-parent.switch_directSpec x1038 0}}
+}
+Merge2 {
+inputs 2
+operation plus
+Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+output {rgba.red rgba.green rgba.blue -rgba.alpha}
+name Merge4
+xpos 397
+ypos 362
+disable {{1-parent.switch_directSpec x1038 0}}
+}
+ShuffleCopy {
+inputs 2
+in rgb
+red red
+green green
+blue blue
+alpha alpha2
+black alpha2
+white black
+red2 black
+green2 black
+out {{{parent.Shuffle_dirSpec.in}}}
+out2 alpha
+name ShuffleCopy3
+xpos 397
+ypos 430
+disable {{1-parent.switch_directSpec}}
+}
+Dot {
+name Dot3
+xpos 434
+ypos 575
+}
+set N30a932e0 [stack 0]
+Shuffle {
+in __light_grp0_indirect_specular
+in2 alpha
+alpha red2
+black black
+white black
+red2 black
+green2 black
+out rgb
+name Shuffle_indirSpec
+xpos 216
+ypos 565
+}
+set N30a97cc0 [stack 0]
+push $N6bf50d60
+push 0
+push $N952ecce0
+push $N6c446c50
+Merge2 {
+inputs 4+1
+operation plus
+Achannels rgb
+Bchannels rgb
+output rgb
+name Merge10
+xpos 17
+ypos 1268
+hide_input true
+postage_stamp true
+}
+push $N6c438dc0
+Dot {
+name Dot7
+xpos 77
+ypos 730
+}
+set N30ab60e0 [stack 0]
+push $N30ab60e0
+push $N30a97cc0
+Grade {
+inputs 1+1
+blackpoint {{parent.Grade.blackpoint} {parent.Grade.blackpoint} {parent.Grade.blackpoint} {parent.Grade.blackpoint}}
+whitepoint {{parent.Grade.whitepoint} {parent.Grade.whitepoint} {parent.Grade.whitepoint} {parent.Grade.whitepoint}}
+black {{parent.Grade.black} {parent.Grade.black} {parent.Grade.black} {parent.Grade.black}}
+white {{parent.Grade.white} {parent.Grade.white} {parent.Grade.white} {parent.Grade.white}}
+multiply {{parent.Grade.multiply} {parent.Grade.multiply} {parent.Grade.multiply} {parent.Grade.multiply}}
+add {{parent.Grade.add} {parent.Grade.add} {parent.Grade.add} {parent.Grade.add}}
+gamma {{parent.Grade.gamma} {parent.Grade.gamma} {parent.Grade.gamma} {parent.Grade.gamma}}
+reverse {{parent.Grade.reverse}}
+black_clamp {{parent.Grade.black_clamp}}
+white_clamp {{parent.Grade.white_clamp}}
+maskChannelMask {{{parent.Grade.maskChannelMask}}}
+maskChannelInput {{{parent.Grade.maskChannelInput}}}
+inject {{parent.Grade.inject}}
+invert_mask {{parent.Grade.invert_mask}}
+fringe {{parent.Grade.fringe}}
+invert_unpremult {{parent.Grade.invert_unpremult}}
+mix_luminance {{parent.Grade.mix_luminance}}
+mix {{parent.Grade.mix}}
+name Grade2
+xpos 216
+ypos 726
+}
+EXPTool {
+inputs 1+1
+mode Stops
+gang false
+red {{parent.Exposure1.red}}
+green {{red}}
+blue {{red}}
+maskChannelMask {{{parent.Grade.maskChannelMask}}}
+maskChannelInput {{{parent.Grade.maskChannelInput}}}
+inject {{parent.Grade.inject}}
+invert_mask {{parent.Grade.invert_mask}}
+fringe {{parent.Grade.fringe}}
+invert_unpremult {{parent.Grade.invert_unpremult}}
+mix {{parent.Grade.mix}}
+name Exposure4
+xpos 216
+ypos 791
+}
+set N30a57780 [stack 0]
+push $N30e83da0
+push 0
+push $N95a74570
+push $N6c5451f0
+Merge2 {
+inputs 4+1
+operation plus
+Achannels rgb
+Bchannels rgb
+output rgb
+name Merge9
+xpos 213
+ypos 1171
+}
+Switch {
+inputs 2
+which {{parent.disableGrade}}
+name Switch_disableGrade
+xpos 213
+ypos 1291
+}
+push $N6c442200
+Dot {
+name Dot8
+xpos 595
+ypos -528
+}
+push $N30ab60e0
+Dot {
+name Dot4
+xpos 77
+ypos 1037
+}
+push $N30a57780
+push $N30a57780
+push $N30a97cc0
+push $N30a932e0
+Merge2 {
+inputs 2
+operation from
+Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+output {rgba.red rgba.green rgba.blue -rgba.alpha}
+name Merge5
+xpos 400
+ypos 641
+disable {{1-parent.switch_indirectSpec}}
+}
+Merge2 {
+inputs 2
+operation plus
+Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+output {rgba.red rgba.green rgba.blue -rgba.alpha}
+name Merge6
+xpos 400
+ypos 791
+disable {{1-parent.switch_indirectSpec}}
+}
+ShuffleCopy {
+inputs 2
+in rgb
+red red
+green green
+blue blue
+alpha alpha2
+black alpha2
+white black
+red2 black
+green2 black
+out {{{parent.Shuffle_indirSpec.in}}}
+out2 alpha
+name ShuffleCopy4
+xpos 400
+ypos 844
+disable {{1-parent.switch_indirectSpec}}
+}
+Copy {
+inputs 2
+from0 rgba.alpha
+to0 mask.a
+name CopyInject
+xpos 400
+ypos 1027
+disable {{!Grade.inject}}
+}
+Switch {
+inputs 2
+which {{parent.disableGrade}}
+name Switch_disableGrade1
+xpos 561
+ypos 1033
+}
+Switch {
+inputs 2
+which {{parent.viewLightGroup}}
+name Switch_groupOnly
+xpos 561
+ypos 1291
+}
+Output {
+name Output1
+xpos 561
+ypos 1435
+}
+push $N6c4559a0
+push $N6c4559a0
+Viewer {
+inputs 2
+frame_range 1017-1074
+overscan 300
+center_fstop 0
+viewerProcess Film
+far 100000
+name Viewer1
+xpos 8
+ypos -303
+}
+end_group

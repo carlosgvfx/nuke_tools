@@ -1,0 +1,197 @@
+set cut_paste_input [stack 0]
+version 11.3 v5
+push $cut_paste_input
+OCIOColorSpace {
+ in_colorspace rdo
+ out_colorspace "Client look"
+ key1 SEQ
+ value1 bpt
+ key2 SHOT
+ value2 bpt_0110
+ name OCIOColorSpace2
+ label "\[value value1] // \[value value2]\n\[value in_colorspace] > \[value out_colorspace]"
+ selected true
+ xpos 418
+ ypos -141
+ addUserKnob {20 rodeo_tab l Rodeo}
+ addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+}
+Group {
+ name DED_QT_compare1
+ tile_color 0xff00ff
+ selected true
+ xpos 418
+ ypos -46
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -1272
+  ypos 388
+ }
+ Dot {
+  name Dot14
+  note_font_size 40
+  xpos -1250
+  ypos 452
+ }
+set N1298de50 [stack 0]
+ Transform {
+  scale 0.9495
+  center {1290 1080}
+  name Transform3
+  tile_color 0xff00ff
+  xpos -1392
+  ypos 527
+ }
+ Reformat {
+  format "2580 2160 0 0 2580 2160 2 DED_reformat"
+  resize none
+  name Reformat40
+  xpos -1392
+  ypos 584
+ }
+ Colorspace {
+  colorspace_out AlexaV3LogC
+  name Colorspace9
+  xpos -1392
+  ypos 620
+ }
+ Clamp {
+  maximum 2
+  name Clamp2
+  xpos -1392
+  ypos 665
+ }
+ Reformat {
+  format "1920 1080 0 0 1920 1080 1 HD_1080"
+  filter Simon
+  name Reformat41
+  xpos -1392
+  ypos 731
+ }
+ Transform {
+  scale 1.0535
+  center {960 540}
+  filter Simon
+  black_outside false
+  name Transform5
+  xpos -1392
+  ypos 783
+ }
+ Crop {
+  box {0 117 1920 963}
+  name Crop7
+  xpos -1392
+  ypos 825
+ }
+ Colorspace {
+  colorspace_in AlexaV3LogC
+  name Colorspace10
+  xpos -1392
+  ypos 849
+ }
+ Reformat {
+  format "1920 1080 0 0 1920 1080 1 HD_1080"
+  filter Simon
+  black_outside true
+  name Reformat42
+  xpos -1392
+  ypos 900
+ }
+ Dot {
+  name Dot15
+  note_font_size 40
+  xpos -1370
+  ypos 973
+ }
+push $N1298de50
+ Reformat {
+  format "2580 2160 0 0 2580 2160 2 DED_reformat"
+  resize none
+  name Reformat37
+  xpos -1181
+  ypos 556
+ }
+ Colorspace {
+  colorspace_out AlexaV3LogC
+  name Colorspace7
+  xpos -1181
+  ypos 592
+ }
+ Clamp {
+  maximum 2
+  name Clamp1
+  xpos -1181
+  ypos 637
+ }
+ Reformat {
+  format "1920 1080 0 0 1920 1080 1 HD_1080"
+  filter Simon
+  name Reformat38
+  xpos -1181
+  ypos 703
+ }
+ Transform {
+  scale 1.0535
+  center {960 540}
+  filter Simon
+  black_outside false
+  name Transform4
+  xpos -1181
+  ypos 755
+ }
+ Crop {
+  box {0 117 1920 963}
+  name Crop5
+  xpos -1181
+  ypos 797
+ }
+ Colorspace {
+  colorspace_in AlexaV3LogC
+  name Colorspace8
+  xpos -1181
+  ypos 821
+ }
+ Reformat {
+  format "1920 1080 0 0 1920 1080 1 HD_1080"
+  filter Simon
+  black_outside true
+  name Reformat39
+  xpos -1181
+  ypos 872
+ }
+ Dot {
+  name Dot17
+  note_font_size 40
+  xpos -1159
+  ypos 976
+ }
+ Switch {
+  inputs 2
+  which {{"\[python nuke.thisNode().input(0).metadata('exr/postreformat')] == 1?1:0"}}
+  name Switch3
+  tile_color 0xff0000ff
+  xpos -1281
+  ypos 1051
+ }
+ ModifyMetaData {
+  metadata {
+   {remove exr/postreformat ""}
+  }
+  name ModifyMetaData3
+  xpos -1281
+  ypos 1108
+ }
+ Output {
+  name Output1
+  xpos -1281
+  ypos 1168
+ }
+ Output {
+  name Output2
+  xpos -1281
+  ypos 1268
+ }
+end_group
+

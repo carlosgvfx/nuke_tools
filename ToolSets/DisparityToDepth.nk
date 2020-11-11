@@ -1,0 +1,213 @@
+set cut_paste_input [stack 0]
+version 10.0 v5
+push $cut_paste_input
+Group {
+name DisparityToDepth_ABA3
+selected true
+xpos -7123
+ypos -2993
+addUserKnob {20 User}
+addUserKnob {7 focal}
+focal {{"\[topnode input1].focal"}}
+addUserKnob {7 haperture}
+haperture {{"\[topnode input1].haperture"}}
+}
+Input {
+inputs 0
+name stereoCam
+xpos 537
+ypos -401
+number 1
+}
+set N9e5f6930 [stack 0]
+Dot {
+name Dot130
+xpos 571
+ypos -125
+}
+Input {
+inputs 0
+name scan
+xpos 857
+ypos -499
+}
+Dot {
+name Dot131
+xpos 891
+ypos -448
+}
+set Nd5e59260 [stack 0]
+Dot {
+name Dot132
+xpos 733
+ypos -448
+}
+set Nd5df6b40 [stack 0]
+Shuffle {
+in disparityL
+name Shuffle8
+xpos 771
+ypos -421
+}
+Expression {
+temp_name0 focal
+temp_expr0 (parent.knob.focal/parent.knob.haperture)*input.format.w
+temp_name1 baseline
+temp_expr1 distanceNode.knob.distance
+expr0 1/(focal*baseline/r)
+expr1 focal*baseline/r
+expr2 focal*baseline/r
+name Expression1
+xpos 766
+ypos -370
+}
+OneView {
+view right
+name OneView25
+label right
+xpos 766
+ypos -337
+}
+push $Nd5df6b40
+Shuffle {
+in disparityR
+name Shuffle9
+xpos 647
+ypos -423
+}
+Expression {
+temp_name0 focal
+temp_expr0 (parent.knob.focal/parent.knob.haperture)*input.format.w
+temp_name1 baseline
+temp_expr1 distanceNode.knob.distance
+expr0 1/(focal*baseline/-r)
+expr1 (focal*baseline/-r)
+expr2 0
+expr3 0
+name Expression3
+xpos 648
+ypos -374
+}
+OneView {
+name OneView24
+label left
+xpos 648
+ypos -330
+}
+JoinViews {
+inputs 2
+name JoinViews14
+xpos 698
+ypos -268
+viewassoc "left\nright"
+addUserKnob {20 caravr l CaraVR}
+addUserKnob {22 joinSelection l "Auto Join Selected" t "Use this to automatically connect JoinViews inputs to the selected nodes. <p>When selecting <b>separate</b> nodes (that is, belonging to pipes that operate on one view only), this assigns the inputs based on the views defined by upstream OneView and CameraSolver nodes.</p><p>When a <b>joined</b> node is selected (that is, one operating on multiple views), this assigns all unconnected inputs to it.</p>" -STARTLINE T jve.joinSelected(nuke.thisNode())}
+addUserKnob {22 addSplit l "Add Split On Selected" t "Add one or more OneView nodes connected to the selected node." -STARTLINE T "jve.splitViews(nuke.thisNode(), jve.showViewSelectionPanel(), jve.getSelectedParent()) "}
+}
+push $Nd5e59260
+add_layer {__depth __depth.red __depth.green __depth.blue __depth.alpha}
+Copy {
+inputs 2
+from0 rgba.red
+to0 depth.Z
+from1 rgba.green
+to1 __depth.red
+name Copy3
+xpos 857
+ypos -280
+}
+Shuffle {
+alpha white
+name ALPHA_WHITE
+tile_color 0xffffffff
+xpos 857
+ypos -192
+}
+set Na1f6b370 [stack 0]
+DeepFromImage {
+premult true
+name DeepFromImage1
+xpos 739
+ypos -186
+}
+DeepConvert {
+inputs 2
+input deep
+output rgb
+name DeepConvert1
+xpos 739
+ypos -129
+}
+DeepToImage {
+name DeepToImage1
+xpos 739
+ypos -82
+}
+push $Na1f6b370
+add_layer {__Pworld __Pworld.x __Pworld.y __Pworld.z}
+ShuffleCopy {
+inputs 2
+red red
+green green
+blue blue
+out __Pworld
+name ShuffleCopy1
+xpos 857
+ypos -88
+}
+Output {
+name Output1
+xpos 857
+ypos 19
+}
+push $N9e5f6930
+Axis2 {
+name Axis1
+xpos 422
+ypos -421
+addUserKnob {20 Ivy}
+addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.utils.asst.common', fromlist=\['openDocsName']).openDocsName('IvyTab')" +STARTLINE}
+addUserKnob {26 divider4 l "" +STARTLINE}
+addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+_ivyVals "\{'ivy_job': '', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \{\}, 'ivy_shot': '', 'ivy_regex': False, 'ivy_type': '', 'ivy_versionquery': '', 'spider_uri': ''\}"
+addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+_expressions {{curve}}
+addUserKnob {26 divider0 l "" +STARTLINE}
+addUserKnob {20 dbinfo l "DB Info" n 1}
+dbinfo 0
+addUserKnob {1 twig_dnuuid l "Twig Id"}
+addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+addUserKnob {26 divider1 l "" +STARTLINE}
+addUserKnob {1 twigtype l "Twig Type"}
+addUserKnob {1 leaf_label l Leaf}
+addUserKnob {1 ivy_version l Version}
+addUserKnob {43 ivy_notes l Notes}
+addUserKnob {26 divider2 l "" +STARTLINE}
+addUserKnob {1 build_label l "Build Label"}
+addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+NoOp {
+inputs 0
+name distanceNode
+xpos 456
+ypos -269
+addUserKnob {20 User}
+addUserKnob {7 distance}
+distance {{sqrt(pow2(Axis1.world_matrix.left.3-Axis1.world_matrix.right.3)+pow2(Axis1.world_matrix.left.7-Axis1.world_matrix.right.7)+pow2(Axis1.world_matrix.left.11-Axis1.world_matrix.right.11))}}
+}
+end_group
+PositionToPoints2 {
+display textured
+render_mode textured
+P_channel __Pworld
+detail 0.2
+pointSize 7
+name PositionToPoints3
+selected true
+xpos -7123
+ypos -2941
+}

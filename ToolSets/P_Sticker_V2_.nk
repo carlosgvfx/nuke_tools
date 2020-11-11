@@ -1,0 +1,579 @@
+set cut_paste_input [stack 0]
+version 10.0 v5
+push $cut_paste_input
+add_layer {dneg_position_object dneg_position_object.x dneg_position_object.y dneg_position_object.z}
+add_layer {dneg_normal_object dneg_normal_object.x dneg_normal_object.y dneg_normal_object.z}
+Group {
+ name P_Sticker_V2_
+ label "sampled @: \[value ref]"
+ selected true
+ xpos 191
+ ypos -51
+ addUserKnob {20 User l Main}
+ addUserKnob {41 in l P T P_Selector.in}
+ addUserKnob {41 in_1 l N T N_Selector1.in}
+ addUserKnob {6 guessN l "guess N from position" -STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {4 output l "output mode" M {render position normals}}
+ addUserKnob {26 ""}
+ addUserKnob {12 center l "sticker center"}
+ center {1024 778}
+ addUserKnob {22 sample l "stick it!!!" -STARTLINE T "from __future__ import with_statement # python or nuke want this line here, before \nimport nuke\n\n\ndef nStickerInit(myNode):\n\n    '''\n    This function initializes N_Sticker so that it can project an image sequence\n    on an animated CG character render if we have it's position AOV\n    in object space (reference position).\n\n    It builds the transformation matrix necessary to align an orthographic camera\n    perpendicular to a rendered surface point of which we sample position and normal.\n\n    The tool itself needs only the pObject pass as the normals are derived internally\n    by means of a specific setup, but can (and should, for more accuracy) be fed with a rendered \n    normal pass in object space.\n\n    (c) Gianfranco Sgura 2013\n    '''\n    \n    # get N_Sticker's X and Y sampling coordinates.\n    \n    oNSticker = nuke.toNode(myNode)\n    \n    myX = oNSticker\['center'].value(0) + 0.5\n    myY = oNSticker\['center'].value(1) + 0.5\n\n    # the 'with' statement let us get in the node \n    # and touch our two inputs (\"POSITION\" and \"NORMALS\") and our target (\"Axis\").\n    with oNSticker:\n        oNormal = nuke.toNode(\"NORMALS\")\n        oPosition = nuke.toNode(\"POSITION\")\n        oTarget = nuke.toNode(\"Axis\")\n        \n    # sample position and normal.\n    posR = oPosition.sample('r', myX,myY)\n    posG = oPosition.sample('g', myX,myY)\n    posB = oPosition.sample('b', myX,myY) \n\n    normR = oNormal.sample('r', myX,myY)\n    normG = oNormal.sample('g', myX,myY)\n    normB = oNormal.sample('b', myX,myY) \n    \n    ''' \n    Let's build the vectors to represent the rotation \n    components of our transformation matrix.\n    '''\n    # we already have the normal : this will be our Z axis component.\n    vZ = nuke.math.Vector3()\n    vZ.set(normR, normG, normB)\n    vZ.normalize()  # this might be weird as a normal should be long 1 by default, but you never know.\n    \n    # create an upVector (0,1,0)\n    vUp = nuke.math.Vector3(0,1,0)\n        \n    # cross the vZ with the vUp and you get vX, the X axis.\n    vX = nuke.math.Vector3()\n    vX = vZ.cross( vUp )\n    vX.normalize()\n\n    # cross vX with the vZ and get the vY, our Y axis.\n    vY = nuke.math.Vector3()\n    vY = vX.cross( vZ )\n\n    ''' \n    So now we have a position and 3 orthonormal axis that represent a rotation.\n    Let's pack the values and fill our target's matrix.\n    Et voila': the axis in the tool is positioned on the surface \n    with it's Z axis pointing along the normal.\n    '''\n    stickyMatrix = \[vX\[0], vY\[0], vZ\[0], posR, vX\[1], vY\[1], vZ\[1], posG, vX\[2], vY\[2], vZ\[2], posB, 0, 0, 0, 1]\n\n    for i in range(16):\n        oTarget\['matrix'].setValue(stickyMatrix\[i],i)\n\n\n    # now let's just make sure our axis target will use the matrix, just in case.\n    oTarget\['useMatrix'].setValue('true')\n\n    oNSticker\['ref'].setValue(nuke.frame())\n\n\n\nnStickerInit(nuke.thisNode().name())"}
+ addUserKnob {3 refDisplay l " - sampled @ fr (read-only) : " -STARTLINE}
+ refDisplay {{ref}}
+ addUserKnob {3 ref l INVISIBLE -STARTLINE +INVISIBLE}
+ ref 1001
+ addUserKnob {26 ""}
+ addUserKnob {20 tweaks_1 l Tweaks n 1}
+ addUserKnob {7 near l "clip near" R -10 10}
+ near -1
+ addUserKnob {7 far l "clip far" R -10 10}
+ far 1
+ addUserKnob {26 ""}
+ addUserKnob {14 scale R 0 100}
+ scale 1
+ addUserKnob {7 rotation l "rotate Z" R -180 180}
+ addUserKnob {7 pivotX l "rotate X" R -90 90}
+ addUserKnob {7 pivotY l "rotate Y" R -90 90}
+ addUserKnob {7 offset_x l "offset X" R -1 1}
+ addUserKnob {7 offset_y l "offset Y" R -1 1}
+ addUserKnob {22 reset T "targ=nuke.thisNode()\n\ntarg.knob(\"scale\").setValue(1)\ntarg.knob(\"rotation\").setValue(0)\ntarg.knob(\"pivotX\").setValue(0)\ntarg.knob(\"pivotY\").setValue(0)\ntarg.knob(\"offset_x\").setValue(0)\ntarg.knob(\"offset_y\").setValue(0)" +STARTLINE}
+ addUserKnob {20 endGroup n -1}
+ addUserKnob {20 info l Info}
+ addUserKnob {26 intotxt l "" +STARTLINE T "Projects and sticks an image onto a moving or static surface using the reference position pass (restP).\n\nThe projection is orthographic and happens along the normal at the chosen surface point.\n--------------------------------------------------------------------------------------------------------------------------------------------------\n\nUsage:\n- feed me with your CG and the texture to PROJECT.\n- position \"center\" where you want the center of your sticker to be.\n- hit \"stick it!!!\"\n- tweak at your leisure...guess in which tab?\n- enjoy your sticker :D\n\n--------------------------------------------------------------------------------------------------------------------------------------------------\n\n(c) Gianfranco Sgura 2013\n"}
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode
+  tile_color 0x7171c600
+  label "Normals from Position"
+  note_font_size 25
+  xpos 236
+  ypos -16
+  bdwidth 388
+  bdheight 511
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode1
+  tile_color 0x7171c600
+  label Projection
+  note_font_size 42
+  xpos -432
+  ypos 132
+  bdwidth 305
+  bdheight 375
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode3
+  tile_color 0x7171c600
+  label "out to the sampler function"
+  note_font_size 25
+  xpos 80
+  ypos 634
+  bdwidth 481
+  bdheight 171
+ }
+ Axis2 {
+  inputs 0
+  rotate {0 -1.998000026 95.57099915}
+  useMatrix true
+  matrix {
+      {-0.09339743108 -0.5974954367 0.7964145541 0.4988232553}
+      {0 0.7999110222 0.6001186371 0.9602566361}
+      {0.9956288934 -0.05604954064 0.07470963895 5.138807297}
+      {0 0 0 1}
+    }
+  name Axis
+  xpos -1230
+  ypos 90
+  addUserKnob {20 ivy_data +INVISIBLE}
+  addUserKnob {1 data +INVISIBLE}
+  data "\{\}"
+  addUserKnob {20 ivytab l Ivy}
+  addUserKnob {26 spiderlabel l "Spider Query"}
+  addUserKnob {1 ivy_job l Job}
+  addUserKnob {1 ivy_shot l Shot -STARTLINE}
+  addUserKnob {22 ivy_selectshot l "Select shot..." -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['selectShot']).selectShot()"}
+  addUserKnob {1 ivy_type l Type}
+  addUserKnob {22 ivy_selecttype l "Select type..." -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['selectType']).selectType()"}
+  addUserKnob {1 ivy_name l Name}
+  addUserKnob {6 ivy_regex l regex -STARTLINE}
+  addUserKnob {4 ivy_versionquery l Version M {"" latest "latest approved" "latest element in pipe" "latest WIP" "latest pending" specific}}
+  addUserKnob {3 ivy_vnum l vnum -STARTLINE +DISABLED}
+  addUserKnob {22 ivy_autofill l Autofill T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['autofill']).autofill()" +STARTLINE}
+  addUserKnob {22 ivy_clear l Clear -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['clearFields']).clearFields()"}
+  addUserKnob {26 divider3 l "" +STARTLINE}
+  addUserKnob {6 ivy_usemanualuri l "Use manual URI (clears individual fields)" +STARTLINE}
+  addUserKnob {43 spider_uri l "Spider URI" +DISABLED}
+  addUserKnob {22 updateButton l Update T "__import__('dnnuke.core.ivy.template', fromlist=\['updateNode']).updateNode(nuke.thisNode())" +STARTLINE}
+  addUserKnob {22 testButton l Test -STARTLINE T "__import__('dnnuke.core.ivy.template',fromlist=\['test']).test(nuke.thisNode()\[\"spider_uri\"].value())"}
+  addUserKnob {22 resetButton l "Reset non-spider knobs" -STARTLINE T "__import__('dnnuke.core.ivy.template', fromlist=\['resetNode']).resetNode(nuke.thisNode())"}
+  addUserKnob {22 copyButton l "Copy URI" -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['copyUri']).copyUri()"}
+  addUserKnob {26 divider0 l "" +STARTLINE}
+  addUserKnob {20 dbinfo l "DB Info" n 1}
+  addUserKnob {1 twig_dnuuid l "Twig Id"}
+  addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+  addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+  addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+  addUserKnob {26 divider1 l "" +STARTLINE}
+  addUserKnob {1 twigtype l "Twig Type"}
+  addUserKnob {1 leaf_label l Leaf}
+  addUserKnob {1 ivy_version l Version}
+  addUserKnob {43 ivy_notes l Notes}
+  addUserKnob {26 divider2 l "" +STARTLINE}
+  addUserKnob {1 build_label l "Build Label"}
+  addUserKnob {20 Ivy}
+  addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.utils.asst.common', fromlist=\['openDocsName']).openDocsName('IvyTab')" +STARTLINE}
+  addUserKnob {26 divider4 l "" +STARTLINE}
+  addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+  _ivyVals "\{'ivy_job': '', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \{\}, 'ivy_shot': '', 'ivy_regex': False, 'ivy_type': '', 'ivy_versionquery': '', 'spider_uri': ''\}"
+  addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+  addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+  addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+  _expressions {{curve}}
+ }
+ Axis2 {
+  rotate {{parent.pivotY} {parent.pivotX} {-parent.rotation}}
+  name Pivot
+  xpos -1230
+  ypos 210
+  addUserKnob {20 ivy_data +INVISIBLE}
+  addUserKnob {1 data +INVISIBLE}
+  data "\{\}"
+  addUserKnob {20 ivytab l Ivy}
+  addUserKnob {26 spiderlabel l "Spider Query"}
+  addUserKnob {1 ivy_job l Job}
+  addUserKnob {1 ivy_shot l Shot -STARTLINE}
+  addUserKnob {22 ivy_selectshot l "Select shot..." -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['selectShot']).selectShot()"}
+  addUserKnob {1 ivy_type l Type}
+  addUserKnob {22 ivy_selecttype l "Select type..." -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['selectType']).selectType()"}
+  addUserKnob {1 ivy_name l Name}
+  addUserKnob {6 ivy_regex l regex -STARTLINE}
+  addUserKnob {4 ivy_versionquery l Version M {"" latest "latest approved" "latest element in pipe" "latest WIP" "latest pending" specific}}
+  addUserKnob {3 ivy_vnum l vnum -STARTLINE +DISABLED}
+  addUserKnob {22 ivy_autofill l Autofill T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['autofill']).autofill()" +STARTLINE}
+  addUserKnob {22 ivy_clear l Clear -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['clearFields']).clearFields()"}
+  addUserKnob {26 divider3 l "" +STARTLINE}
+  addUserKnob {6 ivy_usemanualuri l "Use manual URI (clears individual fields)" +STARTLINE}
+  addUserKnob {43 spider_uri l "Spider URI" +DISABLED}
+  addUserKnob {22 updateButton l Update T "__import__('dnnuke.core.ivy.template', fromlist=\['updateNode']).updateNode(nuke.thisNode())" +STARTLINE}
+  addUserKnob {22 testButton l Test -STARTLINE T "__import__('dnnuke.core.ivy.template',fromlist=\['test']).test(nuke.thisNode()\[\"spider_uri\"].value())"}
+  addUserKnob {22 resetButton l "Reset non-spider knobs" -STARTLINE T "__import__('dnnuke.core.ivy.template', fromlist=\['resetNode']).resetNode(nuke.thisNode())"}
+  addUserKnob {22 copyButton l "Copy URI" -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['copyUri']).copyUri()"}
+  addUserKnob {26 divider0 l "" +STARTLINE}
+  addUserKnob {20 dbinfo l "DB Info" n 1}
+  addUserKnob {1 twig_dnuuid l "Twig Id"}
+  addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+  addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+  addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+  addUserKnob {26 divider1 l "" +STARTLINE}
+  addUserKnob {1 twigtype l "Twig Type"}
+  addUserKnob {1 leaf_label l Leaf}
+  addUserKnob {1 ivy_version l Version}
+  addUserKnob {43 ivy_notes l Notes}
+  addUserKnob {26 divider2 l "" +STARTLINE}
+  addUserKnob {1 build_label l "Build Label"}
+  addUserKnob {20 Ivy}
+  addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.utils.asst.common', fromlist=\['openDocsName']).openDocsName('IvyTab')" +STARTLINE}
+  addUserKnob {26 divider4 l "" +STARTLINE}
+  addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+  _ivyVals "\{'ivy_job': '', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \{\}, 'ivy_shot': '', 'ivy_regex': False, 'ivy_type': '', 'ivy_versionquery': '', 'spider_uri': ''\}"
+  addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+  addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+  addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+  _expressions {{curve}}
+ }
+ Axis2 {
+  translate {{-offset_x i} {offset_y i} 10000}
+  name Axis1
+  xpos -1230
+  ypos 330
+  addUserKnob {20 ivy_data +INVISIBLE}
+  addUserKnob {1 data +INVISIBLE}
+  data "\{\}"
+  addUserKnob {20 ivytab l Ivy}
+  addUserKnob {26 spiderlabel l "Spider Query"}
+  addUserKnob {1 ivy_job l Job}
+  addUserKnob {1 ivy_shot l Shot -STARTLINE}
+  addUserKnob {22 ivy_selectshot l "Select shot..." -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['selectShot']).selectShot()"}
+  addUserKnob {1 ivy_type l Type}
+  addUserKnob {22 ivy_selecttype l "Select type..." -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['selectType']).selectType()"}
+  addUserKnob {1 ivy_name l Name}
+  addUserKnob {6 ivy_regex l regex -STARTLINE}
+  addUserKnob {4 ivy_versionquery l Version M {"" latest "latest approved" "latest element in pipe" "latest WIP" "latest pending" specific}}
+  addUserKnob {3 ivy_vnum l vnum -STARTLINE +DISABLED}
+  addUserKnob {22 ivy_autofill l Autofill T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['autofill']).autofill()" +STARTLINE}
+  addUserKnob {22 ivy_clear l Clear -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['clearFields']).clearFields()"}
+  addUserKnob {26 divider3 l "" +STARTLINE}
+  addUserKnob {6 ivy_usemanualuri l "Use manual URI (clears individual fields)" +STARTLINE}
+  addUserKnob {43 spider_uri l "Spider URI" +DISABLED}
+  addUserKnob {22 updateButton l Update T "__import__('dnnuke.core.ivy.template', fromlist=\['updateNode']).updateNode(nuke.thisNode())" +STARTLINE}
+  addUserKnob {22 testButton l Test -STARTLINE T "__import__('dnnuke.core.ivy.template',fromlist=\['test']).test(nuke.thisNode()\[\"spider_uri\"].value())"}
+  addUserKnob {22 resetButton l "Reset non-spider knobs" -STARTLINE T "__import__('dnnuke.core.ivy.template', fromlist=\['resetNode']).resetNode(nuke.thisNode())"}
+  addUserKnob {22 copyButton l "Copy URI" -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['copyUri']).copyUri()"}
+  addUserKnob {26 divider0 l "" +STARTLINE}
+  addUserKnob {20 dbinfo l "DB Info" n 1}
+  addUserKnob {1 twig_dnuuid l "Twig Id"}
+  addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+  addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+  addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+  addUserKnob {26 divider1 l "" +STARTLINE}
+  addUserKnob {1 twigtype l "Twig Type"}
+  addUserKnob {1 leaf_label l Leaf}
+  addUserKnob {1 ivy_version l Version}
+  addUserKnob {43 ivy_notes l Notes}
+  addUserKnob {26 divider2 l "" +STARTLINE}
+  addUserKnob {1 build_label l "Build Label"}
+  addUserKnob {20 Ivy}
+  addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.utils.asst.common', fromlist=\['openDocsName']).openDocsName('IvyTab')" +STARTLINE}
+  addUserKnob {26 divider4 l "" +STARTLINE}
+  addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+  _ivyVals "\{'ivy_job': '', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \{\}, 'ivy_shot': '', 'ivy_regex': False, 'ivy_type': '', 'ivy_versionquery': '', 'spider_uri': ''\}"
+  addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+  addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+  addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+  _expressions {{curve}}
+ }
+ Input {
+  inputs 0
+  name CG
+  xpos -320
+  ypos -330
+ }
+ NoOp {
+  name NoOp1
+  xpos -320
+  ypos -210
+ }
+ Dot {
+  name Dot2
+  xpos -286
+  ypos -126
+ }
+set N3280900 [stack 0]
+ Shuffle {
+  in dneg_position_object
+  in2 rgba
+  alpha alpha2
+  name P_Selector
+  label "\[value in]-->\[value out]"
+  xpos -320
+  ypos 25
+ }
+ Unpremult {
+  name Unpremult_AOV
+  xpos -320
+  ypos 70
+ }
+set N32d1b30 [stack 0]
+ Dot {
+  name Dot1
+  xpos 194
+  ypos 75
+ }
+set N32d9720 [stack 0]
+ Dot {
+  name Dot14
+  xpos 274
+  ypos 75
+ }
+set N32dd770 [stack 0]
+ Dot {
+  name Dot15
+  xpos 274
+  ypos 275
+ }
+set N32e1ab0 [stack 0]
+push $N32dd770
+ Dot {
+  name Dot16
+  xpos 354
+  ypos 75
+ }
+set N32e5df0 [stack 0]
+ Expression {
+  temp_name0 r
+  temp_expr0 r(x+1,y)
+  temp_name1 g
+  temp_expr1 g(x+1,y)
+  temp_name2 b
+  temp_expr2 b(x+1,y)
+  expr0 r
+  expr1 g
+  expr2 b
+  name Neighbor_X
+  xpos 320
+  ypos 231
+ }
+ MergeExpression {
+  inputs 2
+  temp_name0 x
+  temp_expr0 Br-Ar
+  temp_name1 y
+  temp_expr1 Bg-Ag
+  temp_name2 z
+  temp_expr2 Bb-Ab
+  temp_name3 Len
+  temp_expr3 "sqrt((x*x) + (y*y) + (z*z))"
+  expr0 x/Len
+  expr1 y/Len
+  expr2 z/Len
+  name Base_Vector_X
+  xpos 320
+  ypos 351
+ }
+push $N32e1ab0
+ Dot {
+  name Dot17
+  xpos 434
+  ypos 275
+ }
+push $N32e5df0
+ Dot {
+  name Dot18
+  xpos 514
+  ypos 75
+ }
+ Expression {
+  temp_name0 r
+  temp_expr0 r(x,y+1)
+  temp_name1 g
+  temp_expr1 g(x,y+1)
+  temp_name2 b
+  temp_expr2 b(x,y+1)
+  expr0 r
+  expr1 g
+  expr2 b
+  name Neighbor_Y
+  xpos 480
+  ypos 231
+ }
+ MergeExpression {
+  inputs 2
+  temp_name0 x
+  temp_expr0 Br-Ar
+  temp_name1 y
+  temp_expr1 Bg-Ag
+  temp_name2 z
+  temp_expr2 Bb-Ab
+  temp_name3 Len
+  temp_expr3 "sqrt((x*x) + (y*y) + (z*z))"
+  expr0 x/Len
+  expr1 y/Len
+  expr2 z/Len
+  name Base_Vector_Y
+  xpos 480
+  ypos 351
+ }
+ MergeExpression {
+  inputs 2
+  temp_name0 x
+  temp_expr0 "Ag*Bb - Ab*Bg"
+  temp_name1 y
+  temp_expr1 "Ab*Br - Ar*Bb"
+  temp_name2 z
+  temp_expr2 "Ar*Bg - Ag*Br"
+  expr0 x
+  expr1 y
+  expr2 z
+  name Normals
+  label Cross_X_Y
+  xpos 400
+  ypos 425
+ }
+push $N3280900
+ Dot {
+  name Dot9
+  xpos 794
+  ypos -126
+ }
+ Shuffle {
+  in dneg_normal_object
+  in2 rgba
+  alpha alpha2
+  name N_Selector1
+  label "\[value in]-->\[value out]"
+  xpos 760
+  ypos 24
+ }
+ Dot {
+  name Dot10
+  xpos 794
+  ypos 555
+ }
+ Switch {
+  inputs 2
+  which {{parent.guessN}}
+  name Switch2
+  selected true
+  xpos 400
+  ypos 551
+ }
+ NoOp {
+  name NORMALS
+  xpos 400
+  ypos 750
+ }
+ Dot {
+  name Dot7
+  xpos 434
+  ypos 914
+ }
+push $N32d9720
+ NoOp {
+  name POSITION
+  xpos 160
+  ypos 750
+ }
+ Dot {
+  name Dot6
+  xpos 194
+  ypos 834
+ }
+ Dot {
+  name Dot5
+  xpos -606
+  ypos 834
+ }
+push $N3280900
+ Dot {
+  name Dot8
+  xpos -1046
+  ypos -126
+ }
+ Dot {
+  name Dot4
+  xpos -1046
+  ypos 634
+ }
+push $N32d1b30
+ Expression {
+  temp_name0 dx
+  temp_expr0 "(r - Axis1.world_matrix.3)"
+  temp_name1 dy
+  temp_expr1 "(g - Axis1.world_matrix.7)"
+  temp_name2 dz
+  temp_expr2 "(b - Axis1.world_matrix.11)"
+  expr0 "r != 0? dx : 0"
+  expr1 "g != 0? dy : 0"
+  expr2 "b != 0? dz : 0"
+  name Camera_Transform_Distance
+  xpos -320
+  ypos 270
+ }
+ Expression {
+  temp_name0 x
+  temp_expr0 "Axis1.world_matrix.0 * r + Axis1.world_matrix.4 * g + Axis1.world_matrix.8 * b"
+  temp_name1 y
+  temp_expr1 "Axis1.world_matrix.1 * r + Axis1.world_matrix.5 * g + Axis1.world_matrix.9 * b"
+  temp_name2 z
+  temp_expr2 "Axis1.world_matrix.2 * r + Axis1.world_matrix.6 * g + Axis1.world_matrix.10 * b"
+  expr0 x
+  expr1 y
+  expr2 z
+  name Camera_Transform_Rotation
+  xpos -320
+  ypos 310
+ }
+ Expression {
+  temp_name0 myNear
+  temp_expr0 "-far - Axis1.translate.z"
+  temp_name1 myFar
+  temp_expr1 "-near - Axis1.translate.z"
+  expr0 "b<myNear || b > myFar ? 0 : r"
+  expr1 "b<myNear || b > myFar ? 0 : g"
+  name Clipping_Planes
+  xpos -320
+  ypos 390
+ }
+ Expression {
+  temp_name0 clamp
+  temp_expr0 "r == 0 && g == 0 ? 0 : 1"
+  temp_name1 myRatio
+  temp_expr1 Aspect.Ratio
+  temp_name2 u
+  temp_expr2 "clamp == 1? r/(scale.w * myRatio )+0.5 : 0"
+  temp_name3 v
+  temp_expr3 "clamp == 1? g/(scale.h )+0.5 : 0"
+  expr0 "u>0 && u<1 && v>0  && v<1? 1 - u : 0"
+  expr1 "v>0  && v<1 && u>0 && u<1? v : 0"
+  channel3 none
+  name Orthographic_Solver
+  xpos -320
+  ypos 430
+ }
+ Dot {
+  name Dot3
+  xpos -286
+  ypos 554
+ }
+ Input {
+  inputs 0
+  name IMG
+  xpos -680
+  ypos -330
+  number 1
+ }
+ NoOp {
+  name Aspect
+  xpos -680
+  ypos 350
+  addUserKnob {20 User}
+  addUserKnob {3 mywidth l width}
+  mywidth {{width i}}
+  addUserKnob {3 myheight l height}
+  myheight {{height i}}
+  addUserKnob {7 Ratio}
+  Ratio {{"Aspect.mywidth / Aspect.myheight" i}}
+ }
+ Crop {
+  box {1 1 2047 1555}
+  name Crop
+  xpos -680
+  ypos 510
+ }
+ STMap {
+  inputs 2
+  channels rgba
+  uv rgb
+  name STMap1
+  xpos -680
+  ypos 550
+ }
+ Merge2 {
+  inputs 2
+  operation mask
+  name Merge1
+  xpos -680
+  ypos 630
+ }
+set Ne89bc80 [stack 0]
+ Switch {
+  inputs 3
+  which {{parent.output i}}
+  name Switch1
+  xpos -680
+  ypos 910
+ }
+set Ne8a9b00 [stack 0]
+ Output {
+  name Output1
+  xpos -680
+  ypos 950
+ }
+push $Ne8a9b00
+push $Ne89bc80
+push $N3280900
+ Viewer {
+  inputs 3
+  input_number 1
+  viewerProcess None
+  input_process false
+  name Viewer1
+  xpos -40
+  ypos 1030
+  hide_input true
+ }
+end_group

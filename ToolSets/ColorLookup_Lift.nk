@@ -1,0 +1,54 @@
+set cut_paste_input [stack 0]
+version 10.0 v5
+push $cut_paste_input
+Group {
+name ColorLookup_Lift
+tile_color 0x5f96ffff
+selected true
+xpos 34285
+ypos 30150
+addUserKnob {20 User}
+addUserKnob {41 lift T ColorLookup1.lift}
+addUserKnob {41 pivot T ColorLookup1.pivot}
+addUserKnob {26 ""}
+addUserKnob {20 curveControls n 1}
+curveControls 0
+addUserKnob {41 lut l "" +STARTLINE T ColorLookup1.lut}
+addUserKnob {20 endGroup n -1}
+}
+Input {
+inputs 0
+name Input1
+xpos 475
+ypos -216
+}
+ColorLookup {
+lut {master {}
+  red {curve L 0 x0.02800000086 0.028 R x1 1}
+  green {curve L 0 x0.02800000086 0.028 R x1 1}
+  blue {curve L 0 x0.02800000086 0.028 R x1 1}
+  alpha {}}
+name ColorLookup1
+selected true
+xpos 473
+ypos -145
+addUserKnob {20 User}
+addUserKnob {19 lift}
+lift {0 0 0 0}
+addUserKnob {6 lift_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+addUserKnob {19 clampedLift}
+clampedLift {{"clamp(this.lift.r, 0, this.pivot.r)"} {"clamp(this.lift.g, 0, this.pivot.g)"} {"clamp(this.lift.b, 0, this.pivot.b)"} 0}
+addUserKnob {6 clampedLift_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+addUserKnob {19 pivot}
+pivot 0.028
+addUserKnob {6 pivot_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+addUserKnob {19 expression}
+expression {{"\[animation this.lut.red x 0 0]\[animation this.lut.red y 0 this.clampedLift.r]\n\[animation this.lut.red x 1 this.pivot.r]\[animation this.lut.red y 1 this.pivot.r]\n\[animation this.lut.red x 2 1]\[animation this.lut.red y 2 1]\n\[return 1]"} {"\[animation this.lut.green x 0 0]\[animation this.lut.green y 0 this.clampedLift.g]\n\[animation this.lut.green x 1 this.pivot.g]\[animation this.lut.green y 1 this.pivot.g]\n\[animation this.lut.green x 2 1]\[animation this.lut.green y 2 1]\n\[return 1]"} {"\[animation this.lut.blue x 0 0]\[animation this.lut.blue y 0 this.clampedLift.b]\n\[animation this.lut.blue x 1 this.pivot.b]\[animation this.lut.blue y 1 this.pivot.b]\n\[animation this.lut.blue x 2 1]\[animation this.lut.blue y 2 1]\n\[return 1]"} {curve}}
+addUserKnob {6 expression_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+}
+Output {
+name Output1
+xpos 475
+ypos -76
+}
+end_group

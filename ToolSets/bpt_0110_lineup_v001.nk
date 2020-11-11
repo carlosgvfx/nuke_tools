@@ -1,0 +1,362 @@
+#! /softwareLocal/nuke/linux/Nuke11.3v5/libnuke-11.3.5.so -nx
+version 11.3 v5
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="1920" y="0" w="1920" h="1163" maximized="1" screen="1">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="919" stretch="1"/>
+            <splitter orientation="2">
+                <split size="1119"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="953"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+            </dock>
+        </splitter>
+    </window>
+    <window x="1" y="28" w="1918" h="1125" screen="0">
+        <splitter orientation="2">
+            <split size="1125"/>
+            <dock id="" activePageId="Viewer.1">
+                <page id="Viewer.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name /rdo/shows/ded/bpt/0110/comp/setup/nuke/bpt_0110_lineup_v001.nk
+ frame 1207
+ first_frame 1001
+ last_frame 1207
+ lock_range true
+ format "2580 2160 0 0 2580 2160 2 sg_ded"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ OCIO_config custom
+ customOCIOConfigPath /rdo/shows/ded/_project_ref/_lut/_ocio/current/config.ocio
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+ free_type_font_path /rdo/rodeo/setup/nuke/fonts
+}
+Read {
+ inputs 0
+ file /rdo/shows/ded/bpt/0110/plate/scans/offline_ROD_bpt_0110_1029.mov
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ before black
+ last 141
+ after black
+ frame_mode "start at"
+ frame 1029
+ origlast 141
+ origset true
+ version 2
+ raw true
+ name Read1
+ xpos -260
+ ypos -93
+ addUserKnob {20 rdo l RDO}
+ addUserKnob {22 "Smart Reload Read" T "import rdo_nuke.read.node; rdo_nuke.read.node.smartRead(nuke.thisNode())" +STARTLINE}
+}
+Read {
+ inputs 0
+ file_type exr
+ file /rdo/shows/ded/bpt/0110/plate/scans/bpt_0110_plate_bg01_v001/bpt_0110_plate_bg01_v001.####.exr
+ format "2580 2160 0 0 2580 2160 2 sg_ded"
+ first 1001
+ last 1207
+ origfirst 1001
+ origlast 1207
+ origset true
+ version 271
+ name Read2
+ xpos 163
+ ypos 34
+ addUserKnob {20 rdo l RDO}
+ addUserKnob {22 "Smart Reload Read" T "import rdo_nuke.read.node; rdo_nuke.read.node.smartRead(nuke.thisNode())" +STARTLINE}
+}
+set Na237bd0 [stack 0]
+WriteAsset {
+ name WRITE_COMP_HI
+ note_font Verdana
+ selected false
+ xpos 163
+ ypos 643
+ element ""
+ format "2580 2160 0 0 2580 2160 2 sg_ded"
+ version 1
+ file /rdo/shows/ded/bpt/0110/comp/hi/bpt_0110_lineup_v001/bpt_0110_lineup_v001.%04d.exr
+ channels rgb
+ file_type exr
+ frame_1 ""
+ views_1 {main}
+ proxy ""
+ frame ""
+ views {main}
+ datatype "16 bit half"
+ metadata "all metadata"
+ noprefix true
+ beforeRender ""
+ beforeFrameRender ""
+ afterFrameRender ""
+ afterRender ""
+ format_1 "2580 2160 0 0 2580 2160 2 sg_ded"
+ DisableBbox true
+ qubeSubmitMetaPath ""
+ qubeSubmitMetaId ""
+}
+push $Na237bd0
+TimeOffset {
+ time_offset -20
+ time ""
+ name TimeOffset3
+ xpos 56
+ ypos 63
+}
+OCIOColorSpace {
+ in_colorspace rdo
+ out_colorspace "Client look"
+ key1 SEQ
+ value1 bpt
+ key2 SHOT
+ value2 bpt_0110
+ name OCIOColorSpace1
+ label "\[value value1] // \[value value2]\n\[value in_colorspace] > \[value out_colorspace]"
+ xpos -66
+ ypos 51
+ addUserKnob {20 rodeo_tab l Rodeo}
+ addUserKnob {6 freeze_context l "Freeze Context" -STARTLINE}
+}
+Group {
+ name DED_QT_compare
+ tile_color 0xff00ff
+ xpos -66
+ ypos 143
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -1272
+  ypos 388
+ }
+ Dot {
+  name Dot14
+  note_font_size 40
+  xpos -1250
+  ypos 452
+ }
+set N91027a0 [stack 0]
+ Transform {
+  scale 0.9495
+  center {1290 1080}
+  name Transform3
+  tile_color 0xff00ff
+  xpos -1392
+  ypos 527
+ }
+ Reformat {
+  format "2580 2160 0 0 2580 2160 2 DED_reformat"
+  resize none
+  name Reformat40
+  xpos -1392
+  ypos 584
+ }
+ Colorspace {
+  colorspace_out AlexaV3LogC
+  name Colorspace9
+  xpos -1392
+  ypos 620
+ }
+ Clamp {
+  maximum 2
+  name Clamp2
+  xpos -1392
+  ypos 665
+ }
+ Reformat {
+  format "1920 1080 0 0 1920 1080 1 HD_1080"
+  filter Simon
+  name Reformat41
+  xpos -1392
+  ypos 731
+ }
+ Transform {
+  scale 1.0535
+  center {960 540}
+  filter Simon
+  black_outside false
+  name Transform5
+  xpos -1392
+  ypos 783
+ }
+ Crop {
+  box {0 117 1920 963}
+  name Crop7
+  xpos -1392
+  ypos 825
+ }
+ Colorspace {
+  colorspace_in AlexaV3LogC
+  name Colorspace10
+  xpos -1392
+  ypos 849
+ }
+ Reformat {
+  format "1920 1080 0 0 1920 1080 1 HD_1080"
+  filter Simon
+  black_outside true
+  name Reformat42
+  xpos -1392
+  ypos 900
+ }
+ Dot {
+  name Dot15
+  note_font_size 40
+  xpos -1370
+  ypos 973
+ }
+push $N91027a0
+ Reformat {
+  format "2580 2160 0 0 2580 2160 2 DED_reformat"
+  resize none
+  name Reformat37
+  xpos -1181
+  ypos 556
+ }
+ Colorspace {
+  colorspace_out AlexaV3LogC
+  name Colorspace7
+  xpos -1181
+  ypos 592
+ }
+ Clamp {
+  maximum 2
+  name Clamp1
+  xpos -1181
+  ypos 637
+ }
+ Reformat {
+  format "1920 1080 0 0 1920 1080 1 HD_1080"
+  filter Simon
+  name Reformat38
+  xpos -1181
+  ypos 703
+ }
+ Transform {
+  scale 1.0535
+  center {960 540}
+  filter Simon
+  black_outside false
+  name Transform4
+  xpos -1181
+  ypos 755
+ }
+ Crop {
+  box {0 117 1920 963}
+  name Crop5
+  xpos -1181
+  ypos 797
+ }
+ Colorspace {
+  colorspace_in AlexaV3LogC
+  name Colorspace8
+  xpos -1181
+  ypos 821
+ }
+ Reformat {
+  format "1920 1080 0 0 1920 1080 1 HD_1080"
+  filter Simon
+  black_outside true
+  name Reformat39
+  xpos -1181
+  ypos 872
+ }
+ Dot {
+  name Dot17
+  note_font_size 40
+  xpos -1159
+  ypos 976
+ }
+ Switch {
+  inputs 2
+  which {{"\[python nuke.thisNode().input(0).metadata('exr/postreformat')] == 1?1:0"}}
+  name Switch3
+  tile_color 0xff0000ff
+  xpos -1281
+  ypos 1051
+ }
+ ModifyMetaData {
+  metadata {
+   {remove exr/postreformat ""}
+  }
+  name ModifyMetaData3
+  xpos -1281
+  ypos 1108
+ }
+ Output {
+  name Output1
+  xpos -1281
+  ypos 1168
+ }
+ Output {
+  name Output2
+  xpos -1281
+  ypos 1268
+ }
+end_group
+Read {
+ inputs 0
+ file /rdo/shows/ded/_offline/from_client/bpt/bpt_turnover_190912_ROD.mov
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ last 2143
+ origlast 2143
+ origset true
+ raw true
+ name Read4
+ xpos -383
+ ypos -21
+ addUserKnob {20 rdo l RDO}
+ addUserKnob {22 "Smart Reload Read" T "import rdo_nuke.read.node; rdo_nuke.read.node.smartRead(nuke.thisNode())" +STARTLINE}
+}
+TimeOffset {
+ time_offset -1535
+ time ""
+ name TimeOffset1
+ xpos -383
+ ypos 111
+}
+TimeOffset {
+ time_offset 1009
+ time ""
+ name TimeOffset2
+ xpos -383
+ ypos 146
+}
+Viewer {
+ inputs 2
+ frame 1207
+ frame_range 1009-1207
+ frame_range_lock true
+ input_number 1
+ viewerProcess "raw (Rec709)"
+ name Viewer1
+ xpos -269
+ ypos 639
+}

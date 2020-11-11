@@ -1,0 +1,291 @@
+set cut_paste_input [stack 0]
+version 9.0 v7
+Read {
+ inputs 0
+ file /jobs/CIPHER/zc_3210/ELEMENT/E_zc_3210_ae_bg01_v02_prep_v013/3414x2198/e_zc_3210_ae_bg01_v02_prep_v013.####.exr
+ first 961
+ last 1132
+ origfirst 961
+ origlast 1132
+ origset true
+ version 15
+ logGrade true
+ grade {0 0 0}
+ logReference {394 394 394}
+ linReference {0.18 0.18 0.18}
+ negGamma {0.5064 0.5064 0.5064}
+ blackLevel {0.00947 0.00947 0.00947}
+ densPerCV {0.002 0.002 0.002}
+ gradeFound true
+ ivy_job CIPHER
+ ivy_shot zc_3210
+ twig_dnuuid 7ed68fb5-1ce2-4feb-9645-68ceb6e17108
+ stalk_dnuuid b6c3cc1d-3a8c-4574-8e53-d7acd025ef51
+ twigtype_dnuuid e9f824fa-c932-4c3e-acbd-c612fb5ea846
+ leaf_dnuuid 97c82598-6af3-4208-ae98-ea050546c97c
+ twigtype render/element
+ leaf_label main_proxy0
+ ivy_version 13
+ name Read37
+ label "<b><font size=15 color=yellow> Work In Progress"
+ selected true
+ xpos -181
+ ypos -814
+ postage_stamp_frame 1046
+}
+dnRasReformat {
+ name dnRasReformat1
+ selected true
+ xpos -181
+ ypos -628
+ inputFormatResolution {3414 2198}
+ inputFormatPixelAspect 1
+ serialisation ""
+ inputFormat2 {{0} "Alexa XT OpenGate AE"}
+ inputSensor {{0} "Alexa XT/OpenGate"}
+ direction {{0} "from scan to client delivery" "from client delivery to scan"}
+ outputSensor {{0} "Delivery Extractions/Alexa XT OpenGate AE" "Alexa XT/OpenGate"}
+ outputFormat {{0} "CIPHER Delivery"}
+ mask {{0} none Projection}
+ reformatMethod "Subpixel Scale"
+ useLogSpace true
+ inputResolutionName "Alexa XT OpenGate AE"
+ inputResolutionWidth 3414
+ inputResolutionHeight 2198
+ inputResolutionAspect 1
+ inputSensorName "Alexa XT/OpenGate"
+ inputSensorWidth 28.16550064
+ inputSensorHeight 18.13349915
+ inputSensorSqueeze 1
+ inputSensorCenterX 14.08275032
+ inputSensorCenterY 9.066749573
+ outputSensorName "Delivery Extractions/Alexa XT OpenGate AE"
+ outputSensorWidth 28.16550064
+ outputSensorHeight 15.85130024
+ outputSensorSqueeze 1
+ outputSensorCenterX 14.08275032
+ outputSensorCenterY 7.92565012
+ outputResolutionName "CIPHER Delivery"
+ outputResolutionWidth 2150
+ outputResolutionHeight 1210
+ outputResolutionAspect 1
+ resolutionMaskRight 2150
+ resolutionMaskTop 1210
+ extraResolutionsXML ""
+ extraSensorsXML ""
+ inputFormat ""
+}
+GetNeutralGradeV4 {
+ name GetNeutralGradeV4_5
+ label neutralUpdate
+ selected true
+ xpos -181
+ ypos -505
+ channels rgb
+ grade {0.44 -0.32 1.16}
+ unpremult none
+}
+push $cut_paste_input
+Camera2 {
+ read_from_file true
+ translate {{curve x1001 4631.061553 4630.477939 4629.890536 4629.297507 4628.692667 4628.073083 4627.444212 4626.811 4626.176978 4625.54442 4624.91391 4624.285587 4623.661356 4623.04328 4622.431788 4621.827927 4621.22979 4620.635139 4620.043871 4619.460029 4618.885143 4618.320113 4617.764406 4617.217824 4616.67865 4616.149132 4615.631575 4615.126095 4614.629571 4614.141099 4613.660196 4613.186319 4612.718369 4612.255567 4611.796476 4611.341278 4610.891185 4610.445794 4610.00279 4609.561261 4609.12257 4608.688902 4608.260906 4607.838428 4607.42147 4607.011149 4606.609608 4606.218896 4605.83978 4605.472319 4605.115332 4604.765226 4604.418985 4604.076564 4603.741626} {curve x1001 35.195782 35.003228 34.808515 34.610769 34.405548 34.189651 33.966501 33.736016 33.496253 33.244395 32.980919 32.706633 32.42552 32.141506 31.85849 31.579626 31.306293 31.037258 30.771544 30.511052 30.256186 30.007233 29.764824 29.53086 29.304712 29.086946 28.877627 28.676098 28.479887 28.288445 28.101371 27.917628 27.736365 27.558285 27.383481 27.209579 27.033361 26.852946 26.668728 26.481846 26.292761 26.100504 25.90435 25.704381 25.500194 25.292287 25.084901 24.883837 24.691198 24.506284 24.329104 24.160255 23.999138 23.84273 23.688691} {curve x1001 -1511.92675 -1512.904398 -1513.900016 -1514.911478 -1515.926439 -1516.939855 -1517.9548 -1518.973244 -1519.991603 -1521.005275 -1522.010871 -1523.007823 -1524.000944 -1524.994713 -1525.990723 -1526.986508 -1527.977881 -1528.958025 -1529.925174 -1530.880957 -1531.827718 -1532.764586 -1533.691857 -1534.607412 -1535.510591 -1536.404242 -1537.292948 -1538.174101 -1539.044273 -1539.903459 -1540.754176 -1541.595754 -1542.427886 -1543.251021 -1544.065873 -1544.87202 -1545.669889 -1546.458674 -1547.237355 -1548.005291 -1548.763246 -1549.51187 -1550.25146 -1550.981169 -1551.699561 -1552.406198 -1553.10371 -1553.79504 -1554.479867 -1555.156516 -1555.824449 -1556.48339 -1557.131536 -1557.765979 -1558.384367}}
+ rotate {{curve x1001 27.89261679 27.91192547 27.90275814 27.90911798 27.94435488 27.96263223 27.96687212 27.97552378 27.98142525 27.97884694 27.97724266 27.98451922 27.98153984 27.98446193 27.99397302 27.99466057 27.99798373 28.01041691 28.01815184 28.00692187 28.01053151 28.01975613 28.01265145 27.99592108 27.99099364 27.98640998 27.96813263 27.9575902 27.95604322 27.9481364 27.94446947 27.94985527 27.9481364 27.93982851 27.93948474 27.94326626 27.94469865 27.94567268 27.94848018 27.9494542 27.9481937 27.94876665 27.94590187 27.94601646 27.9441257 27.92538998 27.88614237 27.83079464 27.77212377 27.71396855 27.66429311 27.62974375 27.60940375 27.59227231 27.5762295} {curve x1001 -4.815194606 -4.809866099 -4.801615506 -4.789010435 -4.777150208 -4.758872855 -4.730511444 -4.678658763 -4.611679997 -4.5288303 -4.434922517 -4.33442572 -4.231579796 -4.134979112 -4.046056062 -3.967045182 -3.897373514 -3.830795818 -3.768973672 -3.708354737 -3.639026844 -3.569412472 -3.504897424 -3.450466434 -3.401936909 -3.360397468 -3.333926818 -3.325962705 -3.335760283 -3.360225581 -3.399301303 -3.455508462 -3.533430723 -3.633354562 -3.751613051 -3.879669118 -4.010991045 -4.146552859 -4.290250674 -4.444490913 -4.596095545 -4.741798713 -4.891283401 -5.043976654 -5.192086244 -5.339794763 -5.501884524 -5.676120989 -5.84932613 -6.026140906 -6.203414048 -6.383551979 -6.563689909 -6.732082205 -6.891364472} {curve x1001 -0.633290251 -0.6546615767 -0.6602192673 -0.6857158892 -0.7399176966 -0.781915503 -0.8101623223 -0.8393258741 -0.8645360171 -0.868202947 -0.8608690872 -0.8560562417 -0.8366329725 -0.8068391671 -0.7742951643 -0.738771781 -0.714879441 -0.7027327357 -0.6866326217 -0.6656623664 -0.6563804501 -0.6500779144 -0.6213727288 -0.5798332887 -0.5429348067 -0.5069530571 -0.46306449 -0.4193478103 -0.3818763705 -0.3448060011 -0.3124911815 -0.2818952352 -0.2441373165 -0.2055199611 -0.1784190574 -0.1664442395 -0.1610584362 -0.1528651397 -0.1346450819 -0.117456348 -0.1172844607 -0.1222691935 -0.1102370798 -0.09413696574 -0.08812090889 -0.07763578124 -0.05254022981 -0.03323155212 -0.03283048166 -0.03798710182 -0.03443476349 -0.02561121344 -0.02503825565 -0.02217346667 -0.01524067735}}
+ scaling {{curve x1001 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1} {curve x1001 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1} {curve x1001 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1}}
+ uniform_scale {{curve x1001 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1}}
+ skew {{curve x1001 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0} {curve x1001 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0} {curve x1001 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0}}
+ pivot {{curve x1001 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0} {curve x1001 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0} {curve x1001 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0}}
+ focal {{curve x1001 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374 20.81069374}}
+ haperture {{curve x1001 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064 28.16550064}}
+ vaperture {{curve x1001 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152 18.13349152}}
+ near {{curve x1001 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015 0.1000000015}}
+ far {{curve x1001 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000 10000}}
+ win_translate {{curve x1001 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0} {curve x1001 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0}}
+ focal_point {{curve x1001 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500}}
+ fstop {{curve x1001 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8}}
+ file /jobs/CIPHER/zc_3210/ivy/mov/P_zc_3210_layout_v012/P_zc_3210_layout_v012.abc
+ name Camera4
+ selected true
+ xpos 189
+ ypos -725
+ addUserKnob {20 DNeg}
+ addUserKnob {26 _version l "" +STARTLINE +INVISIBLE T 1.0}
+ addUserKnob {41 "horiz aperture" T haperture}
+ addUserKnob {41 "vert aperture" T vaperture}
+ addUserKnob {4 setApertureValues l "" t "Set aperture values based on registered camera sensor data. The 'read from file' knob needs to be disabled and any potential curves deleted." +STARTLINE M {"Set Aperture Values" "Alexa XT/OpenGate" "Alexa XT/4:3 Cropped" "Alexa XT/4:3 Full" "Alexa XT/16:9 1.78" BlackMagic/Full Canon/C500 "Delivery Extractions/Alexa XT OpenGate AE" "Delivery Extractions/Alexa XT 4:3 Cropped AB" "Delivery Extractions/Alexa XT 4:3 Full AC" "Delivery Extractions/Red Dragon 5.5k DB" "Delivery Extractions/Red Dragon 5k WS DC" "Delivery Extractions/Canon C500 CB" "Delivery Extractions/Phantom Flex 4k PB" "Delivery Extractions/Alexa XT 16:9 1.78 AD" "Delivery Extractions/GoPro 4k GP" "Delivery Extractions/BlackMagic BB BC" "Delivery Extractions/Red Dragon 6K DE" "Delivery Extractions/Panasonic VariCam35 VC" "Delivery Extractions/GoPro 2.7k GQ" GoPro/4k "GoPro/2.7k GQ" Lensgrids/AlexaOG_to_Red_5.5FF "Panasonic/VariCam 35" "Phantom/Flex 4k" "Red Dragon/6K Full" "Red Dragon/5.5k" "Red Dragon/5k WS" "Digital SLR/Full Frame" "Digital SLR/Full Frame Portrait" "Digital SLR/APS-C" "Digital SLR/APS-C Portrait" Generic/HD LatLong/360 LatLong/180}}
+ addUserKnob {26 ""}
+ addUserKnob {22 makeProjector l "Make Projector..." T "__import__('dnnuke.init.callbacks.on_user_create.tabs.camera', fromlist=\['makeProjectorNode']).makeProjectorNode()" +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {7 hshake l "horiz shake" +DISABLED R -1 1}
+ addUserKnob {7 vshake l "vert shake" +DISABLED R -1 1}
+ addUserKnob {7 shakeroll l "shake roll" +DISABLED R -180 180}
+ addUserKnob {22 makeShakeCamera l "Make Shake Camera..." T "__import__('dnnuke.init.callbacks.on_user_create.tabs.camera', fromlist=\['makeShakeCamera']).makeShakeCamera()" +STARTLINE}
+ addUserKnob {22 makeShakeTransform l "Make Shake Transform..." -STARTLINE T "__import__('dnnuke.init.callbacks.on_user_create.tabs.camera', fromlist=\['makeShakeTransform']).makeShakeTransform()"}
+ addUserKnob {20 ivy_data +INVISIBLE}
+ addUserKnob {1 data +INVISIBLE}
+ data "\{\}"
+ addUserKnob {20 ivytab l Ivy}
+ addUserKnob {26 spiderlabel l "Spider Query"}
+ addUserKnob {1 ivy_job l Job}
+ addUserKnob {1 ivy_shot l Shot -STARTLINE}
+ addUserKnob {22 ivy_selectshot l "Select shot..." -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['selectShot']).selectShot()"}
+ addUserKnob {1 ivy_type l Type}
+ addUserKnob {22 ivy_selecttype l "Select type..." -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['selectType']).selectType()"}
+ addUserKnob {1 ivy_name l Name}
+ addUserKnob {6 ivy_regex l regex -STARTLINE}
+ addUserKnob {4 ivy_versionquery l Version M {"" latest "latest approved" "latest element in pipe" "latest WIP" "latest pending" specific}}
+ addUserKnob {3 ivy_vnum l vnum -STARTLINE +DISABLED}
+ addUserKnob {22 ivy_autofill l Autofill T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['autofill']).autofill()" +STARTLINE}
+ addUserKnob {22 ivy_clear l Clear -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['clearFields']).clearFields()"}
+ addUserKnob {26 divider3 l "" +STARTLINE}
+ addUserKnob {6 ivy_usemanualuri l "Use manual URI (clears individual fields)" +STARTLINE}
+ addUserKnob {43 spider_uri l "Spider URI" +DISABLED}
+ addUserKnob {22 updateButton l Update T "__import__('dnnuke.core.ivy.template.update', fromlist=\['updateNode']).updateNode(nuke.thisNode())" +STARTLINE}
+ addUserKnob {22 testButton l Test -STARTLINE T "__import__('dnnuke.core.ivy.template.update',fromlist=\['test']).test(nuke.thisNode()\[\"spider_uri\"].value())"}
+ addUserKnob {22 resetButton l "Reset non-spider knobs" -STARTLINE T "__import__('dnnuke.core.ivy.template.reset', fromlist=\['resetNode']).resetNode(nuke.thisNode())"}
+ addUserKnob {22 copyButton l "Copy URI" -STARTLINE T "__import__('dnnuke.core.ivy.spider_knobs', fromlist=\['copyUri']).copyUri()"}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ addUserKnob {1 leaf_label l Leaf}
+ addUserKnob {1 ivy_version l Version}
+ addUserKnob {43 ivy_notes l Notes}
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfo l "DB Info" n -1}
+}
+CheckerBoard2 {
+ inputs 0
+ name CheckerBoard2
+ selected true
+ xpos 336
+ ypos -1220
+}
+Cube {
+ rows 2
+ columns 2
+ translate {4679.499512 174.3399963 -1883.159912}
+ rotate {0 10 0}
+ scaling {1 10 1}
+ uniform_scale 2.2
+ name Cube1
+ selected true
+ xpos 336
+ ypos -1069
+}
+push 0
+push 0
+ParticleEmitter {
+ inputs 3
+ start_frame 999
+ emit_from bbox
+ rate {{curve x996 1 x1001 0}}
+ lifetime 50
+ velocity 0
+ size 1
+ name ParticleEmitter1
+ selected true
+ xpos 342
+ ypos -996
+}
+ParticleTurbulence {
+ strength {0 0.7 0}
+ probability 0
+ name ParticleTurbulence1
+ selected true
+ xpos 342
+ ypos -939
+ disable true
+}
+ParticleWind {
+ from {-3.8 0.4 0}
+ drag 0.5
+ probability {{curve x1017 0 x1030 0.06}}
+ name ParticleWind1
+ selected true
+ xpos 344
+ ypos -880
+ disable true
+}
+ParticleGravity {
+ name ParticleGravity1
+ selected true
+ xpos 344
+ ypos -813
+ disable true
+}
+push 0
+ScanlineRender {
+ inputs 3
+ conservative_shader_sampling false
+ antialiasing high
+ overscan 100
+ shutteroffset centred
+ motion_vectors_type distance
+ name ScanlineRender1
+ selected true
+ xpos 344
+ ypos -705
+}
+Merge2 {
+ inputs 2
+ name Merge1
+ selected true
+ xpos 345
+ ypos -499
+}
+CheckerBoard2 {
+ inputs 0
+ name CheckerBoard1
+ selected true
+ xpos 665
+ ypos -1064
+}
+set N11589be0 [stack 0]
+Card2 {
+ translate {4682.199219 136.8416901 -1588.446411}
+ rotate {0 120 1.2}
+ scaling {1.2 3 1}
+ uniform_scale 110
+ control_points {3 3 3 6 
+
+1 {-0.5 -0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0 0 0} 
+1 {0 -0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0.5 0 0} 
+1 {0.5 -0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {1 0 0} 
+1 {-0.5 0 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0 0.5 0} 
+1 {0 0 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0.5 0.5 0} 
+1 {0.5 0 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {1 0.5 0} 
+1 {-0.5 0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0 1 0} 
+1 {0 0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0.5 1 0} 
+1 {0.5 0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {1 1 0} }
+ name Card23
+ selected true
+ xpos 580
+ ypos -864
+}
+push $N11589be0
+Card2 {
+ translate {4679.564453 163.4695282 -1882.121338}
+ rotate {0 10.2 1.2}
+ uniform_scale 700
+ control_points {3 3 3 6 
+
+1 {-0.5 -0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0 0 0} 
+1 {0 -0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0.5 0 0} 
+1 {0.5 -0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {1 0 0} 
+1 {-0.5 0 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0 0.5 0} 
+1 {0 0 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0.5 0.5 0} 
+1 {0.5 0 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {1 0.5 0} 
+1 {-0.5 0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0 1 0} 
+1 {0 0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0.5 1 0} 
+1 {0.5 0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {1 1 0} }
+ name Card14
+ selected true
+ xpos 767
+ ypos -872
+}
+

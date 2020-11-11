@@ -1,0 +1,19 @@
+set cut_paste_input [stack 0]
+version 8.0 v3
+push $cut_paste_input
+Colorspace {
+ colorspace_out Cineon
+ name Colorspace1
+ label "\[value colorspace_in] >> \[value colorspace_out]"
+ selected true
+ xpos 793
+ ypos 48
+}
+Colorspace {
+ colorspace_in Cineon
+ name Colorspace2
+ label "\[value colorspace_in] >> \[value colorspace_out]"
+ selected true
+ xpos 793
+ ypos 134
+}
