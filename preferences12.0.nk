@@ -1,0 +1,32 @@
+Preferences {
+ inputs 0
+ name Preferences
+ AutoSaveName "\[expr \[string length \[value root.name]]>1?\{\[getenv NUKE_TEMP_DIR]\[file join \[file dirname \[value root.name]] autosave \[file tail \[value root.name]]].\}:\{\[getenv NUKE_TEMP_DIR]/\}]\[clock format \[clock seconds] -format \"%d%m%Y+%H%M%S\"].autosave"
+ AutoSaveTime 0
+ localCachePath /Volumes/raid/nuke_TMP
+ LocalizationSizeLimit -10
+ LocalizationPolicyDefault off
+ DiskCachePath /Volumes/raid/nuke_TMP
+ selectedGPUDeviceName "GeForce GTX TITAN X"
+ platformPathRemaps ""
+ maxPanels 4
+ ExpandSelection true
+ UIFontSize 14
+ NodeColourClass11 "transform mirror crop distort reformat resize cornerpin stabilize GeoTracker PinTool FaceTracker TransformRiggedGeo "
+ ArrowColorLeft 0xff5f00ff
+ ArrowColorRight 0xdfff00ff
+ ArrowColorUp 0xff0000ff
+ ArrowColorDown 0xff3fff
+ expression_arrows false
+ link_knob_arrows false
+ clone_arrows false
+ viewer_bg_color 0x2d2d2dff
+ viewer_bg_color_3D 0x2d2d2dff
+ Viewer3DControlEmulation Maya
+ scriptEditorClearOnSuccess false
+ addUserKnob {20 RodeoFX}
+ addUserKnob {6 rdo_localise_threaded l "Localise threaded" t "Rodeo custom localization system. It will allow you to localize multiple read nodes in parallel while being able to work. It also allows you to better handle what's localized or not.\n\nNote that the default behavior of nuke only localizes one node at a time. So by activating this option, you get faster localization !" +STARTLINE}
+ rdo_localise_threaded true
+ addUserKnob {6 rdo_autosave_local l "Store autosave locally (on your computer)" t "Stores autosaves locally on your computer instead of on the network. Look in the terminal you used to launch nuke in order to know where autosaves are stored." +STARTLINE}
+ rdo_autosave_local true
+}

@@ -1,0 +1,9 @@
+{
+ "overrides": {
+  "Nodes/RodeoFX/Image/Load selected in a new RV": "F1",
+  "Nodes/RodeoFX/Image/Rdo Submit to Dailies": "F2",
+  "Nuke/Render/Render Selected Write Nodes...": "",
+  "Nuke/Render/Submit Selected": "F7"
+ },
+ "version": 1
+}

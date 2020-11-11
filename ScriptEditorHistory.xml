@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?><script>
+
+
+
+
+
+
+
+def rpFilterSet():
+    n = nuke.thisNode()
+    n['source_filter'].setValue('0')
+nuke.addKnobChanged(rpFilterSet, nodeClass='RotoPaint')
+
+
+#paste to multiple selection
+selected = nuke.selectedNodes()
+
+for eachNode in selected:
+    n = nuke.toNode(str(eachNode.name()))
+    n.knob(&quot;selected&quot;).setValue(True)
+    nuke.nodePaste(&quot;%clipboard%&quot;)
+
+
+
+amount=13
+for s in range(amount):
+ a= nuke.nodes.Camera()
+ rot= s * 28
+ a['rotate'].setValue([0,rot,0])
+ a['selected'].setValue(True)
+ a['haperture'].setValue(24.576)
+ a['focal'].setValue(50)
+ k=nuke.selectedNodes()
+b = nuke.createNode('Scene')
+x=0
+for i in k:
+ b.setInput(x,i)
+
+for n in nuke.allNodes():
+ if n['label'].value() == 'newCam':
+    n['disable'].setValue(True)
+
+
+   
+print nuke.selectedNode().Class() 
+
+print (nuke.selectedNode())
+
+mygrade=nuke.nodes.Grade()
+mygrade['white'].setValue(1.5)
+
+bb=nuke.createNode(&quot;Blur&quot;)
+k=nuke.Array_Knob (&quot;blurmult&quot;, &quot;multiplier&quot;) #this creates the new user knob and names
+bb.addKnob(k) #adds the new knob k to the Blur node
+bb['blurmult'].setValue(12)
+
+bb=nuke.createNode(&quot;Blur&quot;)
+k=nuke.WH_Knob (&quot;valueok&quot;, &quot;Value&quot;) #this creates a user slider and names
+bb.addKnob(k)
+bb['valueok'].setValue(2)
+
+bb=nuke.createNode(&quot;Blur&quot;)
+k=nuke.Array_Knob (&quot;blurmult&quot;, &quot;multiplier&quot;)
+t=nuke.WH_Knob (&quot;valueok&quot;, &quot;Value&quot;)
+bb.addKnob(k)
+bb.addKnob(t)
+bb['blurmult'].setValue(12)
+bb['valueok'].setValue(2)
+
+sph=nuke.createNode(&quot;Sphere&quot;, &quot;name mysphere&quot;)
+sph['translate'].setExpression('sin(frame/5)',0)
+sph['translate'].setExpression('cos(frame/10)',1)
+sph['translate'].setExpression('22',2)
+sph['rotate'].setValue(52,2)
+
+for n in nuke.allNodes():
+ if n['label'].value() == 'Gianluca':
+    n['disable'].setValue(True)
+
+for a in nuke.allNodes():
+ if not a.Class()=='ColorCorrect':
+ a['gamma'].setValue(3)
+
+def deleteNodes():
+    Log = nkstCC_init._DebugPrint(&quot;deleteNodes&quot;)
+    for node in nuke.allNodes():
+        # Delete Reformats
+        if node.Class() == &quot;Dot&quot;:
+            Log.msg(&quot;Deleting Node: %s&quot;%(node.name()))
+            nuke.delete(node)
+
+
+for n in nuke.allNodes(): #from all nodes 
+ if n['label'].value() == 'VWR_1':
+    nuke.delete(n) #delete all...
+
+for n in nuke.allNodes(): #from all nodes 
+ if n['label'].value() == 'VWR_':
+    nuke.delete(n) #delete all...
+
+
+def killAllViewer():
+  for n in nuke.allNodes(): #from all nodes 
+   if n['label'].value() == 'VWR_1':
+      nuke.delete(n) #delete all...
+
+for w in nuke.allNodes('Roto'):
+    w.setSelected(True)
+
+import nuke
+def rotoOut():
+    for s in nuke.allNodes('Roto'):
+        s['output'].setValue('none')
+        s['premultiply'].setValue('rga')
+
+for s in nuke.selectedNodes():  
+    s['disable'].setValue(&quot;$gui&quot;)
+
+for s in nuke.selectedNodes():
+    s['disable'].setValue(&quot;frame &lt; 1005 || frame &gt; 1008&quot;)
+
+
+
+
+#Roto output-cliptype
+for s in nuke.allNodes('Roto'):
+    s['output'].setValue('rgba')
+    s['cliptype'].setValue('none')
+
+
+
+
+#centre pivot point to bbox
+for s in nuke.selectedNodes():
+    s['center'].setExpression('[value name].bbox.r+([value name].bbox.x-[value name].bbox.r)/2', 0)
+    s['center'].setExpression('[value name].bbox.t+([value name].bbox.y-[value name].bbox.t)/2', 1)
+    s['center'].clearAnimated()
+
+
+
+
+#center pivot point to bottom part
+for s in nuke.selectedNodes():
+    s['center'].setExpression('[value name].bbox.r+([value name].bbox.x-[value name].bbox.r)/2', 0)
+    s['center'].setExpression('[value name].bbox.y', 1)
+    s['center'].clearAnimated()
+
+s = nuke.selectedNode()
+s['box'].setExpression('[value name].bbox.x', 0)
+s['box'].setExpression('[value name].bbox.y', 1)
+s['box'].setExpression('[value name].bbox.r', 2)
+s['box'].setExpression('[value name].bbox.t', 3)
+s['box'].clearAnimated()
+
+
+
+
+
+
+
+def oldVector():
+    nuke.createNode('Tracker3')
+
+oldVector()
+
+
+for s in nuke.allNodes('Shuffle'):
+    s['label'].setValue('[value in]')
+
+for index in nuke.allNodes():
+    nodeClass = index.Class()
+
+    if nodeClass.__contains__(&quot;WriteLayer&quot;):
+        index.setSelected(True)
+    
+
+def changeTile():
+    mychange = nuke.selectedNodes()
+    mychange['tile_color'].setValue(0x55ffffff)
+
+changeTile()
+
+def changeT():
+    for t in nuke.selectedNodes():
+        t['tile_color'].setValue(0x55ffffff)
+
+changeT()
+
+
+
+for t in nuke.selectedNodes():
+    t['postage_stamp'].setValue(0)
+   #t['tile_color'].setValue(0x55ffffff)
+    t['tile_color'].setValue(nuke.getColor())
+
+for t in nuke.selectedNodes():
+    t['note_font_size'].setValue(30)
+
+iRepeter = 10
+bFirstloop = True
+
+nDot = nuke.nodes.Dot()
+
+for i  in range(iRepeter):
+    nT = nuke.nodes.Transform(name = &quot;t&quot; + str(i), translate = &quot;20 20&quot;)
+    nM = nuke.nodes.Merge2(name = &quot;m&quot; + str(i))
+    nM.setInput(1, nT)
+
+    if bFirstloop:
+        bFirstloop = False
+        nT.setInput(0, nDot)
+        nM.setInput(0, nDot)
+    else:
+        nT.setInput(0, nPM)
+        nM.setInput(0, nPM)
+
+    nPM = nM
+
+
+nodes = nuke.allNodes('Read')  # Grab all nodes with the class 'Read'. Valid classes include 'Write', 'ReadGeo', etc
+source_list = []  # Initialised empty list
+
+for node in nodes:
+    path = node[&quot;file&quot;].value()  # Retrieve value from &quot;file&quot; attribute
+    name = (path.split(&quot;/&quot;))[-1]  # Access the last value in array for path after splitting it with &quot;/&quot; delimiter
+    source_list.append(name)  # Add/append name into source_list
+
+result = &quot;\nList of Read nodes:\n&quot;
+print(result)
+    
+for name in sorted(source_list):
+    print(name
+
+name = input('your name is')
+print name
+
+x = 0
+while x &lt; 500:
+    nuke.createNode('Read')
+    x +=1
+</script>

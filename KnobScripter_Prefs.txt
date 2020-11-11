@@ -1,0 +1,10 @@
+{
+    "color_scheme": "sublime", 
+    "font": "DejaVu Sans Mono", 
+    "font_size": 10, 
+    "pin_default": 1, 
+    "show_labels": 1, 
+    "tab_spaces": 4, 
+    "window_default_h": 100, 
+    "window_default_w": 200
+}

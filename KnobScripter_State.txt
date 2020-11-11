@@ -1,0 +1,22 @@
+{
+    "cursor_pos": {
+        "scripts/Untitled.py": [
+            0, 
+            0
+        ], 
+        "scripts/menuTest.py": [
+            205, 
+            230
+        ]
+    }, 
+    "last_folder": "scripts", 
+    "last_script": "menuTest.py", 
+    "scroll_pos": {
+        "scripts/Untitled.py": 0, 
+        "scripts/menuTest.py": 0
+    }, 
+    "splitter_sizes": [
+        127, 
+        190
+    ]
+}
