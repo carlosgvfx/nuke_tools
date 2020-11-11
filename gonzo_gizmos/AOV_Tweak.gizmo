@@ -1,0 +1,272 @@
+
+Group {
+name AOV_Tweak
+label "\[value Shufflelayer.in]"
+addUserKnob {20 CCfrf l CC}
+addUserKnob {41 in l Layer T Shufflelayer.in}
+addUserKnob {6 LayerView l "View Layer" +STARTLINE}
+addUserKnob {26 CCtitle l "Color Correct"}
+addUserKnob {20 master l "@b;master" n 1}
+addUserKnob {41 saturation T ColorCorrect15.saturation}
+addUserKnob {41 contrast T ColorCorrect15.contrast}
+addUserKnob {41 gamma T ColorCorrect15.gamma}
+addUserKnob {41 gain T ColorCorrect15.gain}
+addUserKnob {41 offset T ColorCorrect15.offset}
+addUserKnob {20 "" n -1}
+addUserKnob {20 shadows l "@b;shadows" n 1}
+shadows 0
+addUserKnob {41 shadows.saturation l saturation T ColorCorrect15.shadows.saturation}
+addUserKnob {41 shadows.contrast l contrast T ColorCorrect15.shadows.contrast}
+addUserKnob {41 shadows.gamma l gamma T ColorCorrect15.shadows.gamma}
+addUserKnob {41 shadows.gain l gain T ColorCorrect15.shadows.gain}
+addUserKnob {41 shadows.offset l offset T ColorCorrect15.shadows.offset}
+addUserKnob {20 "" n -1}
+addUserKnob {20 midtones l "@b;midtones" n 1}
+midtones 0
+addUserKnob {41 midtones.saturation l saturation T ColorCorrect15.midtones.saturation}
+addUserKnob {41 midtones.contrast l contrast T ColorCorrect15.midtones.contrast}
+addUserKnob {41 midtones.gamma l gamma T ColorCorrect15.midtones.gamma}
+addUserKnob {41 midtones.gain l gain T ColorCorrect15.midtones.gain}
+addUserKnob {41 midtones.offset l offset T ColorCorrect15.midtones.offset}
+addUserKnob {20 "" n -1}
+addUserKnob {20 highlights l "@b;highlights" n 1}
+highlights 0
+addUserKnob {41 highlights.saturation l saturation T ColorCorrect15.highlights.saturation}
+addUserKnob {41 highlights.contrast l contrast T ColorCorrect15.highlights.contrast}
+addUserKnob {41 highlights.gamma l gamma T ColorCorrect15.highlights.gamma}
+addUserKnob {41 highlights.gain l gain T ColorCorrect15.highlights.gain}
+addUserKnob {41 highlights.offset l offset T ColorCorrect15.highlights.offset}
+addUserKnob {20 "" n -1}
+addUserKnob {20 RangesGroup l Ranges n 1}
+RangesGroup 0
+addUserKnob {41 test T ColorCorrect15.test}
+addUserKnob {41 lookup l "" -STARTLINE T ColorCorrect15.lookup}
+addUserKnob {20 endGroup n -1}
+addUserKnob {20 Grade}
+addUserKnob {41 blackpoint T Grade1.blackpoint}
+addUserKnob {41 whitepoint T Grade1.whitepoint}
+addUserKnob {41 black l lift T Grade1.black}
+addUserKnob {41 white l gain T Grade1.white}
+addUserKnob {41 multiply T Grade1.multiply}
+addUserKnob {41 add l offset T Grade1.add}
+addUserKnob {41 gamma_1 l gamma T Grade1.gamma}
+addUserKnob {20 Blurtab l Filter}
+addUserKnob {20 Blurgrp l Blur n 1}
+addUserKnob {41 size T Blur1.size}
+addUserKnob {41 filter T Blur1.filter}
+addUserKnob {41 quality l "" -STARTLINE T Blur1.quality}
+addUserKnob {41 crop l "crop to format" -STARTLINE T Blur1.crop}
+addUserKnob {41 mix T Blur1.mix}
+addUserKnob {20 endGroup_2 l endGroup n -1}
+addUserKnob {20 Sharpen n 1}
+addUserKnob {41 size_1 l size T G_Sharpen.size}
+addUserKnob {41 saturation_1 l "edge saturation" T G_Sharpen.saturation}
+addUserKnob {41 blackpoint_1 l "black balance" T G_Sharpen.blackpoint}
+addUserKnob {41 filter_1 l filter T G_Sharpen.filter}
+addUserKnob {41 quality_1 l "" -STARTLINE T G_Sharpen.quality}
+addUserKnob {41 which l Mix T G_Sharpen.which}
+addUserKnob {20 endGroup_1 l endGroup n -1}
+}
+Input {
+inputs 0
+name mask
+xpos -231
+ypos 364
+number 1
+}
+Invert {
+name Invert1
+xpos -96
+ypos 358
+}
+Constant {
+inputs 0
+color 1
+name Constant1
+xpos 39
+ypos 279
+}
+Merge2 {
+inputs 2
+operation stencil
+name Stencil
+xpos 39
+ypos 364
+}
+Dot {
+name Dot2
+xpos 73
+ypos 424
+}
+Dot {
+name Dot1
+xpos 137
+ypos 424
+}
+set N712f7d10 [stack 0]
+push $N712f7d10
+push $N712f7d10
+Input {
+inputs 0
+name Input
+xpos 437
+ypos 300
+}
+Dot {
+name Dot15
+xpos 471
+ypos 343
+}
+set Nb85df510 [stack 0]
+Shuffle {
+name Shufflelayer
+xpos 252
+ypos 339
+}
+set Nb4c01e0 [stack 0]
+ColorCorrect {
+inputs 1+1
+shadows 0
+midtones 0
+highlights 0
+name ColorCorrect15
+xpos 252
+ypos 382
+}
+Grade {
+inputs 1+1
+name Grade1
+xpos 252
+ypos 420
+}
+Blur {
+inputs 1+1
+channels rgba
+name Blur1
+xpos 252
+ypos 458
+}
+Group {
+name G_Sharpen
+help "Daniel Gonzalez Solozabal \nGonzo FX"
+tile_color 0xff4539ff
+xpos 250
+ypos 492
+addUserKnob {20 User l G_Sharpen}
+addUserKnob {41 channels T Blur27.channels}
+addUserKnob {41 size T Blur27.size}
+addUserKnob {41 saturation l "edge saturation" T Saturation7.saturation}
+addUserKnob {41 blackpoint l "black balance" T Grade1.blackpoint}
+addUserKnob {41 filter T Blur27.filter}
+addUserKnob {41 quality l "" -STARTLINE T Blur27.quality}
+addUserKnob {41 which l Mix T Dissolve1.which}
+}
+Input {
+inputs 0
+name Input1
+xpos 508
+ypos 266
+}
+Dot {
+name Dot67
+xpos 542
+ypos 343
+}
+set Na05470 [stack 0]
+Dot {
+name Dot68
+xpos 466
+ypos 418
+}
+set Neab602d0 [stack 0]
+push $Na05470
+Blur {
+channels rgba
+name Blur27
+xpos 271
+ypos 339
+}
+Merge2 {
+inputs 2
+operation divide
+name Multiply12
+xpos 271
+ypos 414
+}
+Grade {
+name Grade1
+xpos 271
+ypos 460
+}
+Saturation {
+name Saturation7
+xpos 271
+ypos 504
+}
+Clamp {
+minimum 0.001
+maximum 10
+name Clamp9
+xpos 271
+ypos 547
+}
+push $Neab602d0
+Merge2 {
+inputs 2
+operation multiply
+name Multiply14
+xpos 432
+ypos 553
+}
+push $Na05470
+Dissolve {
+inputs 2
+which 1
+name Dissolve1
+xpos 508
+ypos 633
+}
+Output {
+name Output1
+xpos 508
+ypos 720
+}
+end_group
+Dot {
+name Dot16
+xpos 286
+ypos 528
+}
+set Na0aeb0 [stack 0]
+push $Na0aeb0
+push $Nb4c01e0
+push $Nb85df510
+Merge2 {
+inputs 2
+operation from
+Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+name Merge20
+xpos 437
+ypos 437
+}
+Merge2 {
+inputs 2
+operation plus
+Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+name Plus1
+xpos 437
+ypos 524
+}
+Switch {
+inputs 2
+which {{parent.LayerView}}
+name Switcher
+xpos 437
+ypos 578
+}
+Output {
+name Output1
+xpos 437
+ypos 624
+}
+end_group

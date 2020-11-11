@@ -1,0 +1,125 @@
+#! C:/Program Files/Nuke7.0v10/Nuke7.0.exe -nx
+version 7.0 v10
+Group {
+name ImagePlane
+ inputs 2
+ help "Daniel Gonzalez Solozabal"
+ tile_color 0xb60000ff
+ addUserKnob {20 User l G_ImagePlane}
+ addUserKnob {4 Type M {Matchmove Stabilize}}
+ addUserKnob {41 first_frame l Frame T FrameHold2.first_frame}
+ addUserKnob {22 SetThisFrame T "node = nuke.thisNode()\nnode\['first_frame'].setValue(nuke.frame()) " +STARTLINE}
+ addUserKnob {41 uniform_scale l "Plane Distance" T TransformGeo3.uniform_scale}
+ addUserKnob {7 cardscale l "Card Scale" R 1 10}
+ cardscale 1
+ addUserKnob {41 filter T ScanlineRender6.filter}
+ addUserKnob {41 samples l "MoBlur Samples" T ScanlineRender6.samples}
+ addUserKnob {41 shutter T ScanlineRender6.shutter}
+}
+ Input {
+  inputs 0
+  name Camera
+  xpos -777
+  ypos 304
+  number 1
+ }
+ Dot {
+  name Dot53
+  xpos -633
+  ypos 308
+ }
+set N1ede6c00 [stack 0]
+ FrameHold {
+  first_frame 1
+  name FrameHold2
+  xpos -667
+  ypos 207
+ }
+set N1ed2cd20 [stack 0]
+push $N1ede6c00
+ Switch {
+  inputs 2
+  which {{"parent.Type "}}
+  name Switch1
+  xpos -537
+  ypos 304
+ }
+push $N1ede6c00
+push $N1ed2cd20
+ Switch {
+  inputs 2
+  which {{"parent.Type "}}
+  name Switch2
+  xpos -519
+  ypos 213
+ }
+set N1ed9ec60 [stack 0]
+push $N1ed9ec60
+push $N1ed9ec60
+ Input {
+  inputs 0
+  name Image
+  xpos -351
+  ypos 93
+ }
+ Project3D {
+  inputs 2
+  crop false
+  name Project3D2
+  xpos -351
+  ypos 179
+ }
+ Card2 {
+  rows 0
+  columns 0
+  translate {0 0 -1}
+  scaling {{parent.cardscale} {parent.cardscale} 1}
+  pivot {0 0 1}
+  control_points {3 3 3 6 
+
+1 {-0.5 -0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0 0 0} 
+1 {0 -0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0.5 0 0} 
+1 {0.5 -0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {1 0 0} 
+1 {-0.5 0 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0 0.5 0} 
+1 {0 0 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0.5 0.5 0} 
+1 {0.5 0 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {1 0.5 0} 
+1 {-0.5 0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0 1 0} 
+1 {0 0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0.5 1 0} 
+1 {0.5 0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {1 1 0} }
+  name Card5
+  xpos -351
+  ypos 205
+ }
+ TransformGeo {
+  inputs 3
+  uniform_scale 50
+  matrix {
+      {1 0 0 0}
+      {0 1 0 0}
+      {0 0 2 0}
+      {0 0 0 1}
+    }
+  rotate_x false
+  rotate_y false
+  rotate_z false
+  name TransformGeo3
+  xpos -351
+  ypos 248
+ }
+push 0
+ ScanlineRender {
+  inputs 3
+  overscan 200
+  samples 0
+  motion_vectors_type off
+  MB_channel none
+  name ScanlineRender6
+  xpos -351
+  ypos 313
+ }
+ Output {
+  name Output1
+  xpos -351
+  ypos 391
+ }
+end_group
